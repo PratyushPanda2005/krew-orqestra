@@ -4,10 +4,11 @@
  */
 
 export const hero = {
-  eyebrow: "For videographers, photographers and designers",
+  // ⚠ Krew-only positioning (feedback 24 Oct): the PRD still calls Kreator the solo plan of the same app
+  eyebrow: "For video, photo and design crews",
   title: "From the first DM to getting paid.",
   // PRD §1
-  sub: "Krew keeps each client job in one place: the chat, the quote, the advance, the drafts and the invoice. Run it alone or with your crew.",
+  sub: "Krew keeps each client job in one place for you and your crew: the chat, the quote, the advance, the drafts and the invoice.",
   primary: "Join the pilot",
   secondary: "See how a job runs",
   railNote: "One job, seven steps. You always see where it stands.",
@@ -15,12 +16,19 @@ export const hero = {
 }
 
 export const mess = {
-  title: "Right now, one job lives in three apps.",
+  // Instagram, WhatsApp, Gmail and Notes: four apps. Every fragment is an example.
+  title: "Right now, one job lives in four apps.",
+  intro: "Add a crew, and every question still comes back to you.",
+  clientsTitle: "With your client",
+  crewTitle: "With your crew",
   captions: {
     dm: "Enquiries in Instagram DMs.",
     whatsapp: "Quotes as screenshots.",
     mail: "Invoices buried in email threads.",
     note: "Payments chased by hand.",
+    date: "Your shooter asks for the date. Again.",
+    brief: "Your editor can't find the brief.",
+    twoReplies: "Two of you reply to one client.",
   },
   closing: "Krew puts the job back together.",
 }
@@ -45,9 +53,9 @@ export const how = {
       body: "Ask for the advance with a payment link or your UPI ID. If it isn't paid two days before the shoot, Krew marks the job at risk.",
     },
     {
-      // PF-17, PF-18, PF-03
+      // PF-17, PF-18, PF-03, PRD §3 (roles)
       title: "Work",
-      body: "Turn the job into tasks from a template. With a crew, assign them; each person sees only their own jobs.",
+      body: "Turn the job into tasks from a template and assign them to your crew. Each person sees only the jobs and tasks you give them, and you choose who can reply to clients.",
     },
     {
       // PF-21, EC-19
@@ -66,6 +74,15 @@ export const how = {
     },
   ],
   cta: "Join the pilot",
+}
+
+export const income = {
+  // PF-26 views: whole account (money in, money out and net, by month) and pending (what each client still owes).
+  // ⚠ "grow" is our wording: the PRD gives monthly totals, not growth analytics or forecasts.
+  eyebrow: "Across all your jobs",
+  title: "Watch your income grow, month by month.",
+  body: "Every job feeds one ledger. See money in, money out and what you kept each month, and what each client still owes you. When it's time to file, export it all for your accountant.",
+  points: ["Money in, money out and net, by month", "What each client still owes", "Exports for Tally and Zoho Books, or CSV"],
 }
 
 export const clients = {
@@ -106,18 +123,6 @@ export const trust = {
   ],
 }
 
-export const plans = {
-  // PRD §3, decision S7: team members are the only difference in the MVP
-  title: "Just you, or you and your crew",
-  kreator: { name: "Kreator", tag: "For solo creators", body: "Everything Krew does, for one person." },
-  krew: {
-    name: "Krew",
-    tag: "For crews",
-    body: "Everything in Kreator, plus team members. Invite your shooters, editors and designers. Each sees only the jobs and tasks you give them, and you choose who can reply to clients.",
-  },
-  note: "Pricing will be announced at launch.",
-}
-
 export const faq = {
   title: "Questions creators ask",
   items: [
@@ -156,14 +161,13 @@ export const faq = {
 
 export const waitlist = {
   title: "Join the pilot",
-  intro: "We're opening Krew to a small group of creators first. Tell us about your work and we'll get in touch.",
+  intro: "We're opening Krew to a small group of creators first. Leave your email or number and we'll be in touch.",
   fields: {
+    contact: "Email or phone",
     name: "Your name",
     skill: "What do you do?",
     city: "City",
-    plan: "Just you or a crew?",
     instagram: "Instagram handle",
-    contact: "Phone or email",
   },
   optional: "(optional)",
   contactHint: "We'll only use this to contact you about the pilot.",
@@ -172,16 +176,20 @@ export const waitlist = {
     { value: "photo", label: "Photo" },
     { value: "design", label: "Design" },
   ],
-  plans: [
-    { value: "kreator", label: "Just me" },
-    { value: "krew", label: "I have a team" },
-  ],
   submit: "Join the pilot",
   submitting: "Joining…",
+  details: {
+    pill: "You're on the list",
+    title: "Tell us about your work",
+    body: "It helps us plan the pilot around you. Takes a minute.",
+    save: "Save",
+    saving: "Saving…",
+    skip: "Skip for now",
+  },
   summary: (n: number) => (n === 1 ? "Fix 1 thing to continue." : `Fix ${n} things to continue.`),
   done: {
     pill: "You're on the list",
-    title: (name: string) => `You're on the list, ${name}.`,
+    title: (name?: string) => (name ? `Thanks, ${name}.` : "You're on the list."),
     body: (contact: string) => `We'll contact you on ${contact} about the pilot.`,
   },
   duplicate: { pill: "Already on the list", title: "You're already on the list.", body: "We'll be in touch." },

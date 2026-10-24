@@ -1,4 +1,4 @@
-import { clients, faq, plans, trust } from "@/app/(marketing)/copy"
+import { clients, faq, trust } from "@/app/(marketing)/copy"
 
 import { Section } from "./section"
 
@@ -29,23 +29,6 @@ export function Trust() {
           </li>
         ))}
       </ul>
-    </Section>
-  )
-}
-
-export function Plans() {
-  return (
-    <Section id="plans" title={plans.title}>
-      <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:mt-12 lg:gap-6">
-        {[plans.kreator, plans.krew].map((p) => (
-          <li key={p.name} className="rounded-xl border bg-card p-6">
-            <p className="text-sm font-medium text-muted-foreground">{p.tag}</p>
-            <h3 className="condensed mt-1 text-3xl font-semibold">{p.name}</h3>
-            <p className="mt-2 text-base">{p.body}</p>
-          </li>
-        ))}
-      </ul>
-      <p className="mt-6 text-muted-foreground">{plans.note}</p>
     </Section>
   )
 }

@@ -35,3 +35,24 @@ html {
     scroll-behavior: smooth;
   }
 }
+
+/*
+ * "The mess": MessPlay arms the section (hides each [data-arrive]) only once JS runs with
+ * motion allowed and the section is off screen, then plays it when it scrolls in.
+ * Opacity and transform only, so nothing shifts layout.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  #mess[data-armed] [data-arrive] {
+    opacity: 0;
+    transform: translateY(0.75rem) scale(0.98);
+  }
+
+  #mess[data-armed][data-play] [data-arrive] {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 320ms ease-out,
+      transform 420ms cubic-bezier(0.2, 0.9, 0.3, 1.2);
+    transition-delay: calc(var(--i, 0) * 380ms);
+  }
+}

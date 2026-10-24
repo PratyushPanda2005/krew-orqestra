@@ -497,3 +497,25 @@ What's left in the 21.1 KB is mostly the `zod/mini` core plus the form. Dropping
 **Follow-ups outside this plan:**
 - `/design` still says "Send a brief" and shows the client brief pattern.
 - `briefMachine` and `02-product-flow.md` still describe a client brief, which conflicts with decision S9.
+
+## 16. Changes from website feedback (24 Oct 2026)
+
+Source: `Krew_Website_Feedback.pdf`, four changes.
+
+| # | Feedback | What changed |
+|---|---|---|
+| 1 | Onboarding is too long; drop "Just you or a crew?"; classy and minimal | Joining is one field ("Email or phone") and one button. Step 2 asks for name, what you do, city and Instagram (optional), and can be skipped. One server action handles both steps through a hidden `step` field, so it still works without JS. The adapter is now `joinWaitlist(contact)`, which returns an opaque id, and `addWaitlistDetails(id, details)`. The schema splits into `WaitlistContact` and `WaitlistDetails`; `plan` is gone from the waitlist. |
+| 2 | Kreator is a separate application; remove the plans section | The plans section and "Pricing will be announced at launch" are removed. The hero eyebrow and sub now speak to crews. The team detail from the Krew card ("each sees only the jobs and tasks you give them, and you choose who can reply to clients") moved into the Work step. |
+| 3 | Keep "one job, three apps"; simulate a crew's chaos; the headline says three but shows four | The headline is now "four apps". A "With your crew" group adds the shooter asking for the date, the editor who can't find the brief, and two people quoting one client. With JS and motion allowed, the fragments arrive one by one when the section scrolls in (CSS transitions armed by a tiny `MessPlay` island, opacity and transform only). No GSAP. Without JS or with reduced motion, everything is shown. |
+| 4 | Add "track your growth and income" beside the ledger | An income block sits after the Paid step and before the CTA. It shows money in by month, received vs pending, and October's in, out and net, all as example figures. It's grounded in PF-26's whole-account and pending views and the accountant exports. |
+
+**Conflicts to settle:**
+- **Kreator as a separate app:** the PRD (header, §3, decision S7) says Kreator is the solo plan of the same app. The site now follows the feedback. The PRD needs updating, or the feedback needs confirming.
+- **"Watch your income grow":** this wording is ours (⚠ in `copy.ts`). The PRD has monthly totals but no growth analytics.
+- **The brief:** the crew chaos mentions "the brief" as part of today's mess. It doesn't claim Krew has a brief (decision S9).
+
+**Verified:**
+- Type-check, lint and unit tests (26 flows, 10 schemas) pass.
+- 11 of 11 Playwright checks pass. Two are new: skip and duplicate on step 2, and the mess arrival with reduced motion.
+- Slow 4G at 390 px: LCP 1,232 ms, CLS 0.006.
+- Landing-only JS is **21.8 KB** gzipped, about 1.8 KB over the 20 KB budget (it was 21.1 KB). HTML is 22.2 KB.

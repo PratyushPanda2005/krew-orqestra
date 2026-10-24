@@ -1,13 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { WaitlistSignup, waitlistFields } from "../src/waitlist";
+import { WaitlistDetails, waitlistFields } from "../src/waitlist";
 
 const valid = {
   name: " Riya ",
   skill: "photo",
   city: "Pune",
-  plan: "kreator",
   instagram: "",
-  contact: "98765 43210",
 };
 
 const firstError = (field: keyof typeof waitlistFields, value: unknown) => {
@@ -16,16 +14,9 @@ const firstError = (field: keyof typeof waitlistFields, value: unknown) => {
 };
 
 describe("waitlist sign-up", () => {
-  it("accepts a valid sign-up and tidies it", () => {
-    const r = WaitlistSignup.parse(valid);
-    expect(r).toEqual({
-      name: "Riya",
-      skill: "photo",
-      city: "Pune",
-      plan: "kreator",
-      instagram: undefined,
-      contact: { kind: "phone", value: "+919876543210" },
-    });
+  it("accepts valid details and tidies them", () => {
+    const r = WaitlistDetails.parse(valid);
+    expect(r).toEqual({ name: "Riya", skill: "photo", city: "Pune", instagram: undefined });
   });
 
   it("reads Indian mobile numbers in common forms", () => {
@@ -58,6 +49,5 @@ describe("waitlist sign-up", () => {
     expect(firstError("city", undefined)).toBe("Enter your city.");
     expect(firstError("skill", undefined)).toBe("Pick what you do.");
     expect(firstError("skill", "music")).toBe("Pick what you do.");
-    expect(firstError("plan", null)).toBe("Pick one.");
   });
 });

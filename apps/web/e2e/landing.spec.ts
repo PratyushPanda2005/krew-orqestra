@@ -4,6 +4,11 @@ import { slow4G } from "./throttle"
 
 const isGsap = (url: string) => /gsap/i.test(url)
 
+// The mock keeps sign-ups for the life of the server, so each run joins with fresh contacts.
+const run = Date.now().toString().slice(-5)
+const phone = `98765${run}`
+const shownPhone = `+91 98765 ${run}`
+
 test.describe("landing page at 390 px", () => {
   test("LCP under 2.5 s and CLS under 0.1 on slow 4G", async ({ page }) => {
     await slow4G(page)
@@ -74,42 +79,83 @@ test.describe("landing page at 390 px", () => {
     await q.click()
     await expect(page.getByText("Krew connects a WhatsApp Business number")).toBeVisible()
 
-    await page.getByRole("button", { name: "Join the pilot" }).click()
-    await expect(page.locator("form").getByRole("alert")).toContainText("Fix 5 things to continue.")
-    await expect(page.locator("#name-error")).toHaveText("Enter your name.")
+    // Step 1 is one field.
+    const join = page.locator("#waitlist").getByRole("button", { name: "Join the pilot" })
+    await join.click()
+    await expect(page.locator("#contact-error")).toHaveText("Enter a 10-digit mobile number or an email address.")
+    await page.fill("#contact", phone)
+    await page.locator("#waitlist").getByRole("button", { name: "Join the pilot" }).click()
 
+    // Step 2 asks about the work; errors come back as a summary.
+    await expect(page.locator("#waitlist").getByRole("status")).toContainText("Tell us about your work")
+    await page.getByRole("button", { name: "Save" }).click()
+    await expect(page.locator("form").getByRole("alert")).toContainText("Fix 3 things to continue.")
     await page.fill("#name", "Riya")
     await page.locator("label", { hasText: "Photo" }).click()
     await page.fill("#city", "Pune")
-    await page.locator("label", { hasText: "Just me" }).click()
-    await page.fill("#contact", "98765 43210")
-    await page.getByRole("button", { name: "Join the pilot" }).click()
-    await expect(page.getByRole("status")).toContainText("You're on the list, Riya.")
+    await page.getByRole("button", { name: "Save" }).click()
+    await expect(page.getByRole("status")).toContainText("Thanks, Riya.")
+    await expect(page.getByRole("status")).toContainText(shownPhone)
     await context.close()
   })
 
-  test("with JS: inline errors on blur, summary announced and focused, then success", async ({ page }) => {
+  test("with JS: one-field join, details on step 2, summary announced and focused", async ({ page }) => {
     await page.goto("/")
     await page.fill("#contact", "12345")
-    await page.locator("#name").focus()
+    await page.locator("#contact").blur()
     await expect(page.locator("#contact-error")).toHaveText("Enter a 10-digit mobile number or an email address.")
     await expect(page.locator("#contact")).toHaveAttribute("aria-invalid", "true")
+    await expect(page.locator("#name")).toHaveCount(0)
 
-    await page.getByRole("button", { name: "Join the pilot" }).click()
+    await page.fill("#contact", `arjun-${run}@example.com`)
+    await page.locator("#waitlist").getByRole("button", { name: "Join the pilot" }).click()
+    const head = page.locator("#waitlist").getByRole("status")
+    await expect(head).toContainText("You're on the list")
+    await expect(head).toBeFocused()
+
+    await page.getByRole("button", { name: "Save" }).click()
     const alert = page.locator("form").getByRole("alert")
-    await expect(alert).toContainText("Fix 5 things to continue.")
+    await expect(alert).toContainText("Fix 3 things to continue.")
     await expect(alert).toBeFocused()
 
     await page.fill("#name", "Arjun")
     await page.locator("label", { hasText: "Video" }).click()
     await page.fill("#city", "Jaipur")
-    await page.locator("label", { hasText: "I have a team" }).click()
     await page.fill("#instagram", "@arjun.films")
-    await page.fill("#contact", "arjun@example.com")
-    await page.getByRole("button", { name: "Join the pilot" }).click()
+    await page.getByRole("button", { name: "Save" }).click()
     const status = page.getByRole("status")
-    await expect(status).toContainText("You're on the list, Arjun.")
+    await expect(status).toContainText("Thanks, Arjun.")
     await expect(status).toBeFocused()
+  })
+
+  test("details can be skipped, and joining twice says so", async ({ page }) => {
+    await page.goto("/")
+    await page.fill("#contact", `skip-${run}@example.com`)
+    await page.locator("#waitlist").getByRole("button", { name: "Join the pilot" }).click()
+    await page.getByRole("button", { name: "Skip for now" }).click()
+    await expect(page.getByRole("status")).toContainText("You're on the list.")
+
+    await page.goto("/")
+    await page.fill("#contact", `skip-${run}@example.com`)
+    await page.locator("#waitlist").getByRole("button", { name: "Join the pilot" }).click()
+    await expect(page.getByRole("status")).toContainText("You're already on the list.")
+  })
+
+  test("the mess arrives as you scroll to it, and is all there with reduced motion", async ({ page, browser }) => {
+    await page.goto("/")
+    const mess = page.locator("#mess")
+    await expect(mess).toHaveAttribute("data-armed", "")
+    await expect(mess.locator("[data-arrive]").first()).toHaveCSS("opacity", "0")
+    await mess.scrollIntoViewIfNeeded()
+    await expect(mess).toHaveAttribute("data-play", "")
+    await expect(mess.locator("[data-arrive]").last()).toHaveCSS("opacity", "1", { timeout: 6000 })
+
+    const context = await browser.newContext({ reducedMotion: "reduce", viewport: { width: 390, height: 844 } })
+    const still = await context.newPage()
+    await still.goto("/")
+    await expect(still.locator("#mess")).not.toHaveAttribute("data-armed", "")
+    await expect(still.locator("#mess [data-arrive]").first()).toHaveCSS("opacity", "1")
+    await context.close()
   })
 
   test("one h1 and no skipped heading levels", async ({ page }) => {

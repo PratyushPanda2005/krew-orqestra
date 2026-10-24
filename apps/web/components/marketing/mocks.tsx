@@ -5,7 +5,7 @@ import { Money } from "@krew/ui/components/money"
 import { StageRail } from "@krew/ui/components/stage-rail"
 import { StatusPill } from "@krew/ui/components/status-pill"
 
-import { arjun, riya } from "@/lib/landing-samples"
+import { arjun, income, riya } from "@/lib/landing-samples"
 
 import { ChatBubble } from "./chat-bubble"
 import { MockHeader, PhoneFrame } from "./phone-frame"
@@ -203,6 +203,62 @@ function MockPaid() {
       <div className="flex items-end justify-between border-t px-4 py-3">
         <span className="text-muted-foreground">Settled</span>
         <Money paise={riya.quote.total} size="amount" tone="success" />
+      </div>
+    </PhoneFrame>
+  )
+}
+
+/**
+ * The whole-account view: money in by month as plain bars (one series, so no legend),
+ * the current month in full primary and labelled, the rest lighter. Decorative like the
+ * other mocks; the text beside it says what it shows.
+ */
+export function MockIncome() {
+  const max = Math.max(...income.months.map((m) => m.in))
+  const now = income.months.at(-1)!
+  return (
+    <PhoneFrame>
+      <MockHeader title="Money" meta={`${income.year} · all jobs`} />
+      <div className="grid grid-cols-2 divide-x border-b">
+        <div className="px-4 py-3">
+          <p className="text-xs text-muted-foreground">Received</p>
+          <Money paise={income.received} size="md" tone="success" className="condensed text-xl font-semibold" />
+        </div>
+        <div className="px-4 py-3">
+          <p className="text-xs text-muted-foreground">Pending · {income.pendingInvoices} invoices</p>
+          <Money paise={income.pending} size="md" className="condensed text-xl font-semibold" />
+        </div>
+      </div>
+      <div className="px-4 pt-3">
+        <p className="text-xs font-medium text-muted-foreground">Money in, by month</p>
+        <div className="mt-6 flex h-28 items-end gap-0.5 border-b">
+          {income.months.map((m) => {
+            const current = m === now
+            return (
+              <div key={m.month} className="relative flex h-full flex-1 items-end justify-center">
+                {current && (
+                  <span className="absolute -top-5 text-xs font-semibold tabular">{formatINR(m.in)}</span>
+                )}
+                <span
+                  className={`w-3/5 rounded-t ${current ? "bg-primary" : "bg-primary/30"}`}
+                  style={{ height: `${(m.in / max) * 100}%` }}
+                />
+              </div>
+            )
+          })}
+        </div>
+        <div className="flex gap-0.5 pt-1">
+          {income.months.map((m) => (
+            <span key={m.month} className="flex-1 text-center text-[0.6875rem] text-muted-foreground">
+              {m.month}
+            </span>
+          ))}
+        </div>
+      </div>
+      <div className="mt-2 divide-y border-t">
+        <ListRow className={row} title="October in" trailing={<Money paise={now.in} size="sm" />} />
+        <ListRow className={row} title="October out" meta="Crew, hire, travel" trailing={<Money paise={now.out} size="sm" tone="muted" />} />
+        <ListRow className={row} title="October net" trailing={<Money paise={now.in - now.out} size="sm" tone="success" />} />
       </div>
     </PhoneFrame>
   )

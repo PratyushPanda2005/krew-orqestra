@@ -1,10 +1,12 @@
 import * as z from "zod/mini";
-import { PLANS, SKILLS } from "./options";
+import { SKILLS } from "./options";
 
 /**
- * Pilot waitlist sign-up from the public landing page. The same schema runs
- * on blur in the browser and in the server action, so both show the same words.
- * Written with zod/mini because it ships to the browser on a 4G landing page.
+ * Pilot waitlist sign-up from the public landing page, in two steps: a contact
+ * first (the whole sign-up), then optional details about the creator's work.
+ * The same schema runs on blur in the browser and in the server action, so both
+ * show the same words. Written with zod/mini because it ships to the browser on
+ * a 4G landing page.
  */
 
 const blankToUndefined = (v: unknown) => (typeof v === "string" && v.trim() === "" ? undefined : v);
@@ -25,7 +27,8 @@ export const WaitlistContact = z.pipe(
   })
 );
 
-export const waitlistFields = {
+/** Step 2, after the contact is saved. The step can be skipped; if it's sent, name, skill and city are needed. */
+export const waitlistDetailFields = {
   name: z
     .string({ error: "Enter your name." })
     .check(z.trim(), z.minLength(1, "Enter your name."), z.maxLength(80, "Keep your name under 80 characters.")),
@@ -33,7 +36,6 @@ export const waitlistFields = {
   city: z
     .string({ error: "Enter your city." })
     .check(z.trim(), z.minLength(1, "Enter your city."), z.maxLength(60, "Keep the city under 60 characters.")),
-  plan: z.enum(PLANS, { error: "Pick one." }),
   instagram: z.pipe(
     z.transform(blankToUndefined),
     z.optional(
@@ -48,10 +50,13 @@ export const waitlistFields = {
       )
     )
   ),
-  contact: WaitlistContact,
 };
 
-export type WaitlistField = keyof typeof waitlistFields;
+export const waitlistFields = { contact: WaitlistContact, ...waitlistDetailFields };
 
-export const WaitlistSignup = z.object(waitlistFields);
-export type WaitlistSignup = z.output<typeof WaitlistSignup>;
+export type WaitlistField = keyof typeof waitlistFields;
+export type WaitlistDetailField = keyof typeof waitlistDetailFields;
+
+export type WaitlistContact = z.output<typeof WaitlistContact>;
+export const WaitlistDetails = z.object(waitlistDetailFields);
+export type WaitlistDetails = z.output<typeof WaitlistDetails>;

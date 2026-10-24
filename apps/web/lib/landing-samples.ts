@@ -43,3 +43,25 @@ export const arjun = {
     { title: "Send draft to client", who: "Arjun", when: "due 23 Dec", status: "To do", tone: "neutral" },
   ] as const,
 }
+
+/**
+ * Example whole-account view for the income block (PF-26): money in and out by month,
+ * April to October of FY 2026-27, for Arjun's crew. Invented numbers, labelled as an example.
+ */
+const months = [
+  { month: "Apr", in: 48000, out: 14000 },
+  { month: "May", in: 55000, out: 17000 },
+  { month: "Jun", in: 39000, out: 12000 },
+  { month: "Jul", in: 62000, out: 21000 },
+  { month: "Aug", in: 74000, out: 23000 },
+  { month: "Sep", in: 88000, out: 26000 },
+  { month: "Oct", in: 112000, out: 38000 },
+] as const
+
+export const income = {
+  year: "FY 2026-27",
+  months: months.map((m) => ({ month: m.month, in: rupeesToPaise(m.in), out: rupeesToPaise(m.out) })),
+  received: rupeesToPaise(months.reduce((sum, m) => sum + m.in, 0)),
+  pending: rupeesToPaise(86000),
+  pendingInvoices: 3,
+}

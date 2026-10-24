@@ -1,10 +1,10 @@
 import type { JobStage } from "@krew/schemas"
 import { StageRail } from "@krew/ui/components/stage-rail"
 
-import { how } from "@/app/(marketing)/copy"
+import { how, income } from "@/app/(marketing)/copy"
 import { heroSequence } from "@/lib/hero-sequence"
 
-import { stageMocks } from "./mocks"
+import { MockIncome, stageMocks } from "./mocks"
 import { Section } from "./section"
 import { StepRail } from "./step-rail"
 import { linkButton } from "./styles"
@@ -56,7 +56,29 @@ export function How() {
           )
         })}
       </ol>
-      <a href="#waitlist" className={`${linkButton()} mt-6 w-full sm:w-auto`}>
+      {/* Beside the ledger step: the same ledger, across every job. Not a step, so no data-step. */}
+      <div
+        id="income"
+        className="-mx-4 grid gap-6 bg-secondary/40 px-4 py-10 lg:mx-0 lg:grid-cols-12 lg:items-center lg:gap-8 lg:rounded-sheet lg:p-12"
+      >
+        <div className="lg:col-span-5">
+          <p className="text-sm font-medium text-muted-foreground">{income.eyebrow}</p>
+          <h3 className="condensed mt-1 text-2xl font-semibold lg:text-4xl">{income.title}</h3>
+          <p className="mt-2 max-w-prose text-base lg:text-lg">{income.body}</p>
+          <ul className="mt-4 flex flex-col gap-2">
+            {income.points.map((p) => (
+              <li key={p} className="flex items-start gap-2.5 text-base">
+                <span aria-hidden className="mt-2 size-1.5 shrink-0 rounded-full bg-primary" />
+                {p}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="lg:col-span-6 lg:col-start-7">
+          <MockIncome />
+        </div>
+      </div>
+      <a href="#waitlist" className={`${linkButton()} mt-8 w-full sm:w-auto`}>
         {how.cta}
       </a>
     </Section>
