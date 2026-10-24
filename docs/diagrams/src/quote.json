@@ -1,0 +1,112 @@
+{
+  "schema_version": 3,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "Quote and advance (PF-09, Rule 50)",
+    "output": "docs/diagrams/quote.html",
+    "locale": "en",
+    "quality_profile": "showcase"
+  },
+  "mainPath": [
+    "draft",
+    "sent",
+    "awaitingAdvance",
+    "booked"
+  ],
+  "states": [
+    {
+      "id": "draft",
+      "type": "start",
+      "label": "Draft",
+      "sublabel": "from brief and rate card"
+    },
+    {
+      "id": "sent",
+      "type": "waiting",
+      "label": "Sent",
+      "sublabel": "client reviews"
+    },
+    {
+      "id": "awaitingAdvance",
+      "type": "waiting",
+      "label": "Accepted",
+      "sublabel": "awaiting advance"
+    },
+    {
+      "id": "booked",
+      "type": "success",
+      "label": "Booked",
+      "sublabel": "advance received"
+    },
+    {
+      "id": "declined",
+      "type": "failure",
+      "label": "Declined"
+    },
+    {
+      "id": "expired",
+      "type": "neutral",
+      "label": "Expired"
+    }
+  ],
+  "transitions": [
+    {
+      "from": "draft",
+      "to": "sent",
+      "label": "send",
+      "id": "t1"
+    },
+    {
+      "from": "sent",
+      "to": "awaitingAdvance",
+      "label": "typed name + tick, same version",
+      "variant": "emphasis",
+      "id": "t2"
+    },
+    {
+      "from": "awaitingAdvance",
+      "to": "booked",
+      "label": "advance paid by link or UPI",
+      "id": "t3"
+    },
+    {
+      "from": "sent",
+      "to": "draft",
+      "label": "revise: version + 1",
+      "id": "t4"
+    },
+    {
+      "from": "sent",
+      "to": "declined",
+      "label": "decline",
+      "variant": "security",
+      "id": "t5"
+    },
+    {
+      "from": "sent",
+      "to": "expired",
+      "label": "expire",
+      "variant": "dashed",
+      "id": "t6"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Acceptance log",
+      "items": [
+        "Accepts only the version the client saw",
+        "Records typed name, time, IP and device",
+        "No advance asked: booked straight away"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Money",
+      "items": [
+        "Paid to the creator's own Razorpay or UPI",
+        "GST creators issue a receipt voucher on the advance"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Orry Product Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a spec-room wall. Three product lanes (Trakker, shared core, Krew) colour-coded throughout; spec IDs in mono as the subject's own vernacular. */
+:root{
+  --bg:#f4f5f8; --surface:#ffffff; --sunk:#eceef3; --ink:#141824; --muted:#586073; --line:#d9dde6;
+  --trakker:#1d5fd6; --trakker-soft:#e4ecfc;
+  --core:#6a45d4; --core-soft:#ede7fc;
+  --krew:#1d8549; --krew-soft:#e0f2e7;
+  --amber:#a86207; --amber-soft:#fdf0d9;
+  --red:#c0352b; --red-soft:#fbe4e2;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0f1218; --surface:#171b24; --sunk:#1d222d; --ink:#e8eaf0; --muted:#9aa2b4; --line:#2b3140;
+  --trakker:#78a6ff; --trakker-soft:#1b2a47; --core:#ab92ff; --core-soft:#2a2347; --krew:#5ccf8e; --krew-soft:#173426;
+  --amber:#f0b45a; --amber-soft:#3a2a10; --red:#ff8a80; --red-soft:#3d1b19; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#0f1218; --surface:#171b24; --sunk:#1d222d; --ink:#e8eaf0; --muted:#9aa2b4; --line:#2b3140;
+  --trakker:#78a6ff; --trakker-soft:#1b2a47; --core:#ab92ff; --core-soft:#2a2347; --krew:#5ccf8e; --krew-soft:#173426;
+  --amber:#f0b45a; --amber-soft:#3a2a10; --red:#ff8a80; --red-soft:#3d1b19; color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background:var(--bg); color:var(--ink); font-family:var(--body); font-size:15px; line-height:1.55}
+.wrap{max-width:1240px; margin:0 auto; padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px)); padding-block:0 64px}
+h1,h2,h3{font-family:var(--display); text-wrap:balance; margin:0; letter-spacing:-0.01em}
+h1{font-size:clamp(28px,4vw,40px); font-weight:700}
+h2{font-size:24px; font-weight:700}
+h3{font-size:17px; font-weight:700}
+p{margin:0}
+.mono{font-family:var(--mono); font-size:12.5px}
+.muted{color:var(--muted)}
+button{font:inherit; color:inherit; cursor:pointer}
+button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--core); outline-offset:2px}
+
+/* header + tabs */
+.top{position:sticky; top:env(safe-area-inset-top, 0px); z-index:5; background:var(--bg); border-bottom:1px solid var(--line)}
+.top .wrap{display:flex; align-items:center; gap:16px; flex-wrap:wrap; padding-block:12px}
+.brand{font-family:var(--display); font-weight:700; font-size:18px; margin-right:auto}
+.brand span{color:var(--muted); font-weight:500}
+.tabs{display:flex; gap:4px; background:var(--sunk); padding:4px; border-radius:10px}
+.tabs button{border:0; background:transparent; padding:8px 14px; border-radius:7px; font-weight:600; color:var(--muted)}
+.tabs button[aria-selected="true"]{background:var(--surface); color:var(--ink); box-shadow:0 1px 2px rgba(0,0,0,.08)}
+
+.hero{display:grid; gap:10px; padding-block:32px 8px; max-width:780px}
+.hero .eyebrow{font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)}
+section{display:grid; gap:16px; margin-top:40px}
+.sec-head{display:flex; align-items:end; justify-content:space-between; gap:16px; flex-wrap:wrap}
+.sec-head p{max-width:640px}
+
+/* controls */
+.controls{display:flex; gap:12px; flex-wrap:wrap; align-items:center}
+.seg{display:inline-flex; border:1px solid var(--line); border-radius:8px; overflow:hidden; background:var(--surface)}
+.seg button{border:0; background:transparent; padding:6px 12px; font-size:13.5px; font-weight:500; color:var(--muted)}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button[aria-pressed="true"]{background:var(--ink); color:var(--bg)}
+.ctl-label{font-size:12px; font-family:var(--mono); text-transform:uppercase; letter-spacing:.06em; color:var(--muted)}
+
+/* product map */
+.cols{display:grid; grid-template-columns:1fr 0.9fr 1fr; gap:16px; align-items:start}
+.col{display:grid; gap:8px; padding:12px; border-radius:14px; border:1px solid var(--line); background:var(--surface); min-width:0}
+.col-head{display:grid; gap:2px; padding:4px 4px 10px; border-bottom:1px solid var(--line); margin-bottom:4px}
+.col-head h3{font-size:20px}
+.col.t .col-head h3{color:var(--trakker)} .col.c .col-head h3{color:var(--core)} .col.k .col-head h3{color:var(--krew)}
+.card{display:grid; gap:4px; text-align:left; border:1px solid transparent; border-radius:10px; padding:10px 12px; background:var(--sunk); transition:opacity .15s, border-color .15s}
+.col.t .card{background:var(--trakker-soft)} .col.c .card{background:var(--core-soft)} .col.k .card{background:var(--krew-soft)}
+.card:hover{border-color:var(--line)}
+.card[aria-pressed="true"]{border-color:var(--ink)}
+.card .name{font-weight:600; display:flex; justify-content:space-between; gap:8px; align-items:baseline}
+.card .blurb{font-size:13.5px; color:var(--muted)}
+.card.dim{opacity:.38}
+.counts{display:flex; gap:4px; flex-wrap:wrap}
+.pri{font-family:var(--mono); font-size:11.5px; padding:1px 6px; border-radius:5px; white-space:nowrap; border:1px solid var(--line); color:var(--muted); background:var(--surface)}
+.pri.P0{background:var(--ink); color:var(--bg); border-color:var(--ink)}
+.pri.P2{border-style:dashed}
+.tag{font-family:var(--mono); font-size:11px; padding:1px 6px; border-radius:5px; white-space:nowrap}
+.tag.lock{background:var(--surface); color:var(--muted); border:1px solid var(--line)}
+.tag.dec{background:var(--amber-soft); color:var(--amber)}
+.tag.ver{background:var(--amber-soft); color:var(--amber)}
+
+.detail{border:1px solid var(--line); border-radius:14px; background:var(--surface); padding:18px; display:grid; gap:12px; scroll-margin-top:90px}
+.detail .dh{display:flex; gap:10px; align-items:baseline; flex-wrap:wrap}
+.detail .who{font-family:var(--mono); font-size:12px; padding:2px 8px; border-radius:6px}
+.who.t{background:var(--trakker-soft); color:var(--trakker)} .who.c{background:var(--core-soft); color:var(--core)} .who.k{background:var(--krew-soft); color:var(--krew)}
+.ftable{overflow-x:auto}
+table{border-collapse:collapse; width:100%; font-size:14px}
+th{font-size:12px; font-family:var(--mono); text-transform:uppercase; letter-spacing:.05em; color:var(--muted); text-align:left; font-weight:500}
+th,td{padding:8px 10px; border-bottom:1px solid var(--line); vertical-align:top}
+tr.dim td{opacity:.35}
+td.id{font-family:var(--mono); font-size:12.5px; white-space:nowrap; color:var(--muted)}
+.uses{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+.uses div{background:var(--sunk); border-radius:10px; padding:12px; min-width:0}
+
+/* journeys */
+.journeys{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+.journey{border:1px solid var(--line); border-radius:14px; background:var(--surface); padding:16px; display:grid; gap:14px; min-width:0}
+.steps{display:flex; flex-wrap:wrap; gap:6px; counter-reset:s}
+.steps button{display:flex; align-items:center; gap:8px; border:1px solid var(--line); background:var(--bg); border-radius:999px; padding:5px 12px 5px 5px; font-size:13.5px; font-weight:500}
+.steps button .n{display:inline-grid; place-items:center; width:22px; height:22px; border-radius:50%; background:var(--sunk); font-family:var(--mono); font-size:11.5px}
+.journey.t .steps button[aria-pressed="true"]{border-color:var(--trakker); background:var(--trakker-soft)}
+.journey.t .steps button[aria-pressed="true"] .n{background:var(--trakker); color:var(--surface)}
+.journey.k .steps button[aria-pressed="true"]{border-color:var(--krew); background:var(--krew-soft)}
+.journey.k .steps button[aria-pressed="true"] .n{background:var(--krew); color:var(--surface)}
+.jbody{display:grid; gap:8px; background:var(--sunk); border-radius:10px; padding:14px}
+.refs{display:flex; flex-wrap:wrap; gap:4px}
+.refs span{font-family:var(--mono); font-size:11.5px; padding:1px 6px; border-radius:5px; background:var(--surface); border:1px solid var(--line); color:var(--muted)}
+.engine{font-size:13.5px; color:var(--muted); border-top:1px dashed var(--line); padding-top:10px}
+
+/* integrations */
+.ints{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:12px}
+.igroup{border:1px solid var(--line); border-radius:12px; background:var(--surface); padding:14px; display:grid; gap:10px; align-content:start}
+.igroup .ih{display:flex; justify-content:space-between; gap:8px; align-items:baseline}
+.chips{display:flex; flex-wrap:wrap; gap:6px}
+.chip{font-size:13px; padding:3px 9px; border-radius:7px; background:var(--sunk); display:inline-flex; gap:6px; align-items:center}
+.chip.v::after{content:"Verify"; font-family:var(--mono); font-size:10.5px; color:var(--amber)}
+.legend{display:flex; gap:14px; flex-wrap:wrap; font-size:13px; color:var(--muted); align-items:center}
+
+/* decisions */
+.dlist{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:10px}
+.dec{display:grid; grid-template-columns:auto 1fr; gap:4px 12px; border:1px solid var(--line); border-radius:12px; padding:12px 14px; background:var(--surface)}
+.dec .code{font-family:var(--mono); font-size:12.5px; font-weight:500; padding-top:2px}
+.dec .code.t{color:var(--trakker)} .dec .code.k{color:var(--krew)}
+.dec.done{border-color:var(--krew); background:var(--krew-soft)}
+
+/* P0 page */
+.stats{display:grid; grid-template-columns:repeat(4,1fr); gap:12px}
+.stat{border:1px solid var(--line); border-radius:12px; background:var(--surface); padding:14px 16px; display:grid; gap:2px}
+.stat b{font-family:var(--display); font-size:34px; line-height:1.1; font-variant-numeric:tabular-nums}
+.stat.t b{color:var(--trakker)} .stat.k b{color:var(--krew)} .stat.c b{color:var(--core)} .stat.a b{color:var(--amber)}
+
+.order{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+.step{border:1px solid var(--line); border-radius:12px; background:var(--surface); min-width:0}
+.step.full{grid-column:1 / -1}
+.step summary{list-style:none; cursor:pointer; padding:14px 16px; display:grid; grid-template-columns:auto 1fr auto; gap:12px; align-items:center}
+.step summary::-webkit-details-marker{display:none}
+.step .badge{font-family:var(--mono); font-size:12px; font-weight:500; padding:3px 8px; border-radius:6px; white-space:nowrap}
+.step.s0 .badge{background:var(--amber-soft); color:var(--amber)}
+.step.s1 .badge{background:var(--core-soft); color:var(--core)}
+.step.s2a .badge{background:var(--trakker-soft); color:var(--trakker)}
+.step.s2b .badge{background:var(--krew-soft); color:var(--krew)}
+.step summary .chev{color:var(--muted); transition:transform .15s}
+.step[open] summary .chev{transform:rotate(90deg)}
+.step .inner{padding:0 16px 16px; display:grid; gap:10px}
+.step ul{margin:0; padding-left:18px; display:grid; gap:6px}
+.par{grid-column:1 / -1; text-align:center; font-family:var(--mono); font-size:12px; color:var(--muted)}
+
+.flowpick{display:flex; gap:12px; align-items:center; flex-wrap:wrap}
+.band{border-radius:14px; border:1px solid var(--line); background:var(--surface); padding:14px; display:grid; gap:10px}
+.band .bh{display:flex; justify-content:space-between; gap:8px; align-items:baseline; flex-wrap:wrap}
+.band .bh h3 .num{font-family:var(--mono); font-size:13px; color:var(--muted); margin-right:6px}
+.brow{display:flex; flex-wrap:wrap; align-items:stretch; gap:6px}
+.node{flex:1 1 170px; min-width:0; text-align:left; border:1px solid var(--line); background:var(--bg); border-radius:10px; padding:10px 12px; display:grid; gap:4px; align-content:start}
+.node .nt{font-weight:600; font-size:14px}
+.node .ns{font-size:13px; color:var(--muted)}
+.node.decided{border-color:var(--amber); background:var(--amber-soft)}
+.flows.t .node[aria-pressed="true"]{border-color:var(--trakker); background:var(--trakker-soft)}
+.flows.k .node[aria-pressed="true"]{border-color:var(--krew); background:var(--krew-soft)}
+.arrow{align-self:center; color:var(--muted); font-family:var(--mono)}
+.ndetail{background:var(--sunk); border-radius:10px; padding:12px 14px; display:grid; gap:8px}
+.lanes{display:grid; grid-template-columns:repeat(3,1fr); gap:10px}
+.lane{display:grid; gap:6px; align-content:start; min-width:0}
+.lane .lh{font-family:var(--mono); font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted)}
+.lane .node{flex:none}
+
+.split{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+.box{border:1px solid var(--line); border-radius:12px; background:var(--surface); padding:16px; display:grid; gap:10px; align-content:start; min-width:0}
+.box.q{border-color:var(--amber)}
+.box ul,.box ol{margin:0; padding-left:18px; display:grid; gap:6px}
+.out{display:flex; flex-wrap:wrap; gap:6px}
+.out span{font-size:13px; padding:3px 9px; border-radius:7px; background:var(--sunk); color:var(--muted)}
+.foot{margin-top:48px; font-size:13px; color:var(--muted); border-top:1px solid var(--line); padding-top:16px}
+
+@media (max-width:900px){
+  .cols{grid-template-columns:1fr}
+  .journeys,.order,.split,.uses{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .lanes{grid-template-columns:1fr}
+  .arrow{display:none}
+}
+@media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
+
+<style>body{margin:0}[hidden]{display:none!important}img{max-width:100%}</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="brand">Orry <span>product map</span></div>
+    <div class="tabs" role="tablist" aria-label="Pages">
+      <button role="tab" id="tab-vision" aria-controls="page-vision" aria-selected="true">The whole vision</button>
+      <button role="tab" id="tab-p0" aria-controls="page-p0" aria-selected="false">P0: what we build now</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- ================= PAGE 1: VISION ================= -->
+<div id="page-vision" role="tabpanel" aria-labelledby="tab-vision">
+  <div class="hero">
+    <div class="eyebrow">Trakker spec v5 · Krew and Kreator spec v3 · 9 Oct 2026</div>
+    <h1>Two products, one shared core</h1>
+    <p class="muted">Trakker connects a brand to its customers and franchise investors. Krew runs a creator's client work from first DM to payment. Krew reuses Trakker's CRM, so the core in the middle gets built once. Kreator is the lighter Krew plan for solo creators.</p>
+  </div>
+
+  <section aria-labelledby="map-h">
+    <div class="sec-head">
+      <div><h2 id="map-h">Everything in the specs</h2><p class="muted">Click any box to see the features inside it. Filter by priority to see what lands when.</p></div>
+      <div class="controls">
+        <span class="ctl-label">Priority</span>
+        <div class="seg" id="priSeg">
+          <button data-p="all" aria-pressed="true">All</button><button data-p="P0" aria-pressed="false">P0</button><button data-p="P1" aria-pressed="false">P1</button><button data-p="P2" aria-pressed="false">P2</button>
+        </div>
+        <span class="ctl-label">Creator plan</span>
+        <div class="seg" id="planSeg">
+          <button data-plan="krew" aria-pressed="true">Krew</button><button data-plan="kreator" aria-pressed="false">Kreator</button>
+        </div>
+      </div>
+    </div>
+    <div class="cols">
+      <div class="col t"><div class="col-head"><h3>Trakker</h3><p class="muted">Brands and their customers</p></div><div id="colT" style="display:grid;gap:8px"></div></div>
+      <div class="col c"><div class="col-head"><h3>Shared core</h3><p class="muted">Built once, used by both</p></div><div id="colC" style="display:grid;gap:8px"></div></div>
+      <div class="col k"><div class="col-head"><h3 id="kHead">Krew</h3><p class="muted" id="kSub">Creators, crews and their clients</p></div><div id="colK" style="display:grid;gap:8px"></div></div>
+    </div>
+    <div class="detail" id="mapDetail" aria-live="polite"></div>
+  </section>
+
+  <section aria-labelledby="j-h">
+    <div class="sec-head"><div><h2 id="j-h">How a person moves through each product</h2><p class="muted">Tap a step. Codes point to rows in the spec flows tab.</p></div></div>
+    <div class="journeys">
+      <div class="journey t"><h3 style="color:var(--trakker)">Trakker: one customer, start to finish</h3><div class="steps" id="jT"></div><div class="jbody" id="jTbody"></div></div>
+      <div class="journey k"><h3 style="color:var(--krew)">Krew: one client job, start to finish</h3><div class="steps" id="jK"></div><div class="jbody" id="jKbody"></div>
+        <p class="engine">Running alongside every stage: the reminder engine (tab 7), analytics (tab 6) and the monthly profile evaluation (F11), whose fixes bring more enquiries.</p></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="i-h">
+    <div class="sec-head"><div><h2 id="i-h">Outside systems</h2><p class="muted">Where data comes in and goes out.</p></div></div>
+    <div class="ints" id="ints"></div>
+  </section>
+
+  <section aria-labelledby="r-h">
+    <div class="sec-head"><div><h2 id="r-h">Ground rules both products follow</h2><p class="muted">These hold on every screen and every message.</p></div></div>
+    <div class="dlist" id="rules"></div>
+  </section>
+</div>
+
+<!-- ================= PAGE 2: P0 ================= -->
+<div id="page-p0" role="tabpanel" aria-labelledby="tab-p0" hidden>
+  <div class="hero">
+    <div class="eyebrow">First release · P0</div>
+    <h1>What the first release does</h1>
+    <p class="muted">A brand can capture customers and leads, qualify them with the chatbot, sort buyers into segments, win back abandoned carts and run safe campaigns. A creator can take an enquiry all the way to a paid invoice. In the first release Krew and Kreator are the same product, except that Krew adds team members.</p>
+  </div>
+
+  <div class="stats">
+    <div class="stat t"><b>31</b><span>Trakker features</span></div>
+    <div class="stat k"><b>21</b><span>Krew and Kreator features</span></div>
+    <div class="stat c"><b>9</b><span>shared core pieces</span></div>
+    <div class="stat a"><b>8</b><span>metrics from day one</span></div>
+  </div>
+
+  <section aria-labelledby="f-h">
+    <div class="sec-head">
+      <div><h2 id="f-h">How it works, step by step</h2><p class="muted">Tap a step to see what happens and the spec rows behind it.</p></div>
+      <div class="flowpick"><span class="ctl-label">Product</span>
+        <div class="seg" id="flowSeg"><button data-f="t" aria-pressed="true">Trakker</button><button data-f="k" aria-pressed="false">Krew and Kreator</button></div></div>
+    </div>
+    <div class="flows t" id="flows" style="display:grid;gap:12px"></div>
+  </section>
+
+  <section aria-labelledby="n-h">
+    <div class="split">
+      <div class="box">
+        <h3 id="n-h" style="color:var(--trakker)">Trakker: coming after the first release</h3>
+        <div class="out" id="outT"></div>
+      </div>
+      <div class="box">
+        <h3 style="color:var(--krew)">Krew and Kreator: coming after the first release</h3>
+        <div class="out" id="outK"></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<p class="foot">Built from the Trakker and Krew developer specifications, with the decisions and added features in this folder.</p>
+</main>
+
+<script>
+/* ---------- data: Trakker ---------- */
+const T = [
+ {id:'t1',name:'Core records',blurb:'One record per person, roles, pipelines, brand profile',f:[
+  ['PF-01','Person record','P0'],['PF-02','Event timeline','P0'],['PF-03','Soft identity matching','P0'],['PF-04','Consent and opt-out register','P0'],['PF-05','Multiple pipelines per brand','P0'],['PF-06','Brand hierarchy and access','P0'],['PF-07','Brand profile','P0']]},
+ {id:'t2',name:'Lead CRM',blurb:'Capture leads, qualify them, franchise investors',f:[
+  ['PF-08','Lead capture from Meta, Google, click-to-WhatsApp, Instagram, website','P0'],['PF-09','Automatic lead qualification','P0'],['PF-10','Abandoned cart recovery','P0'],['PF-11','Retargeting audiences','P1'],['PF-12','Franchise lead capture and qualification','P0'],['PF-13','Customer-to-investor signal','P1'],['PF-14','Role-aware suppression','P0']]},
+ {id:'t3',name:'Loyalty',blurb:'Orders in, customers sorted, repeat visits',f:[
+  ['PF-15','Sales ingestion from POS and Shopify','P0'],['PF-16','Automatic bucketing: new, repeat, loyal, lapsed','P0'],['PF-56','Outlet QR opt-in on table, bill or package','P0'],['PF-17','Analysis','P1'],['PF-18','Loyalty points and rewards','P1'],['PF-19','Utility messages','P1'],['PF-20','Repeat and win-back triggers','P1'],['PF-21','Outlet-level customer view','P1']]},
+ {id:'t4',name:'Chatbot and inbox',blurb:'One bot per brand, one inbox, human handoff',f:[
+  ['PF-22','Single chatbot per brand','P0'],['PF-24','Instagram DM automation','P0'],['PF-25','Human handoff','P0'],['PF-54','Unified inbox','P0'],['PF-57','Handoff and lead alerts','P0'],['PF-23','Optional split into two chatbots','P1']]},
+ {id:'t5',name:'Messaging and campaigns',blurb:'One channel layer: WhatsApp, SMS, email',f:[
+  ['PF-26','Channel orchestration','P0'],['PF-27','Template library','P0'],['PF-28','Frequency caps and quiet hours','P0'],['PF-55','Campaign builder: segment, template, time','P0'],['PF-58','Test send to your own number','P0'],['PF-29','Smart retry on WhatsApp','P1']]},
+ {id:'t6',name:'Prompt layer',blurb:'Type an instruction, get a campaign',f:[
+  ['PF-30','Prompt to campaign','P1'],['PF-31','Prompt to adjust rules','P2']]},
+ {id:'t7',name:'Attribution',blurb:'Which ad or message produced the sale',f:[
+  ['PF-32','Source tagging','P0'],['PF-33','Conversion feedback to Meta and Google','P1']]},
+ {id:'t8',name:'Reporting',blurb:'Touchpoints and content against results',f:[
+  ['PF-34','Touchpoint dashboard','P1'],['PF-35','Content correlation','P2'],['PF-36','Customer and investor correlation','P2']]},
+ {id:'t9',name:'Privacy',blurb:'Notice at capture, deletion, access log',f:[
+  ['PF-37','Privacy notice at capture','P0'],['PF-38','Deletion on request','P0'],['PF-39','Access control and audit log','P1'],['PF-60','Data protection controls','P1']]},
+ {id:'t10',name:'Analytics',blurb:'Metrics curated per brand, with benchmarks',f:[
+  ['PF-40','Curated metric set per brand','P1'],['PF-41','Benchmark beside every metric','P1'],['PF-42','Peer group benchmarks','P2'],['PF-43','Expected performance','P2'],['PF-44','Competitor public activity','P2'],['PF-45','Market standards library','P1'],['PF-46','ROI and campaign scorecards','P1'],['PF-47','Best send time','P1'],['PF-48','Action items','P1'],['PF-49','Trends','P1'],['PF-50','Scheduled reports','P1']]},
+ {id:'t11',name:'Onboarding and operations',blurb:'Sign-up sheet, Orry-assisted profile, ops console',f:[
+  ['PF-51','Universal onboarding sheet','P0'],['PF-52','Assisted profile completion','P0'],['PF-59','Orry operations console','P0'],['PF-53','Profile completeness','P1'],['PF-61','Subscription billing','P1']]}
+];
+/* ---------- data: Krew (kreator: y yes, n no, l limited) ---------- */
+const K = [
+ {id:'k1',name:'Core',blurb:'Job record, unified inbox, team',f:[
+  ['PF-01','Job record','P0','y'],['PF-02','Unified inbox','P0','l','Without pipeline or scoring'],['PF-03','Team and roles','P0','n','Single user']]},
+ {id:'k2',name:'Channel connections',blurb:'Instagram, Gmail, WhatsApp Business',f:[
+  ['PF-04','Connect Instagram','P0','y'],['PF-05','Connect Gmail','P0','y'],['PF-06','Connect WhatsApp Business','P0','l','Inbox only, replies by hand']]},
+ {id:'k3',name:'Profile evaluation',blurb:'Instagram profile scored monthly, with fixes',f:[
+  ['PF-07','Profile evaluation','P1','y']]},
+ {id:'k4',name:'Brief and quote',blurb:'Client brief, quote, acceptance',f:[
+  ['PF-08','Brief capture','P0','y'],['PF-09','Quote and acceptance, with advance link','P0','y'],['PF-10','Change request','P1','y']]},
+ {id:'k5',name:'CRM from Trakker',blurb:'Lead pipeline, content to lead, Meta ads',f:[
+  ['PF-11','Lead pipeline','P1','n'],['PF-12','Content to lead','P1','n'],['PF-13','Meta ads on the creator’s own ad account','P2','n']]},
+ {id:'k6',name:'DM automation',blurb:'Auto replies, enquiry questions, rate card',f:[
+  ['PF-14','Auto DMs','P0','y'],['PF-15','Enquiry questions','P0','y'],['PF-34','Rate card and portfolio','P0','y'],['PF-16','Intent filter','P1','y']]},
+ {id:'k7',name:'Tasks',blurb:'Templates, assignment, calendar',f:[
+  ['PF-17','Tasks from templates','P0','y'],['PF-18','Assignment and status','P0','l','Self only'],['PF-19','Calendar and clash warning','P1','y'],['PF-39','Client job page (includes PF-20 progress view)','P1','y']]},
+ {id:'k8',name:'Review',blurb:'Comment on drafts, lock the approval',f:[
+  ['PF-21','Review and approval','P0','y'],['PF-36','Storage limits and clean-up','P0','y'],['PF-22','Revision round count','P1','y'],['PF-38','Watermarked previews','P1','y'],['PF-23','Editing tool connections','P2','y']]},
+ {id:'k9',name:'Invoicing and ledger',blurb:'GST or non-GST invoice, UPI, receivables',f:[
+  ['PF-24','Invoice generation','P0','y'],['PF-26','Receivables ledger','P0','y'],['PF-35','Business and tax profile','P0','y'],['PF-25','Advance and balance invoices','P1','y']]},
+ {id:'k10',name:'Call notes',blurb:'Call summary becomes tasks',f:[
+  ['PF-27','Call notes','P2','y']]},
+ {id:'k11',name:'WhatsApp automation',blurb:'Automatic client updates on WhatsApp',f:[
+  ['PF-28','Automatic client updates','P1','n','Drafted message the creator sends with one tap']]},
+ {id:'k12',name:'Reminders',blurb:'For the creator and for the client',f:[
+  ['PF-29','Reminders for the creator','P0','y'],['PF-30','Reminders for the client','P0','l','Email only'],['PF-37','Push notifications','P0','y']]},
+ {id:'k13',name:'Analytics and plan',blurb:'Earnings, jobs, upgrade path',f:[
+  ['PF-31','Analytics','P1','l','No pipeline or ads'],['PF-32','Kreator plan gating','P1','y'],['PF-33','Upgrade keeps data','P1','y']]}
+];
+/* ---------- data: shared core ---------- */
+const C = [
+ {id:'c1',name:'Person record and matching',blurb:'Phone first, then email. No forced merges',t:'PF-01, PF-03. Merges logged and reversible (EC-11). Shared numbers flagged as households (EC-05).',k:'One client across Instagram, WhatsApp and email becomes one person (EC-01).'},
+ {id:'c2',name:'Event timeline',blurb:'Every touch stored against the person',t:'PF-02. Every enquiry, message, order, bill, ad click and send.',k:'Inbox history linked to lead, job and invoice (PF-02).'},
+ {id:'c3',name:'Consent and privacy',blurb:'Per channel, per purpose, per brand',t:'PF-04, PF-37, PF-38. Opt-out applies per phone number or email across duplicates (EC-07).',k:'Creator marks chats as client or personal; personal chats are not stored (EC-03).'},
+ {id:'c4',name:'Pipelines and scoring',blurb:'The CRM engine Krew reuses',t:'PF-05, PF-09, PF-12. Product and franchise pipelines with automatic stage moves.',k:'PF-11 lead pipeline, the same CRM as Trakker, from P1.'},
+ {id:'c5',name:'Unified inbox and handoff',blurb:'All channels, bot and human marked',t:'PF-54, PF-25, PF-57. Team takes over with full history and gets an alert.',k:'PF-02. Bot pauses when the creator replies (EC-07).'},
+ {id:'c6',name:'Chatbot and DM automation',blurb:'Approved facts only, never negotiates',t:'PF-22, PF-24. Hands off on money and commitments (EC-34).',k:'PF-14, PF-15, using the creator’s rate card (PF-34). Never quotes a custom price (EC-05).'},
+ {id:'c7',name:'Channel connectors',blurb:'WhatsApp, Instagram, SMS, email, Gmail',t:'One WhatsApp number per brand, on the brand’s own WhatsApp account. SMS registered on DLT; email from the brand’s own domain.',k:'The creator connects their own Instagram, WhatsApp Business and Gmail.'},
+ {id:'c8',name:'Send rules and reminders',blurb:'Consent, caps, quiet hours, re-check at send',t:'PF-26, PF-28. Two marketing messages per person per week by default; nothing between 9 pm and 9 am.',k:'PF-29, PF-30. Reminders stop as soon as the client acts (EC-30).'},
+ {id:'c9',name:'Accounts, roles, isolation',blurb:'No data crosses brands or creators',t:'PF-06. Owner, manager, franchisee and outlet staff. Franchisees see only their own outlets (EC-31).',k:'PF-03. Owner and team members with access to assigned jobs.'}
+];
+/* ---------- journeys ---------- */
+const JT = [
+ ['Capture','A person acts at a touchpoint: lead form, click-to-WhatsApp ad, Instagram DM, website, checkout, outlet QR or bill. The privacy notice is shown and consent is stored per channel and purpose.',['F01','F03','F04','PF-08','PF-56']],
+ ['Recognise','Phone and email are cleaned and matched within the brand. A confident match joins the existing record; otherwise a new one is created. Duplicates are tolerated.',['F02','PF-01','PF-03']],
+ ['Qualify or sort','Leads are greeted by the chatbot, scored and placed in the product or franchise pipeline. Buyers’ orders are de-duplicated and the person is re-sorted into new, repeat, loyal or lapsed.',['F05','F06','F07','F08']],
+ ['Engage','Campaigns, cart reminders, win-backs and bills go through one channel layer: preferred channel first, one fallback, inside consent, caps and quiet hours. Franchise prospects get no consumer offers.',['F09','F11','F12','F16']],
+ ['Feed back','Sales and qualified leads go back to Meta and Google as hashed events, credited within 7 days for food, 28 for products and 180 for franchise. Refunds reverse them. Opt-outs and deletions apply immediately.',['F13','F14']],
+ ['Learn','Each brand sees its own curated metrics against a benchmark, with trends, action items and weekly or monthly reports.',['F17','F18','AN-01 to AN-23']]
+];
+const JK = [
+ ['Set up','Creator picks skill, city, solo or crew; connects Instagram (a professional account), WhatsApp Business and Gmail; sets a rate card, portfolio and business details.',['F01','EC-33','PF-34','PF-35']],
+ ['Get enquiries','DMs, comments, WhatsApp, email and referral links land in one inbox. The bot replies with rates and portfolio and asks budget, date and type of work. On Krew, posts and Meta ads feed the CRM.',['F02','F03','F04','F05']],
+ ['Win the job','Client fills a brief with no login. Scope, dates and revision rounds are generated; the quote is accepted online and the advance is paid by link.',['F06','PF-08','PF-09']],
+ ['Do the work','Tasks are created from a template with dates set back from delivery and assigned to the team. Call notes become tasks. Date or scope changes are recorded and shifted.',['F07','F10','EC-14','EC-15']],
+ ['Get approval','Drafts go out by link. The client comments on a video timestamp or image area. Rounds are counted against the brief and the approved version is locked.',['F08','EC-19','EC-22']],
+ ['Get paid','GST or non-GST invoice with a UPI link; money settles straight to the creator’s bank account. Payment by link or marked by hand, tax deducted at source recorded, reminders stop, ledger updated.',['F09','EC-25','EC-26','EC-27']]
+];
+/* ---------- integrations ---------- */
+const INTS = [
+ ['Trakker','POS and commerce',['Shopify','WooCommerce','Petpooja','Other restaurant POS','Zomato and Swiggy via POS','UrbanPiper and similar','File upload','QR and WhatsApp bill capture']],
+ ['Trakker','Meta',['Lead Ads','Click-to-WhatsApp ads','WhatsApp Business Platform','Instagram messaging','Pixel and Conversions API','Custom Audiences','Content insights','Ad Library']],
+ ['Trakker','Google and messaging',['Google Ads','Google lead forms','Click capture and offline conversions','Customer Match','Google Analytics','YouTube','SMS (DLT registered)','Email']],
+ ['Krew','Channels, leads and ads',['Instagram','Gmail','WhatsApp Business','Trakker CRM','Meta ads']],
+ ['Krew','Work, delivery and money',['Google Calendar','File storage and video','Drive or Dropbox','Speech to text','Adobe and Canva plugins','UPI payment links','Tally or Zoho export','E-signature']]
+];
+const RULES = [
+ ['c','Isolation','No brand or creator ever sees another’s data. Inside a brand, franchisees see only their own outlets.'],
+ ['c','Consent first','No marketing message and no ad upload without consent for that channel and purpose. STOP works at once.'],
+ ['c','Per contact, not per record','Caps, opt-outs and quiet hours follow the phone number or email, even when one person has several records.'],
+ ['c','Check at the moment of sending','Every reminder and message re-checks status first, so nobody is chased after they paid, bought or replied.'],
+ ['c','The bot never commits','It answers only from approved facts and hands money, prices and complaints to a person.'],
+ ['c','Plain words on screen','No technical terms. Every screen works on a phone over 4G.']
+];
+/* ---------- P0 flows ---------- */
+const FT = [
+ {h:'Set up the brand',steps:[
+  ['Universal sign-up sheet','Same short form for every brand',['PF-51','UX-08','OB-01 to OB-21'],'Business basics, contacts, data sources, channels and consent. Can be saved and resumed. Enough to create the account and start connecting sources.'],
+  ['Orry-assisted profile','Orry fills stage 2, brand approves',['PF-52','UX-09','UX-10','EC-66'],'Pipelines, qualification questions, chatbot facts, templates, privacy text. Every Orry edit is logged with name and time and waits for the brand’s approval.'],
+  ['Connect sources and channels','One card per source',['UX-11','F19'],'Petpooja, Shopify, Meta, Google, WhatsApp, SMS and email, each showing connected, error or not connected, last sync and a reconnect button.'],
+  ['Approval tracker','What is waiting on outside approval',['UX-07','EC-65','PF-59'],'WhatsApp number, templates, SMS registration, Meta permissions. Each feature stays off, or runs on stated defaults, until the fields it needs are filled. The Orry team sees the same status in its console.']]},
+ {h:'Capture a person',steps:[
+  ['Touchpoint','Lead form, ad, DM, checkout, QR, bill',['PF-08','PF-15','PF-56','IN-07'],'Meta and Google lead forms, click-to-WhatsApp, Instagram DMs, website forms, Shopify checkout, Petpooja bill, an outlet QR scan that opens WhatsApp, or an uploaded customer file.'],
+  ['Privacy and consent','Per channel and per purpose',['PF-04','PF-37','EC-01','EC-03','EC-04'],'Notice shown at capture. Old lists import as consent unknown with one opt-in request allowed. Ad-matching consent kept separate. Known minors get service messages only.'],
+  ['Identity matching','Phone first, then email',['PF-03','F02','EC-05','EC-07','EC-11'],'Brand-scoped search. Confident match joins the record; otherwise a new one is created. No forced merges; every merge can be undone.'],
+  ['Person record and source','Timeline plus campaign tag',['PF-01','PF-02','PF-32','EC-47'],'Every event dated on the person. The campaign reference from the ad, form or click-to-WhatsApp is kept for the later sale: 7 days for food, 28 for products, 180 for franchise.']]},
+ {h:'Handle it',lanes:[
+  ['Leads',[
+   ['Bot qualifies','Asks the brand’s questions',['PF-09','PF-22','F07','EC-34'],'Greets within seconds, asks the set questions, answers only from approved facts and scores the replies. Qualified leads get the next step: catalogue, checkout link or booking.'],
+   ['Instagram DMs','DMs, story replies, comment triggers',['PF-24','F10','EC-36'],'Replies inside the allowed window only. After it closes, follow up on WhatsApp, SMS or email if consent exists.'],
+   ['Franchise pipeline','Investor criteria, offers suppressed',['PF-12','PF-14','F08','EC-28'],'Budget, city, timeline, experience. Consumer discount campaigns switched off until the deal closes or is lost.'],
+   ['Human handoff','Money, complaints, doubt',['PF-25','PF-54','PF-57','UX-18'],'The team member gets an alert and takes over in the unified inbox with full history. Outside hours the customer is told when someone will reply.']]],
+  ['Sales and segments',[
+   ['Order ingestion','POS and Shopify',['PF-15','F05','IN-01','IN-03','IN-05'],'Petpooja bills and Shopify orders. Zomato and Swiggy orders come through the POS, not a separate integration.'],
+   ['Clean-up','Duplicates, late syncs, refunds',['EC-18','EC-19','EC-20'],'De-duplicate on reference, amount and time. Process by bill time, not arrival time. Reverse the sale on refund or cancellation.'],
+   ['Automatic segments','New, repeat, loyal, lapsed',['PF-16','F06','UX-22'],'Re-scored on every event and daily. Each segment shows its rule in a sentence and its size. A restaurant customer lapses after 45 days, a D2C customer after 120.']]],
+  ['Abandoned carts',[
+   ['Detect','Checkout left with phone or email',['PF-10','F09'],'Shopify reports the abandoned checkout and the person is matched.'],
+   ['One sequence','Per person per 24 hours',['EC-26'],'Three carts in an evening means one reminder sequence, for the latest cart.'],
+   ['Re-check, then remind','WhatsApp at 1 hour, email at 24',['EC-24','F09'],'Order status is re-checked at the moment of sending. Approved template and consent required.'],
+   ['Stop on order','Recovery attributed',['F09'],'The sequence stops as soon as the order completes and the recovery is tagged.']]]
+ ]},
+ {h:'One send gate',steps:[
+  ['Campaign builder','Segment, template, time',['PF-55','PF-58','EC-38','EC-39','UX-23','UX-24'],'Preview shows audience size, people removed and why, the message on a phone mock and the cost. Test it on your own number. Sends above 5,000 people need a second confirmation.'],
+  ['Checks on every send','Consent, suppression, cap, quiet hours',['PF-26','PF-27','PF-28','F12'],'Checked per phone number or email, not per record. Two marketing messages per person per week; nothing between 9 pm and 9 am.'],
+  ['Send and fall back once','Preferred channel first',['F12'],'Default WhatsApp. If undelivered, one fallback. Never the same message on all three channels.'],
+  ['Watch block rate','Auto-pause before restriction',['EC-41','AN-14'],'Marketing pauses if the WhatsApp quality rating drops or more than 2% of the first 1,000 recipients opt out.'],
+  ['Opt-out and deletion','Honoured at once',['PF-38','F14','EC-45','EC-46','UX-33'],'STOP stops that channel immediately and cancels queued messages. Deletion removes the person for that brand and is confirmed.']]},
+ {h:'Measure',steps:[
+  ['Response rate','Who replies',['AN-01'],'People who replied over people messaged, by leads and customers, channel and campaign.'],
+  ['Abandoned carts','Lost and won back',['AN-02'],'Abandoned, reminded, recovered, and revenue recovered, by channel.'],
+  ['Conversion','Through each pipeline',['AN-03'],'Stage to stage, product and franchise reported separately.'],
+  ['Opt-out and block rate','Early warning',['AN-14'],'Opt-outs over delivered, per campaign and template, plus WhatsApp quality rating.'],
+  ['Phone capture rate','Bills tied to a person',['AN-19'],'Bills with a valid phone number over all bills, per outlet.'],
+  ['Campaign scorecard','One per campaign',['AN-20'],'Sent, delivered, read, replied, clicked, converted, revenue, cost, opt-outs.']]}
+];
+const FK = [
+ {h:'Set up',steps:[
+  ['Sign up','Skill, city, solo or crew',['F01'],'Same questions for both plans. A crew adds its team members.'],
+  ['Connect Instagram','Professional account needed',['PF-04','EC-33','UX-03'],'Personal accounts cannot be read, so the creator is told why and guided to switch.'],
+  ['Connect WhatsApp and Gmail','WhatsApp inbox only',['PF-05','PF-06','IN-02','IN-03'],'Client chats and emails arrive in the inbox. WhatsApp chats are read and answered by hand, and the creator keeps using the WhatsApp Business app on the same number.'],
+  ['Rate card and business details','Prices, portfolio, tax details',['PF-34','PF-35'],'Services, starting prices, portfolio links and availability for auto DMs and quotes. GSTIN (optional), PAN, bank or UPI ID for invoices.'],
+  ['Disconnect alert','Immediate, with reconnect',['EC-04','RM-08'],'Messages never silently stop arriving.']]},
+ {h:'Handle the enquiry',steps:[
+  ['Enquiry arrives','DM, comment, story reply, WhatsApp, email',['PF-02','F02'],'Placed in the unified inbox with its source.'],
+  ['Client or personal','Personal chats not stored',['EC-01','EC-03','UX-10'],'Matched to one person by phone, handle or email. Only client conversations are kept.'],
+  ['Auto DM','Rates, portfolio, availability',['PF-14','F03','EC-06'],'Inside Instagram’s reply window only; otherwise follow up on WhatsApp or email.'],
+  ['Enquiry questions','Budget, date, type of work',['PF-15','EC-05','EC-07','UX-09'],'Never negotiates. Hands to the creator with a summary and pauses once the creator replies.']]},
+ {h:'Win the job',steps:[
+  ['Brief','Form or chat, no login',['PF-08','UX-17','F06'],'Produces scope, deliverables, dates and revision rounds; creator edits and confirms.'],
+  ['Quote and advance','Accepted online, advance by link',['PF-09','EC-24'],'The advance is paid by link straight to the creator. The job is marked at risk if it is not paid before the shoot.'],
+  ['Job record','Ties everything together',['PF-01','UX-13'],'Brief, tasks, review rounds, invoice and ledger entries on one record.']]},
+ {h:'Do the work',steps:[
+  ['Tasks from template','Dates set back from delivery',['PF-17','F07'],'Templates per job type: shoot, edit, design. Templates are editable.'],
+  ['Team and assignment','Shooter, editor, designer',['PF-03','PF-18','UX-16'],'Krew assigns tasks to team members, who see only their own tasks. Kreator assigns to self.'],
+  ['Today view','Tasks, shoots, reminders',['UX-14'],'One screen for what is due today.']]},
+ {h:'Approve and get paid',steps:[
+  ['Draft upload','Resumable, with progress',['EC-20','PF-36'],'Large files survive a dropped connection. Drafts are cleaned up 90 days after the job closes unless kept.'],
+  ['Review page','Comment on timestamp or image area',['PF-21','UX-18'],'Opens from a link with no client login; approve button always visible.'],
+  ['Version locked','Date, time, approver name',['EC-19'],'Settles any dispute about what was approved.'],
+  ['Invoice','GST or non-GST, UPI and card link',['PF-24','EC-28','UX-20'],'Prefilled from the job and numbered in a series per financial year. Non-GST format when no GST number is set.'],
+  ['Payment','By link or marked by hand',['UX-19','EC-25','EC-26','EC-27'],'Money settles straight to the creator’s bank account. Tax deducted at source is recorded and marked settled. Paid invoices are locked; changes go through a credit note.'],
+  ['Ledger','Per client receivables',['PF-26','UX-21','AN-12','AN-13'],'Invoiced, received, tax deducted, pending, days overdue. Export for the accountant.']]},
+ {h:'Reminders underneath',steps:[
+  ['Creator reminders','Push notification and email',['PF-29','PF-37','RM-01 to RM-07'],'Unanswered lead, quote with no reply, task due, shoot tomorrow, missing advance, uninvoiced job.'],
+  ['Client reminders','By email',['PF-30','RM-12 to RM-17','EC-30'],'Brief, quote, feedback, advance, invoice due, receipt. Status re-checked at send; stops once the client acts; never at night or on Sundays.']]}
+];
+const OUTT = ['Loyalty points','Smart WhatsApp retry','Prompt to campaign','Retargeting audiences','Conversion feedback to ad platforms','Win-back triggers','Bills and order updates','Split chatbot','Benchmarks','ROI scorecards','Best send time','Action items','Scheduled reports','Audit log','Profile completeness','WooCommerce','Data protection controls','Subscription billing'];
+const OUTK = ['CRM pipeline','Content to lead','Meta ads','Profile evaluation','Intent filter','Calendar and clashes','Change requests','Revision round count','Watermarked previews','Client job page','Editing tool plugins','Advance and balance invoices','Call notes','WhatsApp automation','Analytics beyond money','Kreator plan gating'];
+
+/* ---------- helpers ---------- */
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const refs = a => '<div class="refs">'+a.map(r=>'<span>'+esc(r)+'</span>').join('')+'</div>';
+let pri = 'all', plan = 'krew', sel = {col:'t', id:'t2'};
+
+function counts(f){ const c={P0:0,P1:0,P2:0}; f.forEach(x=>c[x[2]]++); return c; }
+function cardHTML(m, colKey){
+  if(colKey==='c'){
+    return '<button class="card" data-col="c" data-id="'+m.id+'" aria-pressed="'+(sel.id===m.id)+'"><span class="name">'+esc(m.name)+'</span><span class="blurb">'+esc(m.blurb)+'</span></button>';
+  }
+  let dim=false, extra='';
+  const c = counts(m.f);
+  if(pri!=='all' && c[pri]===0) dim=true;
+  if(colKey==='k' && plan==='kreator' && m.f.every(x=>x[3]==='n')){ dim=true; extra='<span class="tag lock">Not on Kreator</span>'; }
+  const chips = ['P0','P1','P2'].filter(p=>c[p]).map(p=>'<span class="pri '+p+'">'+c[p]+' '+p+'</span>').join('');
+  return '<button class="card'+(dim?' dim':'')+'" data-col="'+colKey+'" data-id="'+m.id+'" aria-pressed="'+(sel.id===m.id)+'"><span class="name">'+esc(m.name)+'<span class="counts">'+extra+'</span></span><span class="blurb">'+esc(m.blurb)+'</span><span class="counts">'+chips+'</span></button>';
+}
+function renderMap(){
+  $('#colT').innerHTML = T.map(m=>cardHTML(m,'t')).join('');
+  $('#colC').innerHTML = C.map(m=>cardHTML(m,'c')).join('');
+  $('#colK').innerHTML = K.map(m=>cardHTML(m,'k')).join('');
+  $('#kHead').textContent = plan==='krew' ? 'Krew' : 'Kreator';
+  $('#kSub').textContent = plan==='krew' ? 'Creators, crews and their clients' : 'Krew without CRM, ads, WhatsApp automation and team';
+  renderDetail();
+}
+function renderDetail(){
+  const d = $('#mapDetail');
+  if(sel.col==='c'){
+    const m = C.find(x=>x.id===sel.id);
+    d.innerHTML = '<div class="dh"><span class="who c">Shared core</span><h3>'+esc(m.name)+'</h3></div><p class="muted">'+esc(m.blurb)+'.</p><div class="uses"><div><p class="ctl-label" style="color:var(--trakker)">How Trakker uses it</p><p>'+esc(m.t)+'</p></div><div><p class="ctl-label" style="color:var(--krew)">How Krew uses it</p><p>'+esc(m.k)+'</p></div></div>';
+    return;
+  }
+  const list = sel.col==='t'?T:K, m = list.find(x=>x.id===sel.id), isK = sel.col==='k';
+  const who = isK ? (plan==='krew'?'Krew':'Kreator') : 'Trakker';
+  const order = {P0:0,P1:1,P2:2};
+  const rows = m.f.slice().sort((a,b)=>order[a[2]]-order[b[2]]).map(x=>{
+    const dim = pri!=='all' && x[2]!==pri;
+    let kre = '';
+    if(isK){ const v=x[3]; kre = '<td>'+(v==='y'?'Yes':v==='n'?'No':'Partly')+(x[4]?'<div class="muted" style="font-size:13px">'+esc(x[4])+'</div>':'')+'</td>'; }
+    return '<tr class="'+(dim?'dim':'')+'"><td class="id">'+esc(x[0])+'</td><td>'+esc(x[1])+'</td><td><span class="pri '+x[2]+'">'+x[2]+'</span></td>'+kre+'</tr>';
+  }).join('');
+  d.innerHTML = '<div class="dh"><span class="who '+sel.col+'">'+who+'</span><h3>'+esc(m.name)+'</h3><span class="muted">'+m.f.length+' features</span></div><div class="ftable"><table><thead><tr><th>ID</th><th>Feature</th><th>Release</th>'+(isK?'<th>On Kreator</th>':'')+'</tr></thead><tbody>'+rows+'</tbody></table></div><p class="muted" style="font-size:13px">P0 is the first release. P1 follows soon after. P2 comes later.</p>';
+}
+document.addEventListener('click', e=>{
+  const c = e.target.closest('.card'); if(!c) return;
+  sel = {col:c.dataset.col, id:c.dataset.id}; renderMap();
+  $('#mapDetail').scrollIntoView({block:'nearest', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+});
+function seg(id, attr, cb){
+  const el = $(id);
+  el.addEventListener('click', e=>{ const b=e.target.closest('button'); if(!b) return;
+    el.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed', x===b)); cb(b.dataset[attr]); });
+}
+seg('#priSeg','p', v=>{pri=v; renderMap();});
+seg('#planSeg','plan', v=>{plan=v; renderMap();});
+
+/* journeys */
+function journey(list, stepsEl, bodyEl){
+  const draw = i => {
+    stepsEl.innerHTML = list.map((s,j)=>'<button aria-pressed="'+(i===j)+'" data-i="'+j+'"><span class="n">'+(j+1)+'</span>'+esc(s[0])+'</button>').join('');
+    const s = list[i]; bodyEl.innerHTML = '<h3>'+(i+1)+'. '+esc(s[0])+'</h3><p>'+esc(s[1])+'</p>'+refs(s[2]);
+  };
+  stepsEl.addEventListener('click', e=>{const b=e.target.closest('button'); if(b) draw(+b.dataset.i);});
+  draw(0);
+}
+journey(JT, $('#jT'), $('#jTbody')); journey(JK, $('#jK'), $('#jKbody'));
+
+/* integrations, rules */
+$('#ints').innerHTML = INTS.map(g=>'<div class="igroup"><div class="ih"><h3>'+esc(g[1])+'</h3><span class="who '+(g[0]==='Krew'?'k':'t')+' mono" style="padding:2px 8px;border-radius:6px">'+g[0]+'</span></div><div class="chips">'+g[2].map(c=>'<span class="chip">'+esc(c)+'</span>').join('')+'</div></div>').join('');
+$('#rules').innerHTML = RULES.map(d=>'<div class="dec"><span class="code" style="color:var(--core)">'+esc(d[1])+'</span><span></span><span style="grid-column:1 / -1">'+esc(d[2])+'</span></div>').join('');
+
+/* P0 flows */
+let flowKey='t', flowSel={cur:'0-0'};
+function nodeHTML(s, key){
+  return '<button class="node" data-key="'+esc(key)+'" aria-pressed="'+(flowSel.cur===key)+'"><span class="nt">'+esc(s[0])+'</span><span class="ns">'+esc(s[1])+'</span></button>';
+}
+function renderFlows(){
+  const data = flowKey==='t'?FT:FK, el=$('#flows');
+  el.className = 'flows '+flowKey;
+  el.innerHTML = data.map((b,bi)=>{
+    let inner='', all=[];
+    if(b.lanes){
+      inner = '<div class="lanes">'+b.lanes.map((ln,li)=>'<div class="lane"><span class="lh">'+esc(ln[0])+'</span>'+ln[1].map((s,si)=>{const k=bi+'-'+li+'-'+si; all.push([k,s]); return nodeHTML(s,k);}).join('')+'</div>').join('')+'</div>';
+    } else {
+      inner = '<div class="brow">'+b.steps.map((s,si)=>{const k=bi+'-'+si; all.push([k,s]); return (si?'<span class="arrow" aria-hidden="true">&rarr;</span>':'')+nodeHTML(s,k);}).join('')+'</div>';
+    }
+    const hit = all.find(a=>a[0]===flowSel.cur);
+    const det = hit ? '<div class="ndetail"><h3>'+esc(hit[1][0])+'</h3><p>'+esc(hit[1][3])+'</p>'+refs(hit[1][2])+'</div>' : '';
+    return '<div class="band"><div class="bh"><h3><span class="num">'+(bi+1)+'</span>'+esc(b.h)+'</h3><span class="muted" style="font-size:13px">'+all.length+' steps</span></div>'+inner+det+'</div>';
+  }).join('');
+}
+$('#flows').addEventListener('click', e=>{const b=e.target.closest('.node'); if(!b) return; flowSel.cur = flowSel.cur===b.dataset.key?null:b.dataset.key; renderFlows();});
+seg('#flowSeg','f', v=>{flowKey=v; flowSel={cur:'0-0'}; renderFlows();});
+renderFlows();
+$('#outT').innerHTML = OUTT.map(x=>'<span>'+esc(x)+'</span>').join('');
+$('#outK').innerHTML = OUTK.map(x=>'<span>'+esc(x)+'</span>').join('');
+
+/* tabs + hash */
+function showTab(name){
+  const v = name==='p0';
+  $('#page-vision').hidden = v; $('#page-p0').hidden = !v;
+  $('#tab-vision').setAttribute('aria-selected', !v); $('#tab-p0').setAttribute('aria-selected', v);
+  try{ history.replaceState(null,'', v?'#p0':'#vision'); }catch(e){}
+  try{ localStorage.setItem('orry-tab', v?'p0':'vision'); }catch(e){}
+}
+$('#tab-vision').addEventListener('click', ()=>showTab('vision'));
+$('#tab-p0').addEventListener('click', ()=>showTab('p0'));
+let start = location.hash.replace('#','');
+if(!start){ try{ start = localStorage.getItem('orry-tab') || 'vision'; }catch(e){ start='vision'; } }
+renderMap();
+showTab(start==='p0'?'p0':'vision');
+
+</script>
+
+</body>
+</html>

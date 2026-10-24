@@ -1,0 +1,37 @@
+/*
+ * Landing page only. Plain CSS so it sits outside Tailwind's layers and wins over utilities.
+ *
+ * html.js        set by the boot script when JS runs; shows JS-only extras (the sticky step rail).
+ * html.motion-ok set when JS runs and the visitor allows motion. Until the hero sequence starts,
+ *                the server-rendered finished rail is painted as "not started", so it never
+ *                flashes the end state. The boot script drops the class if the sequence hasn't
+ *                started in 6 s, and the finished rail shows.
+ */
+html:not(.js) [data-js-only] {
+  display: none;
+}
+
+.motion-ok [data-hero]:not([data-playing]) [data-frame] {
+  border-color: var(--input);
+  background: var(--card);
+  --sprocket: var(--input);
+}
+
+.motion-ok [data-hero]:not([data-playing]) [data-frame] + span {
+  color: var(--muted-foreground);
+  font-weight: 400;
+}
+
+.motion-ok [data-hero]:not([data-playing]) [data-hero-caption] {
+  opacity: 0;
+}
+
+/* Sticky header must not hide anchor targets. */
+html {
+  scroll-padding-top: 4.5rem;
+}
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}

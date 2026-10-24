@@ -1,0 +1,93 @@
+{
+  "schema_version": 3,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "Client brief (PF-08, UX-17)",
+    "output": "docs/diagrams/brief.html",
+    "locale": "en",
+    "quality_profile": "showcase"
+  },
+  "mainPath": [
+    "draft",
+    "sent",
+    "filling",
+    "submitted",
+    "confirmed"
+  ],
+  "states": [
+    {
+      "id": "draft",
+      "type": "start",
+      "label": "Draft"
+    },
+    {
+      "id": "sent",
+      "type": "waiting",
+      "label": "Link sent",
+      "sublabel": "up to 2 reminders"
+    },
+    {
+      "id": "filling",
+      "type": "active",
+      "label": "Client filling",
+      "sublabel": "one question per screen"
+    },
+    {
+      "id": "submitted",
+      "type": "decision",
+      "label": "Submitted",
+      "sublabel": "creator checks scope"
+    },
+    {
+      "id": "confirmed",
+      "type": "success",
+      "label": "Scope confirmed"
+    },
+    {
+      "id": "lost",
+      "type": "failure",
+      "label": "Lost",
+      "sublabel": "after 2 reminders"
+    }
+  ],
+  "transitions": [
+    {
+      "from": "draft",
+      "to": "sent",
+      "label": "send link",
+      "id": "t1"
+    },
+    {
+      "from": "sent",
+      "to": "filling",
+      "label": "client opens",
+      "id": "t2"
+    },
+    {
+      "from": "filling",
+      "to": "submitted",
+      "label": "all answered",
+      "id": "t3"
+    },
+    {
+      "from": "submitted",
+      "to": "confirmed",
+      "label": "confirm scope",
+      "id": "t4"
+    },
+    {
+      "from": "sent",
+      "to": "lost",
+      "label": "mark lost",
+      "variant": "security",
+      "id": "t5"
+    },
+    {
+      "from": "filling",
+      "to": "lost",
+      "label": "mark lost",
+      "variant": "security",
+      "id": "t6"
+    }
+  ]
+}

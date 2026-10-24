@@ -1,0 +1,146 @@
+{
+  "schema_version": 3,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "Job stage 1: winning the job (PF-01, EC-24)",
+    "output": "docs/diagrams/job-win.html",
+    "locale": "en",
+    "quality_profile": "showcase"
+  },
+  "mainPath": [
+    "enquiry",
+    "briefing",
+    "quoted",
+    "booked",
+    "inProgress"
+  ],
+  "states": [
+    {
+      "id": "enquiry",
+      "type": "start",
+      "label": "Enquiry",
+      "sublabel": "client chat"
+    },
+    {
+      "id": "briefing",
+      "type": "waiting",
+      "label": "Briefing",
+      "sublabel": "brief out"
+    },
+    {
+      "id": "quoted",
+      "type": "waiting",
+      "label": "Quoted",
+      "sublabel": "client decides"
+    },
+    {
+      "id": "booked",
+      "type": "decision",
+      "label": "Booked",
+      "sublabel": "advance due"
+    },
+    {
+      "id": "inProgress",
+      "type": "active",
+      "label": "In progress",
+      "sublabel": "tasks"
+    },
+    {
+      "id": "atRisk",
+      "type": "waiting",
+      "label": "At risk",
+      "sublabel": "advance unpaid, shoot in 2 days"
+    },
+    {
+      "id": "lost",
+      "type": "failure",
+      "label": "Lost",
+      "sublabel": "declined or no reply"
+    }
+  ],
+  "transitions": [
+    {
+      "from": "enquiry",
+      "to": "briefing",
+      "label": "brief",
+      "id": "t1"
+    },
+    {
+      "from": "briefing",
+      "to": "quoted",
+      "label": "quote",
+      "id": "t2"
+    },
+    {
+      "from": "quoted",
+      "to": "booked",
+      "label": "accepted",
+      "id": "t3"
+    },
+    {
+      "from": "booked",
+      "to": "inProgress",
+      "label": "advance paid",
+      "id": "t4"
+    },
+    {
+      "from": "booked",
+      "to": "atRisk",
+      "label": "advance overdue",
+      "variant": "dashed",
+      "id": "t10"
+    },
+    {
+      "from": "atRisk",
+      "to": "inProgress",
+      "label": "mark paid or go ahead",
+      "id": "t11"
+    },
+    {
+      "from": "atRisk",
+      "to": "booked",
+      "label": "move date",
+      "id": "t12"
+    },
+    {
+      "from": "enquiry",
+      "to": "lost",
+      "label": "mark lost",
+      "variant": "security",
+      "id": "t14"
+    },
+    {
+      "from": "briefing",
+      "to": "lost",
+      "label": "mark lost",
+      "variant": "security",
+      "id": "t15"
+    },
+    {
+      "from": "quoted",
+      "to": "lost",
+      "label": "declined",
+      "variant": "security",
+      "id": "t16"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "amber",
+      "title": "At risk (EC-24)",
+      "items": [
+        "Two days before the shoot with no advance",
+        "Four ways out: remind, mark paid, go ahead anyway, move date",
+        "Going ahead unpaid is recorded on the job"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Conditions",
+      "items": [
+        "Accepted: the client accepted the quote",
+        "Advance paid: work can start"
+      ]
+    }
+  ]
+}

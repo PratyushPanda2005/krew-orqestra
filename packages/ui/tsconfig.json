@@ -1,0 +1,13 @@
+{
+  "extends": "@krew/typescript-config/react-library.json",
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "noEmit": true,
+    "paths": {
+      "@krew/ui/*": ["./src/*"]
+    }
+  },
+  "include": ["."],
+  "exclude": ["node_modules", "dist"]
+}

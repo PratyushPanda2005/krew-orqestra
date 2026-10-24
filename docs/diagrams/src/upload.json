@@ -1,0 +1,122 @@
+{
+  "schema_version": 3,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "Resumable upload (EC-20)",
+    "output": "docs/diagrams/upload.html",
+    "locale": "en",
+    "quality_profile": "showcase"
+  },
+  "mainPath": [
+    "idle",
+    "requestingUrl",
+    "uploading",
+    "processing",
+    "ready"
+  ],
+  "states": [
+    {
+      "id": "idle",
+      "type": "start",
+      "label": "Pick file"
+    },
+    {
+      "id": "requestingUrl",
+      "type": "active",
+      "label": "Getting upload link",
+      "sublabel": "one-time URL"
+    },
+    {
+      "id": "uploading",
+      "type": "active",
+      "label": "Uploading",
+      "sublabel": "progress kept"
+    },
+    {
+      "id": "processing",
+      "type": "external",
+      "label": "Processing",
+      "sublabel": "Stream prepares video"
+    },
+    {
+      "id": "ready",
+      "type": "success",
+      "label": "Ready to share"
+    },
+    {
+      "id": "paused",
+      "type": "waiting",
+      "label": "Waiting for connection",
+      "sublabel": "resumes from bytes sent"
+    },
+    {
+      "id": "failed",
+      "type": "failure",
+      "label": "Failed",
+      "sublabel": "up to 3 attempts"
+    },
+    {
+      "id": "cancelled",
+      "type": "neutral",
+      "label": "Cancelled"
+    }
+  ],
+  "transitions": [
+    {
+      "from": "idle",
+      "to": "requestingUrl",
+      "label": "file selected",
+      "id": "t1"
+    },
+    {
+      "from": "requestingUrl",
+      "to": "uploading",
+      "label": "link ready",
+      "id": "t2"
+    },
+    {
+      "from": "uploading",
+      "to": "processing",
+      "label": "upload finished",
+      "id": "t3"
+    },
+    {
+      "from": "processing",
+      "to": "ready",
+      "label": "video ready (images skip)",
+      "id": "t4"
+    },
+    {
+      "from": "uploading",
+      "to": "paused",
+      "label": "connection lost",
+      "variant": "dashed",
+      "id": "t5"
+    },
+    {
+      "from": "paused",
+      "to": "uploading",
+      "label": "back online",
+      "id": "t6"
+    },
+    {
+      "from": "uploading",
+      "to": "failed",
+      "label": "error",
+      "variant": "security",
+      "id": "t7"
+    },
+    {
+      "from": "failed",
+      "to": "requestingUrl",
+      "label": "try again",
+      "id": "t8"
+    },
+    {
+      "from": "uploading",
+      "to": "cancelled",
+      "label": "cancel",
+      "id": "t9"
+    }
+  ]
+}

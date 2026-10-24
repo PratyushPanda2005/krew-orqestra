@@ -1,0 +1,100 @@
+{
+  "schema_version": 3,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "Client or personal? (PF-02, EC-03)",
+    "output": "docs/diagrams/inbox-gate.html",
+    "locale": "en",
+    "quality_profile": "showcase"
+  },
+  "mainPath": [
+    "checking",
+    "held",
+    "stored"
+  ],
+  "states": [
+    {
+      "id": "checking",
+      "type": "start",
+      "label": "New chat arrives",
+      "sublabel": "WhatsApp or Instagram"
+    },
+    {
+      "id": "held",
+      "type": "waiting",
+      "label": "Held 24 hours",
+      "sublabel": "encrypted buffer, notice shown"
+    },
+    {
+      "id": "stored",
+      "type": "success",
+      "label": "Stored in inbox",
+      "sublabel": "client or lead"
+    },
+    {
+      "id": "blocked",
+      "type": "neutral",
+      "label": "Personal",
+      "sublabel": "hashed block list, nothing kept"
+    },
+    {
+      "id": "discarded",
+      "type": "neutral",
+      "label": "Discarded",
+      "sublabel": "nothing kept"
+    }
+  ],
+  "transitions": [
+    {
+      "from": "checking",
+      "to": "held",
+      "label": "unknown contact",
+      "id": "t1"
+    },
+    {
+      "from": "held",
+      "to": "stored",
+      "label": "This is a client",
+      "variant": "emphasis",
+      "id": "t2"
+    },
+    {
+      "from": "checking",
+      "to": "stored",
+      "label": "known client or lead",
+      "id": "t3"
+    },
+    {
+      "from": "held",
+      "to": "blocked",
+      "label": "Personal",
+      "variant": "security",
+      "id": "t4"
+    },
+    {
+      "from": "held",
+      "to": "discarded",
+      "label": "24 hours pass",
+      "variant": "dashed",
+      "id": "t5"
+    },
+    {
+      "from": "checking",
+      "to": "discarded",
+      "label": "on block list",
+      "variant": "security",
+      "id": "t6"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "rose",
+      "title": "Must-hold rule",
+      "items": [
+        "Personal chats are never stored",
+        "Only Stored keeps message content",
+        "The 24-hour buffer needs legal sign-off (task V4)"
+      ]
+    }
+  ]
+}

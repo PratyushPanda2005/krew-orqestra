@@ -1,0 +1,104 @@
+{
+  "schema_version": 3,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "Job stage 2: delivering and getting paid (PF-01)",
+    "output": "docs/diagrams/job-deliver.html",
+    "locale": "en",
+    "quality_profile": "showcase"
+  },
+  "mainPath": [
+    "inProgress",
+    "inReview",
+    "approved",
+    "invoiced",
+    "paid",
+    "closed"
+  ],
+  "states": [
+    {
+      "id": "inProgress",
+      "type": "start",
+      "label": "In progress",
+      "sublabel": "tasks"
+    },
+    {
+      "id": "inReview",
+      "type": "waiting",
+      "label": "In review",
+      "sublabel": "with client"
+    },
+    {
+      "id": "approved",
+      "type": "active",
+      "label": "Approved",
+      "sublabel": "locked"
+    },
+    {
+      "id": "invoiced",
+      "type": "waiting",
+      "label": "Invoiced",
+      "sublabel": "payment due"
+    },
+    {
+      "id": "paid",
+      "type": "success",
+      "label": "Paid",
+      "sublabel": "incl. TDS"
+    },
+    {
+      "id": "closed",
+      "type": "neutral",
+      "label": "Closed"
+    }
+  ],
+  "transitions": [
+    {
+      "from": "inProgress",
+      "to": "inReview",
+      "label": "draft",
+      "id": "t5"
+    },
+    {
+      "from": "inReview",
+      "to": "approved",
+      "label": "approve",
+      "id": "t6"
+    },
+    {
+      "from": "approved",
+      "to": "invoiced",
+      "label": "invoice",
+      "id": "t7"
+    },
+    {
+      "from": "invoiced",
+      "to": "paid",
+      "label": "paid",
+      "id": "t8"
+    },
+    {
+      "from": "paid",
+      "to": "closed",
+      "label": "close job",
+      "id": "t9"
+    },
+    {
+      "from": "inReview",
+      "to": "inProgress",
+      "label": "changes requested",
+      "id": "t13"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Conditions",
+      "items": [
+        "Every shared draft counts a review round",
+        "Approve locks the reviewed version",
+        "Paid: payment plus TDS covers the invoice"
+      ]
+    }
+  ]
+}

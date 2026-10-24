@@ -1,0 +1,100 @@
+{
+  "schema_version": 3,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "Invoice and payment (PF-24, PF-26)",
+    "output": "docs/diagrams/invoice.html",
+    "locale": "en",
+    "quality_profile": "showcase"
+  },
+  "mainPath": [
+    "draft",
+    "issued",
+    "sent",
+    "paid"
+  ],
+  "states": [
+    {
+      "id": "draft",
+      "type": "start",
+      "label": "Draft",
+      "sublabel": "GST or non-GST"
+    },
+    {
+      "id": "issued",
+      "type": "active",
+      "label": "Issued",
+      "sublabel": "number and amounts locked"
+    },
+    {
+      "id": "sent",
+      "type": "waiting",
+      "label": "Sent",
+      "sublabel": "payment due"
+    },
+    {
+      "id": "paid",
+      "type": "success",
+      "label": "Paid",
+      "sublabel": "locked"
+    },
+    {
+      "id": "partiallyPaid",
+      "type": "waiting",
+      "label": "Part paid",
+      "sublabel": "balance pending"
+    }
+  ],
+  "transitions": [
+    {
+      "from": "draft",
+      "to": "issued",
+      "label": "issue number (max 16 chars)",
+      "id": "t1"
+    },
+    {
+      "from": "issued",
+      "to": "sent",
+      "label": "send",
+      "id": "t2"
+    },
+    {
+      "from": "sent",
+      "to": "paid",
+      "label": "payment + TDS covers balance",
+      "variant": "emphasis",
+      "id": "t3"
+    },
+    {
+      "from": "sent",
+      "to": "partiallyPaid",
+      "label": "payment short of balance",
+      "id": "t4"
+    },
+    {
+      "from": "partiallyPaid",
+      "to": "paid",
+      "label": "rest paid or credit note",
+      "variant": "emphasis",
+      "id": "t5"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "amber",
+      "title": "TDS (EC-25)",
+      "items": [
+        "Recorded only as the client deducted it",
+        "Counts towards settling the invoice"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "Corrections (EC-27)",
+      "items": [
+        "Issued invoices can't be edited",
+        "Changes go through a credit note"
+      ]
+    }
+  ]
+}

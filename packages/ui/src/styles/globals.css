@@ -1,0 +1,191 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@source "../../../apps/**/*.{ts,tsx}";
+@source "../../../components/**/*.{ts,tsx}";
+@source "../**/*.{ts,tsx}";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Krew design tokens
+ * ------------------
+ * Indigo ink on cool paper, with rani pink as the one loud colour.
+ * Peacock = money in / done. Haldi = needs attention. Sindoor = something failed.
+ * Every text pairing below meets WCAG AA (4.5:1) on both background and card.
+ */
+:root {
+  --background: #f7f7fa;
+  --foreground: #1a1d3a;
+  --card: #ffffff;
+  --card-foreground: #1a1d3a;
+  --popover: #ffffff;
+  --popover-foreground: #1a1d3a;
+  --primary: #c8195e; /* rani */
+  --primary-foreground: #ffffff;
+  --secondary: #ecedf4;
+  --secondary-foreground: #1a1d3a;
+  --muted: #ecedf4;
+  --muted-foreground: #5b607a;
+  --accent: #fbe7ef;
+  --accent-foreground: #8f0f42;
+  --destructive: #c0341d; /* sindoor */
+  --border: #e3e4ec;
+  --input: #d5d7e3;
+  --ring: #c8195e;
+
+  --success: #0b7a75; /* peacock */
+  --success-soft: #e2f3f1;
+  --warning: #9a6200; /* haldi, text-safe */
+  --warning-soft: #fdf1d8;
+  --danger-soft: #fbe6e2;
+
+  --chart-1: #c8195e;
+  --chart-2: #0b7a75;
+  --chart-3: #3b4fc4;
+  --chart-4: #9a6200;
+  --chart-5: #5b607a;
+
+  --radius: 0.75rem;
+
+  --sidebar: #ffffff;
+  --sidebar-foreground: #1a1d3a;
+  --sidebar-primary: #c8195e;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #ecedf4;
+  --sidebar-accent-foreground: #1a1d3a;
+  --sidebar-border: #e3e4ec;
+  --sidebar-ring: #c8195e;
+}
+
+.dark {
+  --background: #12142a;
+  --foreground: #eef0fa;
+  --card: #1b1e3a;
+  --card-foreground: #eef0fa;
+  --popover: #1b1e3a;
+  --popover-foreground: #eef0fa;
+  --primary: #f0609a;
+  --primary-foreground: #12142a;
+  --secondary: #262a4b;
+  --secondary-foreground: #eef0fa;
+  --muted: #262a4b;
+  --muted-foreground: #a3a8c3;
+  --accent: #3a1d36;
+  --accent-foreground: #ffc2d9;
+  --destructive: #f26b55;
+  --border: rgb(255 255 255 / 10%);
+  --input: rgb(255 255 255 / 16%);
+  --ring: #f0609a;
+
+  --success: #3cc2b6;
+  --success-soft: #133a3d;
+  --warning: #f2b84b;
+  --warning-soft: #3a3020;
+  --danger-soft: #3d2026;
+
+  --chart-1: #f0609a;
+  --chart-2: #3cc2b6;
+  --chart-3: #8c9bff;
+  --chart-4: #f2b84b;
+  --chart-5: #a3a8c3;
+
+  --sidebar: #1b1e3a;
+  --sidebar-foreground: #eef0fa;
+  --sidebar-primary: #f0609a;
+  --sidebar-primary-foreground: #12142a;
+  --sidebar-accent: #262a4b;
+  --sidebar-accent-foreground: #eef0fa;
+  --sidebar-border: rgb(255 255 255 / 10%);
+  --sidebar-ring: #f0609a;
+}
+
+@theme inline {
+  --font-sans: var(--font-sans);
+  --font-heading: var(--font-sans);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-danger-soft: var(--danger-soft);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Radius follows hierarchy: chips are round, sheets are soft, inputs are tighter. */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-sheet: 1.25rem;
+
+  /* Type scale (1.2 minor third) tuned for 360–430 px phones. */
+  --text-amount: 2.25rem;
+  --text-amount--line-height: 1;
+  --text-amount--font-weight: 650;
+
+  /* Tap targets: never smaller than 44 px. */
+  --spacing-tap: 2.75rem;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "kern";
+  }
+  /* Amounts line up in lists and ledgers. */
+  .tabular,
+  [data-amount] {
+    font-variant-numeric: tabular-nums;
+  }
+  /* Condensed width for big amounts and headings (Anek's wdth axis). */
+  .condensed {
+    font-variation-settings: "wdth" 80;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

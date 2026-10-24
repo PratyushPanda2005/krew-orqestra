@@ -1,0 +1,66 @@
+{
+  "schema_version": 3,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "Review and approval (PF-21, EC-19)",
+    "output": "docs/diagrams/review.html",
+    "locale": "en",
+    "quality_profile": "showcase"
+  },
+  "mainPath": [
+    "open",
+    "approved"
+  ],
+  "states": [
+    {
+      "id": "open",
+      "type": "start",
+      "label": "Open for review",
+      "sublabel": "comment on timestamp or image area"
+    },
+    {
+      "id": "changesRequested",
+      "type": "active",
+      "label": "Changes requested",
+      "sublabel": "comments become tasks"
+    },
+    {
+      "id": "approved",
+      "type": "success",
+      "label": "Approved and locked",
+      "sublabel": "name, date and time"
+    }
+  ],
+  "transitions": [
+    {
+      "from": "open",
+      "to": "approved",
+      "label": "approve with name",
+      "variant": "emphasis",
+      "id": "t1"
+    },
+    {
+      "from": "open",
+      "to": "changesRequested",
+      "label": "ask for changes",
+      "id": "t2"
+    },
+    {
+      "from": "changesRequested",
+      "to": "open",
+      "label": "next version uploaded",
+      "id": "t3"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "rose",
+      "title": "Lock",
+      "items": [
+        "Ask for changes needs at least one comment on this version",
+        "Approval locks that exact version",
+        "No comments or changes after approval"
+      ]
+    }
+  ]
+}

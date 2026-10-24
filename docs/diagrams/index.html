@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Krew flows</title>
+<style>
+  :root { --bg:#f7f7fa; --fg:#1a1d3a; --muted:#5b607a; --card:#fff; --border:#e3e4ec; --accent:#c8195e; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#12142a; --fg:#eef0fa; --muted:#a3a8c3; --card:#1b1e3a; --border:rgb(255 255 255/10%); --accent:#f0609a; } }
+  body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.5 system-ui, sans-serif; }
+  main { max-width:640px; margin:0 auto; padding:40px 16px; }
+  h1 { font-size:32px; margin:0 0 4px; }
+  p { color:var(--muted); margin:0 0 24px; }
+  ol { list-style:none; padding:0; margin:0; border:1px solid var(--border); border-radius:12px; background:var(--card); overflow:hidden; }
+  li + li { border-top:1px solid var(--border); }
+  a { display:flex; justify-content:space-between; gap:16px; padding:14px 16px; color:inherit; text-decoration:none; min-height:44px; box-sizing:border-box; }
+  a:hover, a:focus-visible { background:color-mix(in srgb, var(--accent) 8%, transparent); outline:none; }
+  span { color:var(--muted); font-size:14px; white-space:nowrap; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Krew flows</h1>
+  <p>State diagrams for each machine in packages/flows, in the order a job runs.</p>
+  <ol>
+    <li><a href="inbox-gate.html">Client or personal? <span>PF-02, EC-03</span></a></li>
+    <li><a href="brief.html">Client brief <span>PF-08</span></a></li>
+    <li><a href="quote.html">Quote and advance <span>PF-09</span></a></li>
+    <li><a href="job-win.html">Job stage 1: winning the job <span>PF-01, EC-24</span></a></li>
+    <li><a href="task.html">Task status <span>PF-18</span></a></li>
+    <li><a href="upload.html">Resumable upload <span>EC-20</span></a></li>
+    <li><a href="review.html">Review and approval <span>PF-21, EC-19</span></a></li>
+    <li><a href="job-deliver.html">Job stage 2: delivering and getting paid <span>PF-01</span></a></li>
+    <li><a href="invoice.html">Invoice and payment <span>PF-24, PF-26</span></a></li>
+  </ol>
+</main>
+</body>
+</html>

@@ -1,0 +1,4 @@
+{
+  "extends": "@krew/typescript-config/base.json"
+}
+

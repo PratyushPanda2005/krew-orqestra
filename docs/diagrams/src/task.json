@@ -1,0 +1,99 @@
+{
+  "schema_version": 3,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "Task status (PF-18, EC-17)",
+    "output": "docs/diagrams/task.html",
+    "locale": "en",
+    "quality_profile": "showcase"
+  },
+  "mainPath": [
+    "todo",
+    "inProgress",
+    "done"
+  ],
+  "states": [
+    {
+      "id": "todo",
+      "type": "start",
+      "label": "To do"
+    },
+    {
+      "id": "inProgress",
+      "type": "active",
+      "label": "In progress"
+    },
+    {
+      "id": "done",
+      "type": "success",
+      "label": "Done"
+    },
+    {
+      "id": "blocked",
+      "type": "waiting",
+      "label": "Blocked",
+      "sublabel": "reason recorded"
+    }
+  ],
+  "transitions": [
+    {
+      "from": "todo",
+      "to": "inProgress",
+      "label": "start",
+      "id": "t1"
+    },
+    {
+      "from": "inProgress",
+      "to": "done",
+      "label": "done",
+      "id": "t2"
+    },
+    {
+      "from": "todo",
+      "to": "done",
+      "label": "done",
+      "id": "t3"
+    },
+    {
+      "from": "inProgress",
+      "to": "todo",
+      "label": "pause",
+      "id": "t4"
+    },
+    {
+      "from": "inProgress",
+      "to": "blocked",
+      "label": "blocked",
+      "id": "t5"
+    },
+    {
+      "from": "todo",
+      "to": "blocked",
+      "label": "blocked",
+      "id": "t6"
+    },
+    {
+      "from": "blocked",
+      "to": "inProgress",
+      "label": "unblock",
+      "id": "t7"
+    },
+    {
+      "from": "done",
+      "to": "todo",
+      "label": "reopen",
+      "id": "t8"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "amber",
+      "title": "Overdue (EC-17)",
+      "items": [
+        "Due date passing marks open tasks overdue",
+        "The owner is told once",
+        "Done tasks ignore due dates"
+      ]
+    }
+  ]
+}
