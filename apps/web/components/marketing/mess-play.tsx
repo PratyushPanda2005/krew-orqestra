@@ -4,14 +4,23 @@ import { useEffect } from "react"
 
 /**
  * Makes the fragments in "the mess" arrive one by one, like notifications piling
- * up, the first time the section is in view. CSS does the motion (marketing.css);
- * this only sets two attributes. It arms the section itself, so without JS, with
+ * up, as the section scrolls in. Only fragments still below the fold are held back
+ * (data-wait), so nothing already painted disappears and a late fade-in can't
+ * become the page's LCP. CSS does the motion (marketing.css). Without JS, with
  * reduced motion, or if this never runs, everything is simply shown.
  */
 export function MessPlay() {
   useEffect(() => {
     const section = document.getElementById("mess")
     if (!section || !document.documentElement.classList.contains("motion-ok")) return
+    const waiting = [...section.querySelectorAll<HTMLElement>("[data-arrive]")].filter(
+      (el) => el.getBoundingClientRect().top >= window.innerHeight
+    )
+    if (!waiting.length) return
+    waiting.forEach((el, n) => {
+      el.style.setProperty("--n", String(n))
+      el.setAttribute("data-wait", "")
+    })
     const io = new IntersectionObserver(
       (entries) => {
         if (!entries.some((e) => e.isIntersecting)) return
@@ -20,11 +29,7 @@ export function MessPlay() {
       },
       { rootMargin: "0px 0px -25% 0px" }
     )
-    // A fragment already on screen (a reload mid-page): leave them shown rather than hide and replay.
-    const first = section.querySelector("[data-arrive]")?.getBoundingClientRect()
-    if (!first || (first.top < window.innerHeight && section.getBoundingClientRect().bottom > 0)) return
-    section.setAttribute("data-armed", "")
-    io.observe(section)
+    waiting.forEach((el) => io.observe(el))
     return () => io.disconnect()
   }, [])
 
