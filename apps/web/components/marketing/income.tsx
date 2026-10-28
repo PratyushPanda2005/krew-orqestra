@@ -7,36 +7,53 @@ import { liveJobs } from "@/lib/landing-samples"
 import { Gradient, type GradientKind } from "./gradient"
 import { MockExport, MockIncome, MockPending } from "./mocks"
 import { Split } from "./split"
-import { eyebrow, quiet, sectionTitle, wide } from "./styles"
+import { eyebrow, quiet, wide } from "./styles"
 
 const art = [MockIncome, MockPending, MockExport]
 const grads: GradientKind[] = ["swift", "dusk", "dither"]
 
 /**
- * The income block (PF-26). After Vantra's live list: every job on the go, at its step of the
- * 7, with bars that fill as the list comes in. Then the reference's "Latest Insights" cards:
- * the title rises letter by letter and three cards rise in, each an app screen on a grainy
- * gradient (swift, dusk, dither).
+ * Income's opening screen. After trionn, it waits underneath "How a job runs" and is uncovered
+ * as that section's layer slides away to the left (a curtain); so it renders inside How. Big,
+ * centred, uppercase title, with a line below and a link down to the jobs. Without the sideways
+ * scroll (phones, no JS, reduced motion) it's simply the next screen.
+ */
+export function IncomeIntro() {
+  return (
+    <section id="income" aria-labelledby="income-title" data-hz-under className="relative isolate flex flex-col items-center justify-center gap-12 px-5 py-24 text-center md:min-h-svh md:justify-between md:gap-0 lg:px-10 lg:pt-28 lg:pb-12">
+      <Gradient kind="mist" className="-z-10" />
+      <p className={eyebrow}>[ {income.eyebrow} ]</p>
+      <h2 id="income-title" data-blur className="max-w-[16ch] font-display text-[clamp(2.75rem,8.5vw,8.5rem)] leading-[0.92] font-bold tracking-tight uppercase">
+        <Split text={income.title} scatter />
+      </h2>
+      <div className="flex w-full flex-col items-center gap-4 lg:flex-row lg:justify-between">
+        <span className="hidden w-40 lg:block" />
+        <p className="text-xs font-medium tracking-wide uppercase">◆ {income.lead}</p>
+        <a
+          href="#jobs"
+          className="inline-flex min-h-tap w-40 items-center justify-between gap-3 border-b border-brand-navy/40 text-xs font-medium tracking-wide uppercase focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-navy"
+        >
+          {income.more} <span aria-hidden>↓</span>
+        </a>
+      </div>
+    </section>
+  )
+}
+
+/**
+ * The rest of the income block (PF-26). After Vantra's live list: every job on the go, at its
+ * step of the 7, with bars that fill as the list comes in. Then the reference's "Latest
+ * Insights" cards rising in, each an app screen on a grainy gradient (swift, dusk, dither).
  */
 export function Income() {
   const steps = how.steps.length
   return (
-    <section id="income" aria-labelledby="income-title" className="py-20 lg:py-32">
-      <div className={cn(wide, "grid gap-6 lg:grid-cols-12 lg:items-end lg:gap-10")}>
-        <div className="lg:col-span-6">
-          <p data-up="0" className={eyebrow}>
-            [ {income.eyebrow} ]
-          </p>
-          <h2 id="income-title" data-split className={cn(sectionTitle, "mt-4")}>
-            <Split text={income.title} />
-          </h2>
-        </div>
-        <p data-up="2" className={cn("text-base lg:col-span-5 lg:col-start-8 lg:text-lg", quiet)}>
-          {income.body}
-        </p>
-      </div>
+    <div id="jobs" className="py-20 lg:py-32">
+      <p data-up="0" className={cn(wide, "max-w-3xl text-lg lg:text-xl", quiet)}>
+        {income.body}
+      </p>
 
-      <div className={cn(wide, "mt-14 lg:mt-20")}>
+      <div className={cn(wide, "mt-12 lg:mt-16")}>
         <div data-up="0" className="flex items-end justify-between gap-4 border-b border-brand-navy/15 pb-4">
           <h3 className="font-display text-xl font-semibold tracking-tight lg:text-2xl">{income.live.title}</h3>
           <p className={cn("text-right text-xs font-medium tracking-wide uppercase", quiet)}>{income.live.note}</p>
@@ -88,6 +105,6 @@ export function Income() {
           )
         })}
       </ul>
-    </section>
+    </div>
   )
 }

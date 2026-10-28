@@ -221,7 +221,7 @@ test.describe("landing page at 390 px", () => {
 test.describe("landing page at 1280 px", () => {
   test.use({ viewport: { width: 1280, height: 800 }, isMobile: false, hasTouch: false })
 
-  test("how a job runs: the row slides sideways, then the photos settle into a grid", async ({ page }) => {
+  test("how a job runs: the row slides sideways, then slides off over Income's opening", async ({ page }) => {
     await page.goto("/")
     const track = page.locator("[data-hz-track]")
     await expect(track).toHaveAttribute("data-play", "")
@@ -230,10 +230,12 @@ test.describe("landing page at 1280 px", () => {
     await expect
       .poll(() => page.locator("[data-hz-row]").evaluate((el) => new DOMMatrix(getComputedStyle(el).transform).m41))
       .toBeLessThan(-200)
-    const ribbon = page.locator("[data-ribbon-track]")
-    await ribbon.evaluate((el) => window.scrollTo(0, el.getBoundingClientRect().top + scrollY + el.getBoundingClientRect().height - innerHeight))
-    // Settled: the tiles stand flat in two rows.
-    await expect.poll(() => page.locator("[data-tile]").first().evaluate((el) => getComputedStyle(el).transform)).toMatch(/^matrix\(1, 0, 0, 1,/)
+    await track.evaluate((el) => window.scrollTo(0, el.getBoundingClientRect().top + scrollY + el.getBoundingClientRect().height - innerHeight))
+    // At the end the layer has slid off like a curtain, uncovering Income's opening screen.
+    await expect
+      .poll(() => page.locator("[data-hz-layer]").evaluate((el) => new DOMMatrix(getComputedStyle(el).transform).m41))
+      .toBeLessThanOrEqual(-1279)
+    await expect(page.locator("#income-title")).toBeInViewport()
   })
 
   test("no horizontal scroll, and a snapshot for review", async ({ page }) => {

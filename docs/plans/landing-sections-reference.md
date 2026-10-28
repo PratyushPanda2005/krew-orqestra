@@ -217,3 +217,20 @@ Asked for: trionn.com's "Selected work" and "Explorations" effects in How a job 
 **Removed:** novaform's Process swing and the running title band, the pinned question cards, the join panel and its photo row, and the 8 `trail-*` photos (now 18 photos).
 
 **Checks:** type check and lint are clean. Landing Playwright: 15 of 15 pass, with new tests for the question tabs and for the sideways row and ribbon at 1280 px. LCP 1,124 ms, CLS 0.000 at 390 px on slow 4G.
+
+## 18. How a job runs, matched to trionn exactly (29 Oct 2026)
+
+"Seven steps, one place" (the ribbon) was removed on request. The sideways scroll was then re-measured on trionn.com (1440 × 900, sampled every 150 px of scroll) and rebuilt to those numbers:
+
+| Part | trionn, measured | Ours |
+|---|---|---|
+| Row | moves 1.2 px per px scrolled from the moment it pins, no easing (2,166 px over 1,800) | same rate, sized to our 9 panels |
+| Cards | rise from 550 px (61% of 900) to rest, `power3.out`, as the panel's left edge goes from 95% to 25% of the width | same |
+| Dividers | full-height hairlines, scaleY 0→1 from the top as the panel goes from 100% to 60% | same |
+| Title | each letter: opacity 0→1 and blur 12→0 px in about 0.5 s, from a random start within about 1 s, once it reaches 90% | same |
+| Curtain | after the row, the layer slides left one screen width at 1.07 px per px, uncovering the next screen (their Services) | uncovers Income's opening: big centred uppercase title, "◆ Every job feeds one ledger.", "See your jobs ↓" |
+| End of row | a hairline with a small plus | same |
+
+Income's opening (`IncomeIntro`) renders inside How so it can wait under the curtain; the rest of Income follows as before. Phones, no JS and reduced motion: a stacked list, then Income's opening as a normal screen. The scroll engine applies this effect with no smoothing of its own (Lenis smooths the scroll on desktop, as on trionn).
+
+**Checks:** 15 of 15 landing tests pass; LCP 1,256 ms, CLS 0.000 at 390 px on slow 4G.

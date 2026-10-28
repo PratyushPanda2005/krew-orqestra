@@ -1,31 +1,20 @@
-import { Money } from "@krew/ui/components/money"
 import { cn } from "@krew/ui/lib/utils"
 import Image from "next/image"
 
 import { how } from "@/app/(marketing)/copy"
-import { riya } from "@/lib/landing-samples"
 
 import { Gradient } from "./gradient"
+import { IncomeIntro } from "./income"
 import { howPhotos } from "./photos"
 import { PillLink } from "./pill-link"
 import { Split } from "./split"
 import { eyebrow, quiet } from "./styles"
 import { UpiTile } from "./upi-tile"
 
-/** A step's photo; the Advance step has none, so it shows the UPI tile (compact on small tiles). */
-function StepPhoto({ i, sizes, compact, className }: { i: number; sizes: string; compact?: boolean; className?: string }) {
+/** A step's photo; the Advance step has none, so it shows the UPI tile. */
+function StepPhoto({ i, sizes, className }: { i: number; sizes: string; className?: string }) {
   const photo = howPhotos[i]
-  if (!photo)
-    return (
-      <UpiTile className={className}>
-        {compact ? (
-          <div className="rounded-lg bg-brand-snow px-3 py-2 text-center text-brand-navy shadow-xl">
-            <Money paise={riya.advance} size="md" className="font-display font-semibold" />
-            <p className="text-[0.625rem] font-medium">Paid by UPI</p>
-          </div>
-        ) : undefined}
-      </UpiTile>
-    )
+  if (!photo) return <UpiTile className={className} />
   return (
     <div className={cn("relative overflow-clip bg-brand-navy/10", className)}>
       <Image src={photo.src} alt={photo.alt} fill sizes={sizes} className="object-cover" />
@@ -33,93 +22,81 @@ function StepPhoto({ i, sizes, compact, className }: { i: number; sizes: string;
   )
 }
 
-const panel = "flex w-full shrink-0 flex-col items-center justify-center border-brand-navy/15 px-6 py-16 md:h-full md:w-[50vw] md:border-r md:px-10 md:py-0"
+const panel = "relative flex w-full shrink-0 flex-col items-center justify-center px-6 py-16 md:h-full md:w-[50vw] md:px-10 md:py-0 lg:px-20"
+
+/** trionn's divider: a full-height hairline on a panel's left edge that draws downwards as it comes in. */
+function Divider() {
+  return <span aria-hidden data-hz-line className="absolute top-1/2 left-0 hidden h-svh w-px origin-top -translate-y-1/2 bg-brand-navy/15 md:block" />
+}
 
 /**
- * "How a job runs", after trionn's "Selected work" and "Explorations".
- *
- * 1. From 768 px with motion allowed, the section pins and a row of half-screen panels slides
- *    sideways as you scroll down: the title (letters blur in, in a scattered order), the 7
- *    steps (each card rises 25 px as it slides in), then a closing panel.
- * 2. Then the 7 photos fly past on a curved 3D ribbon and settle into a grid: "Seven steps,
- *    one place."
- * LandingMotion ties both to the scroll and sets data-play. Otherwise (phones, no JS,
- * reduced motion) the panels stack as a list and the photos sit in a plain grid.
- * Behind both, grainy pearl gradients (trionn's white-to-grey, in the brand's tints).
+ * "How a job runs", after trionn's "Selected work", matched to its measured motion
+ * (plan landing-sections-reference §18). From 768 px with motion allowed, the section pins and:
+ *   1. a row of half-screen panels slides left at 1.2 px per px scrolled: the title (letters
+ *      come out of a blur in a scattered order), the 7 steps, a closing panel. Each card rises
+ *      from 61% of the screen height to rest (power3.out) between 95% and 25% across, and each
+ *      divider draws down as its panel crosses from the right edge to 60%;
+ *   2. then the whole layer slides away left like a curtain (1.07 px per px), uncovering
+ *      Income's opening screen, which waits underneath (IncomeIntro).
+ * LandingMotion ties it to the scroll and sets data-play. Otherwise (phones, no JS, reduced
+ * motion) the panels stack as a list and Income's opening simply follows. Grainy pearl behind.
  */
 export function How() {
   return (
     <section id="how" aria-labelledby="how-title" className="relative isolate">
       <div data-hz-track className="relative">
-        <div data-hz-stage className="relative isolate overflow-clip md:h-svh">
-          <Gradient kind="pearl" className="-z-10" />
-          <ol data-hz-row className="flex flex-col md:h-full md:flex-row">
-            <li className={panel}>
-              <div className="flex max-w-md flex-col items-center gap-8 text-center">
-                <p data-up="0" className={eyebrow}>
-                  {how.eyebrow}
-                </p>
-                <h2 id="how-title" data-blur className="font-display text-[2.5rem] leading-[1.05] font-semibold tracking-tight lg:text-[3.5rem]">
-                  <Split text={how.title} scatter />
-                </h2>
-                <p data-up="2" className={cn("text-base lg:text-lg", quiet)}>
-                  {how.intro}
-                </p>
-              </div>
-            </li>
-            {how.steps.map((s, i) => (
-              <li key={s.title} className={panel}>
-                <article data-hz-card className="flex w-full max-w-[26rem] flex-col">
-                  <div className="relative">
-                    <StepPhoto i={i} sizes="(min-width: 768px) 26rem, 90vw" className="aspect-[16/11] w-full rounded-md" />
-                    <span className="absolute top-3 left-3 rounded-md bg-brand-navy-deep/45 px-2 py-1 text-xs font-semibold tracking-wide text-brand-snow uppercase ring-1 ring-brand-snow/20 backdrop-blur-md tabular">
-                      {how.step(i + 1)}
-                    </span>
-                  </div>
-                  <div className="mt-4 flex items-baseline justify-between gap-4">
-                    <h3 className="font-display text-2xl font-semibold tracking-tight">{s.title}</h3>
-                    <span className={cn("text-xs tabular", quiet)}>{how.of(i + 1, how.steps.length)}</span>
-                  </div>
-                  <p className={cn("mt-2 text-sm text-pretty lg:text-base", quiet)}>{s.body}</p>
-                  <span aria-hidden className="mt-4 h-px w-full origin-left bg-brand-navy/25" />
-                </article>
+        <div data-hz-stage className="relative isolate overflow-clip">
+          <div data-hz-layer className="relative isolate z-10 overflow-clip md:h-svh">
+            <Gradient kind="pearl" className="-z-10" />
+            <ol data-hz-row className="flex flex-col md:h-full md:flex-row">
+              <li className={panel}>
+                <div className="flex max-w-md flex-col items-center gap-8 text-center">
+                  <p data-up="0" className={eyebrow}>
+                    {how.eyebrow}
+                  </p>
+                  <h2 id="how-title" data-blur className="font-display text-[2.5rem] leading-[1.05] font-semibold tracking-tight lg:text-[3.5rem]">
+                    <Split text={how.title} scatter />
+                  </h2>
+                  <p data-up="2" className={cn("text-base lg:text-lg", quiet)}>
+                    {how.intro}
+                  </p>
+                </div>
               </li>
-            ))}
-            <li className={panel}>
-              <div className="flex max-w-sm flex-col items-center gap-6 text-center">
-                <p className="font-display text-2xl leading-snug font-semibold tracking-tight">{how.end}</p>
-                <PillLink href="#waitlist">{how.cta}</PillLink>
-              </div>
-            </li>
-          </ol>
-        </div>
-      </div>
-
-      <div data-ribbon-track className="relative">
-        <div data-ribbon-stage className="relative isolate overflow-clip py-16 md:h-svh md:py-0">
-          <Gradient kind="silver" className="-z-10" />
-          <div aria-hidden className="pointer-events-none absolute inset-0 hidden flex-col justify-center px-10 font-display text-[clamp(3rem,8vw,8.5rem)] leading-none font-semibold tracking-tight uppercase md:flex">
-            <span data-ribbon-word>{how.finale.left}</span>
-            <span data-ribbon-word className="self-end">
-              {how.finale.right}
-            </span>
-          </div>
-          <p className="px-6 text-center font-display text-3xl font-semibold tracking-tight md:sr-only">
-            {how.finale.left} {how.finale.right}
-          </p>
-          <p className={cn("mt-2 px-6 text-center text-xs font-medium tracking-wide uppercase md:absolute md:bottom-10 md:left-1/2 md:mt-0 md:-translate-x-1/2", quiet)} data-ribbon-word>
-            {how.finale.caption}
-          </p>
-          <ul data-ribbon className="mt-8 grid grid-cols-2 gap-3 px-6 md:mt-0">
-            {how.steps.map((s, i) => (
-              <li key={s.title} data-tile className="relative">
-                <StepPhoto i={i} compact sizes="(min-width: 768px) 15rem, 45vw" className="aspect-[4/3] w-full rounded-md shadow-lg" />
-                <span className="absolute bottom-2 left-2 rounded bg-brand-navy-deep/45 px-1.5 py-0.5 text-[0.6875rem] font-medium text-brand-snow ring-1 ring-brand-snow/20 backdrop-blur-md">
-                  {s.title}
+              {how.steps.map((s, i) => (
+                <li key={s.title} className={panel}>
+                  <Divider />
+                  <article data-hz-card className="flex w-full max-w-[35rem] flex-col">
+                    <div className="relative">
+                      <StepPhoto i={i} sizes="(min-width: 768px) 35rem, 90vw" className="aspect-[670/460] w-full rounded-lg" />
+                      <span className="absolute top-3 left-3 rounded-md bg-brand-navy-deep/45 px-2 py-1 text-xs font-semibold tracking-wide text-brand-snow uppercase ring-1 ring-brand-snow/20 backdrop-blur-md tabular">
+                        {how.step(i + 1)}
+                      </span>
+                    </div>
+                    <div className="mt-6 flex items-baseline justify-between gap-4">
+                      <h3 className="font-display text-2xl font-semibold tracking-tight">{s.title}</h3>
+                      <span className={cn("text-xs tabular", quiet)}>{how.of(i + 1, how.steps.length)}</span>
+                    </div>
+                    <p className={cn("mt-2 max-w-80 text-sm text-pretty lg:text-base", quiet)}>{s.body}</p>
+                  </article>
+                </li>
+              ))}
+              <li className={panel}>
+                <Divider />
+                <div data-hz-card className="flex max-w-sm flex-col items-center gap-6 text-center">
+                  <p className="font-display text-2xl leading-snug font-semibold tracking-tight">{how.end}</p>
+                  <PillLink href="#waitlist">{how.cta}</PillLink>
+                </div>
+                {/* The row's right edge: a hairline with a small plus, as trionn ends its row. */}
+                <span aria-hidden className="absolute top-0 right-0 hidden h-full w-px bg-brand-navy/15 md:block">
+                  <svg viewBox="0 0 12 12" className="absolute top-1/2 left-0 size-3 -translate-1/2 overflow-visible text-brand-navy/60" stroke="currentColor">
+                    <line x1="6" y1="0" x2="6" y2="12" />
+                    <line x1="0" y1="6" x2="12" y2="6" />
+                  </svg>
                 </span>
               </li>
-            ))}
-          </ul>
+            </ol>
+          </div>
+          <IncomeIntro />
         </div>
       </div>
     </section>

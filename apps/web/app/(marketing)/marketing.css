@@ -225,14 +225,27 @@ html:not(.js) [data-js-only] {
 
 /*
  * "How a job runs" in play (LandingMotion sets data-play from 768 px with motion allowed),
- * after trionn: the row pins and slides sideways; then the ribbon stage pins and its photos
- * fly on a curve and settle into a grid. Both tracks get their heights from LandingMotion.
+ * after trionn: the stage pins, the row slides sideways, then the layer slides off like a curtain
+ * over Income's opening screen, which waits underneath. The track's height comes from LandingMotion.
  */
-[data-play] > [data-hz-stage],
-[data-play] > [data-ribbon-stage] {
+[data-play] > [data-hz-stage] {
   position: sticky;
   top: 0;
   height: 100svh;
+}
+[data-play] [data-hz-layer] {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+[data-play] [data-hz-under] {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  min-height: 0;
+}
+[data-play] [data-hz-line] {
+  transform: translateY(-50%) scaleY(0);
 }
 [data-play] [data-hz-row] {
   width: max-content;
@@ -241,33 +254,17 @@ html:not(.js) [data-js-only] {
 [data-play] [data-hz-card] {
   will-change: transform;
 }
-[data-play] [data-ribbon] {
-  position: absolute;
-  inset: 0;
-  display: block;
-  margin: 0;
-  padding: 0;
-  perspective: 1400px;
-}
-[data-play] [data-tile] {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: clamp(9rem, 15vw, 15rem);
-  margin: calc(clamp(9rem, 15vw, 15rem) * -0.375) 0 0 calc(clamp(9rem, 15vw, 15rem) * -0.5);
-  will-change: transform;
-}
-
-/* trionn's title reveal: letters come out of a 12 px blur in a scattered order (data-blur). */
+/* trionn's title reveal (measured): each letter comes out of a 12 px blur in about 0.5 s, starting
+   at a scattered moment within the first second (data-blur). */
 .motion-ok [data-blur][data-wait]:not([data-in]) [data-char] {
   opacity: 0;
   filter: blur(12px);
 }
 .motion-ok [data-blur][data-in] [data-char] {
   transition:
-    opacity 0.8s var(--ease-sine-out),
-    filter 0.8s var(--ease-sine-out);
-  transition-delay: calc(var(--r, 0) * 0.7s);
+    opacity 0.5s cubic-bezier(0.33, 1, 0.68, 1),
+    filter 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+  transition-delay: calc(var(--r, 0) * 1s);
 }
 
 /* Questions (faq-stories.tsx): with JS, one answer at a time, its words lighting up in order. */
@@ -386,16 +383,11 @@ html:not(.js) [data-story] + [data-story] {
     radial-gradient(30% 16% at 70% 82%, color-mix(in srgb, var(--brand-coral) 35%, transparent), transparent 70%),
     var(--brand-navy-deep);
 }
-/* trionn's white-to-grey grounds, tinted with the brand: pearl (light), silver (a shade deeper). */
+/* trionn's white-to-grey ground, tinted with the brand. */
 [data-grad="pearl"] {
   background:
     radial-gradient(50% 40% at 85% 15%, color-mix(in srgb, var(--brand-violet) 16%, transparent), transparent 70%),
     linear-gradient(0deg, color-mix(in srgb, var(--brand-navy) 16%, var(--brand-snow)), var(--brand-snow));
-}
-[data-grad="silver"] {
-  background:
-    radial-gradient(45% 40% at 20% 85%, color-mix(in srgb, var(--brand-green) 14%, transparent), transparent 70%),
-    linear-gradient(180deg, color-mix(in srgb, var(--brand-navy) 22%, var(--brand-snow)), color-mix(in srgb, var(--brand-navy) 30%, var(--brand-snow)));
 }
 [data-grad="smoke"] {
   background:

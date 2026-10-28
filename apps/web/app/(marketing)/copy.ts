@@ -94,9 +94,8 @@ export const how = {
   eyebrow: "[ How it works ]",
   step: (n: number) => `[ Step ${String(n).padStart(2, "0")} ]`,
   of: (n: number, total: number) => `${String(n).padStart(2, "0")} / ${String(total).padStart(2, "0")}`,
-  // The closing panel of the sideways scroll, and the finale where the 7 photos come together.
+  // The closing panel of the sideways scroll.
   end: "Every step lives in the same job, for you and your crew.",
-  finale: { left: "Seven steps,", right: "one place.", caption: "From the first DM to getting paid" },
 }
 
 export const income = {
@@ -107,6 +106,9 @@ export const income = {
   body: "Every job feeds one ledger. See money in, money out and what you kept each month, and what each client still owes you. When it's time to file, export it all for your accountant.",
   points: ["Money in, money out and net, by month", "What each client still owes", "Exports for Tally and Zoho Books, or CSV"],
   tags: ["[ By month ]", "[ Who owes you ]", "[ For your accountant ]"],
+  // The opening screen that trionn's curtain uncovers: the first sentence of the body, and a link down.
+  lead: "Every job feeds one ledger.",
+  more: "See your jobs",
   // After Vantra's "In the studio right now". Example jobs (lib/landing-samples liveJobs).
   live: {
     title: "Your jobs, right now",
