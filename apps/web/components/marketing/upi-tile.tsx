@@ -3,10 +3,12 @@ import { cn } from "@krew/ui/lib/utils"
 
 import { riya } from "@/lib/landing-samples"
 
+import { Gradient } from "./gradient"
+
 /**
  * Stands in for a photo wherever the story is "paid by UPI": stock libraries only have card
- * terminals, which is off-message (plan landing-sections-reference §13). Navy with the hero's
- * light, and a plain receipt. Decorative: the text beside it carries the meaning.
+ * terminals, which is off-message (plan landing-sections-reference §13). A ring of light
+ * rising over navy (the "ecliptic" gradient), and a plain receipt. Decorative: the text beside it carries the meaning.
  */
 export function UpiTile({ className, children }: { className?: string; children?: React.ReactNode }) {
   return (
@@ -14,8 +16,7 @@ export function UpiTile({ className, children }: { className?: string; children?
       aria-hidden
       className={cn("relative isolate flex items-center justify-center overflow-hidden bg-brand-navy-deep text-brand-snow", className)}
     >
-      <span className="absolute -top-1/4 -left-1/4 -z-10 size-3/4 rounded-full bg-brand-violet/35 blur-3xl" />
-      <span className="absolute -right-1/4 -bottom-1/4 -z-10 size-3/4 rounded-full bg-brand-green/30 blur-3xl" />
+      <Gradient kind="ecliptic" className="-z-10" />
       {children ?? (
         <div className="flex w-[78%] max-w-64 flex-col gap-3 rounded-xl bg-brand-snow p-4 text-brand-navy shadow-2xl">
           <div className="flex items-center justify-between text-xs font-medium">

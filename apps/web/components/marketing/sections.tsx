@@ -4,7 +4,9 @@ import Image from "next/image"
 import { clients, faq, trust } from "@/app/(marketing)/copy"
 
 import { stageMocks } from "./mocks"
+import { Gradient } from "./gradient"
 import { clientPhotos, faqPhotos, trustPhotos } from "./photos"
+import { ShaderGradient } from "./shader-gradient"
 import { Split } from "./split"
 import { eyebrow, quiet, sectionTitle, wide } from "./styles"
 import { UpiTile } from "./upi-tile"
@@ -19,10 +21,12 @@ const rowStack = ["lg:top-[5%] lg:mb-[18rem]", "lg:top-[18%] lg:mb-[12rem]", "lg
  * "Your clients never make an account", in the layout and effects of the reference's
  * Selected Work: the title rises letter by letter, then full-width photo cards stack (sticky)
  * and each one shrinks back as you scroll past it (LandingMotion). Photos zoom on hover.
+ * Text sits on a glass panel, after Vantra's case cards; a grainy mist behind.
  */
 export function Clients() {
   return (
-    <section id="clients" aria-labelledby="clients-title" className="relative bg-brand-navy/[0.04] py-20 lg:py-32">
+    <section id="clients" aria-labelledby="clients-title" className="relative isolate py-20 lg:py-32">
+      <Gradient kind="mist" className="-z-10" />
       <div className={cn(wide, "flex flex-col items-center text-center")}>
         <p data-up="0" className={eyebrow}>
           {clients.eyebrow}
@@ -59,7 +63,7 @@ export function Clients() {
                     </div>
                   </UpiTile>
                 )}
-                <div className="max-w-md bg-gradient-to-br from-brand-navy-deep/80 via-brand-navy-deep/50 to-transparent p-6 pr-16 pb-16 lg:p-12 lg:pr-24 lg:pb-24">
+                <div className="m-3 max-w-md rounded-xl bg-brand-navy-deep/45 p-5 ring-1 ring-brand-snow/15 backdrop-blur-md lg:m-6 lg:p-7">
                   <h3 className="font-display text-2xl font-semibold tracking-tight lg:text-[2rem]">{l.title}</h3>
                   <p className="mt-1.5 text-base text-brand-snow/90 lg:text-lg">{l.body}</p>
                 </div>
@@ -77,11 +81,13 @@ export function Clients() {
 
 /**
  * "What we promise", in the layout and effects of the reference's Services: numbered rows
- * that stack as you scroll (sticky, CSS only), each with a photo that zooms on hover.
+ * that stack as you scroll (sticky, CSS only), each with a photo that zooms on hover. A grainy
+ * haze behind the title; the rows are solid so they cover each other cleanly.
  */
 export function Trust() {
   return (
-    <section id="trust" aria-labelledby="trust-title" className="relative py-20 lg:py-32">
+    <section id="trust" aria-labelledby="trust-title" className="relative isolate py-20 lg:py-32">
+      <Gradient kind="haze" className="-z-10 h-[44rem]" />
       <div className={wide}>
         <p data-up="0" className={eyebrow}>
           {trust.eyebrow}
@@ -130,13 +136,14 @@ export function Trust() {
  * Questions, in the layout and effects of the reference's dark testimonials: on screens from
  * 768 px with motion allowed, the section pins and each answer card slides away downwards as
  * the next slides in from above, with a column of photos and a dot following along
- * (LandingMotion sets data-play). Otherwise it's a plain list of open cards.
+ * (LandingMotion sets data-play). Otherwise it's a plain list of open cards. Behind it, the
+ * "streaks" shader: vertical spectral light, after the reference's video and grainient.
  */
 export function Faq() {
   return (
     <section id="faq" aria-labelledby="faq-title" data-faq className="relative isolate bg-brand-navy-deep text-brand-snow">
-      <div data-streaks aria-hidden className="absolute inset-0 -z-10" />
-      <div data-faq-stage className="py-20 lg:py-32">
+      <div data-faq-stage className="relative isolate py-20 lg:py-32">
+        <ShaderGradient kind="streaks" className="-z-10" />
         <div className={cn(wide, "flex flex-col gap-10 md:flex-row md:items-start md:justify-between")}>
           <div className="md:max-w-sm lg:max-w-md">
             <p data-up="0" className={eyebrow}>

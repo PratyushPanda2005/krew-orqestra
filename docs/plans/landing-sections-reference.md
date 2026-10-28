@@ -184,3 +184,21 @@ The landing plan gave the other sections about 1.5 days; this is more because ev
 - The form card takes the brand green and navy through local CSS variables. The app's tokens are unchanged.
 
 **Checks:** type check and lint are clean. Landing Playwright: 13 of 13 pass. At 390 px on slow 4G: LCP 1,052 ms, CLS 0.000. Without JS and with reduced motion, every section shows as a static list.
+
+## 16. Second pass: Vantra patterns and grainy gradients (29 Oct 2026)
+
+Asked for: patterns from vantra-studio.webflow.io, kept to the current sections, and gradients wherever they fit, after grainient.supply.
+
+**Gradients** (all in the brand colours, all with film grain)
+- `gradient.tsx` (CSS, 0 JS, ~0.4 KB noise tile): `mist` (Mess, Clients) and `haze` (How, Trust title) drift slowly; `swift`, `dusk` and `dither` sit behind the three Income cards; `ecliptic` (a ring of light) is the UPI tile everywhere.
+- `shader-gradient.tsx` (WebGL, like the hero's): `streaks` behind the questions, `aurora` in the join panel, `mesh` as the footer's strip of light. Each starts only near the screen, after load and idle; draws at 1×; pauses off screen; follows the pointer a little; never runs under reduced motion. The CSS still version shows underneath.
+
+**From Vantra**
+- A floating glass nav (wordmark, tagline, "Join the pilot") slides in once you're past the hero. It works with any motion setting; without JS it stays hidden, and the hero nav covers it.
+- Glass labels on the Mess photos; glass text panels on the client cards.
+- "Your jobs, right now": a live list with step-of-7 bars that fill as it comes in. Example data in `landing-samples.ts` (`liveJobs`), the same people as the mocks.
+- Join sits in an inset, rounded dark panel; the footer is dark with big stacked links and "( Label )" captions.
+
+**Fixed:** blocks at the very end of the page never reached the 90% line, so they now reveal at the bottom.
+
+**Checks:** type check and lint are clean; 13 of 13 landing tests pass; LCP 1,208 ms, CLS 0.000 at 390 px on slow 4G.

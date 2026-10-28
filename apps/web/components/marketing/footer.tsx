@@ -4,7 +4,10 @@ import { footer, hero } from "@/app/(marketing)/copy"
 import { site } from "@/lib/site"
 
 import { PillLink } from "./pill-link"
-import { quiet, wide } from "./styles"
+import { ShaderGradient } from "./shader-gradient"
+import { wide } from "./styles"
+
+const ease = "transition-transform duration-400 ease-[cubic-bezier(0.61,1,0.88,1)]"
 
 /** Footer link with the reference's hover: a dot grows and the text slides from −8 px to 6 px. */
 function FooterLink({ href, children, className }: { href: string; children: React.ReactNode; className?: string }) {
@@ -12,52 +15,67 @@ function FooterLink({ href, children, className }: { href: string; children: Rea
     <a
       href={href}
       className={cn(
-        "group relative inline-flex min-h-tap items-center rounded-md text-base transition-colors duration-400 hover:text-brand-navy focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-navy",
+        "group relative inline-flex min-h-tap items-center rounded-md transition-colors duration-400 hover:text-brand-snow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-snow",
         className
       )}
     >
-      <span aria-hidden className="absolute left-0 size-[0.35rem] scale-0 rounded-full bg-brand-navy transition-transform duration-400 ease-[cubic-bezier(0.61,1,0.88,1)] group-hover:scale-100" />
-      <span className="transition-transform duration-400 ease-[cubic-bezier(0.61,1,0.88,1)] group-hover:translate-x-[0.875rem]">{children}</span>
+      <span aria-hidden className={cn("absolute left-0 size-[0.35em] scale-0 rounded-full bg-brand-green group-hover:scale-100", ease)} />
+      <span className={cn("group-hover:translate-x-[0.7em]", ease)}>{children}</span>
     </a>
   )
 }
 
 // A privacy policy link goes here once the page exists (needed before launch, plan §13).
-/** Footer after the reference: the tagline where its newsletter sits, links rising in on the right. No social icons yet. */
+/**
+ * Footer after Vantra: a strip of drifting light (the "mesh" shader) over a dark footer, the
+ * wordmark and tagline on the left, the sections as big stacked links on the right, and the
+ * reference's link hover. No social icons yet.
+ */
 export function MarketingFooter() {
   return (
-    <footer className="bg-brand-snow py-14 font-body text-brand-navy lg:py-20">
-      <div className={cn(wide, "grid gap-10 lg:grid-cols-12")}>
-        <div data-up="0" className="lg:col-span-5">
-          <p className="font-display text-[1.75rem] leading-none font-medium tracking-tight lowercase">{site.name}</p>
-          <p className="mt-6 font-display text-2xl leading-snug font-semibold tracking-tight lg:text-[1.75rem]">{footer.tagline}</p>
-          <PillLink href="#waitlist" className="mt-6">
-            {hero.primary}
-          </PillLink>
+    <footer className="bg-brand-navy-deep font-body text-brand-snow">
+      <div className="relative isolate h-36 overflow-clip lg:h-56">
+        <ShaderGradient kind="mesh" className="-z-10" />
+        <span aria-hidden className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-brand-navy-deep to-transparent" />
+      </div>
+
+      <div className={cn(wide, "grid gap-12 pt-6 pb-10 lg:grid-cols-12 lg:pb-14")}>
+        <div data-up="0" className="flex flex-col justify-between gap-8 lg:col-span-5">
+          <p className="font-display text-[4.5rem] leading-none font-semibold tracking-tight lowercase lg:text-[7rem]">{site.name}</p>
+          <div>
+            <p className="max-w-sm text-base text-brand-snow/75">{footer.tagline}</p>
+            <PillLink href="#waitlist" className="mt-5">
+              {hero.primary}
+            </PillLink>
+          </div>
         </div>
-        <nav data-up="2" aria-label={footer.sections} className="lg:col-span-3 lg:col-start-8">
-          <p className="font-medium">{footer.sections}</p>
-          <ul className={cn("mt-2", quiet)}>
+
+        <nav data-up="2" aria-label={footer.sections} className="lg:col-span-6 lg:col-start-7">
+          <p className="text-xs font-medium tracking-wide text-brand-snow/60 uppercase">( {footer.sections} )</p>
+          <ul className="mt-3">
             {hero.nav.map((l) => (
-              <li key={l.href}>
-                <FooterLink href={l.href}>{l.label}</FooterLink>
+              <li key={l.href} className="border-b border-brand-snow/15">
+                <FooterLink href={l.href} className="py-1.5 font-display text-[1.75rem] font-medium tracking-tight text-brand-snow/90 lg:text-[2.25rem]">
+                  {l.label}
+                </FooterLink>
               </li>
             ))}
           </ul>
+          <div data-up="4" className="mt-8 grid gap-1 text-sm text-brand-snow/70 sm:grid-cols-2">
+            <div>
+              <p className="text-xs font-medium tracking-wide text-brand-snow/60 uppercase">( {footer.contact} )</p>
+              <FooterLink href={`mailto:${site.contactEmail}`} className="break-all">
+                {site.contactEmail}
+              </FooterLink>
+            </div>
+          </div>
         </nav>
-        <div data-up="4" className="lg:col-span-2">
-          <p className="font-medium">{footer.contact}</p>
-          <FooterLink href={`mailto:${site.contactEmail}`} className={cn("mt-2 break-all", quiet)}>
-            {site.contactEmail}
-          </FooterLink>
-        </div>
       </div>
-      <div data-up="6" className={cn(wide, "mt-14")}>
-        <div className={cn("flex flex-col gap-1 border-t border-brand-navy/15 pt-4 text-sm sm:flex-row sm:items-center sm:justify-between", quiet)}>
+
+      <div data-up="6" className={wide}>
+        <div className="flex flex-col gap-1 border-t border-brand-snow/15 py-4 text-sm text-brand-snow/60 sm:flex-row sm:items-center sm:justify-between">
           <p>{footer.copyright}</p>
-          <FooterLink href="https://unsplash.com/license" className="text-sm">
-            {footer.photos}
-          </FooterLink>
+          <FooterLink href="https://unsplash.com/license">{footer.photos}</FooterLink>
         </div>
       </div>
     </footer>

@@ -3,6 +3,7 @@ import Image from "next/image"
 
 import { mess } from "@/app/(marketing)/copy"
 
+import { Gradient } from "./gradient"
 import { messPhotos } from "./photos"
 import { PillLink } from "./pill-link"
 import { letters, Split } from "./split"
@@ -27,12 +28,14 @@ const tiles: { key: Key; who: "client" | "crew"; at: string }[] = [
 /**
  * "The mess today", in the layout and effects of the reference's About block (LandingMotion
  * runs them): the statement lights up letter by letter as you scroll, the facts count up,
- * and each photo flips into place as it enters.
+ * and each photo flips into place as it enters. A drifting grainy mist behind; glass labels
+ * on the photos, after Vantra.
  */
 export function Mess() {
   const total = letters(mess.title) + letters(mess.intro)
   return (
-    <section id="mess" aria-labelledby="mess-title" className="py-20 lg:py-36">
+    <section id="mess" aria-labelledby="mess-title" className="relative isolate py-20 lg:py-36">
+      <Gradient kind="mist" className="-z-10" />
       <div className={cn(wide, "grid gap-6 lg:grid-cols-12 lg:gap-10")}>
         <p data-up="0" className={cn(eyebrow, "lg:col-span-3 lg:pt-3")}>
           {mess.eyebrow}
@@ -66,7 +69,7 @@ export function Mess() {
                 <div className="overflow-hidden rounded-lg [perspective:100px]">
                   <div data-flip className="relative aspect-square overflow-hidden rounded-lg bg-brand-navy/10">
                     <Image src={photo.src} alt={photo.alt} fill sizes="(min-width: 1024px) 16vw, 45vw" className="object-cover" />
-                    <span className="absolute top-2 left-2 rounded bg-brand-snow/90 px-1.5 py-0.5 text-[0.6875rem] font-medium">
+                    <span className="absolute top-2 left-2 rounded-md bg-brand-navy-deep/40 px-2 py-1 text-[0.6875rem] font-medium text-brand-snow ring-1 ring-brand-snow/20 backdrop-blur-md">
                       {t.who === "client" ? mess.clientsTitle : mess.crewTitle}
                     </span>
                   </div>

@@ -17,7 +17,7 @@ import { useEffect } from "react"
  *   data-how-track     steps swing through a pinned stage
  *   data-stack         stacked cards shrink back (0.7, then 0.8)
  *   data-faq           answer cards slide through a pinned stage (768 px and up)
- * Plus Lenis smooth scrolling from 768 px.
+ * Plus Lenis smooth scrolling from 768 px, and (with any motion setting) the floating nav.
  */
 
 const clamp01 = (v: number) => Math.min(Math.max(v, 0), 1)
@@ -138,8 +138,15 @@ function countUp(el: HTMLElement) {
 export function LandingMotion() {
   useEffect(() => {
     const html = document.documentElement
-    if (!html.classList.contains("motion-ok")) return
     const cleanups: (() => void)[] = []
+
+    // The floating nav shows once the first section has come up over the hero (any motion setting).
+    const first = document.getElementById("mess")
+    const pastHero = () => html.toggleAttribute("data-past-hero", !!first && first.getBoundingClientRect().top < 80)
+    pastHero()
+    window.addEventListener("scroll", pastHero, { passive: true })
+    cleanups.push(() => window.removeEventListener("scroll", pastHero))
+    if (!html.classList.contains("motion-ok")) return () => cleanups.forEach((c) => c())
 
     // Reveals. Only what's still below the fold waits, so nothing on screen blinks out.
     const reveal = (el: Element) => {
@@ -159,7 +166,13 @@ export function LandingMotion() {
       el.setAttribute("data-wait", "")
       ;(el.matches("[data-split], [data-flip]") ? atEdge : at90).observe(el)
     })
-    cleanups.push(() => (at90.disconnect(), atEdge.disconnect()))
+    // Things near the very end of the page can never reach the 90% line: show them at the bottom.
+    const atEnd = () => {
+      if (window.innerHeight + window.scrollY < document.documentElement.scrollHeight - 4) return
+      document.querySelectorAll("[data-wait]:not([data-in])").forEach(reveal)
+    }
+    window.addEventListener("scroll", atEnd, { passive: true })
+    cleanups.push(() => (at90.disconnect(), atEdge.disconnect(), window.removeEventListener("scroll", atEnd)))
 
     // Scroll-tied effects, run in one frame loop while any of them is near the screen.
     const scrubs: Scrub[] = []

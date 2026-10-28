@@ -104,6 +104,12 @@ export const income = {
   body: "Every job feeds one ledger. See money in, money out and what you kept each month, and what each client still owes you. When it's time to file, export it all for your accountant.",
   points: ["Money in, money out and net, by month", "What each client still owes", "Exports for Tally and Zoho Books, or CSV"],
   tags: ["[ By month ]", "[ Who owes you ]", "[ For your accountant ]"],
+  // After Vantra's "In the studio right now". Example jobs (lib/landing-samples liveJobs).
+  live: {
+    title: "Your jobs, right now",
+    note: "( Example ) 3 jobs on the go",
+    step: (n: number, of: number) => `Step ${n} of ${of}`,
+  },
 }
 
 export const clients = {

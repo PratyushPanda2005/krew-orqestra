@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 
+import { FloatNav } from "@/components/marketing/float-nav"
 import { Hero } from "@/components/marketing/hero"
 import { How } from "@/components/marketing/how"
 import { Income } from "@/components/marketing/income"
@@ -41,6 +42,7 @@ export default function LandingPage() {
         <Faq />
         <Join />
       </div>
+      <FloatNav />
       <LandingMotion />
     </>
   )

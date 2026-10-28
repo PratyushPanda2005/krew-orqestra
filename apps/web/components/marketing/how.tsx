@@ -3,6 +3,7 @@ import Image from "next/image"
 
 import { how } from "@/app/(marketing)/copy"
 
+import { Gradient } from "./gradient"
 import { howPhotos } from "./photos"
 import { PillLink } from "./pill-link"
 import { Split } from "./split"
@@ -46,7 +47,8 @@ export function How() {
   )
 
   return (
-    <section id="how" aria-labelledby="how-title" className="relative overflow-clip bg-brand-navy/[0.04] pt-20 lg:pt-32">
+    <section id="how" aria-labelledby="how-title" className="relative isolate overflow-clip pt-20 lg:pt-32">
+      <Gradient kind="haze" className="-z-10" />
       <div className={cn(wide, "flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between")}>
         <div>
           <p data-up="0" className={eyebrow}>
@@ -62,7 +64,8 @@ export function How() {
       </div>
 
       <div data-how-track className="relative mt-10 lg:mt-14">
-        <div data-how-stage className="flex flex-col items-center overflow-clip pb-16">
+        <div data-how-stage className="relative isolate flex flex-col items-center overflow-clip pb-16">
+          <Gradient kind="haze" className="-z-10" />
           <div
             aria-hidden
             className="flex w-full overflow-hidden font-display text-[clamp(4rem,11vw,10rem)] leading-none font-bold tracking-tight whitespace-nowrap uppercase"
