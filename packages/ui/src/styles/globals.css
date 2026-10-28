@@ -56,6 +56,19 @@
   --sidebar-accent-foreground: #1a1d3a;
   --sidebar-border: #e3e4ec;
   --sidebar-ring: #c8195e;
+
+  /*
+   * Brand palette (Orry brand book, p. 3). Used by the landing hero for now; the app
+   * tokens above move onto it later. Fills, not text, on light surfaces: green on snow
+   * is 1.7:1. On navy every brand colour passes AA as text (green 9.7:1, lime 14.8:1).
+   */
+  --brand-navy: #23133c;
+  --brand-navy-deep: #140a24; /* derived: the shadow under the hero light band */
+  --brand-green: #45dc97;
+  --brand-violet: #c6a0f7;
+  --brand-coral: #fa7267;
+  --brand-lime: #d0ff71;
+  --brand-snow: #f8fcf8;
 }
 
 .dark {
@@ -103,6 +116,18 @@
 @theme inline {
   --font-sans: var(--font-sans);
   --font-heading: var(--font-sans);
+  /* Lexend Deca (brand headline face), loaded by next/font as --font-lexend. Body falls back
+     to it until the licensed Proxima Nova files are added. */
+  --font-display: var(--font-lexend), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-lexend), ui-sans-serif, system-ui, sans-serif;
+
+  --color-brand-navy: var(--brand-navy);
+  --color-brand-navy-deep: var(--brand-navy-deep);
+  --color-brand-green: var(--brand-green);
+  --color-brand-violet: var(--brand-violet);
+  --color-brand-coral: var(--brand-coral);
+  --color-brand-lime: var(--brand-lime);
+  --color-brand-snow: var(--brand-snow);
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);

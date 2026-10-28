@@ -4,16 +4,25 @@
  */
 
 export const hero = {
-  // ⚠ Krew-only positioning (feedback 24 Oct): the PRD still calls Kreator the solo plan of the same app
-  eyebrow: "For video, photo and design crews",
-  title: "From the first DM to getting paid.",
+  // Placeholder wordmark until the logo lands (28 Oct).
+  name: "Krew",
   // PRD §1
-  sub: "Krew keeps each client job in one place for you and your crew: the chat, the quote, the advance, the drafts and the invoice.",
+  summary: "From the first DM to getting paid. Krew keeps every client job in one place, for you and your crew.",
   primary: "Join the pilot",
-  secondary: "See how a job runs",
-  railNote: "One job, seven steps. You always see where it stands.",
-  railSummary: "The seven steps of a job in Krew: enquiry, quote, advance, work, review, invoice and paid.",
-}
+  navLabel: "Menu",
+  nav: [
+    { href: "#how", label: "How it works" },
+    { href: "#clients", label: "For clients" },
+    { href: "#trust", label: "Your data" },
+    { href: "#faq", label: "Questions" },
+  ],
+  // The reference puts social links here; we have none yet, so these jump to sections.
+  jumps: [
+    { href: "#how", label: "See how a job runs", icon: "play" },
+    { href: "#trust", label: "Is my data safe?", icon: "shield" },
+    { href: "#faq", label: "Questions", icon: "question" },
+  ],
+} as const
 
 export const mess = {
   // Instagram, WhatsApp, Gmail and Notes: four apps. Every fragment is an example.

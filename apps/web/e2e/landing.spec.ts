@@ -25,7 +25,7 @@ test.describe("landing page at 390 px", () => {
       }).observe({ type: "layout-shift", buffered: true })
     })
     await page.goto("/", { waitUntil: "load" })
-    // Let the hero sequence run, so any shift it caused would be counted.
+    // Let the hero intro run, so any shift it caused would be counted.
     await page.waitForTimeout(6000)
     const { lcp, cls } = await page.evaluate(() => {
       const w = window as unknown as { __lcp: number; __cls: number }
@@ -37,7 +37,7 @@ test.describe("landing page at 390 px", () => {
     expect(cls).toBeLessThan(0.1)
   })
 
-  test("GSAP is not requested before the page has loaded, then the rail plays to Paid", async ({ page }) => {
+  test("first visit plays the hero intro once; the shader starts only after load", async ({ page }) => {
     const before: string[] = []
     let loaded = false
     page.on("request", (r) => {
@@ -46,34 +46,46 @@ test.describe("landing page at 390 px", () => {
     page.on("load", () => (loaded = true))
     await page.goto("/")
     expect(before).toEqual([])
-    const hero = page.locator("[data-hero]")
-    await expect(hero).toHaveAttribute("data-playing", "", { timeout: 8000 })
-    await expect(hero.locator('li[aria-current="step"]')).toContainText("Paid", { timeout: 8000 })
-    await expect(hero.locator("[data-hero-caption]")).toHaveText("₹40,000 received · ₹4,000 TDS recorded")
+    await expect(page.locator("html")).toHaveClass(/\bintro\b/)
+    await expect(page.locator("[data-hero-pre]")).toBeHidden({ timeout: 4000 })
+    await expect(page.getByRole("heading", { level: 1 })).toHaveAccessibleName("Krew")
+    // Same session: no intro the second time.
+    await page.reload()
+    await expect(page.locator("html")).not.toHaveClass(/\bintro\b/)
   })
 
-  test("reduced motion: finished hero, and GSAP never loads", async ({ browser }) => {
+  test("reduced motion: no intro, no shader, the hero is its final frame", async ({ browser }) => {
     const context = await browser.newContext({ reducedMotion: "reduce", viewport: { width: 390, height: 844 } })
     const page = await context.newPage()
     const gsap: string[] = []
     page.on("request", (r) => isGsap(r.url()) && gsap.push(r.url()))
     await page.goto("/", { waitUntil: "load" })
     await page.waitForTimeout(2500)
-    const rail = page.locator("[data-hero] ol")
-    await expect(rail).toHaveAttribute("aria-label", "Step 7 of 7: Paid")
-    await expect(page.locator("[data-hero]")).not.toHaveAttribute("data-playing", "")
-    await expect(page.locator("[data-hero-caption]")).toBeVisible()
+    await expect(page.locator("html")).not.toHaveClass(/\bintro\b/)
+    await expect(page.locator("[data-hero]")).not.toHaveAttribute("data-gl", "")
+    await expect(page.locator("[data-hero-pre]")).toBeHidden()
+    await expect(page.locator("[data-letter]").first()).toHaveCSS("transform", "none")
     expect(gsap).toEqual([])
     await context.close()
   })
 
-  test("works without JS: content, FAQ and the form", async ({ browser }) => {
+  test("works without JS: the hero is complete", async ({ browser }) => {
     const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } })
     const page = await context.newPage()
     await page.goto("/")
-    await expect(page.locator("h1")).toHaveText("From the first DM to getting paid.")
+    await expect(page.getByRole("heading", { level: 1 })).toHaveAccessibleName("Krew")
+    await expect(page.locator("[data-hero-pre]")).toBeHidden()
+    await context.close()
+  })
+
+  // Parked with the sections (plan landing-hero-brand §16).
+  test.skip("works without JS: FAQ and the form", async ({ browser }) => {
+    const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } })
+    const page = await context.newPage()
+    await page.goto("/")
+    await expect(page.getByRole("heading", { level: 1 })).toHaveAccessibleName("Krew")
     await expect(page.locator("[data-step-rail]")).toBeHidden()
-    await expect(page.locator("[data-hero-caption]")).toBeVisible()
+    await expect(page.locator("[data-hero-pre]")).toBeHidden()
 
     const q = page.locator("summary", { hasText: "Can I connect my personal WhatsApp?" })
     await q.click()
@@ -99,7 +111,8 @@ test.describe("landing page at 390 px", () => {
     await context.close()
   })
 
-  test("with JS: one-field join, details on step 2, summary announced and focused", async ({ page }) => {
+  // Parked with the sections (plan landing-hero-brand §16).
+  test.skip("with JS: one-field join, details on step 2, summary announced and focused", async ({ page }) => {
     await page.goto("/")
     await page.fill("#contact", "12345")
     await page.locator("#contact").blur()
@@ -128,7 +141,8 @@ test.describe("landing page at 390 px", () => {
     await expect(status).toBeFocused()
   })
 
-  test("details can be skipped, and joining twice says so", async ({ page }) => {
+  // Parked with the sections (plan landing-hero-brand §16).
+  test.skip("details can be skipped, and joining twice says so", async ({ page }) => {
     await page.goto("/")
     await page.fill("#contact", `skip-${run}@example.com`)
     await page.locator("#waitlist").getByRole("button", { name: "Join the pilot" }).click()
@@ -141,7 +155,8 @@ test.describe("landing page at 390 px", () => {
     await expect(page.getByRole("status")).toContainText("You're already on the list.")
   })
 
-  test("the mess arrives as you scroll to it, and is all there with reduced motion", async ({ page, browser }) => {
+  // Parked with the sections (plan landing-hero-brand §16).
+  test.skip("the mess arrives as you scroll to it, and is all there with reduced motion", async ({ page, browser }) => {
     await page.goto("/")
     const mess = page.locator("#mess")
     const last = mess.locator("[data-arrive]").last()

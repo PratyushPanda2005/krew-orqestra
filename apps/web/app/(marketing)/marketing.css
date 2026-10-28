@@ -2,37 +2,162 @@
  * Landing page only. Plain CSS so it sits outside Tailwind's layers and wins over utilities.
  *
  * html.js        set by the boot script when JS runs; shows JS-only extras (the sticky step rail).
- * html.motion-ok set when JS runs and the visitor allows motion. Until the hero sequence starts,
- *                the server-rendered finished rail is painted as "not started", so it never
- *                flashes the end state. The boot script drops the class if the sequence hasn't
- *                started in 6 s, and the finished rail shows.
+ * html.motion-ok set when JS runs and the visitor allows motion (the mess arrival uses it).
+ * html.intro     set on the first visit of a session, with motion allowed: plays the hero intro.
+ *                Without it (no JS, reduced motion, a repeat visit) the hero is its final frame.
  */
 html:not(.js) [data-js-only] {
   display: none;
 }
 
-.motion-ok [data-hero]:not([data-playing]) [data-frame] {
-  border-color: var(--input);
-  background: var(--card);
-  --sprocket: var(--input);
-}
-
-.motion-ok [data-hero]:not([data-playing]) [data-frame] + span {
-  color: var(--muted-foreground);
-  font-weight: 400;
-}
-
-.motion-ok [data-hero]:not([data-playing]) [data-hero-caption] {
-  opacity: 0;
-}
-
-/* Sticky header must not hide anchor targets. */
-html {
-  scroll-padding-top: 4.5rem;
-}
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
+  }
+}
+
+/*
+ * Hero light: two blurred layers drifting out of step, so the band seems to breathe.
+ * Transform only, on their own layers; the blur is painted once.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  [data-drift] {
+    will-change: transform;
+    animation: drift-a 22s ease-in-out infinite alternate;
+  }
+  [data-drift="b"] {
+    animation: drift-b 30s ease-in-out infinite alternate;
+  }
+}
+
+/* Once the shader draws (HeroShader sets data-gl), it fades in and the CSS light stops. */
+[data-gl] [data-gl-canvas] {
+  opacity: 1;
+}
+[data-gl] [data-drift] {
+  animation-play-state: paused;
+}
+
+@keyframes drift-a {
+  from {
+    transform: translate3d(-3%, 2%, 0) rotate(-2deg) scale(1);
+  }
+  to {
+    transform: translate3d(3%, -3%, 0) rotate(2deg) scale(1.06);
+  }
+}
+
+@keyframes drift-b {
+  from {
+    transform: translate3d(4%, -2%, 0) rotate(3deg);
+  }
+  to {
+    transform: translate3d(-4%, 4%, 0) rotate(-2deg) scale(1.08);
+  }
+}
+
+/*
+ * Hero intro (about 2.2 s, after the reference):
+ * 0–0.55 s   the name opens out between two bars
+ * 0.75–1.1 s it shrinks to a line and fades
+ * 1.0–1.6 s  the dark lifts in strips, bottom strip first, each trailing a brand-colour line
+ * 1.25 s on  nav, summary and jump links rise in; the wordmark rises letter by letter
+ */
+.intro [data-hero-pre] {
+  display: block;
+  animation: pre-gone 0s 1.7s forwards;
+}
+
+.intro [data-strip] {
+  top: calc(var(--i) * 12.5%);
+  height: calc(12.5% + 1px);
+  transform-origin: top;
+  animation: strip-lift 0.55s cubic-bezier(0.7, 0, 0.25, 1) both;
+  animation-delay: calc(1s + (7 - var(--i)) * 0.06s);
+}
+
+.intro [data-strip]::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--brand-violet),
+    var(--brand-green) 30%,
+    var(--brand-lime) 45%,
+    transparent 55%,
+    transparent 70%,
+    var(--brand-coral)
+  );
+  opacity: 0;
+  animation: line-on 0.15s both;
+  animation-delay: calc(1s + (7 - var(--i)) * 0.06s);
+}
+
+@keyframes line-on {
+  to {
+    opacity: 0.8;
+  }
+}
+
+.intro [data-pre-word] {
+  animation: pre-word 1.1s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+
+.intro [data-hero-in] {
+  animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: var(--d, 1.3s);
+}
+
+.intro [data-letter] {
+  animation: letter-up 0.8s cubic-bezier(0.2, 0.75, 0.15, 1) both;
+  animation-delay: calc(1.4s + var(--i) * 0.07s);
+}
+
+@keyframes pre-word {
+  0% {
+    grid-template-columns: 0fr;
+  }
+  50% {
+    grid-template-columns: 1fr;
+    transform: scale(1);
+    opacity: 1;
+  }
+  75% {
+    grid-template-columns: 1fr;
+    transform: scale(0.8);
+    opacity: 0.6;
+  }
+  100% {
+    grid-template-columns: 1fr;
+    transform: scale(1.6, 0.04);
+    opacity: 0;
+  }
+}
+
+@keyframes strip-lift {
+  to {
+    transform: scaleY(0);
+  }
+}
+
+@keyframes pre-gone {
+  to {
+    visibility: hidden;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+}
+
+@keyframes letter-up {
+  from {
+    transform: translateY(105%);
   }
 }
 

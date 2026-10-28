@@ -1,14 +1,7 @@
 import type { Metadata } from "next"
 
 import { Hero } from "@/components/marketing/hero"
-import { How } from "@/components/marketing/how"
-import { Mess } from "@/components/marketing/mess"
-import { Section } from "@/components/marketing/section"
-import { Clients, Faq, Trust } from "@/components/marketing/sections"
-import { WaitlistForm } from "@/components/marketing/waitlist-form"
 import { site } from "@/lib/site"
-
-import { waitlist } from "./copy"
 
 export const metadata: Metadata = {
   title: site.title,
@@ -26,24 +19,16 @@ export const metadata: Metadata = {
 }
 
 /**
- * Public landing page at "/". Order (plan §11, §16): trust comes after the flow so the
- * "my chats? my money?" doubts are answered while it's fresh. No plans section:
- * this is the Krew site, and Kreator isn't sold here (feedback, 24 Oct 2026).
+ * Public landing page at "/". Hero only while it's being redesigned (28 Oct 2026).
+ *
+ * The sections are parked, not deleted: their components and copy are unchanged, and they
+ * come back in this order, inside a `relative z-10 bg-background` wrapper so they slide up
+ * over the sticky hero (plan: docs/plans/landing-hero-brand.md §16):
+ *   <Mess /> <How /> <Clients /> <Trust /> <Faq />
+ *   <Section id="waitlist" title={waitlist.title} intro={waitlist.intro} className="bg-secondary/40">
+ *     <div className="mt-8 max-w-xl"><WaitlistForm /></div>
+ *   </Section>
  */
 export default function LandingPage() {
-  return (
-    <>
-      <Hero />
-      <Mess />
-      <How />
-      <Clients />
-      <Trust />
-      <Faq />
-      <Section id="waitlist" title={waitlist.title} intro={waitlist.intro} className="bg-secondary/40">
-        <div className="mt-8 max-w-xl">
-          <WaitlistForm />
-        </div>
-      </Section>
-    </>
-  )
+  return <Hero />
 }

@@ -9,3 +9,7 @@ export const focusRing =
 
 export const linkButton = (variant: "default" | "outline" = "default") =>
   cn(buttonVariants({ variant }), "h-tap px-5 text-base focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring")
+
+/** Focus ring for links on the always-navy hero. */
+export const snowFocus =
+  "outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-snow"

@@ -1,24 +1,33 @@
-import { MarketingFooter } from "@/components/marketing/footer"
-import { MarketingHeader } from "@/components/marketing/header"
+import localFont from "next/font/local"
 
 import "./marketing.css"
 
-/** Runs before first paint: see marketing.css for what the two classes do. */
-const boot = `(function(){var d=document.documentElement;d.classList.add("js");if(!matchMedia("(prefers-reduced-motion: no-preference)").matches)return;d.classList.add("motion-ok");setTimeout(function(){var h=document.querySelector("[data-hero]");if(!h||!h.hasAttribute("data-playing"))d.classList.remove("motion-ok")},6000)})()`
+/** Lexend Deca, the brand headline face: one variable woff2, Latin subset plus ₹ (38 KB). */
+const lexend = localFont({
+  src: "../fonts/LexendDeca-Variable-latin.woff2",
+  variable: "--font-lexend",
+  weight: "100 900",
+  display: "swap",
+})
+
+/**
+ * Runs before first paint: see marketing.css for what the classes do. The hero intro plays
+ * once per session; if sessionStorage is blocked it doesn't play at all.
+ */
+const boot = `(function(){var d=document.documentElement;d.classList.add("js");if(!matchMedia("(prefers-reduced-motion: no-preference)").matches)return;d.classList.add("motion-ok");try{if(!sessionStorage.getItem("krew-intro")){sessionStorage.setItem("krew-intro","1");d.classList.add("intro")}}catch(e){}})()`
 
 export default function MarketingLayout({ children }: { children: React.ReactNode }) {
   return (
-    <>
+    <div className={lexend.variable}>
       <script dangerouslySetInnerHTML={{ __html: boot }} />
       <a
         href="#main"
-        className="sr-only z-30 rounded-md bg-card px-4 py-3 font-medium focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:outline-2 focus:outline-ring"
+        className="sr-only z-60 rounded-md bg-card px-4 py-3 font-medium focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:outline-2 focus:outline-ring"
       >
         Skip to content
       </a>
-      <MarketingHeader />
       <main id="main">{children}</main>
-      <MarketingFooter />
-    </>
+      {/* <MarketingFooter /> is parked with the sections (page.tsx). */}
+    </div>
   )
 }
