@@ -146,7 +146,9 @@ The landing plan gave the hero 0.5 days. This is more because it adds the brand 
 - Type check and lint are clean. Landing Playwright: 11 of 11 pass.
 - At 390 px on slow 4G: LCP 980–1,620 ms and CLS 0.000.
 
-## 16. Sections parked (28 Oct 2026)
+## 16. Sections parked (28 Oct 2026); restored 29 Oct
+
+Restored and redesigned: see `landing-sections-reference.md`. The table below is the original parking record.
 
 The page renders **only the hero** while the landing is redesigned section by section. Nothing below the hero is deleted. The components, the copy and the waitlist server action stay in the repo, unchanged, and come back in this order.
 

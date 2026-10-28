@@ -40,6 +40,14 @@ export const mess = {
     twoReplies: "Two of you reply to one client.",
   },
   closing: "Krew puts the job back together.",
+  // Layout labels for the reference's "About" block (plan landing-sections-reference §10).
+  eyebrow: "[ The mess ]",
+  // Each stat restates a line above: four apps (title), seven steps (how), no client logins (PRD §3).
+  stats: [
+    { value: "4", label: "apps for one job" },
+    { value: "7", label: "steps, in one place" },
+    { value: "0", label: "logins for your clients" },
+  ],
 }
 
 export const how = {
@@ -83,6 +91,9 @@ export const how = {
     },
   ],
   cta: "Join the pilot",
+  eyebrow: "[ How it works ]",
+  marquee: "How a job runs",
+  step: (n: number) => `[ Step ${String(n).padStart(2, "0")} ]`,
 }
 
 export const income = {
@@ -92,6 +103,7 @@ export const income = {
   title: "Watch your income grow, month by month.",
   body: "Every job feeds one ledger. See money in, money out and what you kept each month, and what each client still owes you. When it's time to file, export it all for your accountant.",
   points: ["Money in, money out and net, by month", "What each client still owes", "Exports for Tally and Zoho Books, or CSV"],
+  tags: ["[ By month ]", "[ Who owes you ]", "[ For your accountant ]"],
 }
 
 export const clients = {
@@ -104,9 +116,11 @@ export const clients = {
     { title: "Invoice link", body: "They see what's due and pay." },
   ],
   footnote: "Reminders reach them by email from your own address, and stop as soon as they act.",
+  eyebrow: "[ Your clients ]",
 }
 
 export const trust = {
+  eyebrow: "[ Our promises ]",
   title: "What we promise",
   items: [
     {
@@ -133,6 +147,7 @@ export const trust = {
 }
 
 export const faq = {
+  eyebrow: "[ Questions ]",
   title: "Questions creators ask",
   items: [
     {
@@ -169,6 +184,7 @@ export const faq = {
 }
 
 export const waitlist = {
+  eyebrow: "[ The pilot ]",
   title: "Join the pilot",
   intro: "We're opening Krew to a small group of creators first. Leave your email or number and we'll be in touch.",
   fields: {
@@ -210,4 +226,6 @@ export const footer = {
   contact: "Contact",
   // ⚠ confirm the legal entity name
   copyright: "© 2026 Orry",
+  sections: "On this page",
+  photos: "Photos from Unsplash",
 }

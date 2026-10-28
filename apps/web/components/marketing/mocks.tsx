@@ -1,4 +1,4 @@
-import { formatINR } from "@krew/schemas"
+import { formatINR, rupeesToPaise } from "@krew/schemas"
 import { Button } from "@krew/ui/components/button"
 import { ListRow } from "@krew/ui/components/list-row"
 import { Money } from "@krew/ui/components/money"
@@ -259,6 +259,53 @@ export function MockIncome() {
         <ListRow className={row} title="October in" trailing={<Money paise={now.in} size="sm" />} />
         <ListRow className={row} title="October out" meta="Crew, hire, travel" trailing={<Money paise={now.out} size="sm" tone="muted" />} />
         <ListRow className={row} title="October net" trailing={<Money paise={now.in - now.out} size="sm" tone="success" />} />
+      </div>
+    </PhoneFrame>
+  )
+}
+
+/** What each client still owes (PF-26 pending view). Example names and amounts; they add up to income.pending. */
+export function MockPending() {
+  const owed = [
+    { who: riya.client, what: `Invoice ${riya.invoice.number}`, paise: riya.invoice.due },
+    { who: "Mrs Kapoor", what: "Balance after the advance", paise: rupeesToPaise(30000) },
+    { who: "Dev Sharma", what: "Logo and brand kit", paise: rupeesToPaise(12000) },
+  ]
+  return (
+    <PhoneFrame>
+      <MockHeader title="Still owed to you" meta={`${income.pendingInvoices} invoices`} />
+      <div className="flex items-end justify-between px-4 py-3">
+        <span className="text-muted-foreground">Pending</span>
+        <Money paise={income.pending} size="amount" />
+      </div>
+      <div className="divide-y border-t">
+        {owed.map((o) => (
+          <ListRow key={o.who} className={row} title={o.who} meta={o.what} trailing={<Money paise={o.paise} size="sm" />} />
+        ))}
+      </div>
+    </PhoneFrame>
+  )
+}
+
+/** Year-end exports (PF-26). */
+export function MockExport() {
+  return (
+    <PhoneFrame>
+      <MockHeader title="Export" meta={`${income.year} · for your accountant`} />
+      <div className="divide-y">
+        {["Tally", "Zoho Books", "CSV"].map((f) => (
+          <ListRow
+            key={f}
+            className={row}
+            title={f}
+            meta="Invoices, payments, expenses"
+            trailing={
+              <Button size="sm" variant="outline" tabIndex={-1}>
+                Download
+              </Button>
+            }
+          />
+        ))}
       </div>
     </PhoneFrame>
   )

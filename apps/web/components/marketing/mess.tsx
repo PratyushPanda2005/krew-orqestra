@@ -1,117 +1,87 @@
 import { cn } from "@krew/ui/lib/utils"
+import Image from "next/image"
 
 import { mess } from "@/app/(marketing)/copy"
 
-import { ChatBubble } from "./chat-bubble"
-import { MessPlay } from "./mess-play"
-import { Section } from "./section"
+import { messPhotos } from "./photos"
+import { PillLink } from "./pill-link"
+import { letters, Split } from "./split"
+import { eyebrow, quiet, wide } from "./styles"
+
+type Key = keyof typeof messPhotos
 
 /**
- * "The mess today": example fragments drawn with our tokens, each with a caption.
- * With JS and motion allowed, MessPlay makes them arrive one by one like
- * notifications when the section comes into view; otherwise they're simply there.
- * Each `data-arrive` element takes its turn from `--i`.
+ * Where each photo sits on the desktop grid (4 columns × 3 rows), scattered like the
+ * reference's "About" block; the pill takes the first cell. Phones get two staggered columns.
  */
-function Fragment({
-  label,
-  caption,
-  i,
-  className,
-  children,
-}: {
-  label: string
-  caption: string
-  i: number
-  className?: string
-  children: React.ReactNode
-}) {
-  return (
-    <figure data-arrive style={{ "--i": i } as React.CSSProperties} className={cn("flex flex-col gap-2", className)}>
-      <div inert className="rounded-xl border bg-card p-3 select-none">
-        <p className="mb-2 text-xs font-medium text-muted-foreground">{label}</p>
-        {children}
-      </div>
-      <figcaption className="text-base font-medium">{caption}</figcaption>
-    </figure>
-  )
-}
+const tiles: { key: Key; who: "client" | "crew"; at: string }[] = [
+  { key: "dm", who: "client", at: "lg:col-start-2 lg:row-start-1" },
+  { key: "date", who: "crew", at: "lg:col-start-3 lg:row-start-1" },
+  { key: "whatsapp", who: "client", at: "lg:col-start-4 lg:row-start-1" },
+  { key: "brief", who: "crew", at: "lg:col-start-3 lg:row-start-2" },
+  { key: "mail", who: "client", at: "lg:col-start-1 lg:row-start-3" },
+  { key: "note", who: "client", at: "lg:col-start-2 lg:row-start-3" },
+  { key: "twoReplies", who: "crew", at: "lg:col-start-4 lg:row-start-3" },
+]
 
-/** A named message in a group chat. */
-function GroupLine({ who, children }: { who: string; children: React.ReactNode }) {
-  return (
-    <div className="flex flex-col items-start gap-0.5">
-      <span className="text-[0.6875rem] font-semibold text-accent-foreground">{who}</span>
-      <p className="max-w-[85%] rounded-2xl rounded-tl-sm bg-secondary px-3 py-2 text-sm leading-snug text-secondary-foreground">
-        {children}
-      </p>
-    </div>
-  )
-}
-
-const groupTitle = "condensed text-xl font-semibold lg:text-2xl"
-
+/**
+ * "The mess today", in the layout and effects of the reference's About block (LandingMotion
+ * runs them): the statement lights up letter by letter as you scroll, the facts count up,
+ * and each photo flips into place as it enters.
+ */
 export function Mess() {
+  const total = letters(mess.title) + letters(mess.intro)
   return (
-    <Section id="mess" title={mess.title} intro={mess.intro}>
-      <div data-mess className="mt-8 grid gap-10 lg:mt-12 lg:grid-cols-2 lg:gap-12">
-        <div>
-          <h3 className={groupTitle}>{mess.clientsTitle}</h3>
-          <div className="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-            <Fragment i={0} label="Instagram DM · 11:42 pm" caption={mess.captions.dm}>
-              <ChatBubble from="them">hi! rate for pre-wedding shoot in pune?</ChatBubble>
-            </Fragment>
-            <Fragment i={2} label="WhatsApp · 9:05 am" caption={mess.captions.whatsapp}>
-              <div className="flex flex-col items-end gap-1.5">
-                <div className="flex w-40 flex-col gap-1 rounded-lg border border-dashed border-input bg-secondary p-2 text-xs text-muted-foreground">
-                  <span className="h-12 rounded bg-background" />
-                  quote-final-v3.jpg
-                </div>
-                <ChatBubble from="me">sending the quote screenshot again</ChatBubble>
-              </div>
-            </Fragment>
-            <Fragment i={4} label="Gmail" caption={mess.captions.mail}>
-              <div className="flex flex-col gap-0.5 rounded-lg bg-secondary px-3 py-2">
-                <span className="truncate text-sm font-medium">Re: Re: Fwd: Invoice – Oct shoot</span>
-                <span className="truncate text-xs text-muted-foreground">Meera, Accounts, you (7)</span>
-              </div>
-            </Fragment>
-            <Fragment i={6} label="Notes" caption={mess.captions.note}>
-              <p className="rounded-lg bg-warning-soft px-3 py-2 text-sm font-medium text-warning">
-                Ask Meera for the advance (3rd time)
-              </p>
-            </Fragment>
-          </div>
-        </div>
+    <section id="mess" aria-labelledby="mess-title" className="py-20 lg:py-36">
+      <div className={cn(wide, "grid gap-6 lg:grid-cols-12 lg:gap-10")}>
+        <p data-up="0" className={cn(eyebrow, "lg:col-span-3 lg:pt-3")}>
+          {mess.eyebrow}
+        </p>
+        <h2
+          id="mess-title"
+          data-scrub-chars
+          className="font-display text-[1.75rem] leading-[1.15] font-semibold tracking-tight text-balance lg:col-span-9 lg:text-[2.75rem]"
+        >
+          <Split text={mess.title} total={total} /> <Split text={mess.intro} start={letters(mess.title)} total={total} className={quiet} />
+        </h2>
+      </div>
 
-        <div>
-          <h3 className={groupTitle}>{mess.crewTitle}</h3>
-          <div className="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-            <Fragment i={1} label="WhatsApp · Kapoor wedding crew · 7:10 am" caption={mess.captions.date}>
-              <div className="flex flex-col gap-2">
-                <GroupLine who="Kabir">sangeet is 12th or 13th??</GroupLine>
-                <GroupLine who="Kabir">need to book the drone</GroupLine>
-              </div>
-            </Fragment>
-            <Fragment i={3} label="WhatsApp · Kapoor wedding crew · 10:48 pm" caption={mess.captions.brief}>
-              <div className="flex flex-col gap-2">
-                <GroupLine who="Sana">where&apos;s the brief? which songs did they want</GroupLine>
-                <GroupLine who="Sana">scrolled up 400 messages, can&apos;t find it</GroupLine>
-              </div>
-            </Fragment>
-            <Fragment i={5} label="WhatsApp · Mrs Kapoor · 1:15 pm" caption={mess.captions.twoReplies} className="sm:col-span-2 lg:col-span-1 xl:col-span-2">
-              <div className="flex flex-col gap-2">
-                <ChatBubble from="me" time="Arjun">Full coverage is ₹1,25,000</ChatBubble>
-                <ChatBubble from="me" time="Kabir">Ma&apos;am we can do it for ₹1,10,000</ChatBubble>
-                <ChatBubble from="them">Which one is it?</ChatBubble>
-              </div>
-            </Fragment>
+      <div className={cn(wide, "mt-14 grid gap-14 lg:mt-20 lg:grid-cols-12 lg:gap-10")}>
+        <dl className="grid grid-cols-3 gap-4 lg:col-span-3 lg:flex lg:flex-col lg:justify-end lg:gap-8">
+          {mess.stats.map((s) => (
+            <div key={s.label} className="flex flex-col-reverse border-l border-brand-navy/20 pl-4 lg:pl-6">
+              <dt className={cn("text-sm", quiet)}>{s.label}</dt>
+              <dd data-count className="font-display text-[2.5rem] leading-none font-semibold tracking-tight tabular lg:text-5xl">
+                {s.value}
+              </dd>
+            </div>
+          ))}
+        </dl>
+
+        <div className="grid grid-cols-2 gap-x-4 gap-y-8 lg:col-span-9 lg:grid-cols-4 lg:gap-6">
+          {tiles.map((t, i) => {
+            const photo = messPhotos[t.key]
+            return (
+              <figure key={t.key} className={cn(t.at, i % 2 === 1 && "max-lg:mt-12")}>
+                <div className="overflow-hidden rounded-lg [perspective:100px]">
+                  <div data-flip className="relative aspect-square overflow-hidden rounded-lg bg-brand-navy/10">
+                    <Image src={photo.src} alt={photo.alt} fill sizes="(min-width: 1024px) 16vw, 45vw" className="object-cover" />
+                    <span className="absolute top-2 left-2 rounded bg-brand-snow/90 px-1.5 py-0.5 text-[0.6875rem] font-medium">
+                      {t.who === "client" ? mess.clientsTitle : mess.crewTitle}
+                    </span>
+                  </div>
+                </div>
+                <figcaption className="mt-2.5 text-sm leading-snug font-medium lg:text-base">{mess.captions[t.key]}</figcaption>
+              </figure>
+            )
+          })}
+          <div className="col-span-2 flex items-start lg:col-span-1 lg:col-start-1 lg:row-start-1 lg:items-center">
+            <PillLink href="#how" variant="outline" className="py-2 text-center leading-tight">
+              {mess.closing}
+            </PillLink>
           </div>
         </div>
       </div>
-      <p data-arrive style={{ "--i": 7 } as React.CSSProperties} className="condensed mt-10 text-2xl font-semibold lg:mt-14 lg:text-3xl">
-        {mess.closing}
-      </p>
-      <MessPlay />
-    </Section>
+    </section>
   )
 }

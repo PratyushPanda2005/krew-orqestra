@@ -78,17 +78,16 @@ test.describe("landing page at 390 px", () => {
     await context.close()
   })
 
-  // Parked with the sections (plan landing-hero-brand §16).
-  test.skip("works without JS: FAQ and the form", async ({ browser }) => {
+  test("works without JS: every section shows, and the form works", async ({ browser }) => {
     const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } })
     const page = await context.newPage()
     await page.goto("/")
     await expect(page.getByRole("heading", { level: 1 })).toHaveAccessibleName("Krew")
-    await expect(page.locator("[data-step-rail]")).toBeHidden()
     await expect(page.locator("[data-hero-pre]")).toBeHidden()
-
-    const q = page.locator("summary", { hasText: "Can I connect my personal WhatsApp?" })
-    await q.click()
+    // Without JS the steps are a plain list and the answers are open cards.
+    await expect(page.locator("[data-how-track]")).not.toHaveAttribute("data-play", "")
+    await expect(page.locator("[data-how-text]").last()).toBeVisible()
+    await page.getByText("Krew connects a WhatsApp Business number").scrollIntoViewIfNeeded()
     await expect(page.getByText("Krew connects a WhatsApp Business number")).toBeVisible()
 
     // Step 1 is one field.
@@ -111,8 +110,7 @@ test.describe("landing page at 390 px", () => {
     await context.close()
   })
 
-  // Parked with the sections (plan landing-hero-brand §16).
-  test.skip("with JS: one-field join, details on step 2, summary announced and focused", async ({ page }) => {
+  test("with JS: one-field join, details on step 2, summary announced and focused", async ({ page }) => {
     await page.goto("/")
     await page.fill("#contact", "12345")
     await page.locator("#contact").blur()
@@ -141,8 +139,7 @@ test.describe("landing page at 390 px", () => {
     await expect(status).toBeFocused()
   })
 
-  // Parked with the sections (plan landing-hero-brand §16).
-  test.skip("details can be skipped, and joining twice says so", async ({ page }) => {
+  test("details can be skipped, and joining twice says so", async ({ page }) => {
     await page.goto("/")
     await page.fill("#contact", `skip-${run}@example.com`)
     await page.locator("#waitlist").getByRole("button", { name: "Join the pilot" }).click()
@@ -155,23 +152,30 @@ test.describe("landing page at 390 px", () => {
     await expect(page.getByRole("status")).toContainText("You're already on the list.")
   })
 
-  // Parked with the sections (plan landing-hero-brand §16).
-  test.skip("the mess arrives as you scroll to it, and is all there with reduced motion", async ({ page, browser }) => {
+  test("section effects wait below the fold, play as you scroll, and stay off with reduced motion", async ({ page, browser }) => {
     await page.goto("/")
-    const mess = page.locator("#mess")
-    const last = mess.locator("[data-arrive]").last()
-    await expect(last).toHaveAttribute("data-wait", "")
-    await expect(last).toHaveCSS("opacity", "0")
-    await last.scrollIntoViewIfNeeded()
-    await expect(mess).toHaveAttribute("data-play", "")
-    await expect(last).toHaveCSS("opacity", "1", { timeout: 6000 })
+    const flip = page.locator("#mess [data-flip]").last()
+    await expect(flip).toHaveAttribute("data-wait", "")
+    await flip.scrollIntoViewIfNeeded()
+    await expect(flip).toHaveAttribute("data-in", "")
+    await expect(page.locator("[data-how-track]")).toHaveAttribute("data-play", "")
+    // Every step can be reached: the last step's card is shown at the end of the track.
+    await page.locator("[data-how-track]").evaluate((el) => window.scrollTo(0, el.getBoundingClientRect().bottom + scrollY - innerHeight))
+    await expect(page.locator("[data-how-text]").last()).toHaveCSS("opacity", "1", { timeout: 4000 })
 
     const context = await browser.newContext({ reducedMotion: "reduce", viewport: { width: 390, height: 844 } })
     const still = await context.newPage()
     await still.goto("/")
-    await expect(still.locator("#mess [data-wait]")).toHaveCount(0)
-    await expect(still.locator("#mess [data-arrive]").last()).toHaveCSS("opacity", "1")
+    await expect(still.locator("[data-wait]")).toHaveCount(0)
+    await expect(still.locator("[data-how-track]")).not.toHaveAttribute("data-play", "")
+    await expect(still.locator("#mess [data-flip]").last()).toHaveCSS("transform", "none")
     await context.close()
+  })
+
+  test("every photo has alt text, and section links land", async ({ page }) => {
+    await page.goto("/")
+    expect(await page.locator("img:not([alt])").count()).toBe(0)
+    for (const id of ["how", "clients", "trust", "faq", "waitlist"]) await expect(page.locator(`#${id}`)).toHaveCount(1)
   })
 
   test("one h1 and no skipped heading levels", async ({ page }) => {
@@ -186,11 +190,11 @@ test.describe("landing page at 390 px", () => {
 
   test("every tap target is at least 44 × 44 px", async ({ page }) => {
     await page.goto("/")
-    // Open the FAQ so its contents are measured too.
-    await page.locator("summary").evaluateAll((els) => els.forEach((e) => e.parentElement?.setAttribute("open", "")))
     const small = await page.locator("a, button, summary, input, label:has(input[type=radio])").evaluateAll((els) =>
       els
         .filter((e) => !e.closest("[inert], [aria-hidden=true]") && !(e as HTMLInputElement).classList.contains("sr-only"))
+        // Content of a closed <details> (the phone menu) can't be tapped, and Chrome lays it out oddly.
+        .filter((e) => !e.closest("details:not([open]) > :not(summary)"))
         .filter((e) => (e as HTMLInputElement).type !== "radio" && getComputedStyle(e).display !== "none")
         .filter((e) => !e.matches(".sr-only:not(:focus)"))
         .map((e) => ({ el: e.outerHTML.slice(0, 80), r: e.getBoundingClientRect() }))

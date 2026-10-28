@@ -1,5 +1,7 @@
 import localFont from "next/font/local"
 
+import { MarketingFooter } from "@/components/marketing/footer"
+
 import "./marketing.css"
 
 /** Lexend Deca, the brand headline face: one variable woff2, Latin subset plus ₹ (38 KB). */
@@ -27,7 +29,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
         Skip to content
       </a>
       <main id="main">{children}</main>
-      {/* <MarketingFooter /> is parked with the sections (page.tsx). */}
+      <MarketingFooter />
     </div>
   )
 }

@@ -1,6 +1,12 @@
 import type { Metadata } from "next"
 
 import { Hero } from "@/components/marketing/hero"
+import { How } from "@/components/marketing/how"
+import { Income } from "@/components/marketing/income"
+import { Join } from "@/components/marketing/join"
+import { LandingMotion } from "@/components/marketing/landing-motion"
+import { Mess } from "@/components/marketing/mess"
+import { Clients, Faq, Trust } from "@/components/marketing/sections"
 import { site } from "@/lib/site"
 
 export const metadata: Metadata = {
@@ -19,16 +25,23 @@ export const metadata: Metadata = {
 }
 
 /**
- * Public landing page at "/". Hero only while it's being redesigned (28 Oct 2026).
- *
- * The sections are parked, not deleted: their components and copy are unchanged, and they
- * come back in this order, inside a `relative z-10 bg-background` wrapper so they slide up
- * over the sticky hero (plan: docs/plans/landing-hero-brand.md §16):
- *   <Mess /> <How /> <Clients /> <Trust /> <Faq />
- *   <Section id="waitlist" title={waitlist.title} intro={waitlist.intro} className="bg-secondary/40">
- *     <div className="mt-8 max-w-xl"><WaitlistForm /></div>
- *   </Section>
+ * Public landing page at "/". The hero stays put (sticky) while the sections slide up over it,
+ * each in a layout borrowed from the reference (plan: docs/plans/landing-sections-reference.md §4).
  */
 export default function LandingPage() {
-  return <Hero />
+  return (
+    <>
+      <Hero />
+      <div className="relative z-10 bg-brand-snow font-body text-brand-navy">
+        <Mess />
+        <How />
+        <Income />
+        <Clients />
+        <Trust />
+        <Faq />
+        <Join />
+      </div>
+      <LandingMotion />
+    </>
+  )
 }
