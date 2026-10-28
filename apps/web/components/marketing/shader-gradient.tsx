@@ -9,12 +9,13 @@ import { useEffect, useRef } from "react"
  *   aurora   a glowing horizon band low in the frame, with soft light above (join, footer)
  *   streaks  vertical spectral light, brighter towards the bottom, slowly shifting (questions)
  *   mesh     big soft blobs of colour drifting through each other (spare, for wide panels)
+ *   smoke    slow violet-grey smoke over near-black, after trionn's footer (the closing block)
  * All carry film grain and follow the pointer a little. Plain WebGL on one triangle, like the
  * hero. Starts after load plus idle, draws only while on screen, and never under reduced
  * motion: the CSS gradient underneath (data-grad, marketing.css) is the still version.
  */
 
-const kinds = { aurora: 0, streaks: 1, mesh: 2 } as const
+const kinds = { aurora: 0, streaks: 1, mesh: 2, smoke: 3 } as const
 export type ShaderKind = keyof typeof kinds
 
 const vert = `attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}`
@@ -70,6 +71,14 @@ void main() {
     col += spectrum(fract(uv.x * 1.3 + 0.1 * sin(t * 0.1))) * lines * rise * flick * 0.42;
     col += spectrum(0.3) * exp(-pow((uv.y - 0.0) / 0.35, 2.0)) * 0.12;
     col += spectrum(0.5) * near * 0.12;
+  } else if (uKind > 2.5) {
+    // Smoke: two layers of noise, one warping the other, drifting slowly; brighter by the pointer.
+    vec2 q = vec2(uv.x * aspect, uv.y) * 1.3;
+    float warp = fbm(q * 1.4 - vec2(t * 0.02, t * 0.015));
+    float f = fbm(q + vec2(t * 0.03, -t * 0.02) + warp * 1.2);
+    float s = smoothstep(0.38, 0.95, f) * (0.75 + 0.5 * near);
+    col = mix(cDeep * 0.6, cDeep, uv.y);
+    col += mix(cNavy, cViolet, 0.3) * s * 0.7 + cGreen * s * s * 0.06;
   } else {
     // Mesh: drifting blobs of colour, sized to the width so a thin strip still reads as one wash.
     vec2 r = vec2(uv.x * 1.6, uv.y * 0.6);

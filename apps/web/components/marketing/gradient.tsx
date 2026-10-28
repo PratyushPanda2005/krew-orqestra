@@ -7,9 +7,10 @@ import { cn } from "@krew/ui/lib/utils"
  *   dusk         navy into violet into coral
  *   dither       a fade broken into dots, like a dithered print
  *   ecliptic     a ring of light rising over navy
+ *   pearl, silver  trionn's white-to-grey grounds, tinted with the brand
  * Pure CSS plus an SVG noise tile for the grain: no JS, no requests. Decorative.
  */
-export type GradientKind = "mist" | "haze" | "swift" | "dusk" | "dither" | "ecliptic"
+export type GradientKind = "mist" | "haze" | "swift" | "dusk" | "dither" | "ecliptic" | "pearl" | "silver"
 
 export function Gradient({ kind, className }: { kind: GradientKind; className?: string }) {
   return (

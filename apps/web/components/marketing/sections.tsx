@@ -5,8 +5,8 @@ import { clients, faq, trust } from "@/app/(marketing)/copy"
 
 import { stageMocks } from "./mocks"
 import { Gradient } from "./gradient"
-import { clientPhotos, faqPhotos, trustPhotos } from "./photos"
-import { ShaderGradient } from "./shader-gradient"
+import { FaqStories } from "./faq-stories"
+import { clientPhotos, trustPhotos } from "./photos"
 import { Split } from "./split"
 import { eyebrow, quiet, sectionTitle, wide } from "./styles"
 import { UpiTile } from "./upi-tile"
@@ -133,57 +133,28 @@ export function Trust() {
 }
 
 /**
- * Questions, in the layout and effects of the reference's dark testimonials: on screens from
- * 768 px with motion allowed, the section pins and each answer card slides away downwards as
- * the next slides in from above, with a column of photos and a dot following along
- * (LandingMotion sets data-play). Otherwise it's a plain list of open cards. Behind it, the
- * "streaks" shader: vertical spectral light, after the reference's video and grainient.
+ * Questions, after trionn's "Client stories": a grainy pearl gradient, the title blurring in
+ * letter by letter, then the questions as a list beside one big answer (FaqStories).
  */
 export function Faq() {
   return (
-    <section id="faq" aria-labelledby="faq-title" data-faq className="relative isolate bg-brand-navy-deep text-brand-snow">
-      <div data-faq-stage className="relative isolate py-20 lg:py-32">
-        <ShaderGradient kind="streaks" className="-z-10" />
-        <div className={cn(wide, "flex flex-col gap-10 md:flex-row md:items-start md:justify-between")}>
-          <div className="md:max-w-sm lg:max-w-md">
+    <section id="faq" aria-labelledby="faq-title" className="relative isolate py-20 lg:py-36">
+      <Gradient kind="pearl" className="-z-10" />
+      <div className={wide}>
+        <div className="grid gap-6 lg:grid-cols-12">
+          <div className="lg:col-span-6 lg:col-start-2">
             <p data-up="0" className={eyebrow}>
               {faq.eyebrow}
             </p>
-            <h2 id="faq-title" data-split className={cn(sectionTitle, "mt-4")}>
-              <Split text={faq.title} />
+            <h2 id="faq-title" data-blur className={cn(sectionTitle, "mt-4")}>
+              <Split text={faq.title} scatter />
             </h2>
           </div>
-
-          <div className="flex items-start gap-4 lg:gap-6">
-            <div data-faq-photos aria-hidden className="hidden max-h-[38.5rem] overflow-clip lg:block">
-              <div data-faq-photos-inner className="flex w-44 flex-col gap-4">
-                {faqPhotos.map((src, i) => (
-                  <div key={i} className="relative aspect-square overflow-clip rounded-lg">
-                    <Image src={src} alt="" fill sizes="11rem" className="object-cover" />
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div data-faq-dots aria-hidden className="hidden flex-col gap-3 pt-6">
-              {faq.items.map((item, i) => (
-                <span key={item.q} data-faq-i={i} className="size-3 rounded-full border border-brand-snow/70 transition-opacity duration-300" />
-              ))}
-            </div>
-            <ol data-faq-cards className="flex w-full flex-col gap-3 md:w-[30rem]">
-              {faq.items.map((item, i) => (
-                <li
-                  key={item.q}
-                  data-faq-i={i}
-                  className="rounded-xl border border-brand-snow/20 bg-brand-navy-deep/90 p-6 backdrop-blur-sm"
-                >
-                  <p className="text-sm text-brand-snow/70 tabular">[ {String(i + 1).padStart(2, "0")} ]</p>
-                  <h3 className="mt-3 text-lg font-semibold lg:text-xl">{item.q}</h3>
-                  <p className="mt-3 text-brand-snow/80 lg:text-lg">{item.a}</p>
-                </li>
-              ))}
-            </ol>
-          </div>
+          <p data-up="2" className={cn("max-w-xs text-sm lg:col-span-3 lg:col-start-9 lg:self-end", quiet)}>
+            {faq.intro}
+          </p>
         </div>
+        <FaqStories />
       </div>
     </section>
   )

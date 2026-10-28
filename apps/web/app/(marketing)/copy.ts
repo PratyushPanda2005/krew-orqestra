@@ -92,8 +92,11 @@ export const how = {
   ],
   cta: "Join the pilot",
   eyebrow: "[ How it works ]",
-  marquee: "How a job runs",
   step: (n: number) => `[ Step ${String(n).padStart(2, "0")} ]`,
+  of: (n: number, total: number) => `${String(n).padStart(2, "0")} / ${String(total).padStart(2, "0")}`,
+  // The closing panel of the sideways scroll, and the finale where the 7 photos come together.
+  end: "Every step lives in the same job, for you and your crew.",
+  finale: { left: "Seven steps,", right: "one place.", caption: "From the first DM to getting paid" },
 }
 
 export const income = {
@@ -155,6 +158,9 @@ export const trust = {
 export const faq = {
   eyebrow: "[ Questions ]",
   title: "Questions creators ask",
+  intro: "Straight answers before you join. Pick a question, or step through them.",
+  prev: "Previous question",
+  next: "Next question",
   items: [
     {
       // PF-06
@@ -234,4 +240,7 @@ export const footer = {
   copyright: "© 2026 Orry",
   sections: "On this page",
   photos: "Photos from Unsplash",
+  // The footer clock, as trionn shows its studio time; ours is India time.
+  clock: "IST",
+  hint: "Hover the lines.",
 }

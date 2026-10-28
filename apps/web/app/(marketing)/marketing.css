@@ -223,102 +223,80 @@ html:not(.js) [data-js-only] {
   transition: transform 0.6s var(--ease-power1-out);
 }
 
-/* Running titles: "How a job runs" from 12% to −40% over 50 s, its stars turning every 14 s;
-   the join photo row at about 36 px a second. */
-@media (prefers-reduced-motion: no-preference) {
-  [data-marquee] {
-    animation: run-title 50s linear infinite;
-  }
-  [data-star] {
-    animation: spin 14s linear infinite;
-  }
-  [data-marquee="photos"] {
-    animation: run-row 60s linear infinite;
-  }
-}
-
-@keyframes run-title {
-  from {
-    transform: translateX(12%);
-  }
-  to {
-    transform: translateX(-40%);
-  }
-}
-
-@keyframes run-row {
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-@keyframes spin {
-  to {
-    rotate: 360deg;
-  }
-}
-
 /*
- * "How a job runs" in play: the track is 120vh a step (the reference's 600vh for 5), the stage
- * pins, and each step's card and text share one grid cell so LandingMotion can swing them through.
+ * "How a job runs" in play (LandingMotion sets data-play from 768 px with motion allowed),
+ * after trionn: the row pins and slides sideways; then the ribbon stage pins and its photos
+ * fly on a curve and settle into a grid. Both tracks get their heights from LandingMotion.
  */
-[data-how-track][data-play] {
-  height: calc(7 * 120vh);
-}
-[data-play] [data-how-stage] {
+[data-play] > [data-hz-stage],
+[data-play] > [data-ribbon-stage] {
   position: sticky;
   top: 0;
   height: 100svh;
-  padding-bottom: 0;
 }
-[data-play] [data-how-circle] {
+[data-play] [data-hz-row] {
+  width: max-content;
+  will-change: transform;
+}
+[data-play] [data-hz-card] {
+  will-change: transform;
+}
+[data-play] [data-ribbon] {
+  position: absolute;
+  inset: 0;
   display: block;
+  margin: 0;
+  padding: 0;
+  perspective: 1400px;
 }
-[data-play] [data-how-steps] {
-  display: grid;
-  justify-items: center;
-  gap: 1.5rem;
-  margin-top: 1.5rem;
-}
-[data-play] [data-how-steps] > li {
-  display: contents;
-}
-[data-play] [data-how-card] {
-  grid-area: 1 / 1;
-  will-change: transform, opacity;
-}
-[data-play] [data-how-text] {
-  grid-area: 2 / 1;
-  will-change: transform, opacity;
-}
-@media (min-width: 1024px) {
-  [data-play] [data-how-steps] {
-    margin-top: 2.5rem;
-  }
+[data-play] [data-tile] {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: clamp(9rem, 15vw, 15rem);
+  margin: calc(clamp(9rem, 15vw, 15rem) * -0.375) 0 0 calc(clamp(9rem, 15vw, 15rem) * -0.5);
+  will-change: transform;
 }
 
-/* Questions in play (768 px and up): five screens of scroll, the stage pinned, one card in frame. */
-[data-faq][data-play] {
-  height: 500vh;
+/* trionn's title reveal: letters come out of a 12 px blur in a scattered order (data-blur). */
+.motion-ok [data-blur][data-wait]:not([data-in]) [data-char] {
+  opacity: 0;
+  filter: blur(12px);
 }
-[data-play] [data-faq-stage] {
-  position: sticky;
-  top: 0;
-  display: flex;
-  align-items: center;
-  height: 100svh;
+.motion-ok [data-blur][data-in] [data-char] {
+  transition:
+    opacity 0.8s var(--ease-sine-out),
+    filter 0.8s var(--ease-sine-out);
+  transition-delay: calc(var(--r, 0) * 0.7s);
 }
-[data-play] [data-faq-dots] {
-  display: flex;
+
+/* Questions (faq-stories.tsx): with JS, one answer at a time, its words lighting up in order. */
+.js [data-story]:not([data-on]) {
+  display: none;
 }
-[data-play] [data-faq-cards] {
-  display: grid;
-  overflow: clip;
-  border-radius: 0.75rem;
+html:not(.js) [data-story] + [data-story] {
+  margin-top: 3rem;
 }
-[data-play] [data-faq-cards] > li {
-  grid-area: 1 / 1;
-  will-change: transform;
+.js [data-story] [data-word] {
+  opacity: 0.18;
+}
+.js [data-stories][data-seen] [data-story][data-on] [data-word] {
+  opacity: 1;
+  transition: opacity 0.5s var(--ease-sine-out);
+  transition-delay: calc(var(--w) * 30ms);
+}
+
+/* Footer wordmark: striped text until the line canvas has drawn (line-wordmark.tsx). */
+[data-wordmark-css] {
+  background: repeating-linear-gradient(180deg, currentColor 0 1.5px, transparent 1.5px 14px);
+  background-clip: text;
+  color: transparent;
+}
+[data-wordmark][data-drawn] [data-wordmark-css] {
+  visibility: hidden;
+}
+[data-wordmark][data-drawn] canvas {
+  display: block;
 }
 
 /*
@@ -406,6 +384,23 @@ html:not(.js) [data-js-only] {
     radial-gradient(70% 30% at 50% 80%, color-mix(in srgb, var(--brand-violet) 55%, transparent), transparent 70%),
     radial-gradient(45% 22% at 35% 84%, color-mix(in srgb, var(--brand-green) 45%, transparent), transparent 70%),
     radial-gradient(30% 16% at 70% 82%, color-mix(in srgb, var(--brand-coral) 35%, transparent), transparent 70%),
+    var(--brand-navy-deep);
+}
+/* trionn's white-to-grey grounds, tinted with the brand: pearl (light), silver (a shade deeper). */
+[data-grad="pearl"] {
+  background:
+    radial-gradient(50% 40% at 85% 15%, color-mix(in srgb, var(--brand-violet) 16%, transparent), transparent 70%),
+    linear-gradient(0deg, color-mix(in srgb, var(--brand-navy) 16%, var(--brand-snow)), var(--brand-snow));
+}
+[data-grad="silver"] {
+  background:
+    radial-gradient(45% 40% at 20% 85%, color-mix(in srgb, var(--brand-green) 14%, transparent), transparent 70%),
+    linear-gradient(180deg, color-mix(in srgb, var(--brand-navy) 22%, var(--brand-snow)), color-mix(in srgb, var(--brand-navy) 30%, var(--brand-snow)));
+}
+[data-grad="smoke"] {
+  background:
+    radial-gradient(50% 40% at 30% 40%, color-mix(in srgb, var(--brand-navy) 80%, transparent), transparent 70%),
+    radial-gradient(40% 35% at 70% 70%, color-mix(in srgb, var(--brand-violet) 14%, transparent), transparent 70%),
     var(--brand-navy-deep);
 }
 [data-grad="mesh"] {

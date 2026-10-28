@@ -4,7 +4,6 @@ import { FloatNav } from "@/components/marketing/float-nav"
 import { Hero } from "@/components/marketing/hero"
 import { How } from "@/components/marketing/how"
 import { Income } from "@/components/marketing/income"
-import { Join } from "@/components/marketing/join"
 import { LandingMotion } from "@/components/marketing/landing-motion"
 import { Mess } from "@/components/marketing/mess"
 import { Clients, Faq, Trust } from "@/components/marketing/sections"
@@ -40,7 +39,6 @@ export default function LandingPage() {
         <Clients />
         <Trust />
         <Faq />
-        <Join />
       </div>
       <FloatNav />
       <LandingMotion />

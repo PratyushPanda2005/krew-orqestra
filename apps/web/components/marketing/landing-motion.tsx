@@ -3,20 +3,21 @@
 import { useEffect } from "react"
 
 /**
- * Runs the reference's (novaform) effects on the landing sections. Values come from its
- * Webflow interaction data (plan landing-sections-reference §15). Only runs with JS and
- * motion allowed (html.motion-ok); otherwise every section is simply shown, as a list.
+ * Runs the references' effects on the landing sections: novaform's (read from its Webflow
+ * interaction data, plan landing-sections-reference §15) and trionn's (§17). Only runs with
+ * JS and motion allowed (html.motion-ok); otherwise every section is simply shown, as a list.
  *
  * Reveals, played once as each element enters (CSS does the motion, marketing.css):
  *   data-up="0|2|4|6"  rises 80 px and fades in, 0.6 s, delayed 0–0.6 s, when its top reaches 90%
  *   data-split         title letters rise 40 px, staggered over 0.6 s, when it enters
+ *   data-blur          title letters come out of a blur in a scattered order (trionn)
  *   data-flip          photo turns 180° on Y into place, 0.6 s, when it enters
  *   data-count         number counts up, 1.2 s
  * Tied to the scroll (smoothed over about 0.8 s, like GSAP's scrub: 0.8):
  *   data-scrub-chars   statement letters go from 50% to full as you read down
- *   data-how-track     steps swing through a pinned stage
  *   data-stack         stacked cards shrink back (0.7, then 0.8)
- *   data-faq           answer cards slide through a pinned stage (768 px and up)
+ *   data-hz-track      a pinned row of panels slides sideways (trionn's selected work; 768 px up)
+ *   data-ribbon-track  photos fly on a curved ribbon, then settle into a grid (trionn; 768 px up)
  * Plus Lenis smooth scrolling from 768 px, and (with any motion setting) the floating nav.
  */
 
@@ -32,7 +33,7 @@ function through(el: HTMLElement) {
   return clamp01((window.innerHeight - r.top) / (r.height + window.innerHeight))
 }
 
-type Scrub = { el: HTMLElement; target: () => number; apply: (p: number) => void; cur: number; near: boolean }
+type Scrub = { el: HTMLElement; target: () => number; apply: (p: number) => void; cur: number; near: boolean; measure?: () => void }
 
 function messChars(el: HTMLElement): Scrub {
   const chars = [...el.querySelectorAll<HTMLElement>("[data-char]")]
@@ -47,36 +48,6 @@ function messChars(el: HTMLElement): Scrub {
       return clamp01((window.innerHeight - r.top) / (r.height + window.innerHeight / 2))
     },
     apply: (p) => chars.forEach((c, i) => (c.style.opacity = String(0.5 + 0.5 * clamp01(p * n - i)))),
-  }
-}
-
-/** Process: 0.13 apart, 0.1 long, a short hold between steps, as in the reference timeline. */
-function howSteps(track: HTMLElement): Scrub {
-  const cards = [...track.querySelectorAll<HTMLElement>("[data-how-card]")]
-  const texts = [...track.querySelectorAll<HTMLElement>("[data-how-text]")]
-  const n = cards.length
-  const total = 0.13 * n + 0.1
-  return {
-    el: track,
-    near: false,
-    cur: -1,
-    target: () => through(track),
-    apply: (p) => {
-      const t = p * total
-      for (let i = 0; i < n; i++) {
-        const enter = i === 0 ? 1 : seg(t, 0.13 * i, 0.13 * i + 0.1)
-        const exit = i === n - 1 ? 0 : seg(t, 0.13 * (i + 1), 0.13 * (i + 1) + 0.1)
-        const exitText = i === n - 1 ? 0 : seg(t, 0.13 * (i + 1), 0.13 * (i + 1) + 0.05)
-        const card = cards[i]!
-        const k = exit > 0 ? exit : -(1 - enter)
-        card.style.transform = `translate3d(${30 * k}vw, ${18 * Math.abs(k)}vh, 0) rotate(${15 * k}deg)`
-        card.style.opacity = String(exit > 0 ? 1 - exit : enter)
-        const text = texts[i]!
-        text.style.transform = `translate3d(0, ${200 * (exit > 0 ? exitText : 1 - enter)}px, 0)`
-        text.style.opacity = String(exit > 0 ? 1 - exitText : enter)
-        text.style.visibility = card.style.visibility = enter === 0 || exit === 1 ? "hidden" : ""
-      }
-    },
   }
 }
 
@@ -95,29 +66,87 @@ function stack(list: HTMLElement): Scrub {
   }
 }
 
-/** Testimonials: 0.14 apart, 0.1 long; the outgoing card drops out of the frame as the next drops in. */
-function faqCards(section: HTMLElement): Scrub {
-  const cards = [...section.querySelectorAll<HTMLElement>("[data-faq-cards] > [data-faq-i]")]
-  const dots = [...section.querySelectorAll<HTMLElement>("[data-faq-dots] > [data-faq-i]")]
-  const photos = section.querySelector<HTMLElement>("[data-faq-photos-inner]")
-  const n = cards.length
-  const total = 0.14 * n + 0.1
+/** Pinned tracks: 0 when the track's top reaches the top of the screen, 1 when its end does. */
+function pinned(el: HTMLElement) {
+  const r = el.getBoundingClientRect()
+  const run = r.height - window.innerHeight
+  return run > 0 ? clamp01(-r.top / run) : 0
+}
+
+/**
+ * trionn's selected work: the row slides left across the whole scroll of its track (sized here
+ * to the row's width), and each card rises from 25 px as it comes in from the right half.
+ */
+function sideways(track: HTMLElement): Scrub {
+  const row = track.querySelector<HTMLElement>("[data-hz-row]")!
+  const cards = [...track.querySelectorAll<HTMLElement>("[data-hz-card]")]
+  let dist = 0
+  let lefts: number[] = []
+  const measure = () => {
+    dist = Math.max(row.scrollWidth - window.innerWidth, 0)
+    track.style.height = `${dist + window.innerHeight}px`
+    lefts = cards.map((c) => (c.parentElement as HTMLElement).offsetLeft)
+  }
+  measure()
   return {
-    el: section,
+    el: track,
     near: false,
     cur: -1,
-    target: () => through(section),
+    measure,
+    target: () => pinned(track),
     apply: (p) => {
-      const t = p * total
-      let step = 0
-      for (let i = 0; i < n; i++) {
-        const enter = i === 0 ? 1 : seg(t, 0.14 * i, 0.14 * i + 0.1)
-        const exit = i === n - 1 ? 0 : seg(t, 0.14 * (i + 1), 0.14 * (i + 1) + 0.1)
-        if (i > 0) step += enter
-        cards[i]!.style.transform = `translate3d(0, ${exit > 0 ? 101 * exit : -101 * (1 - enter)}%, 0)`
-      }
-      dots.forEach((d, i) => (d.style.opacity = i === Math.round(step) ? "1" : "0.3"))
-      if (photos) photos.style.transform = `translate3d(0, ${(-Math.min(step, n - 3) * 100) / n}%, 0)`
+      const x = p * dist
+      const vw = window.innerWidth
+      row.style.transform = `translate3d(${-x}px, 0, 0)`
+      cards.forEach((c, i) => (c.style.transform = `translate3d(0, ${25 * clamp01((lefts[i]! - x - vw * 0.5) / (vw * 0.5))}px, 0)`))
+    },
+  }
+}
+
+const ease = (t: number) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2)
+
+/**
+ * trionn's explorations: the photos stream in from the right on a curved ribbon (a slice of a
+ * cylinder, with a slow wave), then gather into a grid of 4 over 3 as the words fade back.
+ */
+function ribbon(track: HTMLElement): Scrub {
+  const tiles = [...track.querySelectorAll<HTMLElement>("[data-tile]")]
+  const words = [...track.querySelectorAll<HTMLElement>("[data-ribbon-word]")]
+  const measure = () => (track.style.height = `${3 * window.innerHeight}px`)
+  measure()
+  return {
+    el: track,
+    near: false,
+    cur: -1,
+    measure,
+    target: () => pinned(track),
+    apply: (p) => {
+      const sweep = seg(p, 0, 0.55)
+      const gather = ease(seg(p, 0.5, 0.85))
+      const vw = window.innerWidth
+      const vh = window.innerHeight
+      const radius = vw * 0.75
+      const w = tiles[0]?.offsetWidth ?? 200
+      const h = w * 0.75
+      const gap = 24
+      tiles.forEach((t, i) => {
+        const a = (i - 3) * 0.3 + (1 - sweep) * 2.4
+        const rx = radius * Math.sin(a)
+        const rz = radius * (Math.cos(a) - 1)
+        const ry = vh * 0.08 * Math.sin(a * 2 + 0.5)
+        const top = i < 4
+        const n = top ? 4 : 3
+        const k = top ? i : i - 4
+        const gx = (k - (n - 1) / 2) * (w + gap)
+        const gy = (top ? -0.5 : 0.5) * (h + gap)
+        const x = rx + (gx - rx) * gather
+        const y = ry + (gy - ry) * gather
+        const z = rz * (1 - gather)
+        const turn = (a * 180) / Math.PI * (1 - gather)
+        t.style.transform = `translate3d(${x}px, ${y}px, ${z}px) rotateY(${turn}deg)`
+        t.style.opacity = String(Math.max(gather, Math.min(1, Math.max(0, (Math.cos(a) + 0.4) / 0.6))))
+      })
+      words.forEach((el) => (el.style.opacity = String(1 - 0.85 * gather)))
     },
   }
 }
@@ -161,10 +190,10 @@ export function LandingMotion() {
       })
     const at90 = new IntersectionObserver(onEnter, { rootMargin: "0px 0px -10% 0px" })
     const atEdge = new IntersectionObserver(onEnter)
-    document.querySelectorAll("[data-up], [data-count], [data-split], [data-flip]").forEach((el) => {
+    document.querySelectorAll("[data-up], [data-count], [data-split], [data-blur], [data-flip]").forEach((el) => {
       if (el.getBoundingClientRect().top < window.innerHeight) return reveal(el)
       el.setAttribute("data-wait", "")
-      ;(el.matches("[data-split], [data-flip]") ? atEdge : at90).observe(el)
+      ;(el.matches("[data-split], [data-blur], [data-flip]") ? atEdge : at90).observe(el)
     })
     // Things near the very end of the page can never reach the 90% line: show them at the bottom.
     const atEnd = () => {
@@ -181,14 +210,11 @@ export function LandingMotion() {
       if (el) scrubs.push(make(el))
     }
     add("[data-scrub-chars]", messChars)
-    add("[data-how-track]", (el) => (el.setAttribute("data-play", ""), howSteps(el)))
     add("[data-stack]", stack)
     const wide = matchMedia("(min-width: 768px)")
-    const faq = document.querySelector<HTMLElement>("[data-faq]")
-    let faqScrub: Scrub | undefined
-    if (faq && wide.matches) {
-      faq.setAttribute("data-play", "")
-      scrubs.push((faqScrub = faqCards(faq)))
+    if (wide.matches) {
+      add("[data-hz-track]", (el) => (el.setAttribute("data-play", ""), sideways(el)))
+      add("[data-ribbon-track]", (el) => (el.setAttribute("data-play", ""), ribbon(el)))
     }
 
     const near = new IntersectionObserver(
@@ -227,13 +253,17 @@ export function LandingMotion() {
       if (!frame) frame = requestAnimationFrame(loop)
     }
     window.addEventListener("scroll", wake, { passive: true })
-    window.addEventListener("resize", wake)
+    const onResize = () => {
+      scrubs.forEach((x) => (x.measure?.(), (x.cur = -1)))
+      wake()
+    }
+    window.addEventListener("resize", onResize)
     wake()
     cleanups.push(() => {
       cancelAnimationFrame(frame)
       near.disconnect()
       window.removeEventListener("scroll", wake)
-      window.removeEventListener("resize", wake)
+      window.removeEventListener("resize", onResize)
     })
 
     // Smooth scrolling on bigger screens, as in the reference (Lenis, 0.8 s, cubic ease-out).
@@ -248,8 +278,7 @@ export function LandingMotion() {
     cleanups.push(() => {
       gone = true
       lenis?.destroy()
-      faq?.removeAttribute("data-play")
-      if (faqScrub) faqScrub.el.removeAttribute("data-play")
+      document.querySelectorAll("[data-play]").forEach((el) => (el.removeAttribute("data-play"), (el as HTMLElement).style.removeProperty("height")))
     })
 
     return () => cleanups.forEach((c) => c())

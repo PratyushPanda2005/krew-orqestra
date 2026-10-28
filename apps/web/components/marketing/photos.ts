@@ -15,14 +15,6 @@ import messDm from "@/app/(marketing)/images/mess-dm.jpg"
 import messEmail from "@/app/(marketing)/images/mess-email.jpg"
 import messScreenshots from "@/app/(marketing)/images/mess-screenshots.jpg"
 import messTwoReplies from "@/app/(marketing)/images/mess-two-replies.jpg"
-import trail1 from "@/app/(marketing)/images/trail-1.jpg"
-import trail2 from "@/app/(marketing)/images/trail-2.jpg"
-import trail3 from "@/app/(marketing)/images/trail-3.jpg"
-import trail4 from "@/app/(marketing)/images/trail-4.jpg"
-import trail5 from "@/app/(marketing)/images/trail-5.jpg"
-import trail6 from "@/app/(marketing)/images/trail-6.jpg"
-import trail7 from "@/app/(marketing)/images/trail-7.jpg"
-import trail8 from "@/app/(marketing)/images/trail-8.jpg"
 import trustChats from "@/app/(marketing)/images/trust-chats.jpg"
 import trustConnections from "@/app/(marketing)/images/trust-connections.jpg"
 import trustGst from "@/app/(marketing)/images/trust-gst.jpg"
@@ -67,9 +59,3 @@ export const trustPhotos: (Photo | null)[] = [
   { src: trustGst, alt: "A designer drawing on a pen tablet at a desk" },
   { src: trustConnections, alt: "A photographer holding a camera up to his face" },
 ]
-
-/** Decorative: the photo row that runs along the bottom of "Join the pilot". */
-export const trailPhotos = [trail1, trail2, trail3, trail4, trail5, trail6, trail7, trail8]
-
-/** Decorative: the photo column beside the questions, one per question. */
-export const faqPhotos = [trail1, trail4, trail6, trail2, trail3, trail7]

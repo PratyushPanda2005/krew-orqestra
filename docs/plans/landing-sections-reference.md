@@ -202,3 +202,18 @@ Asked for: patterns from vantra-studio.webflow.io, kept to the current sections,
 **Fixed:** blocks at the very end of the page never reached the 90% line, so they now reveal at the bottom.
 
 **Checks:** type check and lint are clean; 13 of 13 landing tests pass; LCP 1,208 ms, CLS 0.000 at 390 px on slow 4G.
+
+## 17. Third pass: trionn's work, questions and closing block (29 Oct 2026)
+
+Asked for: trionn.com's "Selected work" and "Explorations" effects in How a job runs, and new questions, CTA and footer. Studied in a browser at 1440 px: both effects are GSAP pins (13.5 and 7.5 screens).
+
+| Krew | trionn effect, as built |
+|---|---|
+| How a job runs, part 1 | From 768 px, the section pins on a grainy pearl gradient and a row of half-screen panels, split by hairlines, slides left across the scroll. The track is sized to the row. The title's letters come out of a 12 px blur in a scattered order. Each step card (photo with a glass "[ STEP 0n ]" label, title, "0n / 07", body) rises from 25 px as it comes in from the right half. A closing panel holds the join link. Phones: a list |
+| How a job runs, part 2 | Pinned for 3 screens on a silver gradient: the 7 photos stream in from the right on a curved 3D ribbon (a slice of a cylinder with a slow wave), then gather into a grid of 4 over 3 while "Seven steps, / one place." fades back. Phones: a plain 2-column grid |
+| Questions | trionn's "Client stories": the questions as a list on the left (ARIA tabs, arrow keys), one answer at a time in big type that lights up word by word, previous / next buttons and a counter. Without JS every answer shows |
+| Join + footer | One dark screen, as trionn's footer: the new `smoke` shader, "Join the pilot" big on the left with the form beside it, a live IST clock top right, contact and section links, and a giant KREW drawn in horizontal lines that slide aside under the pointer (a 2D canvas, redrawn only while moving). The CSS fallback is the striped word |
+
+**Removed:** novaform's Process swing and the running title band, the pinned question cards, the join panel and its photo row, and the 8 `trail-*` photos (now 18 photos).
+
+**Checks:** type check and lint are clean. Landing Playwright: 15 of 15 pass, with new tests for the question tabs and for the sideways row and ribbon at 1280 px. LCP 1,124 ms, CLS 0.000 at 390 px on slow 4G.

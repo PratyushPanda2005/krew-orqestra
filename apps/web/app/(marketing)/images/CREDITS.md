@@ -22,11 +22,3 @@ All from Unsplash under the Unsplash License (free for commercial use, no attrib
 | `trust-chats.jpg` | [b5oaW2R5iks](https://unsplash.com/photos/b5oaW2R5iks) | [Gift Habeshaw](https://unsplash.com/@gift_habeshaw) |
 | `trust-gst.jpg` | [58c1dnakdRQ](https://unsplash.com/photos/58c1dnakdRQ) | [Firosnv. Photography](https://unsplash.com/@firosnv) |
 | `trust-connections.jpg` | [ROaGE2gDsbo](https://unsplash.com/photos/ROaGE2gDsbo) | [Mohamed Morsi](https://unsplash.com/@itsmorsii) |
-| `trail-1.jpg` | [X0lTXXhZY0c](https://unsplash.com/photos/X0lTXXhZY0c) | [Adrian Dascal](https://unsplash.com/@dascal) |
-| `trail-2.jpg` | [wM7ehyjWFLw](https://unsplash.com/photos/wM7ehyjWFLw) | [Rezwan ahmed sami](https://unsplash.com/@rezwanahmedsami) |
-| `trail-3.jpg` | [W1wkx5kcaBk](https://unsplash.com/photos/W1wkx5kcaBk) | [Aastha Bansal](https://unsplash.com/@the_travelsmokey) |
-| `trail-4.jpg` | [Po-nggQqplE](https://unsplash.com/photos/Po-nggQqplE) | [gurpreet singh](https://unsplash.com/@ajay_gill8054) |
-| `trail-5.jpg` | [lWP4mSBDytE](https://unsplash.com/photos/lWP4mSBDytE) | [patsanannnn](https://unsplash.com/@patsanannnn) |
-| `trail-6.jpg` | [P7Ar3joERlU](https://unsplash.com/photos/P7Ar3joERlU) | [Rendy Novantino](https://unsplash.com/@novantino) |
-| `trail-7.jpg` | [UGle_evFpow](https://unsplash.com/photos/UGle_evFpow) | [Cemrecan Yurtman](https://unsplash.com/@cmrcn_) |
-| `trail-8.jpg` | [gRES-o2A0LE](https://unsplash.com/photos/gRES-o2A0LE) | [Balazs Busznyak](https://unsplash.com/@balazsbusznyak) |

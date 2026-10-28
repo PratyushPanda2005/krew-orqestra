@@ -85,8 +85,8 @@ test.describe("landing page at 390 px", () => {
     await expect(page.getByRole("heading", { level: 1 })).toHaveAccessibleName("Krew")
     await expect(page.locator("[data-hero-pre]")).toBeHidden()
     // Without JS the steps are a plain list and the answers are open cards.
-    await expect(page.locator("[data-how-track]")).not.toHaveAttribute("data-play", "")
-    await expect(page.locator("[data-how-text]").last()).toBeVisible()
+    await expect(page.locator("[data-hz-track]")).not.toHaveAttribute("data-play", "")
+    await expect(page.locator("[data-hz-card]").last()).toBeVisible()
     await page.getByText("Krew connects a WhatsApp Business number").scrollIntoViewIfNeeded()
     await expect(page.getByText("Krew connects a WhatsApp Business number")).toBeVisible()
 
@@ -158,18 +158,31 @@ test.describe("landing page at 390 px", () => {
     await expect(flip).toHaveAttribute("data-wait", "")
     await flip.scrollIntoViewIfNeeded()
     await expect(flip).toHaveAttribute("data-in", "")
-    await expect(page.locator("[data-how-track]")).toHaveAttribute("data-play", "")
-    // Every step can be reached: the last step's card is shown at the end of the track.
-    await page.locator("[data-how-track]").evaluate((el) => window.scrollTo(0, el.getBoundingClientRect().bottom + scrollY - innerHeight))
-    await expect(page.locator("[data-how-text]").last()).toHaveCSS("opacity", "1", { timeout: 4000 })
+    // Phones get the steps as a list, not the sideways scroll.
+    await expect(page.locator("[data-hz-track]")).not.toHaveAttribute("data-play", "")
 
     const context = await browser.newContext({ reducedMotion: "reduce", viewport: { width: 390, height: 844 } })
     const still = await context.newPage()
     await still.goto("/")
     await expect(still.locator("[data-wait]")).toHaveCount(0)
-    await expect(still.locator("[data-how-track]")).not.toHaveAttribute("data-play", "")
+    await expect(still.locator("[data-hz-track]")).not.toHaveAttribute("data-play", "")
     await expect(still.locator("#mess [data-flip]").last()).toHaveCSS("transform", "none")
     await context.close()
+  })
+
+  test("questions work as tabs: click, arrow keys, previous and next", async ({ page }) => {
+    await page.goto("/")
+    const panels = page.locator("[role=tabpanel]")
+    await page.locator("#faq-tab-3").click()
+    await expect(panels.nth(3)).toBeVisible()
+    await expect(panels.nth(0)).toBeHidden()
+    await page.keyboard.press("ArrowDown")
+    await expect(page.locator("#faq-tab-4")).toBeFocused()
+    await expect(page.locator("#faq-tab-4")).toHaveAttribute("aria-selected", "true")
+    await page.getByRole("button", { name: "Next question" }).click()
+    await expect(panels.nth(5)).toBeVisible()
+    await page.getByRole("button", { name: "Next question" }).click()
+    await expect(panels.nth(0)).toBeVisible()
   })
 
   test("every photo has alt text, and section links land", async ({ page }) => {
@@ -207,6 +220,21 @@ test.describe("landing page at 390 px", () => {
 
 test.describe("landing page at 1280 px", () => {
   test.use({ viewport: { width: 1280, height: 800 }, isMobile: false, hasTouch: false })
+
+  test("how a job runs: the row slides sideways, then the photos settle into a grid", async ({ page }) => {
+    await page.goto("/")
+    const track = page.locator("[data-hz-track]")
+    await expect(track).toHaveAttribute("data-play", "")
+    // Halfway down the track the row has moved left; at the end the last panel is on screen.
+    await track.evaluate((el) => window.scrollTo(0, el.getBoundingClientRect().top + scrollY + (el.getBoundingClientRect().height - innerHeight) / 2))
+    await expect
+      .poll(() => page.locator("[data-hz-row]").evaluate((el) => new DOMMatrix(getComputedStyle(el).transform).m41))
+      .toBeLessThan(-200)
+    const ribbon = page.locator("[data-ribbon-track]")
+    await ribbon.evaluate((el) => window.scrollTo(0, el.getBoundingClientRect().top + scrollY + el.getBoundingClientRect().height - innerHeight))
+    // Settled: the tiles stand flat in two rows.
+    await expect.poll(() => page.locator("[data-tile]").first().evaluate((el) => getComputedStyle(el).transform)).toMatch(/^matrix\(1, 0, 0, 1,/)
+  })
 
   test("no horizontal scroll, and a snapshot for review", async ({ page }) => {
     await page.emulateMedia({ reducedMotion: "reduce" })
