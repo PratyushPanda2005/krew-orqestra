@@ -81,7 +81,8 @@ const power3Out = (t: number) => 1 - Math.pow(1 - t, 3)
  *   - the row slides left at 1.2 px per px scrolled, from the moment the stage pins;
  *   - each card rises from 61% of the screen height to rest (power3.out) as its panel's left
  *     edge crosses from 95% to 25% of the screen width;
- *   - each divider draws down (scaleY 0 to 1) as its panel crosses from 100% to 60%;
+ *   - each divider runs the full height of the screen, moves with its panel, and draws down
+ *     from the top (scaleY 0 to 1) as its panel crosses from 100% to 70%;
  *   - when the row has run out, the whole layer slides left a full screen width at 1.07 px
  *     per px, uncovering what waits underneath.
  * The track is sized here so both phases fit, plus one screen for the pin itself.
@@ -126,7 +127,7 @@ function sideways(track: HTMLElement): Scrub {
         const q = clamp01((0.95 * vw - (cardLefts[i]! - x)) / (0.7 * vw))
         c.style.transform = `translate3d(0, ${rise * (1 - power3Out(q))}px, 0)`
       })
-      lines.forEach((l, i) => (l.style.transform = `translateY(-50%) scaleY(${clamp01((vw - (lineLefts[i]! - x)) / (0.4 * vw))})`))
+      lines.forEach((l, i) => (l.style.transform = `scaleY(${clamp01((vw - (lineLefts[i]! - x)) / (0.3 * vw))})`))
     },
   }
 }

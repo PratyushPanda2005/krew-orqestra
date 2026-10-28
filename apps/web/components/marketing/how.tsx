@@ -26,7 +26,7 @@ const panel = "relative flex w-full shrink-0 flex-col items-center justify-cente
 
 /** trionn's divider: a full-height hairline on a panel's left edge that draws downwards as it comes in. */
 function Divider() {
-  return <span aria-hidden data-hz-line className="absolute top-1/2 left-0 hidden h-svh w-px origin-top -translate-y-1/2 bg-brand-navy/15 md:block" />
+  return <span aria-hidden data-hz-line className="absolute top-0 left-0 hidden h-full w-px origin-top bg-brand-navy/15 md:block" />
 }
 
 /**
@@ -35,7 +35,8 @@ function Divider() {
  *   1. a row of half-screen panels slides left at 1.2 px per px scrolled: the title (letters
  *      come out of a blur in a scattered order), the 7 steps, a closing panel. Each card rises
  *      from 61% of the screen height to rest (power3.out) between 95% and 25% across, and each
- *      divider draws down as its panel crosses from the right edge to 60%;
+ *      divider (top to bottom of the screen, moving with its panel) draws down as its panel
+ *      crosses from the right edge to 70%;
  *   2. then the whole layer slides away left like a curtain (1.07 px per px), uncovering
  *      Income's opening screen, which waits underneath (IncomeIntro).
  * LandingMotion ties it to the scroll and sets data-play. Otherwise (phones, no JS, reduced

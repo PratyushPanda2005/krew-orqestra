@@ -226,7 +226,7 @@ Asked for: trionn.com's "Selected work" and "Explorations" effects in How a job 
 |---|---|---|
 | Row | moves 1.2 px per px scrolled from the moment it pins, no easing (2,166 px over 1,800) | same rate, sized to our 9 panels |
 | Cards | rise from 550 px (61% of 900) to rest, `power3.out`, as the panel's left edge goes from 95% to 25% of the width | same |
-| Dividers | full-height hairlines, scaleY 0→1 from the top as the panel goes from 100% to 60% | same |
+| Dividers | hairlines from the top of the screen to the bottom, moving with their panel, scaleY 0→1 from the top as the panel goes from 100% to 70% (re-measured: 93% drawn at 73%) | same (fixed 29 Oct: they had been shifted half a screen up) |
 | Title | each letter: opacity 0→1 and blur 12→0 px in about 0.5 s, from a random start within about 1 s, once it reaches 90% | same |
 | Curtain | after the row, the layer slides left one screen width at 1.07 px per px, uncovering the next screen (their Services) | uncovers Income's opening: big centred uppercase title, "◆ Every job feeds one ledger.", "See your jobs ↓" |
 | End of row | a hairline with a small plus | same |

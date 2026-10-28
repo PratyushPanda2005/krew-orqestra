@@ -245,7 +245,7 @@ html:not(.js) [data-js-only] {
   min-height: 0;
 }
 [data-play] [data-hz-line] {
-  transform: translateY(-50%) scaleY(0);
+  transform: scaleY(0);
 }
 [data-play] [data-hz-row] {
   width: max-content;
