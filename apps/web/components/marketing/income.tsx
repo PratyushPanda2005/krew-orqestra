@@ -4,12 +4,14 @@ import { cn } from "@krew/ui/lib/utils"
 import { how, income } from "@/app/(marketing)/copy"
 import { liveJobs } from "@/lib/landing-samples"
 
+import { Gradient, type GradientKind } from "./gradient"
 import { MockExport, MockIncome, MockPending } from "./mocks"
 import { PillLink } from "./pill-link"
 import { Split } from "./split"
 import { eyebrow, quiet, sectionY, wide } from "./styles"
 
 const art = [MockIncome, MockPending, MockExport]
+const grads: GradientKind[] = ["swift", "dusk", "dither"]
 
 /**
  * Income's opening screen. After trionn, it waits underneath "How a job runs" and is uncovered
@@ -38,7 +40,7 @@ export function IncomeIntro() {
 /**
  * The rest of the income block (PF-26). After Vantra's live list: every job on the go, at its
  * step of the 7, with bars that fill as the list comes in. Then the reference's "Latest
- * Insights" cards rising in, each an app screen on a light panel.
+ * Insights" cards rising in, each an app screen on its own grainy gradient (swift, dusk, dither).
  */
 export function Income() {
   const steps = how.steps.length
@@ -89,7 +91,8 @@ export function Income() {
           const Art = art[i]!
           return (
             <li key={point} data-up="4">
-              <div aria-hidden className="aspect-[4/3] overflow-hidden rounded-lg bg-brand-navy/[0.06] px-6 pt-6">
+              <div aria-hidden className="relative isolate aspect-[4/3] overflow-hidden rounded-lg px-6 pt-6">
+                <Gradient kind={grads[i]!} className="-z-10" />
                 <Art />
               </div>
               <p className="mt-5 text-sm font-medium">{income.tags[i]}</p>

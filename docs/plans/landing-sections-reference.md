@@ -296,3 +296,5 @@ Measured content-to-content gaps between sections: 112–256 px on desktop and 6
 | Title 32 px medium and a 16 px light line, straight on the image, 56 px from the top-left; no panel | same, in navy (the glass panel is gone) |
 | Hover: image zooms to 1.1 over 0.6 s; a 65 px white "View" circle fades in at the centre (0.2 s) | same; the circle reads "Ask" and the card opens "Do my clients need to download anything?"; on touch screens the circle simply shows |
 | Sticky stack (2/17/30%) shrinking to 0.7 / 0.8 / 0.8 | unchanged |
+
+**Follow-up (29 Oct 2026):** on request, the three Income cards get their grainy gradients back (swift, dusk, dither from §16). They're the only small gradients on the page; every other section keeps the plain snow or pearl wash from §21.

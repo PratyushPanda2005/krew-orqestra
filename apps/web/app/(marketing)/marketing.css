@@ -299,8 +299,8 @@ html:not(.js) [data-js-only] {
 }
 
 /*
- * Backgrounds. data-grain lays a fixed noise tile over the footer's smoke shader (an SVG turbulence
- * filter, ~0.4 KB); the light sections use one soft pearl wash and no grain.
+ * Backgrounds. data-grain lays a fixed noise tile (an SVG turbulence filter, ~0.4 KB) over the
+ * footer's smoke shader and the three Income cards; the light sections use one soft pearl wash.
  */
 [data-grain]::after {
   content: "";
@@ -316,6 +316,38 @@ html:not(.js) [data-js-only] {
 [data-grad="pearl"] {
   background: linear-gradient(0deg, color-mix(in srgb, var(--brand-navy) 12%, var(--brand-snow)), var(--brand-snow));
 }
+/* The three Income cards (gradient.tsx): a pastel swirl, a dusk, and a dithered fade. */
+[data-grad="swift"] {
+  background: conic-gradient(
+    from 210deg at 62% 42%,
+    var(--brand-violet),
+    var(--brand-coral),
+    var(--brand-lime),
+    var(--brand-green),
+    var(--brand-violet)
+  );
+  filter: blur(36px) saturate(1.1);
+}
+
+[data-grad="dusk"] {
+  background:
+    radial-gradient(60% 50% at 80% 110%, color-mix(in srgb, var(--brand-coral) 85%, transparent), transparent 70%),
+    linear-gradient(165deg, var(--brand-navy-deep) 15%, var(--brand-navy) 40%, var(--brand-violet) 78%, var(--brand-coral));
+  filter: blur(10px);
+}
+
+[data-grad="dither"] {
+  background: linear-gradient(180deg, var(--brand-snow) 5%, color-mix(in srgb, var(--brand-green) 55%, var(--brand-snow)) 55%, var(--brand-navy) 105%);
+}
+[data-grad="dither"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, var(--brand-navy-deep) 0.9px, transparent 1.2px) 0 0 / 5px 5px;
+  mask-image: linear-gradient(180deg, transparent 30%, black 95%);
+  opacity: 0.55;
+}
+
 [data-grad="smoke"] {
   background:
     radial-gradient(50% 40% at 30% 40%, color-mix(in srgb, var(--brand-navy) 80%, transparent), transparent 70%),
