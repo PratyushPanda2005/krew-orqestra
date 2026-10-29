@@ -169,9 +169,10 @@ export const trust = {
 export const faq = {
   eyebrow: "[ Questions ]",
   title: "Questions creators ask",
-  intro: "Straight answers before you join. Pick a question, or step through them.",
-  prev: "Previous question",
-  next: "Next question",
+  // The card under the title, after RoomMaster's "Have more questions for us?".
+  help: "Still have a question? Write to us and we'll get back to you.",
+  helpCta: "Email us",
+  toggle: "Show or hide the answer",
   items: [
     {
       // PF-06

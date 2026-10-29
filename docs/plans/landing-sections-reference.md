@@ -252,3 +252,14 @@ Income's opening (`IncomeIntro`) renders inside How so it can wait under the cur
 | Hover: image zooms to 1.1 over 0.6 s; a white "View" circle (4.5–6.25 rem) fades in over 0.4 s | same; the circle reads "Ask" and opens the matching question in the FAQ (`#faq-qN`). On touch screens (no hover) it always shows |
 
 **Checks:** 15 of 15 landing tests pass; LCP 1,288 ms, CLS 0.000.
+
+## 20. Questions in RoomMaster's FAQ layout (29 Oct 2026)
+
+Studied roommaster.com/property-management at 1440 and 390 px (a demo pop-up had to be hidden first). Rebuilt in our style:
+
+| RoomMaster | Ours |
+|---|---|
+| Left column about a third wide, sticky 96 px from the top: pill label with a dot, 56 px heading, then a "Have more questions?" card whose bottom edge steps up on the right with a curved notch | same: "Questions" pill with a green dot, the title blurring in, a mint card ("Still have a question? Write to us…", "Email us" to the contact address) with a tab and an inverted corner |
+| Right: white cards, 16 px corners, 28 px apart, question beside a 48 px square outlined button (+ / ×), first one open, answers slide open over 0.5 s, `cubic-bezier(0.165, 0.84, 0.44, 1)` | same, built on native `<details name="faq">`: one open at a time with no JS. The slide uses `::details-content` with `interpolate-size` where the browser supports it, and the answer simply opens elsewhere |
+
+"Ask" on a promise still opens its question (`faq-opener.tsx`). The tabbed stories version (`faq-stories.tsx`) is removed. 15 of 15 landing tests pass; LCP 1,412 ms, CLS 0.000.

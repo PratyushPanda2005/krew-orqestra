@@ -170,19 +170,17 @@ test.describe("landing page at 390 px", () => {
     await context.close()
   })
 
-  test("questions work as tabs: click, arrow keys, previous and next", async ({ page }) => {
+  test("questions: the first answer starts open, one at a time, and Ask on a promise opens its question", async ({ page }) => {
     await page.goto("/")
-    const panels = page.locator("[role=tabpanel]")
-    await page.locator("#faq-tab-3").click()
-    await expect(panels.nth(3)).toBeVisible()
-    await expect(panels.nth(0)).toBeHidden()
-    await page.keyboard.press("ArrowDown")
-    await expect(page.locator("#faq-tab-4")).toBeFocused()
-    await expect(page.locator("#faq-tab-4")).toHaveAttribute("aria-selected", "true")
-    await page.getByRole("button", { name: "Next question" }).click()
-    await expect(panels.nth(5)).toBeVisible()
-    await page.getByRole("button", { name: "Next question" }).click()
-    await expect(panels.nth(0)).toBeVisible()
+    const q = (n: number) => page.locator(`#faq-q${n}`)
+    await expect(q(1)).toHaveAttribute("open", "")
+    await q(4).locator("summary").click()
+    await expect(q(4)).toHaveAttribute("open", "")
+    await expect(q(1)).not.toHaveAttribute("open", "")
+    // "Ask" on the money promise opens "Does Krew hold my payments?" (question 5).
+    await page.locator('#trust a[data-faq-open="4"]').dispatchEvent("click")
+    await expect(q(5)).toHaveAttribute("open", "")
+    await expect(q(4)).not.toHaveAttribute("open", "")
   })
 
   test("every photo has alt text, and section links land", async ({ page }) => {

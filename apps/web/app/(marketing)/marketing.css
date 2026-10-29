@@ -267,20 +267,22 @@ html:not(.js) [data-js-only] {
   transition-delay: calc(var(--r, 0) * 1s);
 }
 
-/* Questions (faq-stories.tsx): with JS, one answer at a time, its words lighting up in order. */
-.js [data-story]:not([data-on]) {
-  display: none;
+/*
+ * Questions (sections.tsx › Faq): answers slide open over 0.5 s with RoomMaster's ease, where the
+ * browser can animate to auto height (::details-content); elsewhere they simply open.
+ */
+#faq details {
+  interpolate-size: allow-keywords;
 }
-html:not(.js) [data-story] + [data-story] {
-  margin-top: 3rem;
+#faq details::details-content {
+  block-size: 0;
+  overflow: clip;
+  transition:
+    block-size 0.5s cubic-bezier(0.165, 0.84, 0.44, 1),
+    content-visibility 0.5s allow-discrete;
 }
-.js [data-story] [data-word] {
-  opacity: 0.18;
-}
-.js [data-stories][data-seen] [data-story][data-on] [data-word] {
-  opacity: 1;
-  transition: opacity 0.5s var(--ease-sine-out);
-  transition-delay: calc(var(--w) * 30ms);
+#faq details[open]::details-content {
+  block-size: auto;
 }
 
 /* Footer wordmark: striped text until the line canvas has drawn (line-wordmark.tsx). */
