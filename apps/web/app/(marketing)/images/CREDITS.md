@@ -18,9 +18,10 @@ All from Unsplash under the Unsplash License (free for commercial use, no attrib
 | `clients-1.jpg` | [T5VUBvCYqKk](https://unsplash.com/photos/T5VUBvCYqKk) | [Pawel Czerwinski](https://unsplash.com/@pawel_czerwinski) |
 | `clients-2.jpg` | [7FqOISWr5V0](https://unsplash.com/photos/7FqOISWr5V0) | [Pawel Czerwinski](https://unsplash.com/@pawel_czerwinski) |
 | `clients-3.jpg` | [4ma0W4q9xTo](https://unsplash.com/photos/4ma0W4q9xTo) | [Pawel Czerwinski](https://unsplash.com/@pawel_czerwinski) |
-| `how-enquiry.jpg` | [yS6e3uhm_ZM](https://unsplash.com/photos/yS6e3uhm_ZM) | [ARTO SURAJ](https://unsplash.com/@artosuraj) |
-| `how-quote.jpg` | [2WxnKStKQTs](https://unsplash.com/photos/2WxnKStKQTs) | [Ionela Mat](https://unsplash.com/@ionelaaaaa) |
-| `how-work.jpg` | [ntqaFfrDdEA](https://unsplash.com/photos/ntqaFfrDdEA) | [Jakob Owens](https://unsplash.com/@jakobowens1) |
-| `how-review.jpg` | [SL5d_8ywAAA](https://unsplash.com/photos/SL5d_8ywAAA) | [Glenn Carstens-Peters](https://unsplash.com/@glenncarstenspeters) |
-| `how-invoice.jpg` | [TJjTEJt0iHA](https://unsplash.com/photos/TJjTEJt0iHA) | [Dillon Shook](https://unsplash.com/@dillonjshook) |
-| `how-paid.jpg` | [6zEfniBMs6c](https://unsplash.com/photos/6zEfniBMs6c) | [Szabo Viktor](https://unsplash.com/@vmxhu) |
+| `how-1.jpg` | [-_OuVFhN5BU](https://unsplash.com/photos/-_OuVFhN5BU) | [Marek Piwnicki](https://unsplash.com/@marekpiwnicki) |
+| `how-2.jpg` | [AvrwwWj61TE](https://unsplash.com/photos/AvrwwWj61TE) | [Clint McKoy](https://unsplash.com/@clintmckoy) |
+| `how-3.jpg` | [IfO65r2Jaj0](https://unsplash.com/photos/IfO65r2Jaj0) | [Caleb Jack](https://unsplash.com/@hitthetrailjack) |
+| `how-4.jpg` | [-IyFkzVo_7A](https://unsplash.com/photos/-IyFkzVo_7A) | [Colin Lloyd](https://unsplash.com/@onthesearchforpineapples) |
+| `how-5.jpg` | [9PbeIG_WSb8](https://unsplash.com/photos/9PbeIG_WSb8) | [Irvin Aloise](https://unsplash.com/@istin) |
+| `how-6.jpg` | [RsRTIofe0HE](https://unsplash.com/photos/RsRTIofe0HE) | [John Fowler](https://unsplash.com/@wildhoney) |
+| `how-7.jpg` | [YuTbDWw6wZI](https://unsplash.com/photos/YuTbDWw6wZI) | [Danny Rienecker](https://unsplash.com/@danny_rienecker) |

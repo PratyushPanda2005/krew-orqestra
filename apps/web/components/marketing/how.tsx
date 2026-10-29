@@ -9,12 +9,9 @@ import { howPhotos } from "./photos"
 import { PillLink } from "./pill-link"
 import { Split } from "./split"
 import { eyebrow, quiet } from "./styles"
-import { UpiTile } from "./upi-tile"
 
-/** A step's photo; the Advance step has none, so it shows the UPI tile. */
 function StepPhoto({ i, sizes, className }: { i: number; sizes: string; className?: string }) {
-  const photo = howPhotos[i]
-  if (!photo) return <UpiTile className={className} />
+  const photo = howPhotos[i]!
   return (
     <div className={cn("relative overflow-clip bg-brand-navy/10", className)}>
       <Image src={photo.src} alt={photo.alt} fill sizes={sizes} className="object-cover" />

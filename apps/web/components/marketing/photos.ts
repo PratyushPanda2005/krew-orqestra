@@ -3,12 +3,13 @@ import type { StaticImageData } from "next/image"
 import clients1 from "@/app/(marketing)/images/clients-1.jpg"
 import clients2 from "@/app/(marketing)/images/clients-2.jpg"
 import clients3 from "@/app/(marketing)/images/clients-3.jpg"
-import howEnquiry from "@/app/(marketing)/images/how-enquiry.jpg"
-import howInvoice from "@/app/(marketing)/images/how-invoice.jpg"
-import howPaid from "@/app/(marketing)/images/how-paid.jpg"
-import howQuote from "@/app/(marketing)/images/how-quote.jpg"
-import howReview from "@/app/(marketing)/images/how-review.jpg"
-import howWork from "@/app/(marketing)/images/how-work.jpg"
+import how1 from "@/app/(marketing)/images/how-1.jpg"
+import how2 from "@/app/(marketing)/images/how-2.jpg"
+import how3 from "@/app/(marketing)/images/how-3.jpg"
+import how4 from "@/app/(marketing)/images/how-4.jpg"
+import how5 from "@/app/(marketing)/images/how-5.jpg"
+import how6 from "@/app/(marketing)/images/how-6.jpg"
+import how7 from "@/app/(marketing)/images/how-7.jpg"
 import messBrief from "@/app/(marketing)/images/mess-brief.jpg"
 import messChasing from "@/app/(marketing)/images/mess-chasing.jpg"
 import messDate from "@/app/(marketing)/images/mess-date.jpg"
@@ -38,18 +39,15 @@ export const messPhotos = {
   twoReplies: { src: messTwoReplies, alt: "Two people looking at one phone" },
 } satisfies Record<string, Photo>
 
-/**
- * One per step of "How a job runs", in order: cinematic, muted, editorial, in the style of
- * trionn's work cards, cropped to their 670 × 460. The Advance step uses the UPI tile instead.
- */
-export const howPhotos: (Photo | null)[] = [
-  { src: howEnquiry, alt: "A bride and groom under strings of wedding lights" },
-  { src: howQuote, alt: "A laptop and an open notebook on a dark desk" },
-  null,
-  { src: howWork, alt: "A film crew setting up lights and cameras in a warehouse studio" },
-  { src: howReview, alt: "An editor silhouetted against a screen, editing a photo" },
-  { src: howInvoice, alt: "A dark, minimal desk with a monitor and a lamp" },
-  { src: howPaid, alt: "A photographer shooting in a dark studio" },
+/** One per step of "How a job runs", in order: wide, quiet landscapes, in trionn's 670 × 460 card. */
+export const howPhotos: Photo[] = [
+  { src: how1, alt: "Layered blue mountain ranges fading into the sky" },
+  { src: how2, alt: "Sand dunes below mountains under a cloudy sky" },
+  { src: how3, alt: "White sand stretching to a mountain range" },
+  { src: how4, alt: "Golden plains below snow-capped mountains" },
+  { src: how5, alt: "Dark hills at dusk with the sea beyond" },
+  { src: how6, alt: "The moon above pale dunes at dusk" },
+  { src: how7, alt: "Jagged mountains behind grassy dunes and black sand" },
 ]
 
 /**
