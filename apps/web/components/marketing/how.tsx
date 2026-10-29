@@ -22,7 +22,7 @@ function StepPhoto({ i, sizes, className }: { i: number; sizes: string; classNam
   )
 }
 
-const panel = "relative flex w-full shrink-0 flex-col items-center justify-center px-6 py-16 md:h-full md:w-[50vw] md:px-10 md:py-0 lg:px-20"
+const panel = "relative flex w-full shrink-0 flex-col items-center justify-center px-6 py-12 md:h-full md:w-[50vw] md:px-10 md:py-0 lg:px-20"
 
 /** trionn's divider: a full-height hairline on a panel's left edge that draws downwards as it comes in. */
 function Divider() {

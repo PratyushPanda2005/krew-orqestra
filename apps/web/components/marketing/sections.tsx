@@ -10,7 +10,7 @@ import { FaqOpener } from "./faq-opener"
 import { clientPhotos, trustPhotos } from "./photos"
 import { PillLink } from "./pill-link"
 import { Split } from "./split"
-import { eyebrow, quiet, sectionTitle, wide } from "./styles"
+import { eyebrow, quiet, sectionTitle, sectionY, wide } from "./styles"
 import { UpiTile } from "./upi-tile"
 
 const InvoiceMock = stageMocks[5]!
@@ -27,7 +27,7 @@ const rowStack = ["lg:top-[5%] lg:mb-[18rem]", "lg:top-[18%] lg:mb-[12rem]", "lg
  */
 export function Clients() {
   return (
-    <section id="clients" aria-labelledby="clients-title" className="relative isolate py-20 lg:py-32">
+    <section id="clients" aria-labelledby="clients-title" className={cn("relative isolate", sectionY)}>
       <Gradient className="-z-10" />
       <div className={cn(wide, "flex flex-col items-center text-center")}>
         <p data-up="0" className={eyebrow}>
@@ -95,7 +95,7 @@ const sentences = (text: string) => text.match(/[^.]+\.+/g)?.map((t) => t.trim()
 export function Trust() {
   const n = trust.items.length
   return (
-    <section id="trust" aria-labelledby="trust-title" className="relative isolate py-20 lg:py-32">
+    <section id="trust" aria-labelledby="trust-title" className={cn("relative isolate", sectionY)}>
       <div className={wide}>
         <p data-up="0" className={eyebrow}>
           {trust.eyebrow}
@@ -111,7 +111,7 @@ export function Trust() {
               <li
                 key={t.title}
                 className={cn(
-                  "sticky top-[5%] flex flex-col gap-6 border-t border-brand-navy/15 bg-brand-snow pt-6 pb-8 lg:flex-row lg:pt-8",
+                  "sticky top-[5%] flex flex-col gap-6 border-t border-brand-navy/15 bg-brand-snow pt-6 pb-8 last:pb-0 lg:flex-row lg:pt-8",
                   rowStack[i]
                 )}
               >
@@ -166,7 +166,7 @@ export function Trust() {
  */
 export function Faq() {
   return (
-    <section id="faq" aria-labelledby="faq-title" className="relative isolate py-20 lg:py-32">
+    <section id="faq" aria-labelledby="faq-title" className={cn("relative isolate", sectionY)}>
       <Gradient className="-z-10" />
       <div className={cn(wide, "flex flex-col gap-12 lg:flex-row lg:items-start lg:gap-16")}>
         <div className="flex flex-col gap-7 lg:sticky lg:top-24 lg:w-1/3 lg:shrink-0">

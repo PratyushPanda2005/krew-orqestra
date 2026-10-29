@@ -7,7 +7,7 @@ import { liveJobs } from "@/lib/landing-samples"
 import { MockExport, MockIncome, MockPending } from "./mocks"
 import { PillLink } from "./pill-link"
 import { Split } from "./split"
-import { eyebrow, quiet, wide } from "./styles"
+import { eyebrow, quiet, sectionY, wide } from "./styles"
 
 const art = [MockIncome, MockPending, MockExport]
 
@@ -19,7 +19,7 @@ const art = [MockIncome, MockPending, MockExport]
  */
 export function IncomeIntro() {
   return (
-    <section id="income" aria-labelledby="income-title" data-hz-under className="relative isolate flex flex-col items-center justify-center gap-12 px-5 py-24 text-center md:min-h-svh md:justify-between md:gap-0 lg:px-10 lg:pt-28 lg:pb-12">
+    <section id="income" aria-labelledby="income-title" data-hz-under className={cn(sectionY, "relative isolate flex flex-col items-center justify-center gap-12 px-5 text-center md:min-h-svh md:justify-between md:gap-0 md:pt-24 lg:px-10 lg:pt-28")}>
       <p className={eyebrow}>[ {income.eyebrow} ]</p>
       <h2 id="income-title" data-blur className="max-w-[16ch] font-display text-[clamp(2.75rem,8.5vw,8.5rem)] leading-[0.92] font-bold tracking-tight uppercase">
         <Split text={income.title} scatter />
@@ -43,7 +43,7 @@ export function IncomeIntro() {
 export function Income() {
   const steps = how.steps.length
   return (
-    <div id="jobs" className="py-20 lg:py-32">
+    <div id="jobs" className={sectionY}>
       <p data-up="0" className={cn(wide, "max-w-3xl text-lg lg:text-xl", quiet)}>
         {income.body}
       </p>

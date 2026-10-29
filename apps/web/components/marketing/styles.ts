@@ -21,5 +21,11 @@ export const pill =
 export const outlinePill =
   "inline-flex min-h-12 items-center justify-center rounded-full border border-brand-navy px-6 text-base font-medium transition-shadow duration-400 hover:shadow-[inset_0_0_12px_0_var(--brand-navy)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-navy"
 
+/**
+ * Vertical padding for every landing section: 48 / 64 / 80 px (phone / tablet / desktop), so
+ * the space between one section's content and the next is the same everywhere: 96 / 128 / 160 px.
+ */
+export const sectionY = "py-12 md:py-16 lg:py-20"
+
 /** Edge-to-edge grid of the brand sections: 20 px gutters on phones, 40 px on desktop (reference). */
 export const wide = "mx-auto w-full max-w-[90rem] px-5 lg:px-10"

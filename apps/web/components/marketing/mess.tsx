@@ -6,7 +6,7 @@ import { mess } from "@/app/(marketing)/copy"
 import { messPhotos } from "./photos"
 import { PillLink } from "./pill-link"
 import { letters, Split } from "./split"
-import { eyebrow, quiet, wide } from "./styles"
+import { eyebrow, quiet, sectionY, wide } from "./styles"
 
 type Key = keyof typeof messPhotos
 
@@ -32,7 +32,7 @@ const tiles: { key: Key; who: "client" | "crew"; at: string }[] = [
 export function Mess() {
   const total = letters(mess.title) + letters(mess.intro)
   return (
-    <section id="mess" aria-labelledby="mess-title" className="relative isolate py-20 lg:py-36">
+    <section id="mess" aria-labelledby="mess-title" className={cn("relative isolate", sectionY)}>
       <div className={cn(wide, "grid gap-6 lg:grid-cols-12 lg:gap-10")}>
         <p data-up="0" className={cn(eyebrow, "lg:col-span-3 lg:pt-3")}>
           {mess.eyebrow}

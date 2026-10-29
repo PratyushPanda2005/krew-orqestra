@@ -42,7 +42,7 @@ export function MarketingFooter() {
     <footer className="relative isolate flex min-h-svh flex-col overflow-clip bg-brand-navy-deep font-body text-brand-snow">
       <ShaderGradient kind="smoke" className="-z-10" />
 
-      <section id="waitlist" aria-labelledby="waitlist-title" className={cn(wide, "pt-28 pb-10 lg:pt-36")}>
+      <section id="waitlist" aria-labelledby="waitlist-title" className={cn(wide, "pt-12 pb-10 md:pt-16 lg:pt-20")}>
         <div className="flex items-start justify-between gap-6">
           <p data-up="0" className={label}>
             {waitlist.eyebrow}
