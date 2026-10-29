@@ -11,12 +11,6 @@ All from Unsplash under the Unsplash License (free for commercial use, no attrib
 | `mess-date.jpg` | [MKwCaWQH9YY](https://unsplash.com/photos/MKwCaWQH9YY) | [Daniel Alpernia](https://unsplash.com/@alpernia) |
 | `mess-brief.jpg` | [VW2oU66mwbc](https://unsplash.com/photos/VW2oU66mwbc) | [Mark Cruz](https://unsplash.com/@mark_crz) |
 | `mess-two-replies.jpg` | [Y4zNMW3pQAs](https://unsplash.com/photos/Y4zNMW3pQAs) | [Karthik Balakrishnan](https://unsplash.com/@karthikb351) |
-| `how-enquiry.jpg` | [d9RsO9BHFVQ](https://unsplash.com/photos/d9RsO9BHFVQ) | [ARTO SURAJ](https://unsplash.com/@artosuraj) |
-| `how-quote.jpg` | [_dFg4fx3MmQ](https://unsplash.com/photos/_dFg4fx3MmQ) | [Christopher Luther](https://unsplash.com/@chriscantlose) |
-| `how-work.jpg` | [ILPEC4rj92A](https://unsplash.com/photos/ILPEC4rj92A) | [Rendy Novantino](https://unsplash.com/@novantino) |
-| `how-review.jpg` | [udRj4qXyAPs](https://unsplash.com/photos/udRj4qXyAPs) | [Sandisk](https://unsplash.com/@sandisk) |
-| `how-invoice.jpg` | [aSoQQLyPe1U](https://unsplash.com/photos/aSoQQLyPe1U) | [Jakub Żerdzicki](https://unsplash.com/@jakubzerdzicki) |
-| `how-paid.jpg` | [xqkCgI1oSlg](https://unsplash.com/photos/xqkCgI1oSlg) | [Aravind Kumar](https://unsplash.com/@arvndvisual) |
 | `trust-1.jpg` | [2reWyg-SssE](https://unsplash.com/photos/2reWyg-SssE) | [Rick Rothenberg](https://unsplash.com/@rick_rothenberg) |
 | `trust-2.jpg` | [Qerg85B7JDI](https://unsplash.com/photos/Qerg85B7JDI) | [Nat](https://unsplash.com/@nattgw) |
 | `trust-3.jpg` | [-Vtr4MLIhno](https://unsplash.com/photos/-Vtr4MLIhno) | [Buddha Elemental 3D](https://unsplash.com/@buddhaelemental3d) |
@@ -24,3 +18,9 @@ All from Unsplash under the Unsplash License (free for commercial use, no attrib
 | `clients-1.jpg` | [T5VUBvCYqKk](https://unsplash.com/photos/T5VUBvCYqKk) | [Pawel Czerwinski](https://unsplash.com/@pawel_czerwinski) |
 | `clients-2.jpg` | [7FqOISWr5V0](https://unsplash.com/photos/7FqOISWr5V0) | [Pawel Czerwinski](https://unsplash.com/@pawel_czerwinski) |
 | `clients-3.jpg` | [4ma0W4q9xTo](https://unsplash.com/photos/4ma0W4q9xTo) | [Pawel Czerwinski](https://unsplash.com/@pawel_czerwinski) |
+| `how-enquiry.jpg` | [yS6e3uhm_ZM](https://unsplash.com/photos/yS6e3uhm_ZM) | [ARTO SURAJ](https://unsplash.com/@artosuraj) |
+| `how-quote.jpg` | [2WxnKStKQTs](https://unsplash.com/photos/2WxnKStKQTs) | [Ionela Mat](https://unsplash.com/@ionelaaaaa) |
+| `how-work.jpg` | [ntqaFfrDdEA](https://unsplash.com/photos/ntqaFfrDdEA) | [Jakob Owens](https://unsplash.com/@jakobowens1) |
+| `how-review.jpg` | [SL5d_8ywAAA](https://unsplash.com/photos/SL5d_8ywAAA) | [Glenn Carstens-Peters](https://unsplash.com/@glenncarstenspeters) |
+| `how-invoice.jpg` | [TJjTEJt0iHA](https://unsplash.com/photos/TJjTEJt0iHA) | [Dillon Shook](https://unsplash.com/@dillonjshook) |
+| `how-paid.jpg` | [6zEfniBMs6c](https://unsplash.com/photos/6zEfniBMs6c) | [Szabo Viktor](https://unsplash.com/@vmxhu) |

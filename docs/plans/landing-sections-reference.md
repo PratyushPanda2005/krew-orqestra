@@ -308,3 +308,7 @@ Measured content-to-content gaps between sections: 112–256 px on desktop and 6
 **Bottom blur**, as novaform's `bottom-blur-block` (read from its CSS): a fixed strip 6 rem tall (8 rem from 1920 px) along the bottom of the screen, made of four layers that blur what's behind them by 16, 8, 4 and 2 px, each masked to a band, so the blur is strongest at the edge and fades out upwards. It ignores the pointer, and it's hidden up to 991 px, as on the reference (`bottom-blur.tsx`).
 
 **"See your jobs"** is now the standard green pill, with no arrow.
+
+## 26. How a job runs: new step images (29 Oct 2026)
+
+Asked for trionn's own images. Its "Selected work" has only three, and each is a screenshot of a client's website carrying that client's brand (MyWorker AI, Pulse Studio, Loftloom). So they don't fit Krew's seven steps even with permission. Instead there are six free Unsplash photos in trionn's look (cinematic, muted, editorial), cropped to its 670 × 460 card, 58–236 KB each, credited in CREDITS.md: a couple under wedding lights (Enquiry), a laptop and notebook on black (Quote), a film crew in a warehouse studio (Work), an editor silhouetted at a screen (Review), a dark minimal desk (Invoice), a photographer in a dark studio (Paid). Advance keeps the UPI tile.

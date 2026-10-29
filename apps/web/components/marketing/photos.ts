@@ -38,15 +38,18 @@ export const messPhotos = {
   twoReplies: { src: messTwoReplies, alt: "Two people looking at one phone" },
 } satisfies Record<string, Photo>
 
-/** One per step of "How a job runs", in order. The Advance step uses the UPI tile instead. */
+/**
+ * One per step of "How a job runs", in order: cinematic, muted, editorial, in the style of
+ * trionn's work cards, cropped to their 670 × 460. The Advance step uses the UPI tile instead.
+ */
 export const howPhotos: (Photo | null)[] = [
-  { src: howEnquiry, alt: "A bride and groom at their wedding" },
-  { src: howQuote, alt: "A photographer at a desk with his camera" },
+  { src: howEnquiry, alt: "A bride and groom under strings of wedding lights" },
+  { src: howQuote, alt: "A laptop and an open notebook on a dark desk" },
   null,
-  { src: howWork, alt: "A video crew filming in a field" },
-  { src: howReview, alt: "An editor at a desk with several monitors" },
-  { src: howInvoice, alt: "A desk with monitors and camera kit" },
-  { src: howPaid, alt: "A smiling photographer holding his camera" },
+  { src: howWork, alt: "A film crew setting up lights and cameras in a warehouse studio" },
+  { src: howReview, alt: "An editor silhouetted against a screen, editing a photo" },
+  { src: howInvoice, alt: "A dark, minimal desk with a monitor and a lamp" },
+  { src: howPaid, alt: "A photographer shooting in a dark studio" },
 ]
 
 /**
