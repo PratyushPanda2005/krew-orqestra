@@ -8,6 +8,7 @@ import { stageMocks } from "./mocks"
 import { Gradient } from "./gradient"
 import { FaqOpener } from "./faq-opener"
 import { clientPhotos, trustPhotos } from "./photos"
+import { PillLink } from "./pill-link"
 import { Split } from "./split"
 import { eyebrow, quiet, sectionTitle, wide } from "./styles"
 import { UpiTile } from "./upi-tile"
@@ -127,7 +128,7 @@ export function Trust() {
                     href={`#faq-q${t.faq + 1}`}
                     data-faq-open={t.faq}
                     aria-label={trust.moreLabel(t.title)}
-                    className="absolute top-1/2 left-1/2 flex size-18 -translate-1/2 items-center justify-center rounded-full bg-white text-sm font-medium text-brand-navy opacity-0 transition-opacity duration-400 ease-[cubic-bezier(0.61,1,0.88,1)] group-hover:opacity-100 focus-visible:opacity-100 [@media(hover:none)]:opacity-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-navy lg:size-25"
+                    className="absolute top-1/2 left-1/2 flex size-18 -translate-1/2 items-center justify-center rounded-full bg-white text-base font-medium text-brand-navy opacity-0 transition-opacity duration-400 ease-[cubic-bezier(0.61,1,0.88,1)] group-hover:opacity-100 focus-visible:opacity-100 [@media(hover:none)]:opacity-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-navy lg:size-25"
                   >
                     {trust.more}
                   </a>
@@ -169,7 +170,7 @@ export function Faq() {
       <Gradient className="-z-10" />
       <div className={cn(wide, "flex flex-col gap-12 lg:flex-row lg:items-start lg:gap-16")}>
         <div className="flex flex-col gap-7 lg:sticky lg:top-24 lg:w-1/3 lg:shrink-0">
-          <p data-up="0" className="inline-flex items-center gap-2.5 self-start rounded-lg bg-brand-navy/[0.06] px-4 py-3 text-sm font-medium">
+          <p data-up="0" className="inline-flex items-center gap-2.5 self-start rounded-full bg-brand-navy/[0.06] px-4 py-3 text-sm font-medium">
             <span aria-hidden className="size-2 rounded-full bg-brand-green" />
             {faq.eyebrow.replace(/[[\]]/g, "").trim()}
           </p>
@@ -184,12 +185,9 @@ export function Faq() {
             </div>
             <div className="flex">
               <div className="rounded-b-2xl bg-[color-mix(in_srgb,var(--brand-green)_16%,var(--brand-snow))] px-8 pb-8">
-                <a
-                  href={`mailto:${site.contactEmail}`}
-                  className="inline-flex h-12 items-center rounded-lg bg-white px-6 font-medium shadow-sm transition-shadow hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-navy"
-                >
+                <PillLink href={`mailto:${site.contactEmail}`} variant="outline">
                   {faq.helpCta}
-                </a>
+                </PillLink>
               </div>
               <span
                 aria-hidden
@@ -204,7 +202,7 @@ export function Faq() {
             <details key={item.q} id={`faq-q${i + 1}`} name="faq" open={i === 0} data-up={i < 3 ? String(i * 2) : undefined} className="group rounded-2xl bg-white ring-1 ring-brand-navy/5">
               <summary className="flex min-h-tap cursor-pointer list-none items-center justify-between gap-6 rounded-2xl px-6 py-5 outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-navy lg:px-8 [&::-webkit-details-marker]:hidden">
                 <h3 className="text-base font-medium lg:text-lg">{item.q}</h3>
-                <span aria-hidden className="flex size-12 shrink-0 items-center justify-center rounded-[9px] border border-brand-navy/15">
+                <span aria-hidden className="flex size-12 shrink-0 items-center justify-center rounded-full border border-brand-navy/15">
                   <span className="relative flex size-4 items-center justify-center transition-transform duration-500 ease-[cubic-bezier(0.165,0.84,0.44,1)] group-open:rotate-45">
                     <span className="absolute h-px w-4 bg-current" />
                     <span className="absolute h-4 w-px bg-current" />

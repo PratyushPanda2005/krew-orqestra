@@ -20,11 +20,11 @@ const boot = `(function(){var d=document.documentElement;d.classList.add("js");i
 
 export default function MarketingLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className={lexend.variable}>
+    <div className={`${lexend.variable} font-body`}>
       <script dangerouslySetInnerHTML={{ __html: boot }} />
       <a
         href="#main"
-        className="sr-only z-60 rounded-md bg-card px-4 py-3 font-medium focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:outline-2 focus:outline-ring"
+        className="sr-only z-60 rounded-full bg-card px-6 py-3 font-medium focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:outline-2 focus:outline-ring"
       >
         Skip to content
       </a>

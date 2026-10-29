@@ -75,8 +75,8 @@ export function Mess() {
               </figure>
             )
           })}
-          <div className="col-span-2 flex items-start lg:col-span-1 lg:col-start-1 lg:row-start-1 lg:items-center">
-            <PillLink href="#how" variant="outline" className="py-2 text-center leading-tight">
+          <div className="col-span-2 flex items-start lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:items-center">
+            <PillLink href="#how" variant="outline" className="whitespace-nowrap">
               {mess.closing}
             </PillLink>
           </div>

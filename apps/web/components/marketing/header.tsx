@@ -41,7 +41,7 @@ export function HeroNav() {
       <details className="group lg:hidden">
         <summary
           aria-label={hero.navLabel}
-          className="flex size-12 cursor-pointer list-none items-center justify-center bg-brand-snow text-brand-navy focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-snow [&::-webkit-details-marker]:hidden"
+          className="flex size-12 cursor-pointer list-none items-center justify-center rounded-full bg-brand-snow text-brand-navy focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-snow [&::-webkit-details-marker]:hidden"
         >
           <svg aria-hidden viewBox="0 0 24 24" className="size-6 group-open:hidden" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M4 7h16M4 12h16M4 17h16" />

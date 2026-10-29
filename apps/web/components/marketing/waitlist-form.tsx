@@ -24,11 +24,12 @@ const showContact = (c: string) => c.replace(/^\+91(\d{5})(\d{5})$/, "+91 $1 $2"
 // Native label, input and button, styled like the shadcn ones with our tokens. The shadcn
 // versions pull Radix and a class merger into this page's JS, which the 4G budget can't carry.
 const inputClass =
-  "h-tap w-full min-w-0 rounded-lg border border-input bg-card px-3 text-base outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20"
+  "h-12 w-full min-w-0 rounded-full border border-input bg-card px-5 text-base outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20"
 const buttonClass =
-  "inline-flex h-tap shrink-0 items-center justify-center rounded-lg px-5 text-base font-medium aria-disabled:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
-const primaryClass = `${buttonClass} bg-primary text-primary-foreground hover:bg-primary/80`
-const outlineClass = `${buttonClass} border border-input bg-card hover:bg-secondary`
+  "inline-flex h-12 shrink-0 items-center justify-center rounded-full px-6 text-base font-medium transition-shadow duration-400 aria-disabled:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+// Same pill as the rest of the landing (pill-link.tsx): fully round, 48 px, 16 px medium, soft inner glow on hover.
+const primaryClass = `${buttonClass} bg-primary text-primary-foreground hover:shadow-[inset_0_0_16px_0_var(--brand-snow)]`
+const outlineClass = `${buttonClass} border border-foreground bg-card hover:shadow-[inset_0_0_12px_0_var(--brand-navy)]`
 
 /**
  * Pilot waitlist in two steps: a contact is the whole sign-up, then we ask about

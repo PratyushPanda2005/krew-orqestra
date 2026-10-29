@@ -5,6 +5,7 @@ import { how, income } from "@/app/(marketing)/copy"
 import { liveJobs } from "@/lib/landing-samples"
 
 import { MockExport, MockIncome, MockPending } from "./mocks"
+import { PillLink } from "./pill-link"
 import { Split } from "./split"
 import { eyebrow, quiet, wide } from "./styles"
 
@@ -26,12 +27,9 @@ export function IncomeIntro() {
       <div className="flex w-full flex-col items-center gap-4 lg:flex-row lg:justify-between">
         <span className="hidden w-40 lg:block" />
         <p className="text-xs font-medium tracking-wide uppercase">◆ {income.lead}</p>
-        <a
-          href="#jobs"
-          className="inline-flex min-h-tap w-40 items-center justify-between gap-3 border-b border-brand-navy/40 text-xs font-medium tracking-wide uppercase focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-navy"
-        >
-          {income.more} <span aria-hidden>↓</span>
-        </a>
+        <PillLink href="#jobs" variant="outline" className="whitespace-nowrap">
+          {income.more} ↓
+        </PillLink>
       </div>
     </section>
   )

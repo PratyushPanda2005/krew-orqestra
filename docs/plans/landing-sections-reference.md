@@ -269,3 +269,11 @@ Studied roommaster.com/property-management at 1440 and 390 px (a demo pop-up had
 On request ("remove the gradients … too much small gradients"), the light sections now use only one soft pearl wash (snow into a light navy tint, no grain), alternating with plain snow: How, Clients and Questions get the wash. Removed: the mist and haze blobs, the swift, dusk and dither card art (now flat light panels), the ecliptic ring on the UPI tile (plain navy), the lime-to-green pill, and the violet-to-green job bars (plain green). Kept: the hero's light band and the footer's dark smoke, which are full-section backgrounds rather than small gradients.
 
 The hero nav and the floating nav now use the same "Join the pilot" pill as everywhere else (48 px, 16 px text, hover dot), with a light focus ring on navy.
+
+## 22. One button style everywhere (29 Oct 2026)
+
+Audited every button and link-styled control on the page with a script (computed radius, height, font):
+- **One pill:** fully round, 48 px tall, Lexend Deca 16 px medium, a dot and a soft inner glow on hover (`pill-link.tsx`; green or navy outline). It now covers the navs, Mess, How's end panel, "See your jobs ↓" (was an underlined link), "Email us" (was 12 px corners), and the form's "Join the pilot", "Save" and "Skip for now" (were 12 px corners and 44 px tall). The email field is round too, so it matches the button beside it.
+- **Round icon buttons:** the hero's jump links, the phone menu button (was square), the FAQ's +/× (was 9 px corners), and "Ask" (now 16 px text).
+- **Fonts:** the landing layout sets Lexend Deca on everything. The floating nav and the skip link had fallen back to the app's Anek Latin.
+- Left as they are: the small buttons inside the phone mock-ups, which show the app's own interface.
