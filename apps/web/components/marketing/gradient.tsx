@@ -4,12 +4,11 @@ import { cn } from "@krew/ui/lib/utils"
  * Backgrounds (marketing.css):
  *   pearl   the one section wash: snow into a light navy tint, after trionn's white-to-grey
  *           grounds. Used on alternate sections; the rest stay plain snow.
- *   swift   a blurred pastel swirl  ┐
- *   dusk    navy into violet, coral ├ the three Income cards only, with film grain,
- *   dither  a fade broken into dots ┘ after grainient.supply
+ *   dusk    navy into violet and coral, with film grain (after grainient.supply): the three
+ *           Income cards only
  * Decorative, CSS only.
  */
-export type GradientKind = "pearl" | "swift" | "dusk" | "dither"
+export type GradientKind = "pearl" | "dusk"
 
 export function Gradient({ kind = "pearl", className }: { kind?: GradientKind; className?: string }) {
   return (
