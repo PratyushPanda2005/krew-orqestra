@@ -302,3 +302,9 @@ Measured content-to-content gaps between sections: 112–256 px on desktop and 6
 **Follow-up (29 Oct 2026):** inside the three Income cards only (`data-brand`, marketing.css), the app's colour roles take the brand colours, so the mock-ups show green chart bars, a dark brand-green "received" amount, navy text and brand-tinted borders instead of the app's rani pink and peacock teal. The rest of the page and the app itself are unchanged.
 
 **Follow-up (29 Oct 2026):** all three Income cards now share the middle card's background, the grainy dusk (navy into violet and coral). The swift and dither styles are removed.
+
+## 25. Bottom blur; "See your jobs" (29 Oct 2026)
+
+**Bottom blur**, as novaform's `bottom-blur-block` (read from its CSS): a fixed strip 6 rem tall (8 rem from 1920 px) along the bottom of the screen, made of four layers that blur what's behind them by 16, 8, 4 and 2 px, each masked to a band, so the blur is strongest at the edge and fades out upwards. It ignores the pointer, and it's hidden up to 991 px, as on the reference (`bottom-blur.tsx`).
+
+**"See your jobs"** is now the standard green pill, with no arrow.

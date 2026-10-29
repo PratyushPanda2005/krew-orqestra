@@ -1,5 +1,6 @@
 import localFont from "next/font/local"
 
+import { BottomBlur } from "@/components/marketing/bottom-blur"
 import { MarketingFooter } from "@/components/marketing/footer"
 
 import "./marketing.css"
@@ -30,6 +31,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
       </a>
       <main id="main">{children}</main>
       <MarketingFooter />
+      <BottomBlur />
     </div>
   )
 }

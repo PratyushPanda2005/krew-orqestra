@@ -28,8 +28,8 @@ export function IncomeIntro() {
       <div className="flex w-full flex-col items-center gap-4 lg:flex-row lg:justify-between">
         <span className="hidden w-40 lg:block" />
         <p className="text-xs font-medium tracking-wide uppercase">◆ {income.lead}</p>
-        <PillLink href="#jobs" variant="outline" className="whitespace-nowrap">
-          {income.more} ↓
+        <PillLink href="#jobs" className="whitespace-nowrap">
+          {income.more}
         </PillLink>
       </div>
     </section>
