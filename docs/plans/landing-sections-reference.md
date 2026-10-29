@@ -298,3 +298,5 @@ Measured content-to-content gaps between sections: 112–256 px on desktop and 6
 | Sticky stack (2/17/30%) shrinking to 0.7 / 0.8 / 0.8 | unchanged |
 
 **Follow-up (29 Oct 2026):** on request, the three Income cards get their grainy gradients back (swift, dusk, dither from §16). They're the only small gradients on the page; every other section keeps the plain snow or pearl wash from §21.
+
+**Follow-up (29 Oct 2026):** inside the three Income cards only (`data-brand`, marketing.css), the app's colour roles take the brand colours, so the mock-ups show green chart bars, a dark brand-green "received" amount, navy text and brand-tinted borders instead of the app's rani pink and peacock teal. The rest of the page and the app itself are unchanged.

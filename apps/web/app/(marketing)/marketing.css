@@ -6,6 +6,32 @@
  * html.intro     set on the first visit of a session, with motion allowed: plays the hero intro.
  *                Without it (no JS, reduced motion, a repeat visit) the hero is its final frame.
  */
+/*
+ * Brand colours for the three Income cards (income.tsx). The app's colour roles (primary,
+ * accent, success…) hold the app's own palette in globals.css; inside these cards they take the
+ * Orry brand book's colours, so the app screens shown there are on-brand.
+ */
+[data-brand] {
+  --background: var(--brand-snow);
+  --foreground: var(--brand-navy);
+  --card-foreground: var(--brand-navy);
+  --popover-foreground: var(--brand-navy);
+  --primary: var(--brand-green);
+  --primary-foreground: var(--brand-navy);
+  --secondary: color-mix(in srgb, var(--brand-navy) 6%, var(--brand-snow));
+  --secondary-foreground: var(--brand-navy);
+  --muted: color-mix(in srgb, var(--brand-navy) 6%, var(--brand-snow));
+  --muted-foreground: color-mix(in srgb, var(--brand-navy) 75%, var(--brand-snow));
+  --accent: color-mix(in srgb, var(--brand-violet) 30%, var(--brand-snow));
+  --accent-foreground: var(--brand-navy);
+  --border: color-mix(in srgb, var(--brand-navy) 12%, var(--brand-snow));
+  --input: color-mix(in srgb, var(--brand-navy) 22%, var(--brand-snow));
+  --ring: var(--brand-navy);
+  /* Money in: the brand green, darkened with navy until it reads on white (about 5.5:1). */
+  --success: color-mix(in srgb, var(--brand-green) 45%, var(--brand-navy));
+  --success-soft: color-mix(in srgb, var(--brand-green) 22%, var(--brand-snow));
+}
+
 html:not(.js) [data-js-only] {
   display: none;
 }

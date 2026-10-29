@@ -59,7 +59,6 @@ export function MarketingFooter() {
               {waitlist.intro}
             </p>
           </div>
-          {/* The form's button and focus ring take the brand green and navy here, not the app's pink. */}
           <div
             data-up="2"
             className="self-end rounded-2xl bg-card p-5 text-foreground shadow-2xl [--primary-foreground:var(--brand-navy)] [--primary:var(--brand-green)] [--ring:var(--brand-navy)] lg:col-span-5 lg:p-7"

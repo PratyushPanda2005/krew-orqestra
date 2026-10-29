@@ -91,7 +91,7 @@ export function Income() {
           const Art = art[i]!
           return (
             <li key={point} data-up="4">
-              <div aria-hidden className="relative isolate aspect-[4/3] overflow-hidden rounded-lg px-6 pt-6">
+              <div aria-hidden data-brand className="relative isolate aspect-[4/3] overflow-hidden rounded-lg px-6 pt-6">
                 <Gradient kind={grads[i]!} className="-z-10" />
                 <Art />
               </div>
