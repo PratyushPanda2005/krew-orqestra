@@ -159,7 +159,7 @@ export function Trust() {
 /**
  * Questions, in the layout of RoomMaster's FAQ, in our style. Two columns: on the left (sticky
  * 96 px from the top on wide screens) a pill label, the title blurring in, and a card asking
- * people to write in, whose bottom edge steps up on the right with a curved notch. On the right,
+ * people to write in (navy, with the green pill), whose bottom edge steps up on the right with a curved notch. On the right,
  * white cards with a square + button that turns into ×; the first starts open, one at a time.
  * Native <details name>, so it works without JS; answers slide open where the browser can
  * animate to auto height (marketing.css), and simply open elsewhere.
@@ -179,19 +179,19 @@ export function Faq() {
           </h2>
 
           {/* The card: a body, then a tab under its left part joined by an inverted (concave) corner. */}
-          <div data-up="2" className="mt-6 text-brand-navy">
-            <div className="rounded-t-2xl rounded-br-2xl bg-[color-mix(in_srgb,var(--brand-green)_16%,var(--brand-snow))] px-8 pt-8 pb-6">
+          <div data-up="2" className="mt-6 text-brand-snow">
+            <div className="rounded-t-2xl rounded-br-2xl bg-brand-navy px-8 pt-8 pb-6">
               <p className="max-w-xs text-lg leading-snug lg:text-xl">{faq.help}</p>
             </div>
             <div className="flex">
-              <div className="rounded-b-2xl bg-[color-mix(in_srgb,var(--brand-green)_16%,var(--brand-snow))] px-8 pb-8">
-                <PillLink href={`mailto:${site.contactEmail}`} variant="outline">
+              <div className="rounded-b-2xl bg-brand-navy px-8 pb-8">
+                <PillLink href={`mailto:${site.contactEmail}`} className="focus-visible:outline-brand-snow">
                   {faq.helpCta}
                 </PillLink>
               </div>
               <span
                 aria-hidden
-                className="size-4 bg-[radial-gradient(circle_at_100%_100%,transparent_1rem,color-mix(in_srgb,var(--brand-green)_16%,var(--brand-snow))_1rem)]"
+                className="size-4 bg-[radial-gradient(circle_at_100%_100%,transparent_1rem,var(--brand-navy)_1rem)]"
               />
             </div>
           </div>

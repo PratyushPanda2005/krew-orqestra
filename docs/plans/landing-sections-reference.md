@@ -281,3 +281,5 @@ Audited every button and link-styled control on the page with a script (computed
 ## 23. Even spacing between sections (29 Oct 2026)
 
 Measured content-to-content gaps between sections: 112–256 px on desktop and 68–176 px on phones, because neighbouring paddings stacked (128 + 128). Every section now uses one padding (`sectionY` in `styles.ts`: 48 / 64 / 80 px at phone / tablet / desktop), so the gap between one section's content and the next is the same everywhere: 96 / 128 / 160 px. Applied to Mess, the stacked How panels on phones, Income's opening (it keeps extra top room on tablet and desktop for the floating nav, since it fills the screen), the jobs list, Clients, Trust (its last row no longer adds its own bottom padding), Questions and the footer's join block.
+
+**Follow-up (29 Oct 2026):** the Questions "write to us" card is now navy (brand navy, light text) with the standard green "Email us" pill, on request.
