@@ -283,3 +283,16 @@ Audited every button and link-styled control on the page with a script (computed
 Measured content-to-content gaps between sections: 112–256 px on desktop and 68–176 px on phones, because neighbouring paddings stacked (128 + 128). Every section now uses one padding (`sectionY` in `styles.ts`: 48 / 64 / 80 px at phone / tablet / desktop), so the gap between one section's content and the next is the same everywhere: 96 / 128 / 160 px. Applied to Mess, the stacked How panels on phones, Income's opening (it keeps extra top room on tablet and desktop for the floating nav, since it fills the screen), the jobs list, Clients, Trust (its last row no longer adds its own bottom padding), Questions and the footer's join block.
 
 **Follow-up (29 Oct 2026):** the Questions "write to us" card is now navy (brand navy, light text) with the standard green "Email us" pill, on request.
+
+## 24. Client cards re-matched to novaform's case-study cards (29 Oct 2026)
+
+**Images:** as with §19, the reference's images aren't licensed for redistribution (its Licenses page), so there are three free Unsplash look-alikes, light enough for dark text, as on the reference: white sculpted waves (`clients-1`), lilac and pink folds (`clients-2`), cream and peach layers (`clients-3`). All are by Pawel Czerwinski and credited in CREDITS.md. They're cropped to the reference card's 1096 × 710 ratio at 2,200 px wide (98–210 KB). The Invoice card's UPI mock-up is replaced by an image, as the reference has an image on every card.
+
+**Structure, re-measured at 1440 px:**
+
+| Reference | Ours |
+|---|---|
+| The whole card is one link, 20 px corners, the image filling it (1096 × 710) | same ratio, up to 55 rem tall; 25 rem tall on phones (as the reference) |
+| Title 32 px medium and a 16 px light line, straight on the image, 56 px from the top-left; no panel | same, in navy (the glass panel is gone) |
+| Hover: image zooms to 1.1 over 0.6 s; a 65 px white "View" circle fades in at the centre (0.2 s) | same; the circle reads "Ask" and the card opens "Do my clients need to download anything?"; on touch screens the circle simply shows |
+| Sticky stack (2/17/30%) shrinking to 0.7 / 0.8 / 0.8 | unchanged |

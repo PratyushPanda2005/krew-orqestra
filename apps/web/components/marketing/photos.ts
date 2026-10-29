@@ -1,7 +1,8 @@
 import type { StaticImageData } from "next/image"
 
-import clientsQuote from "@/app/(marketing)/images/clients-quote.jpg"
-import clientsReview from "@/app/(marketing)/images/clients-review.jpg"
+import clients1 from "@/app/(marketing)/images/clients-1.jpg"
+import clients2 from "@/app/(marketing)/images/clients-2.jpg"
+import clients3 from "@/app/(marketing)/images/clients-3.jpg"
 import howEnquiry from "@/app/(marketing)/images/how-enquiry.jpg"
 import howInvoice from "@/app/(marketing)/images/how-invoice.jpg"
 import howPaid from "@/app/(marketing)/images/how-paid.jpg"
@@ -48,10 +49,15 @@ export const howPhotos: (Photo | null)[] = [
   { src: howPaid, alt: "A smiling photographer holding his camera" },
 ]
 
-export const clientPhotos: (Photo | null)[] = [
-  { src: clientsQuote, alt: "A couple on their wedding stage" },
-  { src: clientsReview, alt: "An editing desk with a camera and monitors" },
-  null,
+/**
+ * "Your clients never make an account" uses light abstract art, as the reference's case-study
+ * cards do, so the dark text can sit straight on the image. The reference's own images aren't
+ * licensed for reuse, so these are free look-alikes.
+ */
+export const clientPhotos: Photo[] = [
+  { src: clients1, alt: "White sculpted waves on a pale grey ground" },
+  { src: clients2, alt: "Soft folds of lilac and pink" },
+  { src: clients3, alt: "Curved layers of cream and peach paper" },
 ]
 
 /**
