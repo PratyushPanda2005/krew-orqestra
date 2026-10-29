@@ -263,3 +263,9 @@ Studied roommaster.com/property-management at 1440 and 390 px (a demo pop-up had
 | Right: white cards, 16 px corners, 28 px apart, question beside a 48 px square outlined button (+ / ×), first one open, answers slide open over 0.5 s, `cubic-bezier(0.165, 0.84, 0.44, 1)` | same, built on native `<details name="faq">`: one open at a time with no JS. The slide uses `::details-content` with `interpolate-size` where the browser supports it, and the answer simply opens elsewhere |
 
 "Ask" on a promise still opens its question (`faq-opener.tsx`). The tabbed stories version (`faq-stories.tsx`) is removed. 15 of 15 landing tests pass; LCP 1,412 ms, CLS 0.000.
+
+## 21. Gradients pared back; nav buttons unified (29 Oct 2026)
+
+On request ("remove the gradients … too much small gradients"), the light sections now use only one soft pearl wash (snow into a light navy tint, no grain), alternating with plain snow: How, Clients and Questions get the wash. Removed: the mist and haze blobs, the swift, dusk and dither card art (now flat light panels), the ecliptic ring on the UPI tile (plain navy), the lime-to-green pill, and the violet-to-green job bars (plain green). Kept: the hero's light band and the footer's dark smoke, which are full-section backgrounds rather than small gradients.
+
+The hero nav and the floating nav now use the same "Join the pilot" pill as everywhere else (48 px, 16 px text, hover dot), with a light focus ring on navy.

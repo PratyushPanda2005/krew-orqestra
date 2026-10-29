@@ -22,12 +22,12 @@ const rowStack = ["lg:top-[5%] lg:mb-[18rem]", "lg:top-[18%] lg:mb-[12rem]", "lg
  * "Your clients never make an account", in the layout and effects of the reference's
  * Selected Work: the title rises letter by letter, then full-width photo cards stack (sticky)
  * and each one shrinks back as you scroll past it (LandingMotion). Photos zoom on hover.
- * Text sits on a glass panel, after Vantra's case cards; a grainy mist behind.
+ * Text sits on a glass panel, after Vantra's case cards; a soft pearl wash behind.
  */
 export function Clients() {
   return (
     <section id="clients" aria-labelledby="clients-title" className="relative isolate py-20 lg:py-32">
-      <Gradient kind="mist" className="-z-10" />
+      <Gradient className="-z-10" />
       <div className={cn(wide, "flex flex-col items-center text-center")}>
         <p data-up="0" className={eyebrow}>
           {clients.eyebrow}
@@ -89,13 +89,12 @@ const sentences = (text: string) => text.match(/[^.]+\.+/g)?.map((t) => t.trim()
  * (sticky at 5/18/30/44% with 18/12/6 rem below, CSS only); each row is a portrait image
  * (up to 25 rem wide), the number, the title, and a "What this means" list with a rule under
  * each line. On hover the image zooms to 1.1 over 0.6 s and a round button fades in (0.4 s),
- * which here opens the matching question. A grainy haze behind the title.
+ * which here opens the matching question.
  */
 export function Trust() {
   const n = trust.items.length
   return (
     <section id="trust" aria-labelledby="trust-title" className="relative isolate py-20 lg:py-32">
-      <Gradient kind="haze" className="-z-10 h-[44rem]" />
       <div className={wide}>
         <p data-up="0" className={eyebrow}>
           {trust.eyebrow}
@@ -167,7 +166,7 @@ export function Trust() {
 export function Faq() {
   return (
     <section id="faq" aria-labelledby="faq-title" className="relative isolate py-20 lg:py-32">
-      <Gradient kind="mist" className="-z-10" />
+      <Gradient className="-z-10" />
       <div className={cn(wide, "flex flex-col gap-12 lg:flex-row lg:items-start lg:gap-16")}>
         <div className="flex flex-col gap-7 lg:sticky lg:top-24 lg:w-1/3 lg:shrink-0">
           <p data-up="0" className="inline-flex items-center gap-2.5 self-start rounded-lg bg-brand-navy/[0.06] px-4 py-3 text-sm font-medium">

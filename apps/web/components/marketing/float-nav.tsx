@@ -20,7 +20,7 @@ export function FloatNav() {
         {hero.name}
       </a>
       <p className="hidden text-xs font-medium tracking-wide text-brand-snow/80 uppercase sm:block">{footer.tagline}</p>
-      <PillLink href="#waitlist" className="h-11 px-4 text-sm">
+      <PillLink href="#waitlist" className="shrink-0 focus-visible:outline-brand-snow">
         {hero.primary}
       </PillLink>
     </nav>

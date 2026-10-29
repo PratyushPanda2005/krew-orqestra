@@ -1,21 +1,14 @@
 import { cn } from "@krew/ui/lib/utils"
 
 /**
- * Grainy CSS gradients in the styles of grainient.supply, in the brand colours (marketing.css):
- *   mist, haze   soft pastel mesh on snow, slowly drifting (light sections)
- *   swift        a blurred pastel swirl
- *   dusk         navy into violet into coral
- *   dither       a fade broken into dots, like a dithered print
- *   ecliptic     a ring of light rising over navy
- *   pearl        trionn's white-to-grey ground, tinted with the brand
- * Pure CSS plus an SVG noise tile for the grain: no JS, no requests. Decorative.
+ * The one section background: a soft wash from snow into a light navy tint, after trionn's
+ * white-to-grey grounds (marketing.css). Used on alternate sections; the rest stay plain snow.
+ * Decorative, CSS only.
  */
-export type GradientKind = "mist" | "haze" | "swift" | "dusk" | "dither" | "ecliptic" | "pearl"
-
-export function Gradient({ kind, className }: { kind: GradientKind; className?: string }) {
+export function Gradient({ className }: { className?: string }) {
   return (
-    <div aria-hidden data-grain className={cn("pointer-events-none absolute inset-0 overflow-hidden", className)}>
-      <div data-grad={kind} className="absolute -inset-[10%]" />
+    <div aria-hidden className={cn("pointer-events-none absolute inset-0 overflow-hidden", className)}>
+      <div data-grad="pearl" className="absolute inset-0" />
     </div>
   )
 }

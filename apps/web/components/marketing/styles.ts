@@ -15,7 +15,7 @@ export const quiet = "text-brand-navy/75"
 
 /** Green pill, as in the hero nav. */
 export const pill =
-  "inline-flex h-12 items-center justify-center rounded-full bg-brand-green bg-[linear-gradient(120deg,var(--brand-lime),var(--brand-green)_60%)] px-6 text-base font-medium text-brand-navy transition-shadow duration-400 hover:shadow-[inset_0_0_16px_0_var(--brand-snow)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-navy"
+  "inline-flex h-12 items-center justify-center rounded-full bg-brand-green px-6 text-base font-medium text-brand-navy transition-shadow duration-400 hover:shadow-[inset_0_0_16px_0_var(--brand-snow)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-navy"
 
 /** Outline pill on snow, as the reference's "About Our Studio". */
 export const outlinePill =

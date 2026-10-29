@@ -4,13 +4,11 @@ import { cn } from "@krew/ui/lib/utils"
 import { how, income } from "@/app/(marketing)/copy"
 import { liveJobs } from "@/lib/landing-samples"
 
-import { Gradient, type GradientKind } from "./gradient"
 import { MockExport, MockIncome, MockPending } from "./mocks"
 import { Split } from "./split"
 import { eyebrow, quiet, wide } from "./styles"
 
 const art = [MockIncome, MockPending, MockExport]
-const grads: GradientKind[] = ["swift", "dusk", "dither"]
 
 /**
  * Income's opening screen. After trionn, it waits underneath "How a job runs" and is uncovered
@@ -21,7 +19,6 @@ const grads: GradientKind[] = ["swift", "dusk", "dither"]
 export function IncomeIntro() {
   return (
     <section id="income" aria-labelledby="income-title" data-hz-under className="relative isolate flex flex-col items-center justify-center gap-12 px-5 py-24 text-center md:min-h-svh md:justify-between md:gap-0 lg:px-10 lg:pt-28 lg:pb-12">
-      <Gradient kind="mist" className="-z-10" />
       <p className={eyebrow}>[ {income.eyebrow} ]</p>
       <h2 id="income-title" data-blur className="max-w-[16ch] font-display text-[clamp(2.75rem,8.5vw,8.5rem)] leading-[0.92] font-bold tracking-tight uppercase">
         <Split text={income.title} scatter />
@@ -43,7 +40,7 @@ export function IncomeIntro() {
 /**
  * The rest of the income block (PF-26). After Vantra's live list: every job on the go, at its
  * step of the 7, with bars that fill as the list comes in. Then the reference's "Latest
- * Insights" cards rising in, each an app screen on a grainy gradient (swift, dusk, dither).
+ * Insights" cards rising in, each an app screen on a light panel.
  */
 export function Income() {
   const steps = how.steps.length
@@ -79,7 +76,7 @@ export function Income() {
                   <div
                     data-bar
                     style={{ "--k": j.step / steps } as React.CSSProperties}
-                    className="h-full rounded-full bg-[linear-gradient(90deg,var(--brand-violet),var(--brand-green))]"
+                    className="h-full rounded-full bg-brand-green"
                   />
                 </div>
               </div>
@@ -94,10 +91,8 @@ export function Income() {
           const Art = art[i]!
           return (
             <li key={point} data-up="4">
-              <div aria-hidden className="relative isolate aspect-[4/3] overflow-hidden rounded-lg px-6 pt-6">
-                <Gradient kind={grads[i]!} className="-z-10" />
+              <div aria-hidden className="aspect-[4/3] overflow-hidden rounded-lg bg-brand-navy/[0.06] px-6 pt-6">
                 <Art />
-                <span className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-brand-navy-deep/30 to-transparent" />
               </div>
               <p className="mt-5 text-sm font-medium">{income.tags[i]}</p>
               <h3 className="mt-2 font-display text-xl leading-snug font-semibold tracking-tight lg:text-2xl">{point}</h3>

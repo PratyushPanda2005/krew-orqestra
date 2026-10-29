@@ -299,8 +299,8 @@ html:not(.js) [data-js-only] {
 }
 
 /*
- * Grainy gradients (gradient.tsx, shader-gradient.tsx), after grainient.supply, in the brand
- * colours. data-grain lays a fixed noise tile over the colour (an SVG turbulence filter, ~0.4 KB).
+ * Backgrounds. data-grain lays a fixed noise tile over the footer's smoke shader (an SVG turbulence
+ * filter, ~0.4 KB); the light sections use one soft pearl wash and no grain.
  */
 [data-grain]::after {
   content: "";
@@ -312,110 +312,14 @@ html:not(.js) [data-js-only] {
   pointer-events: none;
 }
 
-[data-grad="mist"] {
-  background:
-    radial-gradient(38% 46% at 12% 18%, color-mix(in srgb, var(--brand-violet) 38%, transparent), transparent 72%),
-    radial-gradient(34% 42% at 88% 26%, color-mix(in srgb, var(--brand-green) 30%, transparent), transparent 72%),
-    radial-gradient(44% 38% at 62% 92%, color-mix(in srgb, var(--brand-lime) 34%, transparent), transparent 72%),
-    var(--brand-snow);
-}
-
-[data-grad="haze"] {
-  background:
-    radial-gradient(40% 50% at 80% 12%, color-mix(in srgb, var(--brand-green) 32%, transparent), transparent 72%),
-    radial-gradient(36% 44% at 18% 70%, color-mix(in srgb, var(--brand-violet) 34%, transparent), transparent 72%),
-    radial-gradient(30% 30% at 55% 50%, color-mix(in srgb, var(--brand-coral) 14%, transparent), transparent 72%),
-    var(--brand-snow);
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  [data-grad="mist"],
-  [data-grad="haze"] {
-    animation: drift-a 26s ease-in-out infinite alternate;
-  }
-  [data-grad="haze"] {
-    animation-name: drift-b;
-  }
-}
-
-[data-grad="swift"] {
-  background: conic-gradient(
-    from 210deg at 62% 42%,
-    var(--brand-violet),
-    var(--brand-coral),
-    var(--brand-lime),
-    var(--brand-green),
-    var(--brand-violet)
-  );
-  filter: blur(36px) saturate(1.1);
-}
-
-[data-grad="dusk"] {
-  background:
-    radial-gradient(60% 50% at 80% 110%, color-mix(in srgb, var(--brand-coral) 85%, transparent), transparent 70%),
-    linear-gradient(165deg, var(--brand-navy-deep) 15%, var(--brand-navy) 40%, var(--brand-violet) 78%, var(--brand-coral));
-  filter: blur(10px);
-}
-
-[data-grad="dither"] {
-  background: linear-gradient(180deg, var(--brand-snow) 5%, color-mix(in srgb, var(--brand-green) 55%, var(--brand-snow)) 55%, var(--brand-navy) 105%);
-}
-[data-grad="dither"]::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle, var(--brand-navy-deep) 0.9px, transparent 1.2px) 0 0 / 5px 5px;
-  mask-image: linear-gradient(180deg, transparent 30%, black 95%);
-  opacity: 0.55;
-}
-
-[data-grad="ecliptic"] {
-  background:
-    radial-gradient(circle at 50% 118%, transparent 0 33%, color-mix(in srgb, var(--brand-lime) 90%, transparent) 34.5%, var(--brand-green) 36.5%, color-mix(in srgb, var(--brand-violet) 80%, transparent) 40%, transparent 52%),
-    radial-gradient(circle at 50% 118%, color-mix(in srgb, var(--brand-violet) 35%, transparent) 30%, transparent 70%),
-    var(--brand-navy-deep);
-  filter: blur(6px);
-}
-
-/* Still versions of the shaders (and what shows before they draw, or under reduced motion). */
-[data-grad="aurora"] {
-  background:
-    radial-gradient(70% 30% at 50% 80%, color-mix(in srgb, var(--brand-violet) 55%, transparent), transparent 70%),
-    radial-gradient(45% 22% at 35% 84%, color-mix(in srgb, var(--brand-green) 45%, transparent), transparent 70%),
-    radial-gradient(30% 16% at 70% 82%, color-mix(in srgb, var(--brand-coral) 35%, transparent), transparent 70%),
-    var(--brand-navy-deep);
-}
 /* trionn's white-to-grey ground, tinted with the brand. */
 [data-grad="pearl"] {
-  background:
-    radial-gradient(50% 40% at 85% 15%, color-mix(in srgb, var(--brand-violet) 16%, transparent), transparent 70%),
-    linear-gradient(0deg, color-mix(in srgb, var(--brand-navy) 16%, var(--brand-snow)), var(--brand-snow));
+  background: linear-gradient(0deg, color-mix(in srgb, var(--brand-navy) 12%, var(--brand-snow)), var(--brand-snow));
 }
 [data-grad="smoke"] {
   background:
     radial-gradient(50% 40% at 30% 40%, color-mix(in srgb, var(--brand-navy) 80%, transparent), transparent 70%),
     radial-gradient(40% 35% at 70% 70%, color-mix(in srgb, var(--brand-violet) 14%, transparent), transparent 70%),
-    var(--brand-navy-deep);
-}
-[data-grad="mesh"] {
-  background:
-    radial-gradient(40% 60% at 25% 30%, color-mix(in srgb, var(--brand-violet) 55%, transparent), transparent 70%),
-    radial-gradient(40% 60% at 75% 70%, color-mix(in srgb, var(--brand-green) 45%, transparent), transparent 70%),
-    radial-gradient(30% 50% at 55% 15%, color-mix(in srgb, var(--brand-coral) 35%, transparent), transparent 70%),
-    var(--brand-navy-deep);
-}
-[data-grad="streaks"] {
-  background:
-    repeating-linear-gradient(
-      90deg,
-      transparent 0 1.4rem,
-      color-mix(in srgb, var(--brand-violet) 30%, transparent) 1.4rem 1.5rem,
-      transparent 1.5rem 2.6rem,
-      color-mix(in srgb, var(--brand-green) 22%, transparent) 2.6rem 2.66rem,
-      transparent 2.66rem 4.1rem,
-      color-mix(in srgb, var(--brand-coral) 18%, transparent) 4.1rem 4.16rem
-    ),
-    radial-gradient(60% 50% at 75% 100%, color-mix(in srgb, var(--brand-violet) 30%, transparent), transparent),
     var(--brand-navy-deep);
 }
 

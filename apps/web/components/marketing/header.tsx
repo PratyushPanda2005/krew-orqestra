@@ -1,9 +1,8 @@
 import { hero } from "@/app/(marketing)/copy"
 
+import { PillLink } from "./pill-link"
 import { snowFocus } from "./styles"
 
-const pill =
-  "h-12 items-center rounded-full bg-brand-green px-6 text-base font-medium text-brand-navy transition-colors hover:bg-brand-lime focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-snow"
 const navLink = `inline-flex min-h-tap items-center lg:min-h-10 rounded-md text-base text-brand-snow/90 hover:text-brand-snow ${snowFocus}`
 
 /**
@@ -35,9 +34,9 @@ export function HeroNav() {
         {hero.name}
       </a>
 
-      <a href="#waitlist" className={`hidden lg:inline-flex ${pill}`}>
+      <PillLink href="#waitlist" className="hidden focus-visible:outline-brand-snow lg:inline-flex">
         {hero.primary}
-      </a>
+      </PillLink>
 
       <details className="group lg:hidden">
         <summary
@@ -53,9 +52,9 @@ export function HeroNav() {
         </summary>
         <div className="absolute inset-x-0 top-full mx-5 mt-2 flex flex-col gap-4 bg-brand-navy p-5 ring-1 ring-brand-snow/15">
           <ul>{links}</ul>
-          <a href="#waitlist" className={`inline-flex justify-center ${pill}`}>
+          <PillLink href="#waitlist" className="focus-visible:outline-brand-snow">
             {hero.primary}
-          </a>
+          </PillLink>
         </div>
       </details>
     </header>

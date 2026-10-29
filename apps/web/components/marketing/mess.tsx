@@ -3,7 +3,6 @@ import Image from "next/image"
 
 import { mess } from "@/app/(marketing)/copy"
 
-import { Gradient } from "./gradient"
 import { messPhotos } from "./photos"
 import { PillLink } from "./pill-link"
 import { letters, Split } from "./split"
@@ -28,14 +27,12 @@ const tiles: { key: Key; who: "client" | "crew"; at: string }[] = [
 /**
  * "The mess today", in the layout and effects of the reference's About block (LandingMotion
  * runs them): the statement lights up letter by letter as you scroll, the facts count up,
- * and each photo flips into place as it enters. A drifting grainy mist behind; glass labels
- * on the photos, after Vantra.
+ * and each photo flips into place as it enters. Glass labels on the photos, after Vantra.
  */
 export function Mess() {
   const total = letters(mess.title) + letters(mess.intro)
   return (
     <section id="mess" aria-labelledby="mess-title" className="relative isolate py-20 lg:py-36">
-      <Gradient kind="mist" className="-z-10" />
       <div className={cn(wide, "grid gap-6 lg:grid-cols-12 lg:gap-10")}>
         <p data-up="0" className={cn(eyebrow, "lg:col-span-3 lg:pt-3")}>
           {mess.eyebrow}

@@ -40,7 +40,7 @@ function Divider() {
  *   2. then the whole layer slides away left like a curtain (1.07 px per px), uncovering
  *      Income's opening screen, which waits underneath (IncomeIntro).
  * LandingMotion ties it to the scroll and sets data-play. Otherwise (phones, no JS, reduced
- * motion) the panels stack as a list and Income's opening simply follows. Grainy pearl behind.
+ * motion) the panels stack as a list and Income's opening simply follows. A soft pearl wash behind.
  */
 export function How() {
   return (
@@ -48,7 +48,7 @@ export function How() {
       <div data-hz-track className="relative">
         <div data-hz-stage className="relative isolate overflow-clip">
           <div data-hz-layer className="relative isolate z-10 overflow-clip md:h-svh">
-            <Gradient kind="pearl" className="-z-10" />
+            <Gradient className="-z-10" />
             <ol data-hz-row className="flex flex-col md:h-full md:flex-row">
               <li className={panel}>
                 <div className="flex max-w-md flex-col items-center gap-8 text-center">
