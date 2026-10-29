@@ -45,7 +45,7 @@ export function Income() {
   const steps = how.steps.length
   return (
     <div id="jobs" className={sectionY}>
-      <p data-up="0" className={cn(wide, "max-w-3xl text-lg lg:text-xl", quiet)}>
+      <p data-up="0" className={cn(wide, "max-w-3xl text-center text-lg text-balance lg:text-xl", quiet)}>
         {income.body}
       </p>
 
