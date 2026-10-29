@@ -21,7 +21,7 @@ const boot = `(function(){var d=document.documentElement;d.classList.add("js");i
 
 export default function MarketingLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className={`${lexend.variable} font-body`}>
+    <div className={`light ${lexend.variable} font-body [color-scheme:light]`}>
       <script dangerouslySetInnerHTML={{ __html: boot }} />
       <a
         href="#main"

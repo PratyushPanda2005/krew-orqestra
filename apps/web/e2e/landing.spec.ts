@@ -183,6 +183,17 @@ test.describe("landing page at 390 px", () => {
     await expect(q(4)).not.toHaveAttribute("open", "")
   })
 
+  test("stays light when the device is in dark mode", async ({ browser }) => {
+    const context = await browser.newContext({ colorScheme: "dark", viewport: { width: 390, height: 844 } })
+    const page = await context.newPage()
+    await page.goto("/")
+    await expect(page.locator("html")).toHaveClass(/\bdark\b/)
+    // The app screens in the Income cards and the join form keep their light cards.
+    await expect(page.locator("#jobs [data-brand] [inert] > div").first()).toHaveCSS("background-color", "rgb(255, 255, 255)")
+    await expect(page.locator("#contact")).toHaveCSS("background-color", "rgb(255, 255, 255)")
+    await context.close()
+  })
+
   test("every photo has alt text, and section links land", async ({ page }) => {
     await page.goto("/")
     expect(await page.locator("img:not([alt])").count()).toBe(0)

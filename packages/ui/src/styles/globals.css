@@ -13,8 +13,12 @@
  * Indigo ink on cool paper, with rani pink as the one loud colour.
  * Peacock = money in / done. Haldi = needs attention. Sindoor = something failed.
  * Every text pairing below meets WCAG AA (4.5:1) on both background and card.
+ *
+ * `.light` re-declares the light values on an element, so a subtree stays light even when the
+ * page is in dark mode (the landing page uses it; it's designed light only).
  */
-:root {
+:root,
+.light {
   --background: #f7f7fa;
   --foreground: #1a1d3a;
   --card: #ffffff;
