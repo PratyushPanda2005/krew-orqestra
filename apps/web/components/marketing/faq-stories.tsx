@@ -33,6 +33,26 @@ export function FaqStories() {
     return () => io.disconnect()
   }, [])
 
+  // "Ask" on a promise (data-faq-open), or a link straight to #faq-qN, opens that question.
+  useEffect(() => {
+    const open = (i: number) => (setOn(i), setSeen(true))
+    const fromHash = () => {
+      const m = /^#faq-q(\d+)$/.exec(window.location.hash)
+      if (m) open(Number(m[1]) - 1)
+    }
+    const onClick = (e: MouseEvent) => {
+      const a = (e.target as Element | null)?.closest<HTMLElement>("[data-faq-open]")
+      if (a) open(Number(a.dataset.faqOpen))
+    }
+    fromHash()
+    window.addEventListener("hashchange", fromHash)
+    document.addEventListener("click", onClick)
+    return () => {
+      window.removeEventListener("hashchange", fromHash)
+      document.removeEventListener("click", onClick)
+    }
+  }, [])
+
   const go = (i: number, focus = false) => {
     const next = (i + n) % n
     setOn(next)
@@ -40,7 +60,11 @@ export function FaqStories() {
   }
 
   return (
-    <div ref={root} data-stories data-seen={seen || undefined} className="mt-12 grid gap-10 lg:mt-20 lg:grid-cols-12 lg:gap-6">
+    <div ref={root} data-stories data-seen={seen || undefined} className="relative mt-12 grid gap-10 lg:mt-20 lg:grid-cols-12 lg:gap-6">
+      {/* Link targets for #faq-q1…6, so those links scroll here. */}
+      {faq.items.map((item, i) => (
+        <span key={item.q} id={`faq-q${i + 1}`} aria-hidden className="absolute -top-24" />
+      ))}
       <div
         role="tablist"
         aria-orientation="vertical"

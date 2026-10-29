@@ -89,11 +89,6 @@ export function MarketingFooter() {
               ))}
             </ul>
           </nav>
-          <div className="lg:col-span-2 lg:text-right">
-            <FooterLink href="https://unsplash.com/license" className="text-brand-snow/60">
-              {footer.photos}
-            </FooterLink>
-          </div>
         </div>
       </section>
 

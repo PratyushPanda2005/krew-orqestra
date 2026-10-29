@@ -19,6 +19,7 @@ All from Unsplash under the Unsplash License (free for commercial use, no attrib
 | `how-paid.jpg` | [xqkCgI1oSlg](https://unsplash.com/photos/xqkCgI1oSlg) | [Aravind Kumar](https://unsplash.com/@arvndvisual) |
 | `clients-quote.jpg` | [EnEVc2toiCg](https://unsplash.com/photos/EnEVc2toiCg) | [SB Film Studio](https://unsplash.com/@sbfilmstudio) |
 | `clients-review.jpg` | [na8R4tWL73I](https://unsplash.com/photos/na8R4tWL73I) | [Jakub Żerdzicki](https://unsplash.com/@jakubzerdzicki) |
-| `trust-chats.jpg` | [b5oaW2R5iks](https://unsplash.com/photos/b5oaW2R5iks) | [Gift Habeshaw](https://unsplash.com/@gift_habeshaw) |
-| `trust-gst.jpg` | [58c1dnakdRQ](https://unsplash.com/photos/58c1dnakdRQ) | [Firosnv. Photography](https://unsplash.com/@firosnv) |
-| `trust-connections.jpg` | [ROaGE2gDsbo](https://unsplash.com/photos/ROaGE2gDsbo) | [Mohamed Morsi](https://unsplash.com/@itsmorsii) |
+| `trust-1.jpg` | [2reWyg-SssE](https://unsplash.com/photos/2reWyg-SssE) | [Rick Rothenberg](https://unsplash.com/@rick_rothenberg) |
+| `trust-2.jpg` | [Qerg85B7JDI](https://unsplash.com/photos/Qerg85B7JDI) | [Nat](https://unsplash.com/@nattgw) |
+| `trust-3.jpg` | [-Vtr4MLIhno](https://unsplash.com/photos/-Vtr4MLIhno) | [Buddha Elemental 3D](https://unsplash.com/@buddhaelemental3d) |
+| `trust-4.jpg` | [6P7bW_SOYaQ](https://unsplash.com/photos/6P7bW_SOYaQ) | [Nuno Alves](https://unsplash.com/@nunoviegasalves) |

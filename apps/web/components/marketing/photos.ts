@@ -15,9 +15,10 @@ import messDm from "@/app/(marketing)/images/mess-dm.jpg"
 import messEmail from "@/app/(marketing)/images/mess-email.jpg"
 import messScreenshots from "@/app/(marketing)/images/mess-screenshots.jpg"
 import messTwoReplies from "@/app/(marketing)/images/mess-two-replies.jpg"
-import trustChats from "@/app/(marketing)/images/trust-chats.jpg"
-import trustConnections from "@/app/(marketing)/images/trust-connections.jpg"
-import trustGst from "@/app/(marketing)/images/trust-gst.jpg"
+import trust1 from "@/app/(marketing)/images/trust-1.jpg"
+import trust2 from "@/app/(marketing)/images/trust-2.jpg"
+import trust3 from "@/app/(marketing)/images/trust-3.jpg"
+import trust4 from "@/app/(marketing)/images/trust-4.jpg"
 
 /**
  * Stock photos for the landing sections (Unsplash License; credits in images/CREDITS.md).
@@ -53,9 +54,14 @@ export const clientPhotos: (Photo | null)[] = [
   null,
 ]
 
-export const trustPhotos: (Photo | null)[] = [
-  { src: trustChats, alt: "A black-and-white portrait of a photographer behind his camera" },
-  null,
-  { src: trustGst, alt: "A designer drawing on a pen tablet at a desk" },
-  { src: trustConnections, alt: "A photographer holding a camera up to his face" },
+/**
+ * "What we promise" uses art, not people, as the reference's Services rows do (abstract,
+ * gallery-like pieces). The reference's own images aren't licensed for reuse (its Licenses
+ * page: demo media "not licensed for redistribution"), so these are free look-alikes.
+ */
+export const trustPhotos: Photo[] = [
+  { src: trust1, alt: "A translucent, iridescent knotted form on a grey ground" },
+  { src: trust2, alt: "Stacked glass cubes in soft blue light" },
+  { src: trust3, alt: "A single glass cube tilted on a pale blue background" },
+  { src: trust4, alt: "People in a dark gallery beneath a giant glowing moon" },
 ]

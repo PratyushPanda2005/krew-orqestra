@@ -133,25 +133,34 @@ export const clients = {
 export const trust = {
   eyebrow: "[ Our promises ]",
   title: "What we promise",
+  // The reference's "Includes" column; each body's sentences become its list.
+  includes: "What this means",
+  // The reference's round "View" button on hover; ours opens the matching question.
+  more: "Ask",
+  moreLabel: (title: string) => `Questions about: ${title}`,
   items: [
     {
       // PF-02, PRD §6. ⚠ unknown chats sit in a 24 h encrypted buffer pending V4
       title: "Personal chats are never stored.",
+      faq: 0,
       body: "When a new chat comes in, you mark it as a client or personal. Krew saves only client chats.",
     },
     {
       // PF-09, PF-24, PRD §6 and §8
       title: "Your money goes straight to you.",
+      faq: 4,
       body: "Payment links come from your own Razorpay account, or your own UPI ID. Krew never holds your clients' money.",
     },
     {
       // PF-24. ⚠ accountant review pending (G4, V5)
       title: "Invoices built to GST rules.",
+      faq: 3,
       body: "GST invoices carry every field Rule 46 asks for. Not registered? You get a plain invoice with no tax.",
     },
     {
       // PRD §4.3 and §7. ⚠ Meta App Review and Google verification pending
       title: "Official connections.",
+      faq: 1,
       body: "Instagram and WhatsApp Business connect through Meta's official APIs, and email goes out from your own Gmail through Google's.",
     },
   ],
@@ -241,7 +250,6 @@ export const footer = {
   // ⚠ confirm the legal entity name
   copyright: "© 2026 Orry",
   sections: "On this page",
-  photos: "Photos from Unsplash",
   // The footer clock, as trionn shows its studio time; ours is India time.
   clock: "IST",
   hint: "Hover the lines.",

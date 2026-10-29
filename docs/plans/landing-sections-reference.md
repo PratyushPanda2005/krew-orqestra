@@ -234,3 +234,21 @@ Asked for: trionn.com's "Selected work" and "Explorations" effects in How a job 
 Income's opening (`IncomeIntro`) renders inside How so it can wait under the curtain; the rest of Income follows as before. Phones, no JS and reduced motion: a stacked list, then Income's opening as a normal screen. The scroll engine applies this effect with no smoothing of its own (Lenis smooths the scroll on desktop, as on trionn).
 
 **Checks:** 15 of 15 landing tests pass; LCP 1,256 ms, CLS 0.000 at 390 px on slow 4G.
+
+## 19. "What we promise" re-matched to novaform's Services; footer credit removed (29 Oct 2026)
+
+**Footer:** the "Photos from Unsplash" link is gone (the Unsplash License needs no credit). Credits stay in `images/CREDITS.md`.
+
+**Images:** the user asked for the reference's exact images. Novaform's own Licenses page says: "All photography and illustration used in the demo is placeholder content … the demo media is not licensed for redistribution." So we don't ship them. Instead there are four free Unsplash look-alikes in the same style (abstract, iridescent, glass, gallery): `trust-1` to `trust-4`, credited in CREDITS.md. The old creator photos and the UPI tile in this section are removed.
+
+**Layout and effects, re-measured at 1440 px:**
+
+| Reference | Ours |
+|---|---|
+| Title rises letter by letter (0.4 s per letter, staggered over 0.4 s) | same (`data-split-fast`) |
+| Sticky rows at 45/162/270/396 px (5/18/30/44%), with 288/192/96/0 px below; phones: all at 5% | same |
+| Rows numbered downwards [06]…[03], hairline on top, page-coloured background | [04]…[01], same |
+| Portrait image up to 25 rem wide, `object-position: 50% 20%`; then a .25fr / 1.2fr / 2fr grid: number, title, "Includes" + bulleted list with a rule under each item | same; "Includes" reads "What this means"; each promise's sentences are its list |
+| Hover: image zooms to 1.1 over 0.6 s; a white "View" circle (4.5–6.25 rem) fades in over 0.4 s | same; the circle reads "Ask" and opens the matching question in the FAQ (`#faq-qN`). On touch screens (no hover) it always shows |
+
+**Checks:** 15 of 15 landing tests pass; LCP 1,288 ms, CLS 0.000.
