@@ -318,3 +318,7 @@ Asked for trionn's own images. Its "Selected work" has only three, and each is a
 ## 27. The landing stays light in dark mode (29 Oct 2026)
 
 On a device set to dark mode, the app's theme (next-themes, following the system) turned its colour roles dark, so the app screens in the Income cards and the join form went dark after deployment. The landing page is designed light (with its always-navy hero), so its root now carries `.light`, which re-declares the light values (`:root, .light` in globals.css), plus `color-scheme: light`. The app keeps its dark mode. There's a new test with the device in dark mode.
+
+## Floating nav on scroll (31 Oct 2026)
+
+The floating nav no longer stays pinned past the hero. It hides as you scroll down and slides back in when you scroll up (8 px of travel before it changes), like a usual site header. Back on the hero it hides again.

@@ -150,9 +150,19 @@ export function LandingMotion() {
     const html = document.documentElement
     const cleanups: (() => void)[] = []
 
-    // The floating nav shows once the first section has come up over the hero (any motion setting).
+    // The floating nav shows past the hero only while you scroll up, like a usual header: scrolling
+    // down hides it (any motion setting). 8 px of travel before it changes, so jitter doesn't flicker it.
     const first = document.getElementById("mess")
-    const pastHero = () => html.toggleAttribute("data-past-hero", !!first && first.getBoundingClientRect().top < 80)
+    let lastY = window.scrollY
+    const pastHero = () => {
+      const past = !!first && first.getBoundingClientRect().top < 80
+      html.toggleAttribute("data-past-hero", past)
+      const y = window.scrollY
+      if (!past) html.removeAttribute("data-scroll-up")
+      else if (Math.abs(y - lastY) > 8) html.toggleAttribute("data-scroll-up", y < lastY)
+      else return
+      lastY = y
+    }
     pastHero()
     window.addEventListener("scroll", pastHero, { passive: true })
     cleanups.push(() => window.removeEventListener("scroll", pastHero))

@@ -3,8 +3,9 @@ import { footer, hero } from "@/app/(marketing)/copy"
 import { PillLink } from "./pill-link"
 
 /**
- * Vantra's floating nav: a dark glass bar at the top once you're past the hero (LandingMotion
- * sets data-past-hero on <html>). The hero has its own nav, so without JS this stays out of sight.
+ * The floating nav: a dark glass bar that drops in when you scroll up past the hero and hides
+ * as you scroll down (LandingMotion sets data-past-hero and data-scroll-up on <html>). The hero
+ * has its own nav, so without JS this stays out of sight.
  */
 export function FloatNav() {
   return (

@@ -357,12 +357,12 @@ html:not(.js) [data-js-only] {
     var(--brand-navy-deep);
 }
 
-/* The floating nav (Vantra): out of sight on the hero, slides down once you're past it. */
+/* The floating nav: out of sight on the hero and while scrolling down; slides in when you scroll up. */
 [data-float-nav] {
   translate: -50% -150%;
-  transition: translate 0.5s var(--ease-sine-out);
+  transition: translate 0.4s var(--ease-sine-out);
 }
-[data-past-hero] [data-float-nav] {
+[data-past-hero][data-scroll-up] [data-float-nav] {
   translate: -50% 0;
 }
 
