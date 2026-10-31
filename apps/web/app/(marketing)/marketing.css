@@ -324,9 +324,22 @@ html:not(.js) [data-js-only] {
   block-size: auto;
 }
 
+/* Footer wordmark: striped text until the line canvas has drawn (line-wordmark.tsx). */
+[data-wordmark-css] {
+  background: repeating-linear-gradient(180deg, currentColor 0 1.5px, transparent 1.5px 14px);
+  background-clip: text;
+  color: transparent;
+}
+[data-wordmark][data-drawn] [data-wordmark-css] {
+  visibility: hidden;
+}
+[data-wordmark][data-drawn] canvas {
+  display: block;
+}
+
 /*
  * Backgrounds. data-grain lays a fixed noise tile (an SVG turbulence filter, ~0.4 KB) over the
- * smoke shader and the three Income cards; the light sections use one soft pearl wash.
+ * footer's smoke shader and the three Income cards; the light sections use one soft pearl wash.
  */
 [data-grain]::after {
   content: "";

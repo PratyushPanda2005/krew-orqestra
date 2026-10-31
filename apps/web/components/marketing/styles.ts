@@ -21,10 +21,6 @@ export const pill =
 export const outlinePill =
   "inline-flex min-h-12 items-center justify-center rounded-full border border-brand-navy px-6 text-base font-medium transition-shadow duration-400 hover:shadow-[inset_0_0_12px_0_var(--brand-navy)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-navy"
 
-/** Outline pill on a dark photo: snow line and text. */
-export const snowPill =
-  "inline-flex min-h-12 items-center justify-center rounded-full border border-brand-snow px-6 text-base font-medium text-brand-snow transition-shadow duration-400 hover:shadow-[inset_0_0_12px_0_var(--brand-snow)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-snow"
-
 /**
  * Vertical padding for every landing section: 48 / 64 / 80 px (phone / tablet / desktop), so
  * the space between one section's content and the next is the same everywhere: 96 / 128 / 160 px.

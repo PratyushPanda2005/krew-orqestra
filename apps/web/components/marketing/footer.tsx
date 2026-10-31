@@ -1,20 +1,22 @@
 import { cn } from "@krew/ui/lib/utils"
 
-import { footer, hero, waitlist } from "@/app/(marketing)/copy"
+import { footer, hero } from "@/app/(marketing)/copy"
 import { site } from "@/lib/site"
 
 import { IstClock } from "./ist-clock"
+import { LineWordmark } from "./line-wordmark"
+import { ShaderGradient } from "./shader-gradient"
 import { wide } from "./styles"
 
 const ease = "transition-transform duration-400 ease-[cubic-bezier(0.61,1,0.88,1)]"
 
-/** Footer link with our hover: a green dot grows and the text slides along. */
+/** Footer link with the reference's hover: a dot grows and the text slides along. */
 function FooterLink({ href, children, className }: { href: string; children: React.ReactNode; className?: string }) {
   return (
     <a
       href={href}
       className={cn(
-        "group relative inline-flex min-h-tap items-center rounded-md transition-colors duration-240 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-snow",
+        "group relative inline-flex min-h-tap items-center rounded-md transition-colors duration-400 hover:text-brand-snow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-snow",
         className
       )}
     >
@@ -24,65 +26,49 @@ function FooterLink({ href, children, className }: { href: string; children: Rea
   )
 }
 
-// A privacy policy link goes in the small links once the page exists (needed before launch, plan §13).
+const label = "text-xs font-medium tracking-wide text-brand-snow/60 uppercase"
+
+// A privacy policy link goes here once the page exists (needed before launch, plan §13).
 /**
- * Vantra's footer, in our colours and type: a dark panel with rounded top corners that rides
- * 24 px up over the photo screen, above the bottom blur so its own text stays sharp. On the
- * left the wordmark and a short line about Krew; on the right the sections as big links over
- * thin rules, then small links in two columns. A rule, then the copyright and India time.
- * One column on phones.
+ * The closing block, after trionn's footer: one dark screen over drifting smoke (the "smoke"
+ * shader), which the photo screen above fades into. Kept short: copyright and India time,
+ * contact and section links in one row, then a giant KREW drawn in lines that slide aside
+ * under the pointer.
  */
 export function MarketingFooter() {
-  const big = [{ href: "#main", label: footer.home }, ...hero.nav]
-
   return (
-    <footer className="relative z-45 -mt-6 rounded-t-[1.25rem] bg-brand-navy-deep font-body text-brand-snow">
-      <div className={cn(wide, "pt-16 pb-6 lg:pt-24")}>
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-6">
-          <div className="flex flex-col justify-between gap-10 lg:col-span-5 lg:gap-24">
-            <a
-              href="#main"
-              className="inline-flex min-h-tap items-center self-start rounded-md font-display text-6xl leading-none font-medium tracking-tight lowercase focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-snow"
-            >
-              {hero.name}
-            </a>
-            <p className="max-w-[32rem] text-base leading-normal lg:max-w-[20rem]">{footer.about}</p>
-          </div>
+    <footer className="relative isolate flex flex-col overflow-clip bg-brand-navy-deep font-body text-brand-snow">
+      <ShaderGradient kind="smoke" className="-z-10" />
+      {/* The smoke fades in from the photo screen's dark edge above, so there's no seam. */}
+      <div aria-hidden className="absolute inset-x-0 top-0 -z-[5] h-24 bg-gradient-to-b from-brand-navy-deep to-transparent" />
 
-          <div className="flex flex-col gap-12 lg:col-span-6 lg:col-start-7 lg:gap-28">
-            <nav aria-label={footer.sections}>
-              <ul className="leading-none tracking-[-0.03em]">
-                {big.map((l) => (
-                  <li key={l.href} className="border-b border-brand-snow/15">
-                    <FooterLink href={l.href} className="w-full py-1 text-[2rem] font-medium hover:text-brand-snow/80 lg:text-[2.25rem]">
-                      {l.label}
-                    </FooterLink>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-            <ul aria-label={footer.more} className="grid gap-x-6 sm:grid-cols-2 gap-y-1 text-lg tracking-[-0.01em] text-brand-snow/80">
-              <li>
-                <FooterLink href="#waitlist" className="hover:text-brand-snow">
-                  {waitlist.title}
-                </FooterLink>
-              </li>
-              <li>
-                <FooterLink href={`mailto:${site.contactEmail}`} className="break-words hover:text-brand-snow">
-                  {site.contactEmail}
-                </FooterLink>
-              </li>
+      <div className={cn(wide, "pt-10 lg:pt-14")}>
+        <div data-up="0" className="grid gap-8 text-sm sm:grid-cols-2 lg:grid-cols-12">
+          <div className="flex flex-col gap-3 lg:col-span-4">
+            <p className="text-brand-snow/60">{footer.copyright}</p>
+            <IstClock label={footer.clock} />
+            <p className={cn(label, "hidden lg:block")}>{footer.hint}</p>
+          </div>
+          <div className="lg:col-span-3 lg:col-start-7">
+            <p className={label}>( {footer.contact} )</p>
+            <FooterLink href={`mailto:${site.contactEmail}`} className="mt-1 break-all text-brand-snow/85">
+              {site.contactEmail}
+            </FooterLink>
+          </div>
+          <nav aria-label={footer.sections} className="lg:col-span-3">
+            <p className={label}>( {footer.sections} )</p>
+            <ul className="mt-1 grid grid-cols-2 gap-x-4 text-brand-snow/85">
+              {hero.nav.map((l) => (
+                <li key={l.href}>
+                  <FooterLink href={l.href}>{l.label}</FooterLink>
+                </li>
+              ))}
             </ul>
-          </div>
-        </div>
-
-        <div className="mt-14 flex flex-wrap items-center justify-between gap-x-10 gap-y-3 border-t border-brand-snow/15 pt-6 text-sm text-brand-snow/65">
-          <p>
-            {footer.copyright} · {footer.tagline}
-          </p>
-          <IstClock label={footer.clock} />
+          </nav>
         </div>
       </div>
+
+      <LineWordmark text={hero.name.toUpperCase()} className="mt-10 px-3 pb-4 text-brand-snow/70 lg:mt-14 lg:px-6" />
     </footer>
   )
 }

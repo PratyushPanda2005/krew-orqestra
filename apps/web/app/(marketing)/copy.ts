@@ -208,7 +208,6 @@ export const faq = {
 }
 
 export const waitlist = {
-  eyebrow: "[ The pilot ]",
   title: "Join the pilot",
   intro: "We're opening Krew to a small group of creators first. Leave your email or number and we'll be in touch.",
   fields: {
@@ -245,26 +244,18 @@ export const waitlist = {
   failed: "We couldn't save this. Check your connection and try again.",
 }
 
-/** The closing photo screen, after Vantra's "Build what's next with us". */
+/** The join screen's title, after Vantra's "Build what's next with us"; three short lines. */
 export const next = {
-  // The first word sits on its own line, as on the reference.
-  title: ["Run", "your next job on Krew"],
-  // PRD §1
-  body: "One place for the chat, the quote, the advance, the drafts and the invoice.",
-  primary: "Join the pilot",
-  secondary: "See how it works",
+  title: ["Run", "your next", "job on Krew"],
 }
 
 export const footer = {
   tagline: "From the first DM to getting paid.",
-  // PRD §1
-  about:
-    "Krew is a work app for India's videographers, photographers and designers. It runs each client job from the first DM to getting paid, for you and your crew.",
-  home: "Home",
+  contact: "Contact",
   // ⚠ confirm the legal entity name
   copyright: "© 2026 Orry",
   sections: "On this page",
-  more: "More",
-  // The footer clock, after trionn's studio time; ours is India time.
-  clock: "India time",
+  // The footer clock, as trionn shows its studio time; ours is India time.
+  clock: "IST",
+  hint: "Hover the lines.",
 }
