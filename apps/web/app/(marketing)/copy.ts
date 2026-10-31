@@ -43,6 +43,9 @@ export const mess = {
   // Layout labels for pixelismo's Works section (plan landing-sections-reference, last section).
   eyebrow: "[ The mess ]",
   windowLabel: "The mess",
+  // The window links on to the steps, as pixelismo's opens its Works; its cursor says so.
+  windowLink: "See how Krew runs a job",
+  cursor: "See how",
   // The four apps of the title, listed where pixelismo lists its services.
   appsLabel: "The four apps",
   apps: ["Instagram DMs", "WhatsApp", "Gmail", "Notes"],

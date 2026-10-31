@@ -254,13 +254,56 @@ html:not(.js) [data-js-only] {
   opacity: 0.5;
 }
 
-/* The mess ribbon (mess.tsx, LandingMotion): a grab cursor while it can be dragged. */
-[data-ribbon][data-play] {
-  cursor: grab;
+/*
+ * The mess window (mess-ribbon.tsx), pixelismo's portal: min(520px, 56vw) wide on desktop,
+ * min(68vw, 620px) on tablets and min(78vw, 460px) on phones, 1.55:1, 30 px corners. The WebGL
+ * layer is clipped to it and the clip grows 1.2× under the pointer over 0.5 s. The first photo
+ * stands in until WebGL draws; the cursor disc grows in over 0.38 s.
+ */
+#mess {
+  --ww: min(78vw, 460px);
+  --wh: calc(var(--ww) / 1.55);
+  --grow: 1;
 }
-[data-ribbon][data-dragging] {
-  cursor: grabbing;
-  user-select: none;
+@media (min-width: 768px) {
+  #mess {
+    --ww: min(68vw, 620px);
+  }
+}
+@media (min-width: 1024px) {
+  #mess {
+    --ww: min(520px, 56vw);
+  }
+}
+#mess:has([data-portal]:hover) {
+  --grow: 1.2;
+}
+[data-portal-clip] {
+  clip-path: inset(
+    calc(50% - var(--wh) * var(--grow) / 2) calc(50% - var(--ww) * var(--grow) / 2) round 30px
+  );
+  transition: clip-path 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+[data-ribbon][data-gl] [data-fallback] {
+  display: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  [data-portal] {
+    cursor: none;
+  }
+}
+[data-portal-cursor] {
+  visibility: hidden;
+}
+[data-portal-cursor] > span {
+  scale: 0;
+  transition: scale 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+}
+[data-portal-cursor][data-on] {
+  visibility: visible;
+}
+[data-portal-cursor][data-on] > span {
+  scale: 1;
 }
 
 /*
