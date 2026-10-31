@@ -31,3 +31,13 @@ All from Unsplash under the Unsplash License (free for commercial use, no attrib
 | File | Source | Note |
 |---|---|---|
 | `next.jpg` | Vantra Studio template ([vantra-studio.webflow.io](https://vantra-studio.webflow.io/)), its "Build what's next with us" photo | Used with the owner's permission, per the founders (31 Oct 2026). Converted from the 2048 px AVIF. |
+
+## 3D illustrations
+
+From [3dicons](https://3dicons.co) by Vijay Verma, released under [CC0 1.0](https://github.com/realvjy/3dicons/blob/develop/LICENSE) (free for any use, no attribution needed; credited anyway). Premium style, dynamic angle, 400 px PNG, unchanged.
+
+| File | Icon |
+|---|---|
+| `growth-earn.png` | rupee |
+| `growth-work.png` | chart |
+| `growth-goal.png` | camera |

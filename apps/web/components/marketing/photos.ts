@@ -10,6 +10,9 @@ import how4 from "@/app/(marketing)/images/how-4.jpg"
 import how5 from "@/app/(marketing)/images/how-5.jpg"
 import how6 from "@/app/(marketing)/images/how-6.jpg"
 import how7 from "@/app/(marketing)/images/how-7.jpg"
+import growthEarn from "@/app/(marketing)/images/growth-earn.png"
+import growthGoal from "@/app/(marketing)/images/growth-goal.png"
+import growthWork from "@/app/(marketing)/images/growth-work.png"
 import mess1 from "@/app/(marketing)/images/mess-1.jpg"
 import mess2 from "@/app/(marketing)/images/mess-2.jpg"
 import mess3 from "@/app/(marketing)/images/mess-3.jpg"
@@ -84,3 +87,9 @@ export const trustPhotos: Photo[] = [
  * section, used with permission (31 Oct 2026; images/CREDITS.md).
  */
 export const nextPhoto: Photo = { src: next, alt: "A figure walking away through streaks of coloured light in the dark" }
+
+/**
+ * The growth cards' round "portraits": 3D illustrations from 3dicons (CC0; images/CREDITS.md),
+ * premium style. Decorative: each card's text says what it's about.
+ */
+export const growthArt = [growthEarn, growthWork, growthGoal]

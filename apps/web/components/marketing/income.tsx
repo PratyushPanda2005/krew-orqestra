@@ -1,15 +1,15 @@
 import { formatINR } from "@krew/schemas"
 import { cn } from "@krew/ui/lib/utils"
+import Image from "next/image"
 
 import { how, income } from "@/app/(marketing)/copy"
-import { growth, liveJobs } from "@/lib/landing-samples"
+import { growth, income as sample, liveJobs } from "@/lib/landing-samples"
 
-import { GrowthDial } from "./growth-dial"
+import { growthArt } from "./photos"
 import { PillLink } from "./pill-link"
 import { Split } from "./split"
 import { eyebrow, quiet, sectionY, wide } from "./styles"
 
-const dials = ["earned", "work", "goal"] as const
 
 /**
  * Orionix's fan, from 1024 px: the left card turns −9° about a point near its right edge and
@@ -23,10 +23,11 @@ const fan = [
 ]
 
 /** Each card's headline numbers, where Orionix puts the client's role (example data, lib/landing-samples). */
+const top = growth.byType[0]!
 const lines = [
-  income.figures.earned(formatINR(growth.average), growth.jobsDone),
-  income.figures.work(growth.repeatClients, growth.byType.length),
-  income.figures.goal(formatINR(growth.goals[0]!.saved), formatINR(growth.goals[0]!.target)),
+  income.figures.earned(formatINR(sample.received), formatINR(growth.average)),
+  income.figures.work(growth.reviews.rating, growth.reviews.count, top.type.toLowerCase(), Math.round((top.paise / sample.received) * 100)),
+  income.figures.goal(formatINR(growth.goals[0]!.saved), formatINR(growth.goals[0]!.target), growth.goals[0]!.by!),
 ]
 
 /**
@@ -57,9 +58,9 @@ export function IncomeIntro() {
  * The rest of the income block (PF-26). After Vantra's live list: every job on the go, at its
  * step of the 7, with bars that fill as the list comes in. Then a monitor of the creator's own
  * growth (what they earn, their work and reviews, a savings goal) in Orionix's "Client voices"
- * cards: three tall navy cards in white frames, fanned, each with a round dial of its numbers
- * where Orionix has the portrait (over a blurred copy of it), the point, a hairline, the tag
- * and one more line of numbers.
+ * cards: three tall navy cards in white frames, fanned, each with a 3D illustration where
+ * Orionix has the portrait (over a blurred copy of it): a ₹ coin, a pie chart, a camera. Then
+ * the point, a hairline, the tag and its headline numbers.
  */
 export function Income() {
   const steps = how.steps.length
@@ -118,15 +119,13 @@ export function Income() {
                 {/* The card: a 4 px white frame (24 px corners) round a navy panel (20 px). */}
                 <article className="rounded-3xl bg-white p-1 shadow-[0_0_0_1px_rgb(0_0_0/0.04),0_1px_2px_rgb(0_0_0/0.06),0_4px_6px_rgb(0_0_0/0.04),0_40px_40px_-24px_rgb(0_0_0/0.06)]">
                   <div className="relative isolate flex h-[34.3rem] flex-col items-center overflow-hidden rounded-[20px] bg-brand-navy-deep p-10 text-brand-snow">
-                    {/* The dial again, enlarged and blurred 10 px at 40% behind everything, as Orionix blurs the portrait. */}
+                    {/* The illustration again, enlarged and blurred 10 px at 40% behind everything, as Orionix blurs the portrait. */}
                     <div aria-hidden className="absolute -inset-8 -z-10 flex items-center justify-center opacity-40 blur-[10px]">
-                      <div className="scale-[2.1]">
-                        <GrowthDial kind={dials[i]!} />
-                      </div>
+                      <Image src={growthArt[i]!} alt="" sizes="440px" className="size-[27.5rem] object-contain" />
                     </div>
-                    {/* The round "portrait": a dial of this card's numbers (growth-dial.tsx), 232 px in a 272 px box. */}
-                    <div className="flex size-68 shrink-0 items-center justify-center">
-                      <GrowthDial kind={dials[i]!} />
+                    {/* Where Orionix has the round portrait (272 px box): the 3D illustration on its own. */}
+                    <div aria-hidden className="flex size-68 shrink-0 items-center justify-center">
+                      <Image src={growthArt[i]!} alt="" sizes="248px" className="size-62 max-w-none object-contain drop-shadow-[0_24px_24px_rgb(0_0_0/0.45)]" />
                     </div>
                     <div className="flex w-full flex-col items-center gap-5 text-center">
                       <h3 className="font-display text-2xl leading-7 font-medium tracking-[-0.04em] text-balance">{point}</h3>
