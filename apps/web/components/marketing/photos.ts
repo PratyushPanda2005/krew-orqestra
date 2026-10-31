@@ -10,13 +10,13 @@ import how4 from "@/app/(marketing)/images/how-4.jpg"
 import how5 from "@/app/(marketing)/images/how-5.jpg"
 import how6 from "@/app/(marketing)/images/how-6.jpg"
 import how7 from "@/app/(marketing)/images/how-7.jpg"
-import messBrief from "@/app/(marketing)/images/mess-brief.jpg"
-import messChasing from "@/app/(marketing)/images/mess-chasing.jpg"
-import messDate from "@/app/(marketing)/images/mess-date.jpg"
-import messDm from "@/app/(marketing)/images/mess-dm.jpg"
-import messEmail from "@/app/(marketing)/images/mess-email.jpg"
-import messScreenshots from "@/app/(marketing)/images/mess-screenshots.jpg"
-import messTwoReplies from "@/app/(marketing)/images/mess-two-replies.jpg"
+import mess1 from "@/app/(marketing)/images/mess-1.jpg"
+import mess2 from "@/app/(marketing)/images/mess-2.jpg"
+import mess3 from "@/app/(marketing)/images/mess-3.jpg"
+import mess4 from "@/app/(marketing)/images/mess-4.jpg"
+import mess5 from "@/app/(marketing)/images/mess-5.jpg"
+import mess6 from "@/app/(marketing)/images/mess-6.jpg"
+import mess7 from "@/app/(marketing)/images/mess-7.jpg"
 import next from "@/app/(marketing)/images/next.jpg"
 import trust1 from "@/app/(marketing)/images/trust-1.jpg"
 import trust2 from "@/app/(marketing)/images/trust-2.jpg"
@@ -30,14 +30,19 @@ import trust4 from "@/app/(marketing)/images/trust-4.jpg"
  */
 export type Photo = { src: StaticImageData; alt: string }
 
+/**
+ * The mess ribbon's panels: wide, quiet landscapes (Unsplash License; images/CREDITS.md), in the
+ * ribbon's order so the colours alternate. Each stands behind one fragment of the mess; the
+ * caption in the window says which, so the alt text just says what's in the photo.
+ */
 export const messPhotos = {
-  dm: { src: messDm, alt: "A woman in a pink sari reading messages on her phone" },
-  whatsapp: { src: messScreenshots, alt: "A woman checking her phone outdoors" },
-  mail: { src: messEmail, alt: "A woman working at a laptop" },
-  note: { src: messChasing, alt: "A woman on a phone call" },
-  date: { src: messDate, alt: "A video crew on a street shoot with a camera gimbal" },
-  brief: { src: messBrief, alt: "An editor in headphones at a computer in a dark room" },
-  twoReplies: { src: messTwoReplies, alt: "Two people looking at one phone" },
+  dm: { src: mess1, alt: "A misty blue valley between steep mountains" },
+  date: { src: mess2, alt: "Golden sand dunes seen from above" },
+  whatsapp: { src: mess3, alt: "Surf over black rocks below snowy peaks" },
+  brief: { src: mess4, alt: "A turquoise sea breaking on a sandy cove, from above" },
+  mail: { src: mess5, alt: "Soft pink sand dunes under a hazy sky" },
+  twoReplies: { src: mess6, alt: "Dark mountains under a stormy sky beyond a black sand beach" },
+  note: { src: mess7, alt: "An orange river of sand through dark rock, from high above" },
 } satisfies Record<string, Photo>
 
 /** One per step of "How a job runs", in order: wide, quiet landscapes, in trionn's 670 × 460 card. */

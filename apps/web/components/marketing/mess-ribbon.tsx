@@ -439,7 +439,7 @@ export function MessRibbon({
         </span>
       </a>
       <span ref={cursorRef} data-portal-cursor aria-hidden className="pointer-events-none fixed top-0 left-0 z-50">
-        <span className="flex size-[50px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-brand-snow text-[0.65rem] leading-none font-semibold tracking-[0.06em] text-brand-navy uppercase">
+        <span className="flex size-[56px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-brand-snow text-center text-[0.6rem] leading-[1.05] font-semibold tracking-[0.06em] text-brand-navy uppercase">
           {cursorLabel}
         </span>
       </span>
