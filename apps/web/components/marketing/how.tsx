@@ -37,8 +37,7 @@ function Divider() {
  *   2. then the whole layer slides away left like a curtain (1.07 px per px), uncovering
  *      Income's opening screen, which waits underneath (IncomeIntro).
  * LandingMotion ties it to the scroll and sets data-play. Otherwise (phones, no JS, reduced
- * motion) the panels stack as a list and Income's opening simply follows. The title panel is
- * navy with snow text; the steps sit on a soft pearl wash.
+ * motion) the panels stack as a list and Income's opening simply follows. A soft pearl wash behind.
  */
 export function How() {
   return (
@@ -48,7 +47,7 @@ export function How() {
           <div data-hz-layer className="relative isolate z-10 overflow-clip md:h-svh">
             <Gradient className="-z-10" />
             <ol data-hz-row className="flex flex-col md:h-full md:flex-row">
-              <li className={cn(panel, "bg-brand-navy-deep text-brand-snow")}>
+              <li className={panel}>
                 <div className="flex max-w-md flex-col items-center gap-8 text-center">
                   <p data-up="0" className={eyebrow}>
                     {how.eyebrow}
@@ -56,7 +55,7 @@ export function How() {
                   <h2 id="how-title" data-blur className="font-display text-[2.5rem] leading-[1.05] font-semibold tracking-tight lg:text-[3.5rem]">
                     <Split text={how.title} scatter />
                   </h2>
-                  <p data-up="2" className="text-base text-brand-snow/75 lg:text-lg">
+                  <p data-up="2" className={cn("text-base lg:text-lg", quiet)}>
                     {how.intro}
                   </p>
                 </div>
