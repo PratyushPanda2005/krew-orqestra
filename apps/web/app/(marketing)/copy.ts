@@ -104,7 +104,6 @@ export const income = {
   // ⚠ "grow" is our wording: the PRD gives monthly totals, not growth analytics or forecasts.
   eyebrow: "Across all your jobs",
   title: "Watch your income grow, month by month.",
-  body: "Every job feeds one ledger. See money in, money out and what you kept each month, and what each client still owes you. When it's time to file, export it all for your accountant.",
   // The growth monitor. Earned: AN-12 (P0). Average per job: AN-15 (P1). Work by type: AN-16 (P1).
   // ⚠ Client reviews and savings goals are not in the PRD or spec yet (PE-18 leans to "advice, not a public rating").
   points: [
@@ -119,9 +118,25 @@ export const income = {
     work: (rating: number, reviews: number, top: string, pct: number) => `★ ${rating} from ${reviews} reviews · ${top} ${pct}%`,
     goal: (saved: string, target: string, by: string) => `${saved} of ${target} · by ${by}`,
   },
-  // The opening screen that trionn's curtain uncovers: the first sentence of the body, and a link down.
-  lead: "Every job feeds one ledger.",
-  more: "See your growth",
+  // The growth list, after Truck'N Roll's numbered list. Example numbers from lib/landing-samples.
+  // Earned: AN-12 (P0). Average per job and repeat clients: AN-15 (P1).
+  // ⚠ Client reviews and savings goals are not in the PRD or spec yet (PE-18 leans to "advice, not a public rating").
+  items: {
+    earned: {
+      title: "Money earned",
+      body: (total: string) => `${total} so far this year, month by month: what came in, what went out on crew and hire, and what you kept.`,
+    },
+    average: {
+      title: "Your average job",
+      body: (average: string, jobs: number) => `${average} a job, across ${jobs} jobs. See which jobs pay best, and quote the next one with numbers, not guesses.`,
+    },
+    reviews: {
+      title: "What clients say",
+      body: (rating: number, reviews: number, repeat: number) => `★ ${rating} from ${reviews} client reviews, and ${repeat} clients who came back for more.`,
+    },
+  },
+  // Top right of the opening screen, after Truck'N Roll's "Trust our team of experts…".
+  lead: "Every job feeds one ledger. Here's what one creator's year looks like.",
 }
 
 export const clients = {

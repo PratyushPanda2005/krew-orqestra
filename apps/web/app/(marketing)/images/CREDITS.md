@@ -41,3 +41,5 @@ From [3dicons](https://3dicons.co) by Vijay Verma, released under [CC0 1.0](http
 | `growth-earn.png` | rupee |
 | `growth-work.png` | chart |
 | `growth-goal.png` | camera |
+| `growth-average.png` | money-bag |
+| `growth-reviews.png` | star |
