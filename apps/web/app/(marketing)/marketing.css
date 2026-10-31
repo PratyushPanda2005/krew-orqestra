@@ -423,18 +423,6 @@ html:not(.js) [data-js-only] {
   translate: -50% 0;
 }
 
-/* Live jobs and the growth cards: each bar fills to its share as it comes in. */
-[data-bar] {
-  transform-origin: left;
-  transform: scaleX(var(--k));
-}
-.motion-ok [data-up][data-wait]:not([data-in]) [data-bar] {
-  transform: scaleX(0);
-}
-.motion-ok [data-up][data-in] [data-bar] {
-  transition: transform 1.2s var(--ease-power1-out) 0.4s;
-}
-
 /*
  * The bottom blur (bottom-blur.tsx), as novaform's: 6 rem tall (8 rem from 1920 px), hidden up to
  * 991 px. Layer 1 blurs 16 px over the bottom 10–30%; each next layer halves the blur and moves its

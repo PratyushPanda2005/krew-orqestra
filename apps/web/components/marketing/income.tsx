@@ -2,8 +2,8 @@ import { formatINR } from "@krew/schemas"
 import { cn } from "@krew/ui/lib/utils"
 import Image from "next/image"
 
-import { how, income } from "@/app/(marketing)/copy"
-import { growth, income as sample, liveJobs } from "@/lib/landing-samples"
+import { income } from "@/app/(marketing)/copy"
+import { growth, income as sample } from "@/lib/landing-samples"
 
 import { growthArt } from "./photos"
 import { PillLink } from "./pill-link"
@@ -55,56 +55,18 @@ export function IncomeIntro() {
 }
 
 /**
- * The rest of the income block (PF-26). After Vantra's live list: every job on the go, at its
- * step of the 7, with bars that fill as the list comes in. Then a monitor of the creator's own
+ * The rest of the income block (PF-26): a line on the ledger, then a monitor of the creator's own
  * growth (what they earn, their work and reviews, a savings goal) in Orionix's "Client voices"
  * cards: three tall navy cards in white frames, fanned, each with a 3D illustration where
  * Orionix has the portrait (over a blurred copy of it): a ₹ coin, a pie chart, a camera. Then
  * the point, a hairline, the tag and its headline numbers.
  */
 export function Income() {
-  const steps = how.steps.length
   return (
     <div id="jobs" className={sectionY}>
       <p data-up="0" className={cn(wide, "max-w-3xl text-center text-lg text-balance lg:text-xl", quiet)}>
         {income.body}
       </p>
-
-      <div className={cn(wide, "mt-12 lg:mt-16")}>
-        <div data-up="0" className="flex items-end justify-between gap-4 border-b border-brand-navy/15 pb-4">
-          <h3 className="font-display text-xl font-semibold tracking-tight lg:text-2xl">{income.live.title}</h3>
-          <p className={cn("text-right text-xs font-medium tracking-wide uppercase", quiet)}>{income.live.note}</p>
-        </div>
-        <ul>
-          {liveJobs.map((j, i) => (
-            <li
-              key={j.job}
-              data-up={String(i * 2)}
-              className="grid grid-cols-[1fr_auto] items-center gap-x-4 gap-y-2 border-b border-brand-navy/15 py-4 md:grid-cols-[1.4fr_0.7fr_1.2fr_0.8fr] lg:py-5"
-            >
-              <div>
-                <p className="font-medium">{j.job}</p>
-                <p className={cn("text-sm", quiet)}>{j.who}</p>
-              </div>
-              <p className="text-right text-xs font-medium tracking-wide uppercase md:text-left">{j.stage}</p>
-              <div className="col-span-2 md:col-span-1">
-                <div className="flex justify-between text-xs tabular">
-                  <span>{income.live.step(j.step, steps)}</span>
-                  <span className={quiet}>{j.due}</span>
-                </div>
-                <div className="mt-1.5 h-1 overflow-hidden rounded-full bg-brand-navy/10">
-                  <div
-                    data-bar
-                    style={{ "--k": j.step / steps } as React.CSSProperties}
-                    className="h-full rounded-full bg-brand-green"
-                  />
-                </div>
-              </div>
-              <p className="hidden text-right font-medium tabular md:block">{formatINR(j.value)}</p>
-            </li>
-          ))}
-        </ul>
-      </div>
 
       {/* Orionix's "Client voices" fan: a band of thin lines behind three tilted cards. */}
       <div className="relative mt-16 lg:mt-24">

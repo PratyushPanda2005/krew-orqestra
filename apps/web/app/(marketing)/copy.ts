@@ -121,13 +121,7 @@ export const income = {
   },
   // The opening screen that trionn's curtain uncovers: the first sentence of the body, and a link down.
   lead: "Every job feeds one ledger.",
-  more: "See your jobs",
-  // After Vantra's "In the studio right now". Example jobs (lib/landing-samples liveJobs).
-  live: {
-    title: "Your jobs, right now",
-    note: "( Example ) 3 jobs on the go",
-    step: (n: number, of: number) => `Step ${n} of ${of}`,
-  },
+  more: "See your growth",
 }
 
 export const clients = {

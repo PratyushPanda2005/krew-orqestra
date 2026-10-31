@@ -67,16 +67,6 @@ export const income = {
 }
 
 /**
- * "Your jobs right now" on the landing page, after Vantra's live list: the same example jobs
- * as the mocks, each at its step of the 7. Dev Sharma's job matches his row in MockPending.
- */
-export const liveJobs = [
-  { job: arjun.job, who: "Arjun's crew · 4 people", stage: "Work", step: 4, value: arjun.total, due: "Shoot 12 Dec" },
-  { job: "Logo and brand kit", who: "Dev Sharma", stage: "Review", step: 5, value: rupeesToPaise(24000), due: "Draft 2 sent" },
-  { job: riya.job, who: riya.client, stage: "Invoice", step: 6, value: riya.quote.total, due: "Due 8 Nov" },
-]
-
-/**
  * The growth monitor under the income block: what the creator earned, which kinds of work it
  * came from, what clients said, and a savings goal. Invented numbers, labelled as an example;
  * the work split adds up to income.received (₹4,78,000).
