@@ -245,7 +245,7 @@ test.describe("landing page at 1280 px", () => {
     await expect
       .poll(() => page.locator("[data-hz-layer]").evaluate((el) => new DOMMatrix(getComputedStyle(el).transform).m41))
       .toBeLessThanOrEqual(-1279)
-    await expect(page.locator("#income-title")).toBeInViewport()
+    await expect(page.locator("#income ol li").first()).toBeInViewport()
   })
 
   test("no horizontal scroll, and a snapshot for review", async ({ page }) => {

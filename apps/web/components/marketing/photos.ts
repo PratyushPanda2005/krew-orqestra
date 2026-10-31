@@ -10,6 +10,9 @@ import how4 from "@/app/(marketing)/images/how-4.jpg"
 import how5 from "@/app/(marketing)/images/how-5.jpg"
 import how6 from "@/app/(marketing)/images/how-6.jpg"
 import how7 from "@/app/(marketing)/images/how-7.jpg"
+import growth1 from "@/app/(marketing)/images/growth-1.jpg"
+import growth2 from "@/app/(marketing)/images/growth-2.jpg"
+import growth3 from "@/app/(marketing)/images/growth-3.jpg"
 import growthEarn from "@/app/(marketing)/images/growth-earn.png"
 import growthGoal from "@/app/(marketing)/images/growth-goal.png"
 import growthWork from "@/app/(marketing)/images/growth-work.png"
@@ -93,3 +96,10 @@ export const nextPhoto: Photo = { src: next, alt: "A figure walking away through
  * premium style. Decorative: each card's text says what it's about.
  */
 export const growthArt = [growthEarn, growthWork, growthGoal]
+
+/** Income's opening examples, one photo each: wide, quiet landscapes (Unsplash License; images/CREDITS.md). */
+export const growthPhotos: Photo[] = [
+  { src: growth1, alt: "Pale desert dunes under a clear sky" },
+  { src: growth2, alt: "A green and grey mountainside in the highlands" },
+  { src: growth3, alt: "Orange dunes under a deep blue sky" },
+]

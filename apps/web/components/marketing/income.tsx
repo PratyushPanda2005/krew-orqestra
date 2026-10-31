@@ -5,9 +5,7 @@ import Image from "next/image"
 import { income } from "@/app/(marketing)/copy"
 import { growth, income as sample } from "@/lib/landing-samples"
 
-import { growthArt } from "./photos"
-import { PillLink } from "./pill-link"
-import { Split } from "./split"
+import { growthArt, growthPhotos } from "./photos"
 import { eyebrow, quiet, sectionY, wide } from "./styles"
 
 
@@ -32,24 +30,43 @@ const lines = [
 
 /**
  * Income's opening screen. After trionn, it waits underneath "How a job runs" and is uncovered
- * as that section's layer slides away to the left (a curtain); so it renders inside How. Big,
- * centred, uppercase title, with a line below and a link down to the jobs. Without the sideways
- * scroll (phones, no JS, reduced motion) it's simply the next screen.
+ * as that section's layer slides away to the left (a curtain); so it renders inside How. After
+ * Truck'N Roll's numbered list, in our layout, all in one screen: the section's name for screen
+ * readers only, a small label and a line at the top, then the three examples in columns, each
+ * a step (4 rem) lower than the one before: a wide landscape photo (square corners) on top, then
+ * a hairline, the number and the title, the point and its example numbers. One column on phones.
+ * Without the sideways scroll (phones, no JS, reduced motion) it's simply the next screen.
  */
 export function IncomeIntro() {
   return (
-    <section id="income" aria-labelledby="income-title" data-hz-under className={cn(sectionY, "relative isolate flex flex-col items-center justify-center gap-12 px-5 text-center md:min-h-svh md:justify-between md:gap-0 md:pt-24 lg:px-10 lg:pt-28")}>
-      <p className={eyebrow}>[ {income.eyebrow} ]</p>
-      <h2 id="income-title" data-blur className="max-w-[16ch] font-display text-[clamp(2.75rem,8.5vw,8.5rem)] leading-[0.92] font-bold tracking-tight uppercase">
-        <Split text={income.title} scatter />
+    <section id="income" aria-labelledby="income-title" data-hz-under className={cn(wide, "relative isolate flex flex-col gap-10 py-12 md:min-h-svh md:justify-center md:py-16")}>
+      <h2 id="income-title" className="sr-only">
+        {income.title}
       </h2>
-      <div className="flex w-full flex-col items-center gap-4 lg:flex-row lg:justify-between">
-        <span className="hidden w-40 lg:block" />
-        <p className="text-xs font-medium tracking-wide uppercase">◆ {income.lead}</p>
-        <PillLink href="#jobs" className="whitespace-nowrap">
-          {income.more}
-        </PillLink>
+      <div className="flex flex-col gap-2 md:flex-row md:items-baseline md:justify-between">
+        <p className={eyebrow}>{income.eyebrow}</p>
+        <p className={cn("max-w-[22rem] text-base font-medium", quiet)}>{income.lead}</p>
       </div>
+      <ol className="grid gap-y-10 md:grid-cols-3 md:gap-x-4 lg:gap-x-6">
+        {income.points.map((point, i) => {
+          const photo = growthPhotos[i]!
+          return (
+            <li key={point} data-up={String(i * 2)} className={cn("flex flex-col gap-4", ["", "md:mt-16", "md:mt-32"][i])}>
+              <div className="relative aspect-[4/3] w-full overflow-hidden bg-brand-navy/10 md:aspect-auto md:h-[min(34svh,18rem)]">
+                <Image src={photo.src} alt={photo.alt} fill sizes="(min-width: 768px) 33vw, 90vw" className="object-cover" />
+              </div>
+              <div className="flex flex-col gap-3 border-t border-current pt-4">
+                <h3 className="flex items-baseline gap-x-4 font-display text-[clamp(1.5rem,1.1rem+1.2vw,2.25rem)] leading-none font-bold tracking-[-0.03em]">
+                  <span className="text-sm font-medium tracking-normal tabular">{String(i + 1).padStart(2, "0")}</span>
+                  <span>{income.tags[i]!.replace(/[[\]]/g, "").trim()}</span>
+                </h3>
+                <p className="max-w-[25rem] text-[clamp(1rem,0.95rem+0.25vw,1.125rem)] leading-[1.3] font-medium">{point}.</p>
+                <p className={cn("text-sm tabular", quiet)}>{lines[i]}</p>
+              </div>
+            </li>
+          )
+        })}
+      </ol>
     </section>
   )
 }

@@ -119,9 +119,8 @@ export const income = {
     work: (rating: number, reviews: number, top: string, pct: number) => `★ ${rating} from ${reviews} reviews · ${top} ${pct}%`,
     goal: (saved: string, target: string, by: string) => `${saved} of ${target} · by ${by}`,
   },
-  // The opening screen that trionn's curtain uncovers: the first sentence of the body, and a link down.
-  lead: "Every job feeds one ledger.",
-  more: "See your growth",
+  // Top right of the opening screen.
+  lead: "Every job feeds one ledger. Here's what one creator's year looks like (an example).",
 }
 
 export const clients = {
