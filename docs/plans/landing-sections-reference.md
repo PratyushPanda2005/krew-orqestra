@@ -322,3 +322,11 @@ On a device set to dark mode, the app's theme (next-themes, following the system
 ## Floating nav on scroll (31 Oct 2026)
 
 The floating nav no longer stays pinned past the hero. It hides as you scroll down and slides back in when you scroll up (8 px of travel before it changes), like a usual site header. Back on the hero it hides again.
+
+## Vantra's closing screen and footer (31 Oct 2026)
+
+From [vantra-studio.webflow.io](https://vantra-studio.webflow.io/), read from its markup, stylesheet and Webflow interaction data.
+
+- **Photo screen** (`next.tsx`, Vantra's "Build what's next with us"): full screen, rounded top corners (1.5 rem), Vantra's own long-exposure photo (`images/next.jpg`, used with permission) under a 30% navy veil, centred title with the first word on its own line ("Run / your next job on Krew"), a short line (30ch) and two pills (green "Join the pilot", snow outline "See how it works"). Reveals as Vantra's: title lines rise 0.25em from 0.15 s, 0.02 s apart (power2.inOut); the line rises 0.5em at 0.45 s (power2.out); the pills rise 0.5em from 0.45 s, 0.15 s apart; each plays once as it enters the screen (`data-rise`).
+- **Footer** (`footer.tsx`): dark panel, 1.25 rem rounded top, riding 1.5 rem up over the photo; 12 columns: wordmark over a short line about Krew (cols 1–5, pushed apart), big section links 36 px over 1 px rules (cols 7–12), small links in two columns below; a rule, then copyright and India time. It sits above the bottom blur so its text stays sharp. Our green-dot hover stands in for Vantra's colour fade.
+- **Join form** moved out of the footer into its own section on snow after Questions (`waitlist.tsx`), so `#waitlist` still lands on the form. The line-drawn KREW wordmark and the smoke backdrop left with the old footer.

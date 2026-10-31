@@ -245,13 +245,26 @@ export const waitlist = {
   failed: "We couldn't save this. Check your connection and try again.",
 }
 
+/** The closing photo screen, after Vantra's "Build what's next with us". */
+export const next = {
+  // The first word sits on its own line, as on the reference.
+  title: ["Run", "your next job on Krew"],
+  // PRD §1
+  body: "One place for the chat, the quote, the advance, the drafts and the invoice.",
+  primary: "Join the pilot",
+  secondary: "See how it works",
+}
+
 export const footer = {
   tagline: "From the first DM to getting paid.",
-  contact: "Contact",
+  // PRD §1
+  about:
+    "Krew is a work app for India's videographers, photographers and designers. It runs each client job from the first DM to getting paid, for you and your crew.",
+  home: "Home",
   // ⚠ confirm the legal entity name
   copyright: "© 2026 Orry",
   sections: "On this page",
-  // The footer clock, as trionn shows its studio time; ours is India time.
-  clock: "IST",
-  hint: "Hover the lines.",
+  more: "More",
+  // The footer clock, after trionn's studio time; ours is India time.
+  clock: "India time",
 }

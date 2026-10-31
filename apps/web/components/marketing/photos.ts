@@ -17,6 +17,7 @@ import messDm from "@/app/(marketing)/images/mess-dm.jpg"
 import messEmail from "@/app/(marketing)/images/mess-email.jpg"
 import messScreenshots from "@/app/(marketing)/images/mess-screenshots.jpg"
 import messTwoReplies from "@/app/(marketing)/images/mess-two-replies.jpg"
+import next from "@/app/(marketing)/images/next.jpg"
 import trust1 from "@/app/(marketing)/images/trust-1.jpg"
 import trust2 from "@/app/(marketing)/images/trust-2.jpg"
 import trust3 from "@/app/(marketing)/images/trust-3.jpg"
@@ -72,3 +73,9 @@ export const trustPhotos: Photo[] = [
   { src: trust3, alt: "A single glass cube tilted on a pale blue background" },
   { src: trust4, alt: "People in a dark gallery beneath a giant glowing moon" },
 ]
+
+/**
+ * The closing photo screen: Vantra's own long-exposure photo from its "Build what's next"
+ * section, used with permission (31 Oct 2026; images/CREDITS.md).
+ */
+export const nextPhoto: Photo = { src: next, alt: "A figure walking away through streaks of coloured light in the dark" }

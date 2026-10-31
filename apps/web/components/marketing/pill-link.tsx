@@ -1,6 +1,6 @@
 import { cn } from "@krew/ui/lib/utils"
 
-import { outlinePill, pill } from "./styles"
+import { outlinePill, pill, snowPill } from "./styles"
 
 const ease = "transition-transform duration-400 ease-[cubic-bezier(0.61,1,0.88,1)]"
 
@@ -15,12 +15,12 @@ export function PillLink({
   children,
 }: {
   href: string
-  variant?: "green" | "outline"
+  variant?: "green" | "outline" | "snow"
   className?: string
   children: React.ReactNode
 }) {
   return (
-    <a href={href} className={cn(variant === "outline" ? outlinePill : pill, "group gap-2", className)}>
+    <a href={href} className={cn({ green: pill, outline: outlinePill, snow: snowPill }[variant], "group gap-2", className)}>
       <span aria-hidden className={cn("size-2 shrink-0 scale-0 rounded-full bg-current group-hover:scale-100", ease)} />
       <span className={cn("-translate-x-2 group-hover:translate-x-0", ease)}>{children}</span>
     </a>

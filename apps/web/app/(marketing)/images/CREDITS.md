@@ -25,3 +25,9 @@ All from Unsplash under the Unsplash License (free for commercial use, no attrib
 | `how-5.jpg` | [9PbeIG_WSb8](https://unsplash.com/photos/9PbeIG_WSb8) | [Irvin Aloise](https://unsplash.com/@istin) |
 | `how-6.jpg` | [RsRTIofe0HE](https://unsplash.com/photos/RsRTIofe0HE) | [John Fowler](https://unsplash.com/@wildhoney) |
 | `how-7.jpg` | [YuTbDWw6wZI](https://unsplash.com/photos/YuTbDWw6wZI) | [Danny Rienecker](https://unsplash.com/@danny_rienecker) |
+
+## Used with permission
+
+| File | Source | Note |
+|---|---|---|
+| `next.jpg` | Vantra Studio template ([vantra-studio.webflow.io](https://vantra-studio.webflow.io/)), its "Build what's next with us" photo | Used with the owner's permission, per the founders (31 Oct 2026). Converted from the 2048 px AVIF. |

@@ -13,6 +13,7 @@ import { useEffect } from "react"
  *   data-blur          title letters come out of a blur in a scattered order, at 90% (trionn)
  *   data-flip          photo turns 180° on Y into place, 0.6 s, when it enters
  *   data-count         number counts up, 1.2 s
+ *   data-rise          rises var(--rise, 0.5em) and fades in, 0.45 s after var(--d), as it enters (Vantra)
  * Tied to the scroll (smoothed over about 0.8 s, like GSAP's scrub: 0.8):
  *   data-scrub-chars   statement letters go from 50% to full as you read down
  *   data-stack         stacked cards shrink back (0.7, then 0.8)
@@ -181,10 +182,10 @@ export function LandingMotion() {
       })
     const at90 = new IntersectionObserver(onEnter, { rootMargin: "0px 0px -10% 0px" })
     const atEdge = new IntersectionObserver(onEnter)
-    document.querySelectorAll("[data-up], [data-count], [data-split], [data-blur], [data-flip]").forEach((el) => {
+    document.querySelectorAll("[data-up], [data-count], [data-split], [data-blur], [data-flip], [data-rise]").forEach((el) => {
       if (el.getBoundingClientRect().top < window.innerHeight) return reveal(el)
       el.setAttribute("data-wait", "")
-      ;(el.matches("[data-split], [data-flip]") ? atEdge : at90).observe(el)
+      ;(el.matches("[data-split], [data-flip], [data-rise]") ? atEdge : at90).observe(el)
     })
     // Things near the very end of the page can never reach the 90% line: show them at the bottom.
     const atEnd = () => {

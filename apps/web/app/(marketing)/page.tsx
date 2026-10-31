@@ -6,7 +6,9 @@ import { How } from "@/components/marketing/how"
 import { Income } from "@/components/marketing/income"
 import { LandingMotion } from "@/components/marketing/landing-motion"
 import { Mess } from "@/components/marketing/mess"
+import { Next } from "@/components/marketing/next"
 import { Clients, Faq, Trust } from "@/components/marketing/sections"
+import { Waitlist } from "@/components/marketing/waitlist"
 import { site } from "@/lib/site"
 
 export const metadata: Metadata = {
@@ -39,6 +41,8 @@ export default function LandingPage() {
         <Clients />
         <Trust />
         <Faq />
+        <Waitlist />
+        <Next />
       </div>
       <FloatNav />
       <LandingMotion />
