@@ -113,6 +113,20 @@ export const income = {
     "Set a goal, like a new camera, and watch it fill",
   ],
   tags: ["[ What you earn ]", "[ Your work ]", "[ Your goals ]"],
+  // The line under each tag (example numbers from lib/landing-samples).
+  figures: {
+    earned: (average: string, jobs: number) => `${average} a job, across ${jobs} jobs`,
+    work: (repeat: number, kinds: number) => `${repeat} repeat clients · ${kinds} kinds of work`,
+    goal: (saved: string, target: string) => `${saved} of ${target}, in your own bank`,
+  },
+  // The dial in the middle of each card (growth-dial.tsx).
+  dial: {
+    earned: "earned this year",
+    up: (pct: number) => `Oct up ${pct}%`,
+    reviews: (n: number) => `from ${n} client reviews`,
+    top: (type: string, pct: number) => `${type} ${pct}%`,
+    by: (when: string) => `there by ${when}`,
+  },
   // The opening screen that trionn's curtain uncovers: the first sentence of the body, and a link down.
   lead: "Every job feeds one ledger.",
   more: "See your jobs",

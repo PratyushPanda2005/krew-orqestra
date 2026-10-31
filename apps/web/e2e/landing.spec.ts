@@ -190,8 +190,7 @@ test.describe("landing page at 390 px", () => {
     const page = await context.newPage()
     await page.goto("/")
     await expect(page.locator("html")).toHaveClass(/\bdark\b/)
-    // The app screens in the Income cards and the join form keep their light cards.
-    await expect(page.locator("#jobs [data-brand] [inert] > div").first()).toHaveCSS("background-color", "rgb(255, 255, 255)")
+    // The join form keeps its light card.
     await expect(page.locator("#contact")).toHaveCSS("background-color", "rgb(255, 255, 255)")
     await context.close()
   })

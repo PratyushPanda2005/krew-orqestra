@@ -344,3 +344,12 @@ From [pixelismo.it](https://www.pixelismo.it/), its home's second section, rebui
 - **Fallbacks:** with reduced motion the camera is already turned and nothing drifts; without WebGL2 or JS the window shows the first photo. The moving panels are hidden from screen readers; the seven captions are listed for them.
 - **Photos (31 Oct):** seven wide, premium landscapes (Unsplash License, `images/mess-1…7.jpg`, credits in `CREDITS.md`) in place of the people photos, ordered so the colours alternate (misty blue valley, golden dunes from above, Vestrahorn surf, turquoise cove, pink dunes, Stokksnes, an orange aerial). The window's tag and caption still name each fragment of the mess.
 - As on pixelismo's home, scroll and drag don't move the loop and the pointer doesn't lean it (those belong to its Works page). The three counting stats and the flipping photo grid are gone.
+
+## Growth cards, after Orionix's "Client voices" (31 Oct 2026)
+
+From [orionix.framer.website](https://orionix.framer.website/), the cards under "Where ambitious brands build their digital future", measured in a browser.
+
+- **Card:** 360 × 557, a 4 px white frame with 24 px corners and Orionix's layered shadow (1 px ring at 4%, then 1/2, 4/6 and 40/40 −24 px drops), round a navy-deep panel with 20 px corners and 40 px padding.
+- **Fan (1024 px up):** the left card turns −9° about (94%, 45%) and moves 32 px right and down; the right card turns 5° about (7%, 45%) and moves 32 px left and down; the middle stays upright and on top. A band of thin green lines (1 px every 9 px, where Orionix's are red) runs behind them. Phones and tablets stack the cards straight.
+- **Inside:** where Orionix has a 232 px round portrait in a 272 px box, each card has a dial of its numbers (`growth-dial.tsx`) on a softly lit navy disc: 12 month segments filling in green with the year's total (what you earn); a donut of earnings by kind of work with the rating (your work); a progress ring to the goal (your goals). A copy of the dial, enlarged and blurred 10 px at 40%, glows behind, as Orionix blurs the portrait. Then the point (24/28, centred), a 1 px snow/10 hairline, the tag (16 px medium) and one line of numbers (14 px at 65%), in Lexend rather than Orionix's Fraunces.
+- The phone screens are gone from these cards (a circle crop of a screen didn't read).

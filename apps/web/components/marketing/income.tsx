@@ -2,15 +2,32 @@ import { formatINR } from "@krew/schemas"
 import { cn } from "@krew/ui/lib/utils"
 
 import { how, income } from "@/app/(marketing)/copy"
-import { liveJobs } from "@/lib/landing-samples"
+import { growth, liveJobs } from "@/lib/landing-samples"
 
-import { Gradient } from "./gradient"
-import { MockEarnings, MockGoal, MockWork } from "./mocks"
+import { GrowthDial } from "./growth-dial"
 import { PillLink } from "./pill-link"
 import { Split } from "./split"
 import { eyebrow, quiet, sectionY, wide } from "./styles"
 
-const art = [MockEarnings, MockWork, MockGoal]
+const dials = ["earned", "work", "goal"] as const
+
+/**
+ * Orionix's fan, from 1024 px: the left card turns −9° about a point near its right edge and
+ * the right card 5° about one near its left, each moved 32 px in and down; the middle stays
+ * upright. Phones and tablets stack them straight.
+ */
+const fan = [
+  "lg:origin-[94%_45%] lg:translate-x-8 lg:translate-y-8 lg:-rotate-9",
+  "lg:relative lg:z-10",
+  "lg:origin-[7%_45%] lg:-translate-x-8 lg:translate-y-8 lg:rotate-5",
+]
+
+/** Each card's headline numbers, where Orionix puts the client's role (example data, lib/landing-samples). */
+const lines = [
+  income.figures.earned(formatINR(growth.average), growth.jobsDone),
+  income.figures.work(growth.repeatClients, growth.byType.length),
+  income.figures.goal(formatINR(growth.goals[0]!.saved), formatINR(growth.goals[0]!.target)),
+]
 
 /**
  * Income's opening screen. After trionn, it waits underneath "How a job runs" and is uncovered
@@ -38,9 +55,11 @@ export function IncomeIntro() {
 
 /**
  * The rest of the income block (PF-26). After Vantra's live list: every job on the go, at its
- * step of the 7, with bars that fill as the list comes in. Then the reference's "Latest
- * Insights" cards rising in, each an app screen on the same grainy dusk gradient: a monitor of
- * the creator's own growth (what they earn, their work and reviews, a savings goal).
+ * step of the 7, with bars that fill as the list comes in. Then a monitor of the creator's own
+ * growth (what they earn, their work and reviews, a savings goal) in Orionix's "Client voices"
+ * cards: three tall navy cards in white frames, fanned, each with a round dial of its numbers
+ * where Orionix has the portrait (over a blurred copy of it), the point, a hairline, the tag
+ * and one more line of numbers.
  */
 export function Income() {
   const steps = how.steps.length
@@ -86,21 +105,44 @@ export function Income() {
         </ul>
       </div>
 
-      <ul className={cn(wide, "mt-16 grid gap-10 md:grid-cols-3 md:gap-6 lg:mt-24")}>
-        {income.points.map((point, i) => {
-          const Art = art[i]!
-          return (
-            <li key={point} data-up="4">
-              <div aria-hidden data-brand className="relative isolate aspect-[4/3] overflow-hidden rounded-lg px-6 pt-6">
-                <Gradient kind="dusk" className="-z-10" />
-                <Art />
-              </div>
-              <p className="mt-5 text-sm font-medium">{income.tags[i]}</p>
-              <h3 className="mt-2 font-display text-xl leading-snug font-semibold tracking-tight lg:text-2xl">{point}</h3>
-            </li>
-          )
-        })}
-      </ul>
+      {/* Orionix's "Client voices" fan: a band of thin lines behind three tilted cards. */}
+      <div className="relative mt-16 lg:mt-24">
+        <span
+          aria-hidden
+          className="absolute inset-x-0 top-[45%] hidden h-60 bg-[repeating-linear-gradient(to_bottom,color-mix(in_srgb,var(--brand-green)_45%,transparent)_0_1px,transparent_1px_9px)] opacity-60 lg:block"
+        />
+        <ul className="relative mx-auto flex max-w-[23rem] flex-col items-center gap-8 px-5 lg:max-w-none lg:flex-row lg:justify-center lg:gap-0 lg:px-0">
+          {income.points.map((point, i) => {
+            return (
+              <li key={point} data-up="4" className={cn("w-full max-w-[22.5rem] lg:w-[22.5rem] lg:shrink-0", fan[i])}>
+                {/* The card: a 4 px white frame (24 px corners) round a navy panel (20 px). */}
+                <article className="rounded-3xl bg-white p-1 shadow-[0_0_0_1px_rgb(0_0_0/0.04),0_1px_2px_rgb(0_0_0/0.06),0_4px_6px_rgb(0_0_0/0.04),0_40px_40px_-24px_rgb(0_0_0/0.06)]">
+                  <div className="relative isolate flex h-[34.3rem] flex-col items-center overflow-hidden rounded-[20px] bg-brand-navy-deep p-10 text-brand-snow">
+                    {/* The dial again, enlarged and blurred 10 px at 40% behind everything, as Orionix blurs the portrait. */}
+                    <div aria-hidden className="absolute -inset-8 -z-10 flex items-center justify-center opacity-40 blur-[10px]">
+                      <div className="scale-[2.1]">
+                        <GrowthDial kind={dials[i]!} />
+                      </div>
+                    </div>
+                    {/* The round "portrait": a dial of this card's numbers (growth-dial.tsx), 232 px in a 272 px box. */}
+                    <div className="flex size-68 shrink-0 items-center justify-center">
+                      <GrowthDial kind={dials[i]!} />
+                    </div>
+                    <div className="flex w-full flex-col items-center gap-5 text-center">
+                      <h3 className="font-display text-2xl leading-7 font-medium tracking-[-0.04em] text-balance">{point}</h3>
+                      <span aria-hidden className="h-px w-full bg-brand-snow/10" />
+                      <div className="flex flex-col gap-1">
+                        <p className="text-base leading-6 font-medium tracking-[-0.02em]">{income.tags[i]!.replace(/[[\]]/g, "").trim()}</p>
+                        <p className="text-sm leading-5 tracking-[-0.02em] text-brand-snow/65">{lines[i]}</p>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              </li>
+            )
+          })}
+        </ul>
+      </div>
     </div>
   )
 }
