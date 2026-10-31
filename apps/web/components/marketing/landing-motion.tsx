@@ -2,6 +2,8 @@
 
 import { useEffect } from "react"
 
+import { place, ribbon } from "./ribbon"
+
 /**
  * Runs the references' effects on the landing sections: novaform's (read from its Webflow
  * interaction data, plan landing-sections-reference §15) and trionn's (§17). Only runs with
@@ -11,21 +13,19 @@ import { useEffect } from "react"
  *   data-up="0|2|4|6"  rises 80 px and fades in, 0.6 s, delayed 0–0.6 s, when its top reaches 90%
  *   data-split         title letters rise 40 px, staggered over 0.6 s, when it enters
  *   data-blur          title letters come out of a blur in a scattered order, at 90% (trionn)
- *   data-flip          photo turns 180° on Y into place, 0.6 s, when it enters
- *   data-count         number counts up, 1.2 s
  *   data-rise          rises var(--rise, 0.5em) and fades in, 0.45 s after var(--d), as it enters (Vantra)
  * Tied to the scroll (smoothed over about 0.8 s, like GSAP's scrub: 0.8):
  *   data-scrub-chars   statement letters go from 50% to full as you read down
  *   data-stack         stacked cards shrink back (0.7, then 0.8)
  *   data-hz-track      a pinned row of panels slides sideways, then off like a curtain (trionn; 768 px up)
+ * Running on its own while on screen:
+ *   data-ribbon        the mess ribbon drifts, follows the scroll and a drag, and leans with the pointer (pixelismo)
  * Plus Lenis smooth scrolling from 768 px, and (with any motion setting) the floating nav.
  */
 
 const clamp01 = (v: number) => Math.min(Math.max(v, 0), 1)
 /** How far t is through [a, b], from 0 to 1. */
 const seg = (t: number, a: number, b: number) => clamp01((t - a) / (b - a))
-/** GSAP's power1.out. */
-const power1Out = (t: number) => 1 - (1 - t) * (1 - t)
 
 /** ScrollTrigger "top bottom" to "bottom top": 0 as the element enters, 1 as it leaves. */
 function through(el: HTMLElement) {
@@ -133,17 +133,96 @@ function sideways(track: HTMLElement): Scrub {
   }
 }
 
-function countUp(el: HTMLElement) {
-  const to = Number(el.textContent)
-  if (!Number.isFinite(to) || to === 0) return
-  const start = performance.now()
-  const tick = (now: number) => {
-    const k = clamp01((now - start) / 1200)
-    el.textContent = String(Math.floor(power1Out(k) * to))
-    if (k < 1) requestAnimationFrame(tick)
-    else el.textContent = String(to)
+/**
+ * pixelismo's Works carousel, on the mess ribbon (ribbon.ts has the shape). The offset drifts
+ * on its own (0.45 units a second; 0.22 on phones), moves 0.008 units per pixel scrolled and
+ * with a mouse drag, and eases to its target by 0.16 a frame. The pointer leans the whole rig
+ * (pixelismo: 1.05 units across, 0.34 up, 1.15 deep; 1.35° and 2.65° of tilt, eased by 0.052).
+ * Both copies (outlines and window) get the same transforms. Runs only while on screen.
+ */
+function driftRibbon(root: HTMLElement) {
+  const rigs = [...root.querySelectorAll<HTMLElement>("[data-ribbon-rig]")]
+  const panels = rigs.map((r) => [...r.querySelectorAll<HTMLElement>("[data-ribbon-panel]")])
+  const phone = !matchMedia("(min-width: 768px)").matches
+  const fine = matchMedia("(hover: hover) and (pointer: fine)").matches
+  // One unit in pixels: the window is 5.2 units wide.
+  const win = root.querySelector<HTMLElement>("[data-ribbon-window]")
+  const unit = () => (win?.offsetWidth ?? 520) / 5.2
+  let target = 0
+  let offset = 0
+  let lastY = window.scrollY
+  let mouse = { x: 0, y: 0 }
+  const lean = { x: 0, y: 0, z: 0 }
+  let drag: number | null = null
+  let on = false
+  let frame = 0
+  let last = 0
+
+  const onScroll = () => {
+    target += (window.scrollY - lastY) * (phone ? ribbon.scroll.phone : ribbon.scroll.wide)
+    lastY = window.scrollY
   }
-  requestAnimationFrame(tick)
+  const onMove = (e: PointerEvent) => {
+    if (drag !== null) {
+      target -= (e.clientX - drag) / unit()
+      drag = e.clientX
+    }
+    mouse = { x: (e.clientX / innerWidth) * 2 - 1, y: (e.clientY / innerHeight) * 2 - 1 }
+  }
+  const onDown = (e: PointerEvent) => {
+    if (e.pointerType !== "mouse") return
+    drag = e.clientX
+    root.setAttribute("data-dragging", "")
+  }
+  const onUp = () => {
+    drag = null
+    root.removeAttribute("data-dragging")
+  }
+
+  const tick = (now: number) => {
+    const dt = last ? Math.min((now - last) / 1000, 0.1) : 1 / 60
+    last = now
+    target += (phone ? ribbon.auto.phone : ribbon.auto.wide) * dt
+    offset += (target - offset) * (1 - Math.pow(1 - ribbon.lerp, dt * 60))
+    const moved = panels[0]!.map((_, i) => place(i, offset))
+    panels.forEach((list) => list.forEach((el, i) => (el.style.transform = moved[i]!)))
+
+    if (fine) {
+      const want = drag === null ? mouse : { x: 0, y: 0 }
+      const ease = 1 - Math.pow(1 - 0.052, dt * 60)
+      const easeDeep = 1 - Math.pow(1 - 0.038, dt * 60)
+      lean.x += (want.x - lean.x) * ease
+      lean.y += (want.y - lean.y) * ease
+      lean.z += (Math.hypot(want.x, want.y) - lean.z) * easeDeep
+      const rig = `translate3d(calc(${(lean.x * 1.05).toFixed(3)} * var(--u)), calc(${(lean.y * 0.34).toFixed(3)} * var(--u)), calc(${(lean.z * 1.15).toFixed(3)} * var(--u))) rotateX(${(-lean.y * 1.35).toFixed(2)}deg) rotateY(${(lean.x * 2.65).toFixed(2)}deg) rotateZ(${ribbon.tiltDeg}deg)`
+      rigs.forEach((r) => (r.style.transform = rig))
+    }
+    frame = on ? requestAnimationFrame(tick) : 0
+    if (!on) last = 0
+  }
+
+  const seen = new IntersectionObserver(([e]) => {
+    on = !!e?.isIntersecting
+    if (on && !frame) {
+      lastY = window.scrollY
+      frame = requestAnimationFrame(tick)
+    }
+  })
+  seen.observe(root)
+  window.addEventListener("scroll", onScroll, { passive: true })
+  window.addEventListener("pointermove", onMove, { passive: true })
+  window.addEventListener("pointerup", onUp)
+  root.addEventListener("pointerdown", onDown)
+  root.setAttribute("data-play", "")
+  return () => {
+    seen.disconnect()
+    cancelAnimationFrame(frame)
+    window.removeEventListener("scroll", onScroll)
+    window.removeEventListener("pointermove", onMove)
+    window.removeEventListener("pointerup", onUp)
+    root.removeEventListener("pointerdown", onDown)
+    root.removeAttribute("data-play")
+  }
 }
 
 export function LandingMotion() {
@@ -169,11 +248,11 @@ export function LandingMotion() {
     cleanups.push(() => window.removeEventListener("scroll", pastHero))
     if (!html.classList.contains("motion-ok")) return () => cleanups.forEach((c) => c())
 
+    const mess = document.querySelector<HTMLElement>("[data-ribbon]")
+    if (mess) cleanups.push(driftRibbon(mess))
+
     // Reveals. Only what's still below the fold waits, so nothing on screen blinks out.
-    const reveal = (el: Element) => {
-      el.setAttribute("data-in", "")
-      if (el.hasAttribute("data-count")) countUp(el as HTMLElement)
-    }
+    const reveal = (el: Element) => el.setAttribute("data-in", "")
     const onEnter = (entries: IntersectionObserverEntry[], io: IntersectionObserver) =>
       entries.forEach((e) => {
         if (!e.isIntersecting) return
@@ -182,10 +261,10 @@ export function LandingMotion() {
       })
     const at90 = new IntersectionObserver(onEnter, { rootMargin: "0px 0px -10% 0px" })
     const atEdge = new IntersectionObserver(onEnter)
-    document.querySelectorAll("[data-up], [data-count], [data-split], [data-blur], [data-flip], [data-rise]").forEach((el) => {
+    document.querySelectorAll("[data-up], [data-split], [data-blur], [data-rise]").forEach((el) => {
       if (el.getBoundingClientRect().top < window.innerHeight) return reveal(el)
       el.setAttribute("data-wait", "")
-      ;(el.matches("[data-split], [data-flip], [data-rise]") ? atEdge : at90).observe(el)
+      ;(el.matches("[data-split], [data-rise]") ? atEdge : at90).observe(el)
     })
     // Things near the very end of the page can never reach the 90% line: show them at the bottom.
     const atEnd = () => {

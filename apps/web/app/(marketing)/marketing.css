@@ -254,12 +254,13 @@ html:not(.js) [data-js-only] {
   opacity: 0.5;
 }
 
-/* Mess photos turn 180° into place (the reference turns 0→180; we end the right way round). */
-.motion-ok [data-flip][data-wait]:not([data-in]) {
-  transform: rotateY(-180deg);
+/* The mess ribbon (mess.tsx, LandingMotion): a grab cursor while it can be dragged. */
+[data-ribbon][data-play] {
+  cursor: grab;
 }
-.motion-ok [data-flip][data-in] {
-  transition: transform 0.6s var(--ease-power1-out);
+[data-ribbon][data-dragging] {
+  cursor: grabbing;
+  user-select: none;
 }
 
 /*

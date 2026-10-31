@@ -154,10 +154,12 @@ test.describe("landing page at 390 px", () => {
 
   test("section effects wait below the fold, play as you scroll, and stay off with reduced motion", async ({ page, browser }) => {
     await page.goto("/")
-    const flip = page.locator("#mess [data-flip]").last()
-    await expect(flip).toHaveAttribute("data-wait", "")
-    await flip.scrollIntoViewIfNeeded()
-    await expect(flip).toHaveAttribute("data-in", "")
+    const reveal = page.locator("#mess [data-up]").first()
+    await expect(reveal).toHaveAttribute("data-wait", "")
+    await reveal.scrollIntoViewIfNeeded()
+    await expect(reveal).toHaveAttribute("data-in", "")
+    // The mess ribbon drifts (pixelismo's Works carousel).
+    await expect(page.locator("#mess [data-ribbon]")).toHaveAttribute("data-play", "")
     // Phones get the steps as a list, not the sideways scroll.
     await expect(page.locator("[data-hz-track]")).not.toHaveAttribute("data-play", "")
 
@@ -166,7 +168,7 @@ test.describe("landing page at 390 px", () => {
     await still.goto("/")
     await expect(still.locator("[data-wait]")).toHaveCount(0)
     await expect(still.locator("[data-hz-track]")).not.toHaveAttribute("data-play", "")
-    await expect(still.locator("#mess [data-flip]").last()).toHaveCSS("transform", "none")
+    await expect(still.locator("#mess [data-ribbon]")).not.toHaveAttribute("data-play", "")
     await context.close()
   })
 

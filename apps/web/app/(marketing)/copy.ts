@@ -40,14 +40,12 @@ export const mess = {
     twoReplies: "Two of you reply to one client.",
   },
   closing: "Krew puts the job back together.",
-  // Layout labels for the reference's "About" block (plan landing-sections-reference §10).
+  // Layout labels for pixelismo's Works section (plan landing-sections-reference, last section).
   eyebrow: "[ The mess ]",
-  // Each stat restates a line above: four apps (title), seven steps (how), no client logins (PRD §3).
-  stats: [
-    { value: "4", label: "apps for one job" },
-    { value: "7", label: "steps, in one place" },
-    { value: "0", label: "logins for your clients" },
-  ],
+  windowLabel: "The mess",
+  // The four apps of the title, listed where pixelismo lists its services.
+  appsLabel: "The four apps",
+  apps: ["Instagram DMs", "WhatsApp", "Gmail", "Notes"],
 }
 
 export const how = {
