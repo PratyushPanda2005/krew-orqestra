@@ -10,10 +10,8 @@ import how4 from "@/app/(marketing)/images/how-4.jpg"
 import how5 from "@/app/(marketing)/images/how-5.jpg"
 import how6 from "@/app/(marketing)/images/how-6.jpg"
 import how7 from "@/app/(marketing)/images/how-7.jpg"
-import growthAverage from "@/app/(marketing)/images/growth-average.png"
 import growthEarn from "@/app/(marketing)/images/growth-earn.png"
 import growthGoal from "@/app/(marketing)/images/growth-goal.png"
-import growthReviews from "@/app/(marketing)/images/growth-reviews.png"
 import growthWork from "@/app/(marketing)/images/growth-work.png"
 import mess1 from "@/app/(marketing)/images/mess-1.jpg"
 import mess2 from "@/app/(marketing)/images/mess-2.jpg"
@@ -91,13 +89,7 @@ export const trustPhotos: Photo[] = [
 export const nextPhoto: Photo = { src: next, alt: "A figure walking away through streaks of coloured light in the dark" }
 
 /**
- * The growth list's pictures: 3D illustrations from 3dicons (CC0; images/CREDITS.md), premium
- * style. Decorative: each item's text says what it's about.
+ * The growth cards' round "portraits": 3D illustrations from 3dicons (CC0; images/CREDITS.md),
+ * premium style. Decorative: each card's text says what it's about.
  */
-export const growthArt = {
-  earned: growthEarn,
-  average: growthAverage,
-  work: growthWork,
-  reviews: growthReviews,
-  goal: growthGoal,
-}
+export const growthArt = [growthEarn, growthWork, growthGoal]

@@ -414,14 +414,6 @@ html:not(.js) [data-js-only] {
     var(--brand-navy-deep);
 }
 
-/* The growth list (income.tsx), after Truck'N Roll: each item's top rule draws in from the left as it comes in. */
-.motion-ok [data-rule][data-wait]:not([data-in])::before {
-  scale: 0 1;
-}
-.motion-ok [data-rule][data-in]::before {
-  transition: scale 0.8s cubic-bezier(0.77, 0, 0.175, 1) calc(var(--i, 0) * 60ms);
-}
-
 /* The floating nav: out of sight on the hero and while scrolling down; slides in when you scroll up. */
 [data-float-nav] {
   translate: -50% -150%;
