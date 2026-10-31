@@ -75,3 +75,32 @@ export const liveJobs = [
   { job: "Logo and brand kit", who: "Dev Sharma", stage: "Review", step: 5, value: rupeesToPaise(24000), due: "Draft 2 sent" },
   { job: riya.job, who: riya.client, stage: "Invoice", step: 6, value: riya.quote.total, due: "Due 8 Nov" },
 ]
+
+/**
+ * The growth monitor under the income block: what the creator earned, which kinds of work it
+ * came from, what clients said, and a savings goal. Invented numbers, labelled as an example;
+ * the work split adds up to income.received (₹4,78,000).
+ */
+const byType = [
+  { type: "Weddings", rupees: 248000 },
+  { type: "Events", rupees: 115000 },
+  { type: "Brand shoots", rupees: 76000 },
+  { type: "Portraits", rupees: 39000 },
+] as const
+
+const jobsDone = 22
+
+export const growth = {
+  jobsDone,
+  average: rupeesToPaise(Math.round(months.reduce((sum, m) => sum + m.in, 0) / jobsDone)),
+  // October against September, in whole percent.
+  monthChange: Math.round((months[6].in / months[5].in - 1) * 100),
+  reviews: { rating: 4.9, count: 18 },
+  repeatClients: 6,
+  byType: byType.map((t) => ({ type: t.type, paise: rupeesToPaise(t.rupees) })),
+  // A goal only tracks money the creator sets aside in their own bank; Krew never holds it.
+  goals: [
+    { name: "New camera body", saved: rupeesToPaise(148000), target: rupeesToPaise(240000), monthly: rupeesToPaise(15000), by: "May 2027" },
+    { name: "Drone", saved: rupeesToPaise(40000), target: rupeesToPaise(90000) },
+  ],
+}

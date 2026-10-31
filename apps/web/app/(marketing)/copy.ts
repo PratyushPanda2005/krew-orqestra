@@ -104,8 +104,14 @@ export const income = {
   eyebrow: "Across all your jobs",
   title: "Watch your income grow, month by month.",
   body: "Every job feeds one ledger. See money in, money out and what you kept each month, and what each client still owes you. When it's time to file, export it all for your accountant.",
-  points: ["Money in, money out and net, by month", "What each client still owes", "Exports for Tally and Zoho Books, or CSV"],
-  tags: ["[ By month ]", "[ Who owes you ]", "[ For your accountant ]"],
+  // The growth monitor. Earned: AN-12 (P0). Average per job: AN-15 (P1). Work by type: AN-16 (P1).
+  // ⚠ Client reviews and savings goals are not in the PRD or spec yet (PE-18 leans to "advice, not a public rating").
+  points: [
+    "Money earned each month, and your average per job",
+    "Which kinds of work bring the most, and what clients say",
+    "Set a goal, like a new camera, and watch it fill",
+  ],
+  tags: ["[ What you earn ]", "[ Your work ]", "[ Your goals ]"],
   // The opening screen that trionn's curtain uncovers: the first sentence of the body, and a link down.
   lead: "Every job feeds one ledger.",
   more: "See your jobs",

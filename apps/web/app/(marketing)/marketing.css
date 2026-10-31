@@ -379,7 +379,7 @@ html:not(.js) [data-js-only] {
   translate: -50% 0;
 }
 
-/* Live jobs: each progress bar fills to its share as the list comes in. */
+/* Live jobs and the growth cards: each bar fills to its share as it comes in. */
 [data-bar] {
   transform-origin: left;
   transform: scaleX(var(--k));

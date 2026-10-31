@@ -5,12 +5,12 @@ import { how, income } from "@/app/(marketing)/copy"
 import { liveJobs } from "@/lib/landing-samples"
 
 import { Gradient } from "./gradient"
-import { MockExport, MockIncome, MockPending } from "./mocks"
+import { MockEarnings, MockGoal, MockWork } from "./mocks"
 import { PillLink } from "./pill-link"
 import { Split } from "./split"
 import { eyebrow, quiet, sectionY, wide } from "./styles"
 
-const art = [MockIncome, MockPending, MockExport]
+const art = [MockEarnings, MockWork, MockGoal]
 
 /**
  * Income's opening screen. After trionn, it waits underneath "How a job runs" and is uncovered
@@ -39,7 +39,8 @@ export function IncomeIntro() {
 /**
  * The rest of the income block (PF-26). After Vantra's live list: every job on the go, at its
  * step of the 7, with bars that fill as the list comes in. Then the reference's "Latest
- * Insights" cards rising in, each an app screen on the same grainy dusk gradient.
+ * Insights" cards rising in, each an app screen on the same grainy dusk gradient: a monitor of
+ * the creator's own growth (what they earn, their work and reviews, a savings goal).
  */
 export function Income() {
   const steps = how.steps.length

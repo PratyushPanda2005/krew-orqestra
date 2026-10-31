@@ -1,11 +1,11 @@
-import { formatINR, rupeesToPaise } from "@krew/schemas"
+import { formatINR } from "@krew/schemas"
 import { Button } from "@krew/ui/components/button"
 import { ListRow } from "@krew/ui/components/list-row"
 import { Money } from "@krew/ui/components/money"
 import { StageRail } from "@krew/ui/components/stage-rail"
 import { StatusPill } from "@krew/ui/components/status-pill"
 
-import { arjun, income, riya } from "@/lib/landing-samples"
+import { arjun, growth, income, riya } from "@/lib/landing-samples"
 
 import { ChatBubble } from "./chat-bubble"
 import { MockHeader, PhoneFrame } from "./phone-frame"
@@ -208,46 +208,40 @@ function MockPaid() {
   )
 }
 
-/**
- * The whole-account view: money in by month as plain bars (one series, so no legend),
- * the current month in full primary and labelled, the rest lighter. Decorative like the
- * other mocks; the text beside it says what it shows.
- */
-export function MockIncome() {
+/** What you earn (AN-12, AN-15): money earned this year, the average per job, and each month's money in. */
+export function MockEarnings() {
   const max = Math.max(...income.months.map((m) => m.in))
   const now = income.months.at(-1)!
   return (
     <PhoneFrame>
-      <MockHeader title="Money" meta={`${income.year} · all jobs`} />
+      <MockHeader title="Your earnings" meta={`${income.year} · all jobs`} />
       <div className="grid grid-cols-2 divide-x border-b">
         <div className="px-4 py-3">
-          <p className="text-xs text-muted-foreground">Received</p>
+          <p className="text-xs text-muted-foreground">Earned</p>
           <Money paise={income.received} size="md" tone="success" className="condensed text-xl font-semibold" />
         </div>
         <div className="px-4 py-3">
-          <p className="text-xs text-muted-foreground">Pending · {income.pendingInvoices} invoices</p>
-          <Money paise={income.pending} size="md" className="condensed text-xl font-semibold" />
+          <p className="text-xs text-muted-foreground">Average · {growth.jobsDone} jobs</p>
+          <Money paise={growth.average} size="md" className="condensed text-xl font-semibold" />
         </div>
       </div>
       <div className="px-4 pt-3">
-        <p className="text-xs font-medium text-muted-foreground">Money in, by month</p>
+        <p className="flex justify-between text-xs font-medium text-muted-foreground">
+          <span>Money in, by month</span>
+          <span className="text-success">Oct up {growth.monthChange}%</span>
+        </p>
         <div className="mt-6 flex h-28 items-end gap-0.5 border-b">
           {income.months.map((m) => {
             const current = m === now
             return (
               <div key={m.month} className="relative flex h-full flex-1 items-end justify-center">
-                {current && (
-                  <span className="absolute -top-5 text-xs font-semibold tabular">{formatINR(m.in)}</span>
-                )}
-                <span
-                  className={`w-3/5 rounded-t ${current ? "bg-primary" : "bg-primary/30"}`}
-                  style={{ height: `${(m.in / max) * 100}%` }}
-                />
+                {current && <span className="absolute -top-5 text-xs font-semibold tabular">{formatINR(m.in)}</span>}
+                <span className={`w-3/5 rounded-t ${current ? "bg-primary" : "bg-primary/30"}`} style={{ height: `${(m.in / max) * 100}%` }} />
               </div>
             )
           })}
         </div>
-        <div className="flex gap-0.5 pt-1">
+        <div className="flex gap-0.5 pt-1 pb-3">
           {income.months.map((m) => (
             <span key={m.month} className="flex-1 text-center text-[0.6875rem] text-muted-foreground">
               {m.month}
@@ -255,57 +249,86 @@ export function MockIncome() {
           ))}
         </div>
       </div>
-      <div className="mt-2 divide-y border-t">
-        <ListRow className={row} title="October in" trailing={<Money paise={now.in} size="sm" />} />
-        <ListRow className={row} title="October out" meta="Crew, hire, travel" trailing={<Money paise={now.out} size="sm" tone="muted" />} />
-        <ListRow className={row} title="October net" trailing={<Money paise={now.in - now.out} size="sm" tone="success" />} />
-      </div>
     </PhoneFrame>
   )
 }
 
-/** What each client still owes (PF-26 pending view). Example names and amounts; they add up to income.pending. */
-export function MockPending() {
-  const owed = [
-    { who: riya.client, what: `Invoice ${riya.invoice.number}`, paise: riya.invoice.due },
-    { who: "Mrs Kapoor", what: "Balance after the advance", paise: rupeesToPaise(30000) },
-    { who: "Dev Sharma", what: "Logo and brand kit", paise: rupeesToPaise(12000) },
-  ]
+/** Your work (AN-16, AN-15): what clients said, repeat clients, and earnings by kind of work; bars fill as the card comes in. */
+export function MockWork() {
+  const total = growth.byType.reduce((sum, t) => sum + t.paise, 0)
   return (
     <PhoneFrame>
-      <MockHeader title="Still owed to you" meta={`${income.pendingInvoices} invoices`} />
-      <div className="flex items-end justify-between px-4 py-3">
-        <span className="text-muted-foreground">Pending</span>
-        <Money paise={income.pending} size="amount" />
+      <MockHeader title="Your work" meta={`${income.year} · where it comes from`} />
+      <div className="grid grid-cols-2 divide-x border-b">
+        <div className="px-4 py-3">
+          <p className="text-xs text-muted-foreground">Client reviews</p>
+          <p className="condensed text-xl font-semibold">
+            <span aria-hidden className="text-warning">★</span> {growth.reviews.rating}{" "}
+            <span className="text-sm font-normal text-muted-foreground">({growth.reviews.count})</span>
+          </p>
+        </div>
+        <div className="px-4 py-3">
+          <p className="text-xs text-muted-foreground">Repeat clients</p>
+          <p className="condensed text-xl font-semibold tabular">{growth.repeatClients}</p>
+        </div>
       </div>
-      <div className="divide-y border-t">
-        {owed.map((o) => (
-          <ListRow key={o.who} className={row} title={o.who} meta={o.what} trailing={<Money paise={o.paise} size="sm" />} />
-        ))}
-      </div>
+      <ul className="flex flex-col gap-3 px-4 py-3">
+        {growth.byType.map((t, i) => {
+          const share = Math.round((t.paise / total) * 100)
+          return (
+            <li key={t.type}>
+              <div className="flex justify-between text-xs">
+                <span className="font-medium text-foreground">{t.type}</span>
+                <span className="tabular text-muted-foreground">
+                  {formatINR(t.paise)} · {share}%
+                </span>
+              </div>
+              <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-muted">
+                <div data-bar className={`h-full rounded-full ${i === 0 ? "bg-primary" : "bg-primary/40"}`} style={{ "--k": share / 100 } as React.CSSProperties} />
+              </div>
+            </li>
+          )
+        })}
+      </ul>
     </PhoneFrame>
   )
 }
 
-/** Year-end exports (PF-26). */
-export function MockExport() {
+/**
+ * Your goals (not in the spec yet): money set aside towards gear. Krew only tracks it; the money
+ * stays in the creator's bank, and the header says so. Bars fill as the card comes in (data-bar).
+ */
+export function MockGoal() {
+  const [main, next] = growth.goals
+  const pct = (g: { saved: number; target: number }) => Math.round((g.saved / g.target) * 100)
   return (
     <PhoneFrame>
-      <MockHeader title="Export" meta={`${income.year} · for your accountant`} />
-      <div className="divide-y">
-        {["Tally", "Zoho Books", "CSV"].map((f) => (
-          <ListRow
-            key={f}
-            className={row}
-            title={f}
-            meta="Invoices, payments, expenses"
-            trailing={
-              <Button size="sm" variant="outline" tabIndex={-1}>
-                Download
-              </Button>
-            }
-          />
-        ))}
+      <MockHeader title="Your goals" meta="Krew tracks it. Money stays in your bank." />
+      <div className="border-b px-4 py-3">
+        <div className="flex items-baseline justify-between">
+          <p className="font-medium">{main!.name}</p>
+          <p className="text-xs font-semibold text-success tabular">{pct(main!)}%</p>
+        </div>
+        <p className="mt-1 text-xs text-muted-foreground tabular">
+          <Money paise={main!.saved} size="sm" className="font-semibold text-foreground" /> of {formatINR(main!.target)}
+        </p>
+        <div className="mt-2 h-2 overflow-hidden rounded-full bg-muted">
+          <div data-bar className="h-full rounded-full bg-primary" style={{ "--k": pct(main!) / 100 } as React.CSSProperties} />
+        </div>
+        <p className="mt-2 text-xs text-muted-foreground">
+          {formatINR(main!.monthly!)} a month · there by {main!.by}
+        </p>
+      </div>
+      <div className="border-b px-4 py-3">
+        <div className="flex items-baseline justify-between text-xs">
+          <span className="font-medium text-foreground">{next!.name}</span>
+          <span className="tabular text-muted-foreground">
+            {formatINR(next!.saved)} of {formatINR(next!.target)}
+          </span>
+        </div>
+        <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-muted">
+          <div data-bar className="h-full rounded-full bg-primary/40" style={{ "--k": pct(next!) / 100 } as React.CSSProperties} />
+        </div>
       </div>
     </PhoneFrame>
   )
