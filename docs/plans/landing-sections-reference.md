@@ -353,3 +353,11 @@ From [orionix.framer.website](https://orionix.framer.website/), the cards under 
 - **Fan (1024 px up):** the left card turns −9° about (94%, 45%) and moves 32 px right and down; the right card turns 5° about (7%, 45%) and moves 32 px left and down; the middle stays upright and on top. A band of thin green lines (1 px every 9 px, where Orionix's are red) runs behind them. Phones and tablets stack the cards straight.
 - **Inside:** where Orionix has a 232 px round portrait in a 272 px box, each card has a 3D illustration from 3dicons (CC0, premium black-and-gold style), standing on its own with a soft drop shadow: a ₹ coin (what you earn), a pie chart (your work), a camera (your goals). A copy, enlarged and blurred 10 px at 40%, glows behind, as Orionix blurs the portrait. Then the point (24/28, centred), a 1 px snow/10 hairline, the tag (16 px medium) and its headline numbers (14 px at 65%), in Lexend rather than Orionix's Fraunces.
 - The phone screens are gone from these cards (a circle crop of a screen didn't read), and so are the number dials that briefly replaced them.
+
+## Questions, after Truck'N Roll's "Use Cases" (31 Oct 2026)
+
+From [trucknroll.com](https://trucknroll.com/), its accordion read from the markup, stylesheet and `Accordion` script, on our light ground (theirs is dark).
+
+- **Layout:** two columns. Left: the title big, and at the bottom "Still have a question?…" with the Email us pill (last on phones). Right: "( Questions )" and a one-line intro side by side at the top, the accordion at the bottom.
+- **Rows:** a full-width 1 px rule in the text colour above each; the question (18–20 px, medium) and a short answer on the same line at 50%; a 16 px + that becomes − (fading and scaling to 0.9, the new one 50 ms later). Rows fade to 70% under the pointer (0.25 s, cubic-bezier(0.3, 0.4, 0, 1)). The answer, same size and weight, up to 600 px wide, opens over 0.4 s with cubic-bezier(0.33, 1, 0.68, 1).
+- Native `<details name="faq">` as before: one open at a time, the first open, works without JS, and the promises' "Ask" still opens its question.

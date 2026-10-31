@@ -351,7 +351,7 @@ html:not(.js) [data-js-only] {
 }
 
 /*
- * Questions (sections.tsx › Faq): answers slide open over 0.5 s with RoomMaster's ease, where the
+ * Questions (sections.tsx › Faq): answers slide open over 0.4 s with Truck'N Roll's ease, where the
  * browser can animate to auto height (::details-content); elsewhere they simply open.
  */
 #faq details {
@@ -361,8 +361,8 @@ html:not(.js) [data-js-only] {
   block-size: 0;
   overflow: clip;
   transition:
-    block-size 0.5s cubic-bezier(0.165, 0.84, 0.44, 1),
-    content-visibility 0.5s allow-discrete;
+    block-size 0.4s cubic-bezier(0.33, 1, 0.68, 1),
+    content-visibility 0.4s allow-discrete;
 }
 #faq details[open]::details-content {
   block-size: auto;

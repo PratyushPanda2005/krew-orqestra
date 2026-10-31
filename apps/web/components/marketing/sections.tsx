@@ -157,61 +157,59 @@ export function Trust() {
 }
 
 /**
- * Questions, in the layout of RoomMaster's FAQ, in our style. Two columns: on the left (sticky
- * 96 px from the top on wide screens) a pill label, the title blurring in, and a card asking
- * people to write in (navy, with the green pill), whose bottom edge steps up on the right with a curved notch. On the right,
- * white cards with a square + button that turns into ×; the first starts open, one at a time.
- * Native <details name>, so it works without JS; answers slide open where the browser can
- * animate to auto height (marketing.css), and simply open elsewhere.
+ * Questions, after Truck'N Roll's "Use Cases" accordion, on our light ground: a section split in
+ * two. Left: the title, and at the bottom the line asking people to write in, with the pill
+ * (last on phones).
+ * Right: "( Questions )" and a short intro at the top, the accordion at the bottom. Each row sits
+ * under a full-width hairline: the question, then a short answer at half strength on the same
+ * line, and a + that turns into − (fading and scaling, as theirs). Rows fade to 70% under the
+ * pointer. Native <details name>, so one is open at a time and it works without JS; the first
+ * starts open. Answers slide open over 0.4 s with their ease (marketing.css) where the browser can
+ * animate to auto height, and simply open elsewhere.
  */
 export function Faq() {
   return (
     <section id="faq" aria-labelledby="faq-title" className={cn("relative isolate", sectionY)}>
-      <Gradient className="-z-10" />
-      <div className={cn(wide, "flex flex-col gap-12 lg:flex-row lg:items-start lg:gap-16")}>
-        <div className="flex flex-col gap-7 lg:sticky lg:top-24 lg:w-1/3 lg:shrink-0">
-          <p data-up="0" className="inline-flex items-center gap-2.5 self-start rounded-full bg-brand-navy/[0.06] px-4 py-3 text-sm font-medium">
-            <span aria-hidden className="size-2 rounded-full bg-brand-green" />
-            {faq.eyebrow.replace(/[[\]]/g, "").trim()}
-          </p>
-          <h2 id="faq-title" data-blur className={sectionTitle}>
+      <div className={cn(wide, "grid gap-12 lg:grid-cols-2 lg:gap-2.5")}>
+        <div className="flex flex-col justify-between gap-10 max-lg:contents lg:pr-10">
+          <h2 id="faq-title" data-blur className="font-display text-[2.75rem] leading-[0.95] font-semibold tracking-tight text-balance lg:text-[5rem]">
             <Split text={faq.title} scatter />
           </h2>
-
-          {/* The card: a body, then a tab under its left part joined by an inverted (concave) corner. */}
-          <div data-up="2" className="mt-6 text-brand-snow">
-            <div className="rounded-t-2xl rounded-br-2xl bg-brand-navy px-8 pt-8 pb-6">
-              <p className="max-w-xs text-lg leading-snug lg:text-xl">{faq.help}</p>
-            </div>
-            <div className="flex">
-              <div className="rounded-b-2xl bg-brand-navy px-8 pb-8">
-                <PillLink href={`mailto:${site.contactEmail}`} className="focus-visible:outline-brand-snow">
-                  {faq.helpCta}
-                </PillLink>
-              </div>
-              <span
-                aria-hidden
-                className="size-4 bg-[radial-gradient(circle_at_100%_100%,transparent_1rem,var(--brand-navy)_1rem)]"
-              />
-            </div>
+          <div data-up="2" className="flex flex-col items-start gap-5 max-lg:order-last">
+            <p className="max-w-[17rem] text-base leading-snug font-medium">{faq.help}</p>
+            <PillLink href={`mailto:${site.contactEmail}`}>
+              {faq.helpCta}
+            </PillLink>
           </div>
         </div>
 
-        <div className="flex w-full flex-col gap-4 lg:gap-7">
-          {faq.items.map((item, i) => (
-            <details key={item.q} id={`faq-q${i + 1}`} name="faq" open={i === 0} data-up={i < 3 ? String(i * 2) : undefined} className="group rounded-2xl bg-white ring-1 ring-brand-navy/5">
-              <summary className="flex min-h-tap cursor-pointer list-none items-center justify-between gap-6 rounded-2xl px-6 py-5 outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-navy lg:px-8 [&::-webkit-details-marker]:hidden">
-                <h3 className="text-base font-medium lg:text-lg">{item.q}</h3>
-                <span aria-hidden className="flex size-12 shrink-0 items-center justify-center rounded-full border border-brand-navy/15">
-                  <span className="relative flex size-4 items-center justify-center transition-transform duration-500 ease-[cubic-bezier(0.165,0.84,0.44,1)] group-open:rotate-45">
-                    <span className="absolute h-px w-4 bg-current" />
-                    <span className="absolute h-4 w-px bg-current" />
+        <div className="flex flex-col justify-between gap-12 lg:gap-24">
+          <div data-up="0" className="grid grid-cols-2 gap-x-2.5 text-base leading-snug font-medium">
+            <p>( {faq.eyebrow.replace(/[[\]]/g, "").trim()} )</p>
+            <p className="max-w-[17rem]">{faq.intro}</p>
+          </div>
+
+          <div>
+            {faq.items.map((item, i) => (
+              <details key={item.q} id={`faq-q${i + 1}`} name="faq" open={i === 0} className="group">
+                <summary className="flex min-h-tap cursor-pointer list-none items-center justify-between gap-2.5 border-t border-current py-4 transition-opacity duration-250 ease-[cubic-bezier(0.3,0.4,0,1)] outline-none select-none hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-navy [&::-webkit-details-marker]:hidden">
+                  <h3 className="flex flex-wrap gap-x-[0.2em] text-lg leading-6 font-medium lg:text-xl">
+                    <span>{item.q}</span>
+                    <span className="opacity-50">{item.short}</span>
+                  </h3>
+                  <span aria-hidden className="relative size-4 shrink-0">
+                    <svg viewBox="0 0 16 16" className="absolute inset-0 size-4 transition-[opacity,scale] duration-300 group-open:scale-90 group-open:opacity-0" fill="none" stroke="currentColor" strokeWidth="1.5">
+                      <path d="M8 2v12M2 8h12" />
+                    </svg>
+                    <svg viewBox="0 0 16 16" className="absolute inset-0 size-4 scale-90 opacity-0 transition-[opacity,scale] delay-50 duration-300 group-open:scale-100 group-open:opacity-100" fill="none" stroke="currentColor" strokeWidth="1.5">
+                      <path d="M2 8h12" />
+                    </svg>
                   </span>
-                </span>
-              </summary>
-              <p className={cn("max-w-prose px-6 pb-7 text-base lg:px-8 lg:text-lg", quiet)}>{item.a}</p>
-            </details>
-          ))}
+                </summary>
+                <p className="max-w-[37.5rem] pb-4 text-lg leading-6 font-medium lg:text-xl">{item.a}</p>
+              </details>
+            ))}
+          </div>
         </div>
       </div>
       <FaqOpener />

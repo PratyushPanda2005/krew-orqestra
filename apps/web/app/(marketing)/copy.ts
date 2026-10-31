@@ -182,40 +182,47 @@ export const trust = {
 export const faq = {
   eyebrow: "[ Questions ]",
   title: "Questions creators ask",
-  // The card under the title, after RoomMaster's "Have more questions for us?".
+  // Top right, after Truck'N Roll's "Trust our team of experts…".
+  intro: "Straight answers to what creators ask us first.",
+  // Bottom left, with the pill.
   help: "Still have a question? Write to us and we'll get back to you.",
   helpCta: "Email us",
-  toggle: "Show or hide the answer",
   items: [
     {
       // PF-06
       q: "Can I connect my personal WhatsApp?",
-      a: "No. Krew connects a WhatsApp Business number, and you keep using the WhatsApp Business app on the same number. Krew never sends WhatsApp messages on its own.",
+      short: "No, a Business number.",
+      a: "Krew connects a WhatsApp Business number, and you keep using the WhatsApp Business app on the same number. Krew never sends WhatsApp messages on its own.",
     },
     {
       // PF-04
       q: "Which Instagram accounts work?",
+      short: "Professional ones.",
       a: "Professional accounts, either creator or business. If yours is personal, switch to professional in Instagram settings first; Krew shows you how. Message access must be turned on.",
     },
     {
       // PRD §3
       q: "Do my clients need to download anything?",
-      a: "No. Quotes, drafts and invoices open from a link in their browser, with no login.",
+      short: "No, just a link.",
+      a: "Quotes, drafts and invoices open from a link in their browser, with no login.",
     },
     {
       // PF-24, PF-35
       q: "I'm not GST registered. Can I still use Krew?",
-      a: "Yes. You get a plain invoice with no tax lines, because you can't charge GST unless you're registered. As your turnover nears ₹20 lakh (₹10 lakh in some States), Krew reminds you to look at registering.",
+      short: "Yes.",
+      a: "You get a plain invoice with no tax lines, because you can't charge GST unless you're registered. As your turnover nears ₹20 lakh (₹10 lakh in some States), Krew reminds you to look at registering.",
     },
     {
       // PF-09, PRD §10
       q: "Does Krew hold my payments?",
-      a: "No. Clients pay into your own Razorpay account, or straight to your UPI ID. Razorpay charges you its usual fee; a UPI link to your own ID has no gateway fee.",
+      short: "No, they go straight to you.",
+      a: "Clients pay into your own Razorpay account, or straight to your UPI ID. Razorpay charges you its usual fee; a UPI link to your own ID has no gateway fee.",
     },
     {
       // PF-05
       q: "Will Krew read all my email?",
-      a: "No. Only the emails you choose reach Krew, through a Gmail filter you set up. Quotes and invoices go out from your own address.",
+      short: "Only what you choose.",
+      a: "Only the emails you choose reach Krew, through a Gmail filter you set up. Quotes and invoices go out from your own address.",
     },
   ],
 }
