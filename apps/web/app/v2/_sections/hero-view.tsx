@@ -36,8 +36,10 @@ export function HeroView({ contentRef, blurRef, HeroNotifications, orbit, copy, 
             <div ref={contentRef}>
               <div className="max-w-[720px]">
                 <div className="hero-stagger" style={{ "--stagger": "0" }}>
-                  <h1 className="m-0 font-normal hero-gradient-text text-left max-w-[20ch] xl:max-w-[580px] text-[46px] leading-[108%] filter-[drop-shadow(0_1px_3px_rgba(0,0,0,0.12))] max-[900px]:text-[38px] max-[500px]:text-[34px] max-[500px]:font-normal max-[500px]:leading-[110%]">
-                    Run every client job from the first DM to getting paid
+                  <h1 className="m-0 font-normal hero-gradient-text text-left max-w-180 text-[46px] leading-[108%] filter-[drop-shadow(0_1px_3px_rgba(0,0,0,0.12))] max-[900px]:text-[38px] max-[500px]:text-[34px] max-[500px]:font-normal max-[500px]:leading-[110%]">
+                    Run every client job from{" "}
+                    <br className="max-[500px]:hidden" />
+                    <span className="whitespace-nowrap max-[500px]:whitespace-normal">the first DM to getting&nbsp;paid</span>
                   </h1>
                 </div>
                 <p className="hero-stagger mt-5 max-w-[540px] pl-[2px] text-left text-[16px] font-[460] leading-[140%] tracking-[0.15px] text-[rgba(255,255,255,0.8)] [text-shadow:0_1px_1px_rgba(0,0,0,0.08)] max-[500px]:mt-4" style={{ "--stagger": "1", fontFamily: "var(--font-neoris), sans-serif" }}>
