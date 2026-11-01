@@ -16,6 +16,7 @@ import { SvgDefs } from "./_sections/svg-defs"
 export default function V2Page() {
   return (
     <>
+      <div id="top" />
       <SvgDefs />
       <Header />
       <Hero />

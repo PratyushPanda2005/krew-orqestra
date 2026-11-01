@@ -4,14 +4,13 @@ import { useEffect, useRef, useState } from "react"
 
 import { HeroView } from "../_sections/hero-view"
 
+/** Example job events (not real clients), shown as the reference shows its agent tasks. */
 const NOTIFICATIONS = [
-  { status: "Task Completed", label: "Marketing Campaign" },
-  { status: "Task Completed", label: "New webpage" },
-  { status: "Task running", label: "bug fix" },
-  { status: "Task Completed", label: "SEO Optimization" },
+  { status: "Quote accepted", label: "Mehta wedding" },
+  { status: "Advance paid", label: "₹15,000 by UPI" },
+  { status: "Draft in review", label: "Highlight film v2" },
+  { status: "Invoice paid", label: "Kapoor product shoot" },
 ]
-
-const SETUP_PROMPT = "Paste your Krew setup prompt here."
 
 type Item = { key: number; notif: number; exiting: boolean }
 
@@ -50,7 +49,7 @@ function HeroNotifications() {
     <>
       {items.map((item) => {
         const n = NOTIFICATIONS[item.notif]!
-        const running = n.status === "Task running"
+        const running = n.status === "Draft in review"
         return (
           <div key={item.key} className="hero-notif-wrap" data-exiting={item.exiting || undefined}>
             <div className="hero-notif-pop">
@@ -58,7 +57,7 @@ function HeroNotifications() {
                 <div className="glass-pill text-shadow-xs">
                   <div className="px-3 py-2 lg:px-3 lg:py-3 [@media(max-height:600px)]:max-[991px]:py-2 [@media(max-height:600px)]:max-[991px]:px-2" style={{ display: "flex", alignItems: "center", gap: "8px", whiteSpace: "nowrap" }}>
                     <span style={{ display: "flex", alignItems: "center", gap: "6px", fontWeight: "460", color: "rgba(255,255,255,var(--notif-status-text-alpha))", letterSpacing: "0.01em" }}>
-                      <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: running ? "#34D399" : "#A3E635", boxShadow: running ? "0 0 6px rgba(52,211,153,0.5)" : "0 0 6px rgba(163,230,53,0.4)", display: "inline-block", flexShrink: "0" }} />
+                      <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: running ? "#C6A0F7" : "#45DC97", boxShadow: running ? "0 0 6px rgba(198,160,247,0.6)" : "0 0 6px rgba(69,220,151,0.5)", display: "inline-block", flexShrink: "0" }} />
                       {n.status}
                     </span>
                     <span style={{ fontWeight: "500", color: "rgba(255,255,255,var(--notif-label-text-alpha))", fontStyle: "italic" }}>{n.label}</span>
@@ -76,7 +75,6 @@ function HeroNotifications() {
 export function Hero() {
   const contentRef = useRef<HTMLDivElement>(null)
   const blurRef = useRef<HTMLDivElement>(null)
-  const [copied, setCopied] = useState<"idle" | "copied" | "failed">("idle")
   const [orbit, setOrbit] = useState<"idle" | "active" | "exiting">("idle")
   const orbitTimer = useRef<ReturnType<typeof setTimeout>>(undefined)
 
@@ -117,14 +115,8 @@ export function Hero() {
     setOrbit("exiting")
     orbitTimer.current = setTimeout(() => setOrbit("idle"), 320)
   }
-  const copy = async () => {
-    try {
-      await navigator.clipboard.writeText(SETUP_PROMPT)
-      setCopied("copied")
-    } catch {
-      setCopied("failed")
-    }
-  }
+  // The glass button jumps to the steps; the job icons still orbit it on hover.
+  const copy = () => document.getElementById("capabilities")?.scrollIntoView({ behavior: "smooth" })
   const settle = (e: React.AnimationEvent<HTMLDivElement>) => {
     if (e.target !== e.currentTarget) return
     e.currentTarget.style.animation = "none"
@@ -137,7 +129,6 @@ export function Hero() {
       contentRef={contentRef}
       blurRef={blurRef}
       HeroNotifications={HeroNotifications}
-      copied={copied}
       orbit={orbit}
       copy={copy}
       enter={enter}

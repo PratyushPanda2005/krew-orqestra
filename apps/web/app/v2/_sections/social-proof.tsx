@@ -1,31 +1,31 @@
 /** Logo tiles with the hover pill, and the company count. */
 export function SocialProof() {
   return (
-    <div id="social-proof" aria-label="social proof" className="w-full bg-surface flex flex-col items-center pt-[32px] pb-[72px] max-[700px]:pt-[24px] max-[700px]:pb-[56px]">
+    <div id="social-proof" aria-label="Apps Krew works with" className="w-full bg-surface flex flex-col items-center pt-[32px] pb-[72px] max-[700px]:pt-[24px] max-[700px]:pb-[56px]">
       <div data-logo-strip className="relative grid grid-cols-2 justify-items-center min-[1001px]:flex min-[1001px]:items-center">
-        <a className="flex items-center justify-center p-[6px] cursor-pointer" aria-label="View Cofounder case studies" href="#">
+        <a className="flex items-center justify-center p-[6px] cursor-pointer" aria-label="See how Krew connects" href="#capabilities">
           <div className="logo-tile flex items-center justify-center w-[170px] h-[84px] p-[28px]">
-            <img alt="ActiveGraph" loading="lazy" width="115" height="26" decoding="async" className="object-contain" style={{ color: "transparent", width: "115px", height: "26px" }} src="/v2/logos/activegraph-wordmark.png" />
+            <span className="whitespace-nowrap text-[17px] font-[520] leading-none text-ink/70">Instagram</span>
           </div>
         </a>
-        <a className="flex items-center justify-center p-[6px] cursor-pointer" aria-label="View Cofounder case studies" href="#">
+        <a className="flex items-center justify-center p-[6px] cursor-pointer" aria-label="See how Krew connects" href="#capabilities">
           <div className="logo-tile flex items-center justify-center w-[170px] h-[84px] p-[28px]">
-            <img alt="Veery" loading="lazy" width="98" height="26" decoding="async" className="object-contain" style={{ color: "transparent", width: "98px", height: "26px" }} src="/v2/logos/veery-wordmark.png" />
+            <span className="whitespace-nowrap text-[17px] font-[520] leading-none text-ink/70">WhatsApp</span>
           </div>
         </a>
-        <a className="flex items-center justify-center p-[6px] cursor-pointer" aria-label="View Cofounder case studies" href="#">
+        <a className="flex items-center justify-center p-[6px] cursor-pointer" aria-label="See how Krew connects" href="#capabilities">
           <div className="logo-tile flex items-center justify-center w-[170px] h-[84px] p-[28px]">
-            <span className="whitespace-nowrap text-[17px] font-[520] leading-none text-ink/70">LearnPath</span>
+            <span className="whitespace-nowrap text-[17px] font-[520] leading-none text-ink/70">Gmail</span>
           </div>
         </a>
-        <a className="flex items-center justify-center p-[6px] cursor-pointer" aria-label="View Cofounder case studies" href="#">
+        <a className="flex items-center justify-center p-[6px] cursor-pointer" aria-label="See how Krew connects" href="#capabilities">
           <div className="logo-tile flex items-center justify-center w-[170px] h-[84px] p-[28px]">
-            <span className="whitespace-nowrap text-[17px] font-[520] leading-none text-ink/70">Valence OS</span>
+            <span className="whitespace-nowrap text-[17px] font-[520] leading-none text-ink/70">UPI</span>
           </div>
         </a>
         <div data-logo-pill className="pointer-events-none absolute z-50 -translate-x-1/2 translate-y-[24px] transition-[opacity,scale] ease-[cubic-bezier(0.23,1,0.32,1)] opacity-0 scale-[0.8] duration-200" style={{ left: "0", top: "0" }}>
           <span className="logo-pill inline-flex min-w-[32px] items-center gap-[4px] whitespace-nowrap">
-            <span className="m-0 text-[13px] font-[460] leading-[140%] tracking-[0.13px] text-white/90">Case Studies</span>
+            <span className="m-0 text-[13px] font-[460] leading-[140%] tracking-[0.13px] text-white/90">How it connects</span>
             <span className="flex items-center">
               <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
                 <g clipPath="url(#clip0_762_8763)">
@@ -58,8 +58,8 @@ export function SocialProof() {
         </div>
       </div>
       <p className="m-0 text-[13px] font-[460] leading-[140%] tracking-[0.13px] mt-6 text-ink-faint text-center max-w-[366px]">
-        <span className="shimmer">over 10,650 companies</span>
-        {" are running on Cofounder"}
+        <span className="shimmer">Works with the apps</span>
+        {" your clients already use"}
       </p>
     </div>
   )

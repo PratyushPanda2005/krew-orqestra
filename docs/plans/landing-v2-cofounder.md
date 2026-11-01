@@ -1,6 +1,6 @@
 # /v2: cofounder.co layout copy
 
-Status: **built** (1 Nov 2026). Next step: rebrand with Krew copy, colours and art.
+Status: **rebranded** (1 Nov 2026): Krew copy and brand colours on the reference layout. Illustrations are still the reference's.
 
 ## What it is
 `apps/web/app/v2` is a 1:1 copy of the cofounder.co homepage: layout, sizes, breakpoints, colours,
@@ -28,8 +28,15 @@ are in `apps/web/public/v2/CREDITS.md`. The route is `noindex`.
 | Industries | `_sections/industries.tsx` | Letter grid |
 | Footer | `_sections/footer.tsx`, `_client/tilt.tsx` | Tilting sunflower card |
 
+## Rebrand (1 Nov 2026)
+- Copy from `app/(marketing)/copy.ts` and the PRD: hero, app strip (Instagram, WhatsApp, Gmail, UPI, no customer logos or counts), the job wheel, three stages (Win the job, Do the work, Get paid) with 12 sheets in `_client/capability-data.ts`, four parts of a job, client links band, creator word grid, footer.
+- Mock names (Riya, Arjun, Neha, Kapoor Studio) are examples, as on the main landing.
+- Colours: ink → navy #23133c everywhere (`cofounder.css`); `krew-brand.css` sets navy dark buttons, lime light buttons, green progress and status, violet word frames.
+- Chapter books: the reference's lift-and-drag (`_client/chapter-card.tsx`): rise 72 px on hover, drag up to 250 px, 500 ms cubic-bezier(0.22, 1, 0.36, 1), fine pointer ≥ 768 px only. Measured equal to the reference.
+
 ## Known gaps
 - The product mocks inside the capabilities (launch board, email stats, analytics) and the chat
   panel are still frames, not the reference's looping sequences.
 - Lexend Deca is wider than Neoris, so a few headings wrap one line earlier (page ~290 px taller at 1440).
-- The "Copy Setup Prompt" button copies a placeholder until Krew has its own prompt.
+- The integration icons under the invoice panel are still the reference set (GitHub, Gmail and others).
+- The letter grid shows one frozen frame of its word animation.

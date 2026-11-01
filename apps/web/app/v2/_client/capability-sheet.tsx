@@ -13,7 +13,7 @@ const ICONS = [
 ]
 
 const iconFor = (title: string, i: number): string =>
-  title === "LLC incorporation" ? "/v2/homepage/product-ui-1/icon-llc.png" : (ICONS[i] ?? ICONS[0]!)
+  title === "GST invoices" ? "/v2/homepage/product-ui-1/icon-llc.png" : (ICONS[i] ?? ICONS[0]!)
 
 /** Card tops for one, two or three cards in a roadmap column. */
 const tops = (n: number) => (n <= 1 ? [173] : n === 2 ? [111, 235] : [69, 173, 277])
@@ -39,17 +39,17 @@ function Card({ node }: { node: Node }) {
           <img alt="" loading="lazy" width="32" height="32" decoding="async" src={node.icon} style={{ color: "transparent" }} />
         </div>
         <div className="flex flex-col gap-[5px]">
-          <span className="text-[12px] whitespace-nowrap leading-none" style={{ color: "rgba(38, 35, 35, 0.7)", fontFamily: "var(--font-neoris)", fontWeight: "430", letterSpacing: "0.1px" }}>
+          <span className="text-[12px] whitespace-nowrap leading-none" style={{ color: "rgba(35, 19, 60, 0.7)", fontFamily: "var(--font-neoris)", fontWeight: "430", letterSpacing: "0.1px" }}>
             {node.title}
           </span>
-          <span className="text-[9.5px] leading-[11px] whitespace-nowrap" style={{ color: "rgba(38, 35, 35, 0.4)", fontFamily: "var(--font-neoris)", fontWeight: "400", letterSpacing: "0.08px" }}>
+          <span className="text-[9.5px] leading-[11px] whitespace-nowrap" style={{ color: "rgba(35, 19, 60, 0.4)", fontFamily: "var(--font-neoris)", fontWeight: "400", letterSpacing: "0.08px" }}>
             {node.subtitle}
           </span>
         </div>
       </div>
       <div className="shrink-0 flex items-center justify-center rounded-[3px] h-[19px] w-[18px]" style={{ background: "linear-gradient(rgb(235, 235, 232), rgb(245, 245, 242))", backdropFilter: "blur(16px)", boxShadow: "rgba(0, 0, 0, 0.12) 0px -0.5px 0px 0px inset, rgba(0, 0, 0, 0.1) 0px -1px 2px 0px inset, rgba(255, 255, 255, 0.24) 0px 1px 1px 0px inset" }}>
         <svg width="8" height="9" viewBox="0 0 9 10" fill="none" style={{ transform: "rotate(90deg)" }}>
-          <path d="M4.5 1.5L4.5 8.5M4.5 1.5L7.5 4.5M4.5 1.5L1.5 4.5" stroke="rgba(32,32,32,0.35)" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M4.5 1.5L4.5 8.5M4.5 1.5L7.5 4.5M4.5 1.5L1.5 4.5" stroke="rgba(35,19,60,0.35)" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </div>
     </div>
@@ -73,17 +73,17 @@ function RoadmapSlice({ stageLabel, stageCount, activeIndex, items }: { stageLab
   const before = items.slice(0, activeIndex)
   const after = items.slice(activeIndex + 1)
   const left: Node[] = before.length
-    ? before.map((title, i) => ({ title, subtitle: "Prerequisite", icon: iconFor(title, i) }))
-    : [{ title: "Company context", subtitle: "Cofounder memory", icon: "/v2/homepage/product-ui-1/icon-idea-new.png" }]
+    ? before.map((title, i) => ({ title, subtitle: "Done before", icon: iconFor(title, i) }))
+    : [{ title: "Client chat", subtitle: "Saved on the job", icon: "/v2/homepage/product-ui-1/icon-idea-new.png" }]
   const right: Node[] = after.length
-    ? after.map((title, i) => ({ title, subtitle: "Upcoming capability", icon: iconFor(title, activeIndex + i + 1) }))
-    : [{ title: "Review work", subtitle: "Approval task", icon: "/v2/homepage/product-ui-1/icon-brand-spec.png" }]
+    ? after.map((title, i) => ({ title, subtitle: "Comes next", icon: iconFor(title, activeIndex + i + 1) }))
+    : [{ title: "Job done", subtitle: "Ready to close", icon: "/v2/homepage/product-ui-1/icon-brand-spec.png" }]
   const lt = tops(left.length)
   const rt = tops(right.length)
-  const selected: Node = { title: items[activeIndex] ?? "Selected capability", subtitle: "Selected capability", icon: iconFor(items[activeIndex] ?? "", activeIndex) }
+  const selected: Node = { title: items[activeIndex] ?? "This step", subtitle: "This step", icon: iconFor(items[activeIndex] ?? "", activeIndex) }
 
   return (
-    <div className="relative -mx-6 mt-9 h-[400px] w-[calc(100%+3rem)] shrink-0 overflow-hidden border-t border-black/8 min-[768px]:-mx-8 min-[768px]:mt-10 min-[768px]:w-[calc(100%+4rem)]" role="img" aria-label={`${items[activeIndex]} selected in the ${stageLabel} roadmap stage`} style={{ background: "var(--Bg-darker, #E7E7E3)", boxShadow: "rgba(255, 255, 255, 0.8) 0px 1px 0px inset, rgba(255, 255, 255, 0.55) 0px -1px 0px inset" }}>
+    <div className="relative -mx-6 mt-9 h-[400px] w-[calc(100%+3rem)] shrink-0 overflow-hidden border-t border-black/8 min-[768px]:-mx-8 min-[768px]:mt-10 min-[768px]:w-[calc(100%+4rem)]" role="img" aria-label={`${items[activeIndex]} selected in the ${stageLabel} stage of the job`} style={{ background: "var(--Bg-darker, #E7E7E3)", boxShadow: "rgba(255, 255, 255, 0.8) 0px 1px 0px inset, rgba(255, 255, 255, 0.55) 0px -1px 0px inset" }}>
       <div className="absolute left-1/2 top-0 h-[400px] w-[707px] -translate-x-1/2">
         <div className="absolute left-0 top-[-25px] flex h-[473px] w-[707px] gap-[5px]">
           {[0, 1, 2].map((i) => (
@@ -94,13 +94,13 @@ function RoadmapSlice({ stageLabel, stageCount, activeIndex, items }: { stageLab
         </div>
         <div className="absolute left-0 top-[9px] flex w-full gap-x-[5px]">
           <div className="min-w-[232px] flex-1 opacity-65">
-            <StageLabel label={before.length ? "Earlier stage" : "Company context"} count={`${left.length}/${left.length}`} />
+            <StageLabel label={before.length ? "Earlier" : "Client chat"} count={`${left.length}/${left.length}`} />
           </div>
           <div className="min-w-[232px] flex-1">
-            <StageLabel label={`${stageLabel} stage`} count={stageCount} />
+            <StageLabel label={stageLabel} count={stageCount} />
           </div>
           <div className="min-w-[232px] flex-1 opacity-55">
-            <StageLabel label={after.length ? "Next stage" : "Review stage"} count={`0/${right.length}`} />
+            <StageLabel label={after.length ? "Next" : "Wrap up"} count={`0/${right.length}`} />
           </div>
         </div>
         <svg aria-hidden="true" className="pointer-events-none absolute inset-0" width="707" height="400" viewBox="0 0 707 400" fill="none">
@@ -108,9 +108,9 @@ function RoadmapSlice({ stageLabel, stageCount, activeIndex, items }: { stageLab
             const y = top + 27
             return (
               <g key={`in-${left[i]?.title ?? i}`}>
-                <path d={incomingPath(y)} stroke="#29BCFF" strokeWidth="0.7" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="2 2" />
-                <path d="M242 197L244.5 200L242 203" stroke="#29BCFF" strokeWidth="0.7" strokeLinecap="square" strokeLinejoin="round" />
-                <circle cx="225" cy={y} r="2" fill="#F5F5F2" stroke="#29BCFF" strokeWidth="0.7" />
+                <path d={incomingPath(y)} stroke="#45DC97" strokeWidth="0.7" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="2 2" />
+                <path d="M242 197L244.5 200L242 203" stroke="#45DC97" strokeWidth="0.7" strokeLinecap="square" strokeLinejoin="round" />
+                <circle cx="225" cy={y} r="2" fill="#F5F5F2" stroke="#45DC97" strokeWidth="0.7" />
               </g>
             )
           })}
@@ -229,8 +229,8 @@ export function CapabilitySheet() {
   return createPortal(
     <div className="fixed inset-0 z-[300]">
       <button ref={backdropRef} type="button" onClick={close} className="absolute inset-0 h-full w-full cursor-default bg-[#111318]/20 backdrop-blur-[2px]" aria-label="Close capability details" />
-      <section ref={panelRef} role="dialog" aria-modal="true" aria-labelledby={titleId} className="absolute bottom-0 right-0 flex max-h-[90dvh] w-full flex-col overflow-hidden rounded-t-[20px] bg-[rgba(247,247,243,0.68)] shadow-[-24px_0_80px_rgba(15,15,15,0.16)] backdrop-blur-[38px] backdrop-saturate-[1.45] will-change-transform min-[768px]:bottom-4 min-[768px]:right-3 min-[768px]:top-4 min-[768px]:max-h-none min-[768px]:w-[min(620px,calc(100vw-40px))] min-[768px]:rounded-[16px] min-[768px]:border min-[768px]:border-white/65 min-[768px]:shadow-[-28px_0_90px_rgba(12,14,18,0.18),0_20px_60px_rgba(12,14,18,0.14),0_0_0_1px_rgba(32,32,32,0.08),0_0_0_1px_rgba(255,255,255,0.72)_inset,0_1px_0_rgba(255,255,255,0.92)_inset]">
-        <button ref={closeRef} type="button" onClick={close} className="absolute right-4 top-4 z-20 inline-flex h-10 w-10 items-center justify-center rounded-[11px] border border-white/75 bg-white/46 text-ink shadow-[0_1px_0_rgba(255,255,255,0.95)_inset,0_6px_18px_rgba(20,22,26,0.09),0_0_0_1px_rgba(32,32,32,0.07)] backdrop-blur-[16px] transition-[background-color,transform] hover:-translate-y-px hover:bg-white/68 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink min-[768px]:right-5" aria-label="Close capability details">
+      <section ref={panelRef} role="dialog" aria-modal="true" aria-labelledby={titleId} className="absolute bottom-0 right-0 flex max-h-[90dvh] w-full flex-col overflow-hidden rounded-t-[20px] bg-[rgba(247,247,243,0.68)] shadow-[-24px_0_80px_rgba(15,15,15,0.16)] backdrop-blur-[38px] backdrop-saturate-[1.45] will-change-transform min-[768px]:bottom-4 min-[768px]:right-3 min-[768px]:top-4 min-[768px]:max-h-none min-[768px]:w-[min(620px,calc(100vw-40px))] min-[768px]:rounded-[16px] min-[768px]:border min-[768px]:border-white/65 min-[768px]:shadow-[-28px_0_90px_rgba(12,14,18,0.18),0_20px_60px_rgba(12,14,18,0.14),0_0_0_1px_rgba(35,19,60,0.08),0_0_0_1px_rgba(255,255,255,0.72)_inset,0_1px_0_rgba(255,255,255,0.92)_inset]">
+        <button ref={closeRef} type="button" onClick={close} className="absolute right-4 top-4 z-20 inline-flex h-10 w-10 items-center justify-center rounded-[11px] border border-white/75 bg-white/46 text-ink shadow-[0_1px_0_rgba(255,255,255,0.95)_inset,0_6px_18px_rgba(20,22,26,0.09),0_0_0_1px_rgba(35,19,60,0.07)] backdrop-blur-[16px] transition-[background-color,transform] hover:-translate-y-px hover:bg-white/68 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink min-[768px]:right-5" aria-label="Close capability details">
           <svg aria-hidden="true" viewBox="0 0 16 16" className="h-4 w-4" fill="none">
             <path d="m4.5 4.5 7 7m0-7-7 7" stroke="currentColor" strokeLinecap="round" />
           </svg>
@@ -257,25 +257,25 @@ export function CapabilitySheet() {
               </a>
             ) : null}
           </div>
-          <div className="mt-7 rounded-[13px] border border-white/75 bg-white/42 p-5 shadow-[0_1px_0_rgba(255,255,255,0.92)_inset,0_12px_30px_rgba(20,20,20,0.045),0_0_0_1px_rgba(32,32,32,0.055)] backdrop-blur-[18px]">
-            <p className="m-0 font-mono text-[10px] uppercase tracking-[0.12em] text-ink-faint">Try asking</p>
+          <div className="mt-7 rounded-[13px] border border-white/75 bg-white/42 p-5 shadow-[0_1px_0_rgba(255,255,255,0.92)_inset,0_12px_30px_rgba(20,20,20,0.045),0_0_0_1px_rgba(35,19,60,0.055)] backdrop-blur-[18px]">
+            <p className="m-0 font-mono text-[10px] uppercase tracking-[0.12em] text-ink-faint">For example</p>
             <p className="m-0 mt-3 text-[15px] leading-[145%] text-ink">{capability.example}</p>
           </div>
           <div className="mt-8 pt-7">
-            <p className="m-0 font-mono text-[11px] uppercase tracking-[0.12em] text-ink-faint">What Cofounder delivers</p>
+            <p className="m-0 font-mono text-[11px] uppercase tracking-[0.12em] text-ink-faint">What you get</p>
             <ul className="mt-4 grid list-none gap-3 p-0">
               {capability.delivers.map((item) => (
                 <li key={item} className="flex items-center gap-3 text-[15px] text-ink">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#1A6FD1]" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#45DC97]" />
                   {item}
                 </li>
               ))}
             </ul>
           </div>
-          <a className="group relative inline-flex items-center justify-center no-underline whitespace-nowrap cursor-pointer h-[41px] px-3 rounded-[8px] cta-btn-dark mt-8" href="#">
+          <a className="group relative inline-flex items-center justify-center no-underline whitespace-nowrap cursor-pointer h-[41px] px-3 rounded-[8px] cta-btn-dark mt-8" href="#join" onClick={close}>
             <span aria-hidden="true" className="pointer-events-none absolute inset-0 transition-opacity rounded-[8px] btn-dark-hover opacity-0 duration-200 ease-out group-hover:opacity-100" />
             <span className="relative z-10 inline-flex items-center justify-center gap-[6px]">
-              <span className="text-[15px] font-[460] tracking-[0.15px] text-on-dark">Do this in Cofounder</span>
+              <span className="text-[15px] font-[460] tracking-[0.15px] text-on-dark">Join the pilot</span>
             </span>
           </a>
         </div>

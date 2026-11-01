@@ -15,7 +15,7 @@ type ToolsViewProps = {
 /** Blue tools band: pixel sky, drifting clouds, three tabs with a progress line, and the product panel. */
 export function ToolsView({ TABS, PANELS, tab, select, barRef, panelRef, sectionRef, leftCloud, rightCloud }: ToolsViewProps) {
   return (
-    <section ref={sectionRef} className="relative w-full min-h-0 flex flex-col bg-[#1a6fd1] text-white overflow-hidden" aria-label="All the tools and systems your company needs" style={{ backgroundImage: "url(\"/v2/build-ui-bits/section-bg.avif\")", backgroundSize: "cover", backgroundPosition: "top", backgroundRepeat: "no-repeat" }}>
+    <section ref={sectionRef} className="relative w-full min-h-0 flex flex-col bg-[#1a6fd1] text-white overflow-hidden" id="clients" aria-label="Your clients never make an account" style={{ backgroundImage: "url(\"/v2/build-ui-bits/section-bg.avif\")", backgroundSize: "cover", backgroundPosition: "top", backgroundRepeat: "no-repeat" }}>
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-2 overflow-hidden select-none pixel-bg">
         <img aria-hidden="true" alt="Left carousel decor" loading="lazy" width="812" height="725" decoding="async" className="absolute h-full max-[767px]:w-[80vw] w-[50vw] max-h-[725px] max-w-[812px] object-contain object-bottom-left bottom-[40px] left-0" style={{ color: "transparent" }} src="/v2/build-ui-bits/left-decor.png" />
         <img aria-hidden="true" alt="Right top carousel decor" loading="lazy" width="694" height="434" decoding="async" className="absolute max-[767px]:hidden h-full w-full max-h-[434px] max-w-[694px] object-contain object-bottom-right min-[1280px]:top-[70px] -right-[4vw] min-[1728px]:-right-[2vw] min-[2000px]:right-0 min-[2000px]:top-[50px] min-[2600px]:hidden" style={{ color: "transparent" }} src="/v2/build-ui-bits/right-top-decor.png" />
@@ -37,13 +37,13 @@ export function ToolsView({ TABS, PANELS, tab, select, barRef, panelRef, section
       <div className="relative z-10 flex min-h-0 flex-1 flex-col justify-center pt-[100px] min-[1000px]:pb-[220px] pb-[160px] min-[767px]:pb-[100px]">
         <div className="mx-auto max-w-[800px] max-[1000px]:w-full shrink-0 px-6 mt-[100px]">
           <h2 style={{ lineHeight: "115%", color: "#FFF", textShadow: "0 0 3px rgba(0, 0, 0, 0.08), 0 0.5px 0.5px rgba(0, 0, 0, 0.12)" }} className="m-0 mx-auto text-center text-[28px] min-[768px]:text-[32px] min-[1000px]:text-[40px] max-w-[20ch]">
-            {"All the tools and systems "}
+            {"Your clients never "}
             <span style={{ background: "linear-gradient(180deg, rgba(255, 255, 255, 0.80) -0.93%, rgba(255, 255, 255, 0.64) 104.17%)", backgroundClip: "text", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", color: "transparent", textShadow: "none" }}>
-              your company needs
+              make an account
             </span>
           </h2>
           <p className="m-0 mx-auto mt-5 max-w-[580px] text-center text-[16px] font-[460] leading-[150%] text-white/70">
-            Give agents the context, tools, and approvals they need to keep company work moving.
+            Quotes, drafts and invoices open from a link on their phone. They accept, comment, approve and pay. No app, no password.
           </p>
         </div>
         <div className="relative z-20 mt-[40px] w-full min-w-0 max-w-[800px] shrink-0 self-center box-border px-4 md:px-6">
@@ -70,4 +70,4 @@ export function ToolsView({ TABS, PANELS, tab, select, barRef, panelRef, section
   )
 }
 
-export const TOOLS_TABS = ["You stay in control, nothing ships without your approval", "Run multiple tasks in the background at the same time.", "Customize agents with apps, skills, and schedules"] as const
+export const TOOLS_TABS = ["Quote link: they read it and accept by typing their name", "Review link: they watch the draft, comment and approve", "Invoice link: they see what’s due and pay"] as const

@@ -3,9 +3,10 @@ import { IBM_Plex_Mono, Inter } from "next/font/google"
 import localFont from "next/font/local"
 
 import "./cofounder.css"
+import "./krew-brand.css"
 
 /**
- * /v2 is a working copy of the cofounder.co homepage layout, to be rebranded for Krew.
+ * /v2: the cofounder.co homepage layout with Krew copy and brand colours.
  * Neoris (their licensed face) is replaced by our brand headline face, Lexend Deca; the free
  * faces they use (IBM Plex Mono, Departure Mono, Inter) are kept.
  */
@@ -24,7 +25,8 @@ const plexMono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500"], var
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-inter", display: "swap" })
 
 export const metadata: Metadata = {
-  title: "Krew v2",
+  title: "Krew: from the first DM to getting paid",
+  description: "Run client work from the first DM to getting paid.",
   robots: { index: false, follow: false },
 }
 
@@ -33,7 +35,7 @@ export default function V2Layout({ children }: { children: React.ReactNode }) {
     <div
       id="v2-root"
       className={`v2-root ${neoris.variable} ${departure.variable} ${plexMono.variable} ${inter.variable} flex min-h-full flex-col antialiased`}
-      style={{ fontFamily: "var(--font-neoris), sans-serif", background: "#f5f5f2", color: "#171717" }}
+      style={{ fontFamily: "var(--font-neoris), sans-serif", background: "#f5f5f2", color: "#23133c" }}
     >
       {children}
     </div>

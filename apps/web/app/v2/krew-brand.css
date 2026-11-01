@@ -1,0 +1,60 @@
+/*
+ * Krew brand on top of the reference stylesheet (Orry brand book, p. 3): navy for ink and dark
+ * buttons, lime for the main light button, green for success and progress, violet for highlights.
+ * The pixel illustrations keep their own colours.
+ */
+.v2-root {
+  --brand-navy: #23133c;
+  --brand-navy-deep: #140a24;
+  --brand-green: #45dc97;
+  --brand-violet: #c6a0f7;
+  --brand-lime: #d0ff71;
+  --brand-snow: #f8fcf8;
+}
+
+.v2-root ::selection {
+  background: var(--brand-violet);
+  color: var(--brand-navy);
+}
+
+/* Dark buttons and pills: navy instead of graphite */
+.v2-root .cta-btn-dark,
+.v2-root .logo-pill {
+  background: linear-gradient(#ffffff0f 0% 100%), linear-gradient(#3b2563 0%, #23133c 100%);
+  border-color: var(--brand-navy-deep);
+}
+.v2-root .btn-dark-hover {
+  background: linear-gradient(#ffffff1a 0% 100%), linear-gradient(#4a2f7a 0%, #2c1849 100%);
+  border-color: var(--brand-navy-deep);
+}
+
+/* Main light button: lime with navy text (hero, sticky guide button, footer card) */
+.v2-root .btn-light-surface {
+  background: var(--brand-lime);
+  border-color: #23133c26;
+  color: var(--brand-navy);
+  box-shadow: 0 2px 3px #23133c1f, inset 0 0 0.357px 1.5px #ffffff59, inset 0 2px #ffffff99;
+}
+.v2-root .btn-light-surface:hover {
+  background: #c4f55c;
+}
+
+/* Header CTA over the hero: lime too */
+.v2-root .cta-btn {
+  background: var(--brand-lime);
+  border-color: #23133c26;
+}
+
+/* Tab progress line and footer made-with line */
+.v2-root .loader-bar-after::after {
+  background-color: var(--brand-lime);
+}
+.v2-root .footer-made-with {
+  color: var(--brand-navy);
+  text-shadow: 0 0.5px 0.5px #ffffff;
+}
+
+/* Footer pattern fades into the page */
+.v2-root .radial-bg-gradient {
+  background: radial-gradient(circle, #fff0 30%, #f5f5f2 80%);
+}
