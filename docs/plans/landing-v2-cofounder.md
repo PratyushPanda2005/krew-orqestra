@@ -21,7 +21,7 @@ are in `apps/web/public/v2/CREDITS.md`. The route is `noindex`.
 | Header | `_sections/header-view.tsx`, `_client/header.tsx` | Solid once `#section-2-start` is ≤ 240 px from the top; phone menu below 1000 px |
 | Hero | `_sections/hero-view.tsx`, `_client/hero.tsx` | Staggered intro; scroll dissolve over 400 px (copy fades 2×, rises 30 px, blur 2.5×); task pills: 3 pop in 1.1 s apart, then one swaps every 2.6 s; copy-prompt orbit |
 | Logos | `_sections/social-proof.tsx`, `_client/logo-pill.tsx` | Pill follows the pointer over tiles |
-| Platform | `_sections/orchestration.tsx` | Department wheel (SVG animations run on their own) |
+| Platform | `_sections/orchestration.tsx`, `_client/scroll-tilt.tsx` | Department wheel (SVG animations run on their own); the workspace screen leans back 30° (scale 0.9, 60 px low) and stands up flat as its top edge scrolls from the bottom of the viewport to 15% from the top, ease-out, pivot on the bottom edge; flat under reduced motion |
 | Capabilities | `_sections/capabilities.tsx`, `_client/capability-sheet.tsx`, `_client/capability-data.ts` | "+" rows open a side sheet: in 460 ms, out 280 ms, Escape closes |
 | Guide + books | `_sections/guide.tsx`, `_sections/books.tsx` | Sticky "Download full guide" |
 | Tools band | `_sections/tools-view.tsx`, `_sections/tools-panels.tsx`, `_client/tools.tsx` | Tabs advance every 8 s with a progress line; panel fades up 20 px in 450 ms; clouds drift −190/−240 px |
