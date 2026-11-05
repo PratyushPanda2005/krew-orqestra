@@ -23,7 +23,7 @@ are in `apps/web/public/v2/CREDITS.md`. The route is `noindex`.
 | Logos | `_sections/social-proof.tsx`, `_client/logo-pill.tsx` | Pill follows the pointer over tiles |
 | Platform | `_sections/orchestration.tsx`, `_client/scroll-tilt.tsx` | Department wheel (SVG animations run on their own); the workspace screen leans back 30° (scale 0.9, 60 px low) and stands up flat as its top edge scrolls from the bottom of the viewport to 15% from the top, ease-out, pivot on the bottom edge; flat under reduced motion |
 | Capabilities | `_sections/capabilities.tsx`, `_client/capability-sheet.tsx`, `_client/capability-data.ts` | "+" rows open a side sheet: in 460 ms, out 280 ms, Escape closes |
-| Guide + books | `_sections/guide.tsx`, `_sections/books.tsx` | Sticky "Download full guide" |
+| How a job runs (guide + books) | `_sections/guide.tsx`, `_sections/books.tsx`, `_client/sideways-row.tsx`, `how-scroll.css` | The main landing's sideways scroll (landing-sections-reference §18) on the same heading and four books: from 768 px the section pins and half-screen panels slide left at 1.2 px per px, books rise from 61% of the screen height (power3.out, 95% to 25% across), dividers draw down, title letters blur in. Eased over 0.1 s because v2 has no Lenis. No curtain at the end: the page carries on to Tools. Phones, no JS and reduced motion keep the stacked layout |
 | Tools band | `_sections/tools-view.tsx`, `_sections/tools-panels.tsx`, `_client/tools.tsx` | Tabs advance every 8 s with a progress line; panel fades up 20 px in 450 ms; clouds drift −190/−240 px |
 | Industries | `_sections/industries.tsx` | Letter grid |
 | Footer | `_sections/footer.tsx`, `_client/tilt.tsx` | Tilting sunflower card |

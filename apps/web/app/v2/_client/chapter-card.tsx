@@ -60,37 +60,43 @@ export function ChapterCard({ href, children }: { href: string; children: ReactN
     window.addEventListener("mouseup", up)
   }, [])
 
+  // The two wrappers have no box of their own until the sideways row plays (how-scroll.css).
   return (
-    <a
-      ref={ref}
-      href={href}
-      draggable={false}
-      className={`${fine ? "group" : ""} shrink-0 select-none block`}
-      style={fine ? { cursor: dragging ? "grabbing" : "grab" } : undefined}
-      onMouseEnter={fine ? () => setHovered(true) : undefined}
-      onMouseLeave={
-        fine
-          ? () => {
-              setHovered(false)
-              if (!pressed.current) setDrag(0)
-            }
-          : undefined
-      }
-      onMouseDown={fine ? onMouseDown : undefined}
-      onClickCapture={
-        fine
-          ? (e) => {
-              // A drag is not a click.
-              if (moved.current) {
-                e.preventDefault()
-                e.stopPropagation()
-                moved.current = false
-              }
-            }
-          : undefined
-      }
-    >
-      {children}
-    </a>
+    <div data-job-panel className="job-book">
+      <span aria-hidden data-job-line className="job-line" />
+      <div data-job-card className="job-book-rise">
+        <a
+          ref={ref}
+          href={href}
+          draggable={false}
+          className={`${fine ? "group" : ""} shrink-0 select-none block`}
+          style={fine ? { cursor: dragging ? "grabbing" : "grab" } : undefined}
+          onMouseEnter={fine ? () => setHovered(true) : undefined}
+          onMouseLeave={
+            fine
+              ? () => {
+                  setHovered(false)
+                  if (!pressed.current) setDrag(0)
+                }
+              : undefined
+          }
+          onMouseDown={fine ? onMouseDown : undefined}
+          onClickCapture={
+            fine
+              ? (e) => {
+                  // A drag is not a click.
+                  if (moved.current) {
+                    e.preventDefault()
+                    e.stopPropagation()
+                    moved.current = false
+                  }
+                }
+              : undefined
+          }
+        >
+          {children}
+        </a>
+      </div>
+    </div>
   )
 }

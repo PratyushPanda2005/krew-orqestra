@@ -2,6 +2,7 @@ import { CapabilitySheet } from "./_client/capability-sheet"
 import { Header } from "./_client/header"
 import { Hero } from "./_client/hero"
 import { LogoPill } from "./_client/logo-pill"
+import { SidewaysRow } from "./_client/sideways-row"
 import { Tools } from "./_client/tools"
 import { Books } from "./_sections/books"
 import { Capabilities } from "./_sections/capabilities"
@@ -25,8 +26,10 @@ export default function V2Page() {
       <LogoPill />
       <Orchestration />
       <Capabilities />
-      <GuideIntro />
-      <Books />
+      <SidewaysRow labelledBy="steps-title">
+        <GuideIntro />
+        <Books />
+      </SidewaysRow>
       <Tools />
       <Industries />
       <Footer />

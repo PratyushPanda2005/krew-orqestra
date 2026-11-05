@@ -3,13 +3,13 @@ import { ChapterCard } from "../_client/chapter-card"
 /** Four chapter books on the grid background, and the sticky download button. */
 export function Books() {
   return (
-    <div data-guide-books="true" className="relative w-full bg-surface">
-      <div className="absolute inset-0 flex justify-center pointer-events-none">
+    <div data-guide-books="true" className="job-flat relative w-full bg-surface">
+      <div className="job-skip absolute inset-0 flex justify-center pointer-events-none">
         <div className="guide-books-bg h-full w-full max-w-[1400px] self-stretch bg-repeat-y bg-[position:50%_0] bg-[length:200%_auto] md:bg-[length:100%_auto]" style={{ backgroundImage: "image-set(url(\"/v2/decor/behind-the-books.avif\") type(\"image/avif\"), url(\"/v2/decor/behind-the-books.webp\") type(\"image/webp\"), url(\"/v2/decor/behind-the-books.png\") type(\"image/png\"))" }} />
       </div>
-      <div className="h-[100px]" />
-      <div className="relative z-10 mx-auto max-w-[1100px] px-6 flex flex-col gap-[60px] items-center">
-        <div className="flex flex-col md:flex-row gap-[80px] justify-center">
+      <div className="job-skip h-[100px]" />
+      <div className="job-flat relative z-10 mx-auto max-w-[1100px] px-6 flex flex-col gap-[60px] items-center">
+        <div className="job-flat flex flex-col md:flex-row gap-[80px] justify-center">
           <ChapterCard href="#join">
             <div className="relative">
               <div data-lift style={{ transition: "transform 500ms cubic-bezier(0.22, 1, 0.36, 1)", transform: "translateY(0px)" }}>
@@ -169,7 +169,7 @@ export function Books() {
             </div>
           </ChapterCard>
         </div>
-        <div className="flex flex-col md:flex-row gap-[80px] justify-center">
+        <div className="job-flat flex flex-col md:flex-row gap-[80px] justify-center">
           <ChapterCard href="#join">
             <div className="relative">
               <div data-lift style={{ transition: "transform 500ms cubic-bezier(0.22, 1, 0.36, 1)", transform: "translateY(0px)" }}>
@@ -332,8 +332,8 @@ export function Books() {
           </ChapterCard>
         </div>
       </div>
-      <div className="h-[100px]" />
-      <div className="sticky bottom-[32px] z-[90] mx-auto w-fit" style={{ pointerEvents: "none", transform: "translateY(100px)", opacity: "0", transition: "transform 400ms ease-in, opacity 300ms ease-in" }}>
+      <div className="job-skip h-[100px]" />
+      <div className="job-skip sticky bottom-[32px] z-[90] mx-auto w-fit" style={{ pointerEvents: "none", transform: "translateY(100px)", opacity: "0", transition: "transform 400ms ease-in, opacity 300ms ease-in" }}>
         <a href="#" download="cofounder-founder-guide.pdf" className="btn-light-surface no-underline flex items-center justify-center overflow-hidden" style={{ width: "186px", height: "44px", padding: "0px 12px", transition: "width 700ms cubic-bezier(0.23, 1, 0.32, 1), background-color 200ms ease-out, box-shadow 200ms ease-out", cursor: "pointer", gap: "10px", whiteSpace: "nowrap" }}>
           <span style={{ display: "flex", alignItems: "center", gap: "10px", opacity: "1", transform: "scale(1)", transition: "opacity 300ms cubic-bezier(0.23, 1, 0.32, 1), transform 300ms cubic-bezier(0.23, 1, 0.32, 1)" }}>
             <span style={{ fontFamily: "var(--font-neoris)", fontSize: "15px", fontWeight: "460", lineHeight: "140%", letterSpacing: "0.15px", color: "rgba(35, 19, 60, 0.80)" }}>
@@ -365,7 +365,7 @@ export function Books() {
           </span>
         </a>
       </div>
-      <div className="h-[100px]" />
+      <div className="job-skip h-[100px]" />
     </div>
   )
 }

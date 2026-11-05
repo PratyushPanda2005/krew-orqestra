@@ -4,6 +4,7 @@ import localFont from "next/font/local"
 
 import "./cofounder.css"
 import "./krew-brand.css"
+import "./how-scroll.css"
 
 /**
  * /v2: the cofounder.co homepage layout with Krew copy and brand colours.
