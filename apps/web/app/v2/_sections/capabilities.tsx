@@ -1,3 +1,5 @@
+import { Live } from "../_client/live"
+
 /** What it does: three stages, each with numbered items that open a detail sheet. */
 export function Capabilities() {
   return (
@@ -68,6 +70,7 @@ export function Capabilities() {
               <div className="flex w-full min-w-0 items-center justify-center">
                 <div className="relative h-[400px] w-full max-w-[707px] shrink-0 overflow-hidden min-[768px]:w-[707px]" style={{ borderRadius: "12px", background: "var(--Bg-darker, #E7E7E3)", boxShadow: "1px 2px 2px 0 #FFF, 1px 4px 5px 0 #FFF" }}>
                   <div className="relative h-[400px] w-[707px] max-[767px]:will-change-transform">
+                    <Live steps={8} ms={1200} hold={3000} />
                     <div className="absolute top-[-25px] left-0 flex gap-[5px] w-[707px]">
                       <div className="flex-1 h-[473px] rounded-[4px] overflow-hidden">
                         <img alt="" loading="lazy" width="232" height="473" decoding="async" className="w-full h-full object-cover" style={{ color: "transparent" }} src="/v2/homepage/product-ui-1/col-bg.png" />
@@ -93,7 +96,7 @@ export function Capabilities() {
                           <span className="inline-flex items-center justify-center px-[8px] py-[2.5px] rounded-full font-(family-name:--font-mono) text-[9px] font-normal text-ink-faint" style={{ background: "#F5F5F2", lineHeight: "10.78px", boxShadow: "0 0.15px 0 0 rgba(0,0,0,0.2), 0 0.3px 0.3px 0 white, 0 0 0.6px 0 rgba(0,0,0,0.3), inset 0 0.3px 0.3px 0 rgba(255,255,255,0.6), inset 0 -0.3px 0.3px 0 rgba(0,0,0,0.05)" }}>
                             Quote
                           </span>
-                          <span className="font-(family-name:--font-mono) text-[8px] font-medium text-ink-ui-subtle">0/3</span>
+                          <span data-steps="0/3|1/3|2/3|3/3" className="font-(family-name:--font-mono) text-[8px] font-medium text-ink-ui-subtle">0/3</span>
                         </div>
                       </div>
                       <div className="flex-1 min-w-[232px]">
@@ -101,31 +104,30 @@ export function Capabilities() {
                           <span className="inline-flex items-center justify-center px-[8px] py-[2.5px] rounded-full font-(family-name:--font-mono) text-[9px] font-normal text-ink-faint" style={{ background: "#F5F5F2", lineHeight: "10.78px", boxShadow: "0 0.15px 0 0 rgba(0,0,0,0.2), 0 0.3px 0.3px 0 white, 0 0 0.6px 0 rgba(0,0,0,0.3), inset 0 0.3px 0.3px 0 rgba(255,255,255,0.6), inset 0 -0.3px 0.3px 0 rgba(0,0,0,0.05)" }}>
                             Advance
                           </span>
-                          <span className="font-(family-name:--font-mono) text-[8px] font-medium text-ink-ui-subtle">0/4</span>
+                          <span data-steps="0/4|0/4|0/4|0/4|1/4|2/4|3/4|4/4" className="font-(family-name:--font-mono) text-[8px] font-medium text-ink-ui-subtle">0/4</span>
                         </div>
                       </div>
                     </div>
                     <svg className="absolute inset-0 pointer-events-none min-w-[calc(3*232px+10px)]" width="100%" height="100%" viewBox="0 0 707 400" fill="none" preserveAspectRatio="none">
                       <circle cx="213" cy="200" r="2" fill="#F5F5F2" />
                       <circle cx="213" cy="200" r="1.65" stroke="#45DC97" strokeWidth="0.7" fill="none" />
-                      <circle cx="451" cy="142" r="2" fill="#F5F5F2" style={{ opacity: "0.22", transition: "opacity 100ms cubic-bezier(0.22, 1, 0.36, 1)" }} />
-                      <circle cx="451" cy="142" r="1.65" strokeWidth="0.7" fill="none" style={{ stroke: "rgb(183, 183, 183)", opacity: "0.22", transition: "stroke 100ms cubic-bezier(0.22, 1, 0.36, 1), opacity 100ms cubic-bezier(0.22, 1, 0.36, 1)" }} />
-                      <g style={{ stroke: "rgb(183, 183, 183)", opacity: "0.22", transition: "stroke 100ms cubic-bezier(0.22, 1, 0.36, 1), opacity 100ms cubic-bezier(0.22, 1, 0.36, 1)" }}>
+                      <circle cx="451" cy="142" r="2" fill="#F5F5F2" style={{ opacity: "1", transition: "opacity 100ms cubic-bezier(0.22, 1, 0.36, 1)" }} />
+                      <circle cx="451" cy="142" r="1.65" strokeWidth="0.7" fill="none" style={{ stroke: "rgb(41, 188, 255)", opacity: "1", transition: "stroke 100ms cubic-bezier(0.22, 1, 0.36, 1), opacity 100ms cubic-bezier(0.22, 1, 0.36, 1)" }} />
+                      <g data-at="1" data-fx="wire" style={{ stroke: "rgb(41, 188, 255)", opacity: "1", transition: "stroke 100ms cubic-bezier(0.22, 1, 0.36, 1), opacity 100ms cubic-bezier(0.22, 1, 0.36, 1)" }}>
                         <path d="M 213 200 L 219 200 C 222.866 200, 226 196.866, 226 193 L 226 147 C 226 143.134, 229.134 140, 233 140 L 255 140" strokeWidth="0.7" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="2 2" fill="none" />
                         <path d="M 253 137 L 255.5 140 L 253 143" strokeWidth="0.7" strokeLinecap="square" strokeLinejoin="round" fill="none" />
                       </g>
-                      <g style={{ stroke: "rgb(183, 183, 183)", opacity: "0.22", transition: "stroke 100ms cubic-bezier(0.22, 1, 0.36, 1), opacity 100ms cubic-bezier(0.22, 1, 0.36, 1)" }}>
+                      <g data-at="2" data-fx="wire" style={{ stroke: "rgb(41, 188, 255)", opacity: "1", transition: "stroke 100ms cubic-bezier(0.22, 1, 0.36, 1), opacity 100ms cubic-bezier(0.22, 1, 0.36, 1)" }}>
                         <path d="M 213 200 L 255 200" strokeWidth="0.7" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="2 2" fill="none" />
                         <path d="M 253 197 L 255.5 200 L 253 203" strokeWidth="0.7" strokeLinecap="square" strokeLinejoin="round" fill="none" />
-                        <path d="M449 200L450.582 200C454.439 200,457.57 203.121,457.582 206.978L457.622 219.563C457.635 223.42,460.765 226.541,464.622 226.541L706.381 226.541" strokeWidth="0.7" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="2 2" fill="none" />
                       </g>
-                      <circle cx="449" cy="200" r="2" fill="#F5F5F2" opacity="0.22" />
-                      <circle cx="449" cy="200" r="1.65" strokeWidth="0.7" fill="none" style={{ stroke: "rgb(183, 183, 183)", opacity: "0.22", transition: "stroke 200ms ease-out, opacity 100ms ease-out" }} />
-                      <g style={{ stroke: "rgb(41, 188, 255)", opacity: "1", transition: "stroke 100ms cubic-bezier(0.22, 1, 0.36, 1), opacity 100ms cubic-bezier(0.22, 1, 0.36, 1)" }}>
+                      <circle cx="449" cy="200" r="2" fill="#F5F5F2" opacity="1" />
+                      <circle cx="449" cy="200" r="1.65" strokeWidth="0.7" fill="none" style={{ stroke: "rgb(41, 188, 255)", opacity: "1", transition: "stroke 200ms ease-out, opacity 100ms ease-out" }} />
+                      <g data-at="3" data-fx="wire" style={{ stroke: "rgb(41, 188, 255)", opacity: "1", transition: "stroke 100ms cubic-bezier(0.22, 1, 0.36, 1), opacity 100ms cubic-bezier(0.22, 1, 0.36, 1)" }}>
                         <path d="M 213 200 L 219 200 C 222.866 200, 226 203.134, 226 207 L 226 251 C 226 254.866, 229.134 258, 233 258 L 255 258" strokeWidth="0.7" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="2 2" fill="none" />
                         <path d="M 253 255 L 255.5 258 L 253 261" strokeWidth="0.7" strokeLinecap="square" strokeLinejoin="round" fill="none" />
                       </g>
-                      <g style={{ stroke: "rgb(183, 183, 183)", opacity: "0.22", transition: "stroke 100ms cubic-bezier(0.22, 1, 0.36, 1), opacity 100ms cubic-bezier(0.22, 1, 0.36, 1)" }}>
+                      <g data-at="4" data-fx="wire" style={{ stroke: "rgb(41, 188, 255)", opacity: "1", transition: "stroke 100ms cubic-bezier(0.22, 1, 0.36, 1), opacity 100ms cubic-bezier(0.22, 1, 0.36, 1)" }}>
                         <path d="M 451 142 L 455 142 C 458.866 142, 462 138.866, 462 135 L 462 87 C 462 83.134, 465.134 80, 469 80 L 492 80" strokeWidth="0.7" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="2 2" fill="none" />
                         <path d="M 451 142 L 455 142 C 458.866 142, 462 138.866, 462 135 C 462 131.134, 465.134 128, 469 128 L 492 128" strokeWidth="0.7" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="2 2" fill="none" />
                         <path d="M 451 142 L 455 142 C 458.866 142, 462 145.134, 462 149 L 462 177 C 462 180.866, 465.134 184, 469 184 L 492 184" strokeWidth="0.7" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="2 2" fill="none" />
@@ -133,13 +135,13 @@ export function Capabilities() {
                         <path d="M 490 126 L 493 128 L 490 130" strokeWidth="0.7" strokeLinecap="square" strokeLinejoin="round" fill="none" />
                         <path d="M 490 182 L 493 184 L 490 186" strokeWidth="0.7" strokeLinecap="square" strokeLinejoin="round" fill="none" />
                       </g>
-                      <g style={{ stroke: "#B7B7B7", opacity: "0.22", transition: "stroke 100ms cubic-bezier(0.22, 1, 0.36, 1), opacity 100ms cubic-bezier(0.22, 1, 0.36, 1)" }}>
+                      <g data-at="7" data-fx="wire" style={{ stroke: "rgb(41, 188, 255)", opacity: "1", transition: "stroke 100ms cubic-bezier(0.22, 1, 0.36, 1), opacity 100ms cubic-bezier(0.22, 1, 0.36, 1)" }}>
                         <path d="M 449 264 L 455 264 C 458.866 264, 462 267.134, 462 271 L 462 363 C 462 366.866, 465.134 370, 469 370 L 492 370" strokeWidth="0.7" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="2 2" fill="none" />
                         <path d="M 490 368 L 493 370 L 490 372" strokeWidth="0.7" strokeLinecap="square" strokeLinejoin="round" fill="none" />
                       </g>
                     </svg>
                     <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[232px] px-[20px] py-[6px]">
-                      <div className="flex w-full items-center justify-between rounded-[8px] h-[40px] py-[6px] pl-[6px] pr-[8px]" style={{ background: "#FFF", boxShadow: "0 0 0 0.67px rgba(0,0,0,0.08), 0 0 13.4px 0 rgba(0,0,0,0.02), 0 13.4px 13.4px 0 rgba(0,0,0,0.01), 0 4px 6px 0 rgba(0,0,0,0.02), 0 2px 5.4px 0 rgba(0,0,0,0.03), inset 0 0 0 0.67px white" }}>
+                      <div data-at="0" data-fx="dim" className="flex w-full items-center justify-between rounded-[8px] h-[40px] py-[6px] pl-[6px] pr-[8px]" style={{ background: "#FFF", boxShadow: "0 0 0 0.67px rgba(0,0,0,0.08), 0 0 13.4px 0 rgba(0,0,0,0.02), 0 13.4px 13.4px 0 rgba(0,0,0,0.01), 0 4px 6px 0 rgba(0,0,0,0.02), 0 2px 5.4px 0 rgba(0,0,0,0.03), inset 0 0 0 0.67px white" }}>
                         <div className="flex h-full items-center gap-[6.7px]">
                           <div className="relative flex shrink-0 items-center justify-center overflow-hidden rounded-[4.014px]" style={{ width: "28px", height: "28px", background: "linear-gradient(180deg, #FFF 0%, #F5F5F2 100%)", boxShadow: "0 0.334px 0.669px 0 rgba(255,255,255,0.15) inset, 0 0.334px 0.4px 0 rgba(0,0,0,0.24), 0 0.669px 0.669px 0 rgba(255,255,255,0.10), 0 0 1.338px 0 rgba(0,0,0,0.20)" }}>
                             <img alt="" loading="lazy" width="26" height="26" decoding="async" style={{ color: "transparent" }} src="/v2/homepage/product-ui-1/icon-idea-new.png" />
@@ -160,8 +162,8 @@ export function Capabilities() {
                         </div>
                       </div>
                     </div>
-                    <div className="absolute left-[237px] w-[232px] px-[20px] py-[6px]" style={{ top: "114px", opacity: "0.4", transition: "opacity 400ms ease-out" }}>
-                      <div className="flex w-full items-center justify-between rounded-[8px] h-[40px] py-[6px] pl-[6px] pr-[8px]" style={{ background: "#FFF", boxShadow: "0 0 0 0.67px rgba(0,0,0,0.08), 0 0 13.4px 0 rgba(0,0,0,0.02), 0 13.4px 13.4px 0 rgba(0,0,0,0.01), 0 4px 6px 0 rgba(0,0,0,0.02), 0 2px 5.4px 0 rgba(0,0,0,0.03), inset 0 0 0 0.67px white" }}>
+                    <div className="absolute left-[237px] w-[232px] px-[20px] py-[6px]" style={{ top: "114px", opacity: "1", transition: "opacity 400ms ease-out" }}>
+                      <div data-at="1" data-fx="dim" className="flex w-full items-center justify-between rounded-[8px] h-[40px] py-[6px] pl-[6px] pr-[8px]" style={{ background: "#FFF", boxShadow: "0 0 0 0.67px rgba(0,0,0,0.08), 0 0 13.4px 0 rgba(0,0,0,0.02), 0 13.4px 13.4px 0 rgba(0,0,0,0.01), 0 4px 6px 0 rgba(0,0,0,0.02), 0 2px 5.4px 0 rgba(0,0,0,0.03), inset 0 0 0 0.67px white" }}>
                         <div className="flex h-full items-center gap-[6.7px]">
                           <div className="relative flex shrink-0 items-center justify-center overflow-hidden rounded-[4.014px]" style={{ width: "28px", height: "28px", background: "linear-gradient(180deg, #FFF 0%, #F5F5F2 100%)", boxShadow: "0 0.334px 0.669px 0 rgba(255,255,255,0.15) inset, 0 0.334px 0.4px 0 rgba(0,0,0,0.24), 0 0.669px 0.669px 0 rgba(255,255,255,0.10), 0 0 1.338px 0 rgba(0,0,0,0.20)" }}>
                             <img alt="" loading="lazy" width="26" height="26" decoding="async" style={{ color: "transparent" }} src="/v2/homepage/product-ui-1/icon-company-name.png" />
@@ -182,8 +184,8 @@ export function Capabilities() {
                         </div>
                       </div>
                     </div>
-                    <div className="absolute left-[237px] w-[232px] px-[20px] py-[6px]" style={{ top: "173px", opacity: "0.4", transition: "opacity 400ms ease-out" }}>
-                      <div className="flex w-full items-center justify-between rounded-[8px] h-[40px] py-[6px] pl-[6px] pr-[8px]" style={{ background: "#FFF", boxShadow: "0 0 0 0.67px rgba(0,0,0,0.08), 0 0 13.4px 0 rgba(0,0,0,0.02), 0 13.4px 13.4px 0 rgba(0,0,0,0.01), 0 4px 6px 0 rgba(0,0,0,0.02), 0 2px 5.4px 0 rgba(0,0,0,0.03), inset 0 0 0 0.67px white" }}>
+                    <div className="absolute left-[237px] w-[232px] px-[20px] py-[6px]" style={{ top: "173px", opacity: "1", transition: "opacity 400ms ease-out" }}>
+                      <div data-at="2" data-fx="dim" className="flex w-full items-center justify-between rounded-[8px] h-[40px] py-[6px] pl-[6px] pr-[8px]" style={{ background: "#FFF", boxShadow: "0 0 0 0.67px rgba(0,0,0,0.08), 0 0 13.4px 0 rgba(0,0,0,0.02), 0 13.4px 13.4px 0 rgba(0,0,0,0.01), 0 4px 6px 0 rgba(0,0,0,0.02), 0 2px 5.4px 0 rgba(0,0,0,0.03), inset 0 0 0 0.67px white" }}>
                         <div className="flex h-full items-center gap-[6.7px]">
                           <div className="relative flex shrink-0 items-center justify-center overflow-hidden rounded-[4.014px]" style={{ width: "28px", height: "28px", background: "linear-gradient(180deg, #FFF 0%, #F5F5F2 100%)", boxShadow: "0 0.334px 0.669px 0 rgba(255,255,255,0.15) inset, 0 0.334px 0.4px 0 rgba(0,0,0,0.24), 0 0.669px 0.669px 0 rgba(255,255,255,0.10), 0 0 1.338px 0 rgba(0,0,0,0.20)" }}>
                             <img alt="" loading="lazy" width="26" height="26" decoding="async" style={{ color: "transparent" }} src="/v2/homepage/product-ui-1/icon-codebase.png" />
@@ -205,7 +207,7 @@ export function Capabilities() {
                       </div>
                     </div>
                     <div className="absolute left-[237px] w-[232px] px-[20px] py-[6px]" style={{ top: "232px", opacity: "1", transition: "opacity 400ms ease-out" }}>
-                      <div className="flex w-full items-center justify-between rounded-[8px] h-[40px] py-[6px] pl-[6px] pr-[8px]" style={{ background: "#FFF", boxShadow: "0 0 0 0.67px rgba(0,0,0,0.08), 0 0 13.4px 0 rgba(0,0,0,0.02), 0 13.4px 13.4px 0 rgba(0,0,0,0.01), 0 4px 6px 0 rgba(0,0,0,0.02), 0 2px 5.4px 0 rgba(0,0,0,0.03), inset 0 0 0 0.67px white" }}>
+                      <div data-at="3" data-fx="dim" className="flex w-full items-center justify-between rounded-[8px] h-[40px] py-[6px] pl-[6px] pr-[8px]" style={{ background: "#FFF", boxShadow: "0 0 0 0.67px rgba(0,0,0,0.08), 0 0 13.4px 0 rgba(0,0,0,0.02), 0 13.4px 13.4px 0 rgba(0,0,0,0.01), 0 4px 6px 0 rgba(0,0,0,0.02), 0 2px 5.4px 0 rgba(0,0,0,0.03), inset 0 0 0 0.67px white" }}>
                         <div className="flex h-full items-center gap-[6.7px]">
                           <div className="relative flex shrink-0 items-center justify-center overflow-hidden rounded-[4.014px]" style={{ width: "28px", height: "28px", background: "linear-gradient(180deg, #FFF 0%, #F5F5F2 100%)", boxShadow: "0 0.334px 0.669px 0 rgba(255,255,255,0.15) inset, 0 0.334px 0.4px 0 rgba(0,0,0,0.24), 0 0.669px 0.669px 0 rgba(255,255,255,0.10), 0 0 1.338px 0 rgba(0,0,0,0.20)" }}>
                             <img alt="" loading="lazy" width="26" height="26" decoding="async" style={{ color: "transparent" }} src="/v2/homepage/product-ui-1/icon-llc.png" />
@@ -226,9 +228,9 @@ export function Capabilities() {
                         </div>
                       </div>
                     </div>
-                    <div className="absolute left-[474px] top-[53px] w-[232px] flex flex-col" style={{ opacity: "0.4", transition: "opacity 400ms ease-out" }}>
+                    <div className="absolute left-[474px] top-[53px] w-[232px] flex flex-col" style={{ opacity: "1", transition: "opacity 400ms ease-out" }}>
                       <div className="px-[20px] py-[6px]">
-                        <div className="flex w-full items-center justify-between rounded-[8px] h-[40px] py-[6px] pl-[6px] pr-[8px]" style={{ background: "#FFF", boxShadow: "0 0 0 0.67px rgba(0,0,0,0.08), 0 0 13.4px 0 rgba(0,0,0,0.02), 0 13.4px 13.4px 0 rgba(0,0,0,0.01), 0 4px 6px 0 rgba(0,0,0,0.02), 0 2px 5.4px 0 rgba(0,0,0,0.03), inset 0 0 0 0.67px white" }}>
+                        <div data-at="4" data-fx="dim" className="flex w-full items-center justify-between rounded-[8px] h-[40px] py-[6px] pl-[6px] pr-[8px]" style={{ background: "#FFF", boxShadow: "0 0 0 0.67px rgba(0,0,0,0.08), 0 0 13.4px 0 rgba(0,0,0,0.02), 0 13.4px 13.4px 0 rgba(0,0,0,0.01), 0 4px 6px 0 rgba(0,0,0,0.02), 0 2px 5.4px 0 rgba(0,0,0,0.03), inset 0 0 0 0.67px white" }}>
                           <div className="flex h-full items-center gap-[6.7px]">
                             <div className="relative flex shrink-0 items-center justify-center overflow-hidden rounded-[4.014px]" style={{ width: "28px", height: "28px", background: "linear-gradient(180deg, #FFF 0%, #F5F5F2 100%)", boxShadow: "0 0.334px 0.669px 0 rgba(255,255,255,0.15) inset, 0 0.334px 0.4px 0 rgba(0,0,0,0.24), 0 0.669px 0.669px 0 rgba(255,255,255,0.10), 0 0 1.338px 0 rgba(0,0,0,0.20)" }}>
                               <img alt="" loading="lazy" width="26" height="26" decoding="async" style={{ color: "transparent" }} src="/v2/homepage/product-ui-1/icon-social-presence.png" />
@@ -250,7 +252,7 @@ export function Capabilities() {
                         </div>
                       </div>
                       <div className="px-[20px] py-[6px]">
-                        <div className="flex w-full items-center justify-between rounded-[8px] h-[40px] py-[6px] pl-[6px] pr-[8px]" style={{ background: "#FFF", boxShadow: "0 0 0 0.67px rgba(0,0,0,0.08), 0 0 13.4px 0 rgba(0,0,0,0.02), 0 13.4px 13.4px 0 rgba(0,0,0,0.01), 0 4px 6px 0 rgba(0,0,0,0.02), 0 2px 5.4px 0 rgba(0,0,0,0.03), inset 0 0 0 0.67px white" }}>
+                        <div data-at="5" data-fx="dim" className="flex w-full items-center justify-between rounded-[8px] h-[40px] py-[6px] pl-[6px] pr-[8px]" style={{ background: "#FFF", boxShadow: "0 0 0 0.67px rgba(0,0,0,0.08), 0 0 13.4px 0 rgba(0,0,0,0.02), 0 13.4px 13.4px 0 rgba(0,0,0,0.01), 0 4px 6px 0 rgba(0,0,0,0.02), 0 2px 5.4px 0 rgba(0,0,0,0.03), inset 0 0 0 0.67px white" }}>
                           <div className="flex h-full items-center gap-[6.7px]">
                             <div className="relative flex shrink-0 items-center justify-center overflow-hidden rounded-[4.014px]" style={{ width: "28px", height: "28px", background: "linear-gradient(180deg, #FFF 0%, #F5F5F2 100%)", boxShadow: "0 0.334px 0.669px 0 rgba(255,255,255,0.15) inset, 0 0.334px 0.4px 0 rgba(0,0,0,0.24), 0 0.669px 0.669px 0 rgba(255,255,255,0.10), 0 0 1.338px 0 rgba(0,0,0,0.20)" }}>
                               <img alt="" loading="lazy" width="26" height="26" decoding="async" style={{ color: "transparent" }} src="/v2/homepage/product-ui-1/icon-buy-domain.png" />
@@ -272,7 +274,7 @@ export function Capabilities() {
                         </div>
                       </div>
                       <div className="px-[20px] py-[6px]">
-                        <div className="flex w-full items-center justify-between rounded-[8px] h-[40px] py-[6px] pl-[6px] pr-[8px]" style={{ background: "#FFF", boxShadow: "0 0 0 0.67px rgba(0,0,0,0.08), 0 0 13.4px 0 rgba(0,0,0,0.02), 0 13.4px 13.4px 0 rgba(0,0,0,0.01), 0 4px 6px 0 rgba(0,0,0,0.02), 0 2px 5.4px 0 rgba(0,0,0,0.03), inset 0 0 0 0.67px white" }}>
+                        <div data-at="6" data-fx="dim" className="flex w-full items-center justify-between rounded-[8px] h-[40px] py-[6px] pl-[6px] pr-[8px]" style={{ background: "#FFF", boxShadow: "0 0 0 0.67px rgba(0,0,0,0.08), 0 0 13.4px 0 rgba(0,0,0,0.02), 0 13.4px 13.4px 0 rgba(0,0,0,0.01), 0 4px 6px 0 rgba(0,0,0,0.02), 0 2px 5.4px 0 rgba(0,0,0,0.03), inset 0 0 0 0.67px white" }}>
                           <div className="flex h-full items-center gap-[6.7px]">
                             <div className="relative flex shrink-0 items-center justify-center overflow-hidden rounded-[4.014px]" style={{ width: "28px", height: "28px", background: "linear-gradient(180deg, #FFF 0%, #F5F5F2 100%)", boxShadow: "0 0.334px 0.669px 0 rgba(255,255,255,0.15) inset, 0 0.334px 0.4px 0 rgba(0,0,0,0.24), 0 0.669px 0.669px 0 rgba(255,255,255,0.10), 0 0 1.338px 0 rgba(0,0,0,0.20)" }}>
                               <img alt="" loading="lazy" width="26" height="26" decoding="async" style={{ color: "transparent" }} src="/v2/homepage/product-ui-1/icon-brand-spec.png" />
@@ -294,8 +296,8 @@ export function Capabilities() {
                         </div>
                       </div>
                     </div>
-                    <div className="absolute left-[474px] top-[343px] w-[232px] px-[20px] py-[6px]" style={{ opacity: "0.4", transition: "opacity 400ms ease-out" }}>
-                      <div className="flex w-full items-center justify-between rounded-[8px] h-[40px] py-[6px] pl-[6px] pr-[8px]" style={{ background: "#FFF", boxShadow: "0 0 0 0.67px rgba(0,0,0,0.08), 0 0 13.4px 0 rgba(0,0,0,0.02), 0 13.4px 13.4px 0 rgba(0,0,0,0.01), 0 4px 6px 0 rgba(0,0,0,0.02), 0 2px 5.4px 0 rgba(0,0,0,0.03), inset 0 0 0 0.67px white" }}>
+                    <div className="absolute left-[474px] top-[343px] w-[232px] px-[20px] py-[6px]" style={{ opacity: "1", transition: "opacity 400ms ease-out" }}>
+                      <div data-at="7" data-fx="dim" className="flex w-full items-center justify-between rounded-[8px] h-[40px] py-[6px] pl-[6px] pr-[8px]" style={{ background: "#FFF", boxShadow: "0 0 0 0.67px rgba(0,0,0,0.08), 0 0 13.4px 0 rgba(0,0,0,0.02), 0 13.4px 13.4px 0 rgba(0,0,0,0.01), 0 4px 6px 0 rgba(0,0,0,0.02), 0 2px 5.4px 0 rgba(0,0,0,0.03), inset 0 0 0 0.67px white" }}>
                         <div className="flex h-full items-center gap-[6.7px]">
                           <div className="relative flex shrink-0 items-center justify-center overflow-hidden rounded-[4.014px]" style={{ width: "28px", height: "28px", background: "linear-gradient(180deg, #FFF 0%, #F5F5F2 100%)", boxShadow: "0 0.334px 0.669px 0 rgba(255,255,255,0.15) inset, 0 0.334px 0.4px 0 rgba(0,0,0,0.24), 0 0.669px 0.669px 0 rgba(255,255,255,0.10), 0 0 1.338px 0 rgba(0,0,0,0.20)" }}>
                             <img alt="" loading="lazy" width="26" height="26" decoding="async" style={{ color: "transparent" }} src="/v2/homepage/product-ui-1/icon-bank.png" />
@@ -374,6 +376,7 @@ export function Capabilities() {
             <div className="flex min-h-[430px] min-w-0 items-center justify-center overflow-hidden min-[1000px]:overflow-visible min-[1000px]:order-1">
               <div className="flex w-full min-w-0 items-center justify-center">
                 <div className="relative min-h-[386px] w-[310px] shrink-0 min-[768px]:min-h-[386px] min-[768px]:w-[624px]">
+                  <Live steps={9} ms={1200} hold={3000} />
                   <div className="absolute left-0 top-1/2 -translate-y-1/2 max-[767px]:w-[300px] max-[767px]:rounded-[12px]">
                     <div className="relative min-[768px]:w-[427px] h-[386px] min-[768px]:h-[330px] rounded-[12px] bg-surface overflow-hidden px-6 py-[18px] flex flex-col gap-6" style={{ boxShadow: "0px 0px 2px 0px rgba(0,0,0,0.25), 0px 0px 0px 4px rgba(232,231,230,0.32), inset 0px 0px 0.36px 1.5px rgba(255,255,255,0.35), inset 0px 2px 0px 0px white" }}>
                       <div className="flex items-center justify-between shrink-0">
@@ -412,18 +415,18 @@ export function Capabilities() {
                           <div className="w-full h-px bg-[rgba(35,19,60,0.08)]" />
                           <div className="flex items-center gap-4 min-[768px]:gap-[34px] text-[10px]">
                             <span className="font-neoris font-medium text-ink-ui-muted w-[46px] shrink-0">Subject</span>
-                            <span className="font-neoris font-medium truncate text-ink-ui-strong">Your wedding film draft is ready</span>
+                            <span data-type="0" className="font-neoris font-medium truncate text-ink-ui-strong">Your wedding film draft is ready</span>
                           </div>
                           <div className="w-full h-px bg-[rgba(35,19,60,0.08)]" />
                         </div>
                         <div className="font-neoris text-[10px] leading-[1.6] text-ink-ui min-h-0">
-                          <p>Hi Arjun,</p>
+                          <p data-type="1">Hi Arjun,</p>
                           <br />
-                          <p>
+                          <p data-type="2">
                             The first cut of your wedding film is ready. Open the link to watch it, comment on any moment, and approve when you’re happy.
                           </p>
                           <br />
-                          <p>
+                          <p data-type="3">
                             This reminder comes from Riya’s own email and stops as soon as you reply or approve.
                           </p>
                         </div>
@@ -431,7 +434,7 @@ export function Capabilities() {
                       <div className="absolute bottom-0 left-6 right-6 h-[50px] bg-linear-to-t from-surface to-transparent pointer-events-none" />
                     </div>
                   </div>
-                  <div className="absolute min-[1280px]:right-[-30px] right-0 left-0 min-[768px]:left-auto top-1/2" style={{ opacity: "1", transform: "translateY(-50%) translateX(0px) scale(1)", transition: "opacity 400ms cubic-bezier(0.23, 1, 0.32, 1), transform 500ms cubic-bezier(0.23, 1, 0.32, 1)" }}>
+                  <div data-at="4" data-fx="rise" className="absolute min-[1280px]:right-[-30px] right-0 left-0 min-[768px]:left-auto top-1/2" style={{ opacity: "1", transform: "translateY(-50%) translateX(0px) scale(1)", transition: "opacity 400ms cubic-bezier(0.23, 1, 0.32, 1), transform 500ms cubic-bezier(0.23, 1, 0.32, 1)" }}>
                     <div className="w-[300px] min-[768px]:w-[270px] h-[386px] rounded-[12px] bg-surface overflow-hidden" style={{ boxShadow: "0px 0px 0px 1px rgba(0,0,0,0.08), 0px 0px 20px rgba(0,0,0,0.03), 0px 36px 28px rgba(0,0,0,0.02), 0px 25px 25px rgba(0,0,0,0.02), 0px 15px 15px rgba(0,0,0,0.02), inset 0px 0px 0px 1px white" }}>
                       <div className="flex items-center justify-between px-3 pr-2 py-2">
                         <span className="font-neoris font-medium text-[10px] text-ink-strong">Drafts this week</span>
@@ -446,7 +449,7 @@ export function Capabilities() {
                               <span className="font-neoris text-[10px] text-[rgba(35,19,60,0.7)]">Approved</span>
                               <div className="flex items-center gap-2 mt-1">
                                 <span className="font-neoris font-normal text-[40px] leading-none" style={{ fontVariantNumeric: "tabular-nums", backgroundImage: "radial-gradient(34.51% 17.25% at 101.06% 44.51%, rgba(111, 167, 81, 0.8) 0%, rgba(35, 19, 60, 0.8) 100%)", backgroundClip: "text", WebkitBackgroundClip: "text", color: "transparent", WebkitTextFillColor: "transparent" }}>
-                                  <span style={{ display: "inline-block", minWidth: "1.1em", textAlign: "right" }}>60</span>
+                                  <span data-steps="0|0|0|0|0|0|20|40|60" style={{ display: "inline-block", minWidth: "1.1em", textAlign: "right" }}>60</span>
                                   %
                                 </span>
                                 <div className="pb-1">
@@ -458,7 +461,7 @@ export function Capabilities() {
                               </div>
                             </div>
                             <div className="w-full h-[33px] rounded-[4px] bg-surface overflow-hidden relative">
-                              <div className="absolute left-[3px] top-[3px] h-[27px] rounded-[3px]" style={{ width: "129px", background: "linear-gradient(269deg, rgb(181, 233, 153), rgb(153, 233, 157))", boxShadow: "rgba(115, 163, 89, 0.7) 0px 1px 1px, rgb(170, 228, 139) 0px 0px 0px 1.3px, white 0px 1px 0px inset", transition: "width 2600ms cubic-bezier(0.22, 1, 0.36, 1)", willChange: "width" }} />
+                              <div data-w="0|0|0|0|0|0|43|86|129" className="absolute left-[3px] top-[3px] h-[27px] rounded-[3px]" style={{ width: "129px", background: "linear-gradient(269deg, rgb(181, 233, 153), rgb(153, 233, 157))", boxShadow: "rgba(115, 163, 89, 0.7) 0px 1px 1px, rgb(170, 228, 139) 0px 0px 0px 1.3px, white 0px 1px 0px inset", transition: "width 900ms cubic-bezier(0.22, 1, 0.36, 1)", willChange: "width" }} />
                             </div>
                           </div>
                           <div className="flex items-center gap-2">
@@ -466,14 +469,14 @@ export function Capabilities() {
                               <div className="w-[5px] h-[5px]" style={{ borderRadius: "3px", background: "linear-gradient(264deg, #B5E999 1.96%, #99E99D 97.96%)", boxShadow: "0 1px 1px 0 rgba(115, 163, 89, 0.70), inset 0 0.5px 0 0 rgba(255, 255, 255, 0.40), 0 0 0 1.3px #AAE48B" }} />
                               <div className="flex items-center gap-[3px] pt-px text-[8px]">
                                 <span className="font-neoris font-medium text-ink-faint">Approved</span>
-                                <span className="font-neoris font-normal text-ink-strong" style={{ fontVariantNumeric: "tabular-nums" }}>3</span>
+                                <span data-steps="0|0|0|0|0|0|1|2|3" className="font-neoris font-normal text-ink-strong" style={{ fontVariantNumeric: "tabular-nums" }}>3</span>
                               </div>
                             </div>
                             <div className="flex items-center gap-1">
                               <div className="w-[5px] h-[5px]" style={{ borderRadius: "3px", background: "repeating-linear-gradient(-45deg, rgba(108, 103, 96, 0.4) 0, rgba(108, 103, 96, 0.4) 0.4px, transparent 0.4px, transparent 1.4px), #E7E7E3" }} />
                               <div className="flex items-center gap-[3px] pt-px text-[8px]">
                                 <span className="font-neoris font-medium text-ink-faint">Waiting</span>
-                                <span className="font-neoris font-normal text-ink-strong" style={{ fontVariantNumeric: "tabular-nums" }}>2</span>
+                                <span data-steps="5|5|5|5|5|5|4|3|2" className="font-neoris font-normal text-ink-strong" style={{ fontVariantNumeric: "tabular-nums" }}>2</span>
                               </div>
                             </div>
                           </div>
@@ -485,20 +488,20 @@ export function Capabilities() {
                           </div>
                           <div className="flex items-baseline justify-between text-[10px]">
                             <span className="font-neoris text-[rgba(35,19,60,0.7)]">Shared</span>
-                            <span className="font-neoris font-normal text-ink-strong" style={{ fontVariantNumeric: "tabular-nums" }}>5</span>
+                            <span data-steps="5|5|5|5|5|5|5|5|5" className="font-neoris font-normal text-ink-strong" style={{ fontVariantNumeric: "tabular-nums" }}>5</span>
                           </div>
                           <div className="flex items-baseline justify-between text-[10px]">
                             <span className="font-neoris text-[rgba(35,19,60,0.7)]">Opened</span>
-                            <span className="font-neoris font-normal text-ink-strong" style={{ fontVariantNumeric: "tabular-nums" }}>5</span>
+                            <span data-steps="0|0|0|0|0|3|5|5|5" className="font-neoris font-normal text-ink-strong" style={{ fontVariantNumeric: "tabular-nums" }}>5</span>
                           </div>
                           <div className="flex items-center justify-between text-[10px]">
                             <span className="font-neoris text-[rgba(35,19,60,0.7)]">Changes asked</span>
                             <div className="flex items-center gap-2">
                               <div className="bg-[#f0ddd5] flex items-center gap-[2px] pl-[3px] pr-1 py-[2px] rounded-full">
                                 <img alt="" loading="lazy" width="8" height="8" decoding="async" className="rotate-180" style={{ color: "transparent" }} src="/v2/homepage/email-arrow-down-red.svg" />
-                                <span className="font-neoris font-medium text-[8px] leading-[9.5px] text-[#a76451]">20%</span>
+                                <span data-steps="0%|0%|0%|0%|0%|0%|0%|20%|20%" className="font-neoris font-medium text-[8px] leading-[9.5px] text-[#a76451]">20%</span>
                               </div>
-                              <span className="font-neoris font-normal text-ink-strong" style={{ fontVariantNumeric: "tabular-nums" }}>1</span>
+                              <span data-steps="0|0|0|0|0|0|0|1|1" className="font-neoris font-normal text-ink-strong" style={{ fontVariantNumeric: "tabular-nums" }}>1</span>
                             </div>
                           </div>
                           <div className="flex items-center justify-between text-[10px]">
@@ -506,9 +509,9 @@ export function Capabilities() {
                             <div className="flex items-center gap-2">
                               <div className="bg-[#dff0d5] flex items-center gap-[2px] pl-[3px] pr-1 py-[2px] rounded-full">
                                 <img alt="" loading="lazy" width="8" height="8" decoding="async" className="" style={{ color: "transparent" }} src="/v2/homepage/email-arrow-up-green.svg" />
-                                <span className="font-neoris font-medium text-[8px] leading-[9.5px] text-[#6fa751]">60%</span>
+                                <span data-steps="0%|0%|0%|0%|0%|0%|20%|40%|60%" className="font-neoris font-medium text-[8px] leading-[9.5px] text-[#6fa751]">60%</span>
                               </div>
-                              <span className="font-neoris font-normal text-ink-strong" style={{ fontVariantNumeric: "tabular-nums" }}>3</span>
+                              <span data-steps="0|0|0|0|0|0|1|2|3" className="font-neoris font-normal text-ink-strong" style={{ fontVariantNumeric: "tabular-nums" }}>3</span>
                             </div>
                           </div>
                         </div>
@@ -574,6 +577,7 @@ export function Capabilities() {
             <div className="flex min-h-[430px] min-w-0 items-center justify-center overflow-hidden min-[1000px]:overflow-visible">
               <div className="flex w-full min-w-0 items-center justify-center">
                 <div className="relative pb-10 min-[767px]:w-[526px] min-[767px]:shrink-0 min-[767px]:pb-0">
+                  <Live steps={7} ms={1300} hold={3400} />
                   <div className="rounded-[12px] overflow-hidden flex flex-col p-1 border-[0.5px] border-[rgba(35,19,60,0.1)] min-[767px]:w-[526px] h-[306px] bg-white max-[767px]:h-[242px]" style={{ left: "22px", top: "20px", boxShadow: "0.611px 1.222px 1.222px 0 #FFF, 0.611px 2.445px 3.056px 0 #FFF, 1.222px 1.834px 2.445px 0 rgba(152, 146, 140, 0.16) inset" }}>
                     <div className="bg-[#F8F8F6] border-[0.5px] border-ink-ui-subtle rounded-md h-full">
                       <div className="flex">
@@ -582,9 +586,9 @@ export function Capabilities() {
                             <div className="flex items-center gap-[5px]">
                               <span className="text-[9px] text-ink-muted" style={{ fontFamily: "var(--font-neoris)" }}>Money in</span>
                             </div>
-                            <div className="mt-[5px] text-[19px] font-normal leading-none tracking-[-0.2px] text-ink" style={{ fontFamily: "var(--font-departure)" }}>₹1,25,000</div>
+                            <div data-steps="₹0|₹0|₹25,000|₹25,000|₹65,000|₹65,000|₹1,25,000" className="mt-[5px] text-[19px] font-normal leading-none tracking-[-0.2px] text-ink" style={{ fontFamily: "var(--font-departure)" }}>₹1,25,000</div>
                             <div className="mt-[9px]">
-                              <div style={{ display: "grid", gridTemplateRows: "repeat(2, 3px)", gridTemplateColumns: "repeat(33, 3px)", gap: "1px" }}>
+                              <div data-at="2" data-fx="cells" style={{ display: "grid", gridTemplateRows: "repeat(2, 3px)", gridTemplateColumns: "repeat(33, 3px)", gap: "1px" }}>
                                 <div style={{ width: "3px", height: "3px", borderRadius: "0.3px", background: "rgb(52, 168, 83)", opacity: "1", transition: "opacity 80ms ease-out" }} />
                                 <div style={{ width: "3px", height: "3px", borderRadius: "0.3px", background: "rgb(52, 168, 83)", opacity: "1", transition: "opacity 80ms ease-out 22ms" }} />
                                 <div style={{ width: "3px", height: "3px", borderRadius: "0.3px", background: "rgb(52, 168, 83)", opacity: "1", transition: "opacity 80ms ease-out 44ms" }} />
@@ -677,9 +681,9 @@ export function Capabilities() {
                             <div className="flex items-center gap-[5px]">
                               <span className="text-[9px] text-ink-muted" style={{ fontFamily: "var(--font-neoris)" }}>Still owed</span>
                             </div>
-                            <div className="mt-[5px] text-[19px] font-normal leading-none tracking-[-0.2px] text-ink" style={{ fontFamily: "var(--font-departure)" }}>₹40,000</div>
+                            <div data-steps="₹1,65,000|₹1,65,000|₹1,40,000|₹1,40,000|₹1,00,000|₹1,00,000|₹40,000" className="mt-[5px] text-[19px] font-normal leading-none tracking-[-0.2px] text-ink" style={{ fontFamily: "var(--font-departure)" }}>₹40,000</div>
                             <div className="mt-[9px]">
-                              <div style={{ display: "grid", gridTemplateRows: "repeat(2, 3px)", gridTemplateColumns: "repeat(33, 3px)", gap: "1px" }}>
+                              <div data-at="4" data-fx="cells" style={{ display: "grid", gridTemplateRows: "repeat(2, 3px)", gridTemplateColumns: "repeat(33, 3px)", gap: "1px" }}>
                                 <div style={{ width: "3px", height: "3px", borderRadius: "0.3px", background: "rgb(52, 168, 83)", opacity: "1", transition: "opacity 80ms ease-out" }} />
                                 <div style={{ width: "3px", height: "3px", borderRadius: "0.3px", background: "rgb(52, 168, 83)", opacity: "1", transition: "opacity 80ms ease-out 22ms" }} />
                                 <div style={{ width: "3px", height: "3px", borderRadius: "0.3px", background: "rgb(52, 168, 83)", opacity: "1", transition: "opacity 80ms ease-out 44ms" }} />
@@ -772,9 +776,9 @@ export function Capabilities() {
                             <div className="flex items-center gap-[5px]">
                               <span className="text-[9px] text-ink-muted" style={{ fontFamily: "var(--font-neoris)" }}>Jobs this year</span>
                             </div>
-                            <div className="mt-[5px] text-[19px] font-normal leading-none tracking-[-0.2px] text-ink" style={{ fontFamily: "var(--font-departure)" }}>12</div>
+                            <div data-steps="9|9|10|10|11|11|12" className="mt-[5px] text-[19px] font-normal leading-none tracking-[-0.2px] text-ink" style={{ fontFamily: "var(--font-departure)" }}>12</div>
                             <div className="mt-[9px]">
-                              <div style={{ display: "grid", gridTemplateRows: "repeat(2, 3px)", gridTemplateColumns: "repeat(33, 3px)", gap: "1px" }}>
+                              <div data-at="6" data-fx="cells" style={{ display: "grid", gridTemplateRows: "repeat(2, 3px)", gridTemplateColumns: "repeat(33, 3px)", gap: "1px" }}>
                                 <div style={{ width: "3px", height: "3px", borderRadius: "0.3px", background: "rgb(52, 168, 83)", opacity: "1", transition: "opacity 80ms ease-out" }} />
                                 <div style={{ width: "3px", height: "3px", borderRadius: "0.3px", background: "rgb(52, 168, 83)", opacity: "1", transition: "opacity 80ms ease-out 22ms" }} />
                                 <div style={{ width: "3px", height: "3px", borderRadius: "0.3px", background: "rgb(52, 168, 83)", opacity: "1", transition: "opacity 80ms ease-out 44ms" }} />
@@ -883,9 +887,9 @@ export function Capabilities() {
                                     <line x1="2" y1="30" x2="450" y2="30" stroke="rgba(0,0,0,0.05)" strokeWidth="0.5" />
                                     <line x1="2" y1="60" x2="450" y2="60" stroke="rgba(0,0,0,0.05)" strokeWidth="0.5" />
                                     <line x1="2" y1="90" x2="450" y2="90" stroke="rgba(0,0,0,0.05)" strokeWidth="0.5" />
-                                    <path d="M0.308716 66.8238L45.7116 50.5884H107.979L153.381 34.353H214.351L236.404 41.9932H279.212L347.965 17.1627H393.368L414.124 10H476.391L567.197 41.9932H586.655L655.408 17.1627H742.322V86.4017" pathLength="1" style={{ strokeDasharray: "1", strokeDashoffset: "0", transition: "stroke-dashoffset 1200ms cubic-bezier(0.4, 0, 0.2, 1) 300ms", stroke: "rgb(123, 216, 91)", strokeWidth: "1.4", fill: "none" }} />
-                                    <path d="M0.232056 77.6728L39.9423 67.2822H94.402L135.247 56.8915H187.437L206.725 61.7813H245.301L304.299 45.8897H346.278L363.297 41H417.756L473.351 55.6691H535.753L572.059 45.8897H646.941L667.363 50.7794H682.113L700.266 55.0579H742.246V85.6186" pathLength="1" style={{ strokeDasharray: "1", strokeDashoffset: "0", transition: "stroke-dashoffset 1200ms cubic-bezier(0.4, 0, 0.2, 1) 150ms", stroke: "rgb(0, 184, 148)", strokeWidth: "1.4", fill: "none" }} />
-                                    <path d="M0 82.6323H78.4566L99.733 77.6288H299.199L321.805 82.6323H371.007L393.613 77.0034H440.155L464.091 72H575.792L615.685 80.756H636.961L655.578 76.378H742.013" pathLength="1" style={{ strokeDasharray: "1", strokeDashoffset: "0", transition: "stroke-dashoffset 1200ms cubic-bezier(0.4, 0, 0.2, 1)", stroke: "rgb(28, 111, 217)", strokeWidth: "1.4", fill: "none" }} />
+                                    <path data-at="1" data-fx="draw" d="M0.308716 66.8238L45.7116 50.5884H107.979L153.381 34.353H214.351L236.404 41.9932H279.212L347.965 17.1627H393.368L414.124 10H476.391L567.197 41.9932H586.655L655.408 17.1627H742.322V86.4017" pathLength="1" style={{ strokeDasharray: "1", strokeDashoffset: "0", transition: "stroke-dashoffset 1200ms cubic-bezier(0.4, 0, 0.2, 1) 300ms", stroke: "rgb(123, 216, 91)", strokeWidth: "1.4", fill: "none" }} />
+                                    <path data-at="1" data-fx="draw" d="M0.232056 77.6728L39.9423 67.2822H94.402L135.247 56.8915H187.437L206.725 61.7813H245.301L304.299 45.8897H346.278L363.297 41H417.756L473.351 55.6691H535.753L572.059 45.8897H646.941L667.363 50.7794H682.113L700.266 55.0579H742.246V85.6186" pathLength="1" style={{ strokeDasharray: "1", strokeDashoffset: "0", transition: "stroke-dashoffset 1200ms cubic-bezier(0.4, 0, 0.2, 1) 150ms", stroke: "rgb(0, 184, 148)", strokeWidth: "1.4", fill: "none" }} />
+                                    <path data-at="1" data-fx="draw" d="M0 82.6323H78.4566L99.733 77.6288H299.199L321.805 82.6323H371.007L393.613 77.0034H440.155L464.091 72H575.792L615.685 80.756H636.961L655.578 76.378H742.013" pathLength="1" style={{ strokeDasharray: "1", strokeDashoffset: "0", transition: "stroke-dashoffset 1200ms cubic-bezier(0.4, 0, 0.2, 1)", stroke: "rgb(28, 111, 217)", strokeWidth: "1.4", fill: "none" }} />
                                   </svg>
                                 </div>
                                 <div className="flex justify-between [border-top:0.5px_solid_rgba(35,19,60,0.12)]">
@@ -983,7 +987,7 @@ export function Capabilities() {
                       <div className="flex-1 min-h-0 relative overflow-hidden">
                         <div className="flex flex-col will-change-transform">
                           <div className="flex flex-col">
-                            <div className="flex items-center justify-between px-3 py-[10px] pui4-user-enter">
+                            <div data-at="1" data-fx="rise" className="flex items-center justify-between px-3 py-[10px] pui4-user-enter">
                               <div className="flex items-center gap-[10px]">
                                 <div className="max-[767px]:hidden">
                                   <div className="shrink-0 flex items-center justify-center overflow-hidden w-7 h-7 rounded-full" style={{ background: "linear-gradient(rgb(245, 245, 242) 0%, rgb(251, 251, 248) 100%)", boxShadow: "rgba(0, 0, 0, 0.12) 0px 1px 1px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px, rgba(255, 255, 255, 0.5) 1px 1px 0px 0px inset" }}>
@@ -997,7 +1001,7 @@ export function Capabilities() {
                                   <div className="text-[9px] font-normal text-ink-muted mt-px leading-[12.2px]" style={{ fontFamily: "var(--font-neoris)" }}>Brand reel</div>
                                 </div>
                               </div>
-                              <div className="flex items-center gap-[3px] bg-[#dae9fb] rounded-[3px] px-1 py-[3px]">
+                              <div data-at="2" data-fx="pop" className="flex items-center gap-[3px] bg-[#dae9fb] rounded-[3px] px-1 py-[3px]">
                                 <svg width="6" height="6" viewBox="0 0 6 6" fill="none">
                                   <path d="M1 3L2.4 4.5L5 1.5" stroke="#1d70d9" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
@@ -1006,8 +1010,8 @@ export function Capabilities() {
                             </div>
                           </div>
                           <div className="flex flex-col">
-                            <div className="h-px bg-[rgba(0,0,0,0.07)] mx-3" />
-                            <div className="flex items-center justify-between px-3 py-[10px]">
+                            <div data-at="3" className="h-px bg-[rgba(0,0,0,0.07)] mx-3" />
+                            <div data-at="3" data-fx="rise" className="flex items-center justify-between px-3 py-[10px]">
                               <div className="flex items-center gap-[10px]">
                                 <div className="max-[767px]:hidden">
                                   <div className="shrink-0 flex items-center justify-center overflow-hidden w-7 h-7 rounded-full" style={{ background: "linear-gradient(rgb(245, 245, 242) 0%, rgb(251, 251, 248) 100%)", boxShadow: "rgba(0, 0, 0, 0.12) 0px 1px 1px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px, rgba(255, 255, 255, 0.5) 1px 1px 0px 0px inset" }}>
@@ -1021,7 +1025,7 @@ export function Capabilities() {
                                   <div className="text-[9px] font-normal text-ink-muted mt-px leading-[12.2px]" style={{ fontFamily: "var(--font-neoris)" }}>Product shoot</div>
                                 </div>
                               </div>
-                              <div className="flex items-center gap-[3px] bg-[#dae9fb] rounded-[3px] px-1 py-[3px]">
+                              <div data-at="4" data-fx="pop" className="flex items-center gap-[3px] bg-[#dae9fb] rounded-[3px] px-1 py-[3px]">
                                 <svg width="6" height="6" viewBox="0 0 6 6" fill="none">
                                   <path d="M1 3L2.4 4.5L5 1.5" stroke="#1d70d9" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
@@ -1030,8 +1034,8 @@ export function Capabilities() {
                             </div>
                           </div>
                           <div className="flex flex-col">
-                            <div className="h-px bg-[rgba(0,0,0,0.07)] mx-3" />
-                            <div className="flex items-center justify-between px-3 py-[10px]">
+                            <div data-at="5" className="h-px bg-[rgba(0,0,0,0.07)] mx-3" />
+                            <div data-at="5" data-fx="rise" className="flex items-center justify-between px-3 py-[10px]">
                               <div className="flex items-center gap-[10px]">
                                 <div className="max-[767px]:hidden">
                                   <div className="shrink-0 flex items-center justify-center overflow-hidden w-7 h-7 rounded-full" style={{ background: "linear-gradient(rgb(245, 245, 242) 0%, rgb(251, 251, 248) 100%)", boxShadow: "rgba(0, 0, 0, 0.12) 0px 1px 1px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px, rgba(255, 255, 255, 0.5) 1px 1px 0px 0px inset" }}>
@@ -1045,7 +1049,7 @@ export function Capabilities() {
                                   <div className="text-[9px] font-normal text-ink-muted mt-px leading-[12.2px]" style={{ fontFamily: "var(--font-neoris)" }}>Wedding film</div>
                                 </div>
                               </div>
-                              <div className="flex items-center gap-[3px] bg-[#dae9fb] rounded-[3px] px-1 py-[3px]">
+                              <div data-at="6" data-fx="pop" className="flex items-center gap-[3px] bg-[#dae9fb] rounded-[3px] px-1 py-[3px]">
                                 <svg width="6" height="6" viewBox="0 0 6 6" fill="none">
                                   <path d="M1 3L2.4 4.5L5 1.5" stroke="#1d70d9" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
@@ -1057,7 +1061,7 @@ export function Capabilities() {
                         <div className="absolute bottom-0 left-0 right-0 h-[44px] pointer-events-none z-10" style={{ background: "linear-gradient(0deg, #fbfbf8 0%, rgba(251,251,248,0) 100%)" }} />
                       </div>
                       <div className="shrink-0 flex items-center justify-center gap-[3px] h-[22px] bg-[#f5f5f2] [border-top:0.5px_solid_#e7e7e3]">
-                        <span className="text-[9px] font-medium text-ink-muted" style={{ fontFamily: "var(--font-neoris)" }}>₹1,25,000</span>
+                        <span data-steps="₹0|₹0|₹25,000|₹25,000|₹65,000|₹65,000|₹1,25,000" className="text-[9px] font-medium text-ink-muted" style={{ fontFamily: "var(--font-neoris)" }}>₹1,25,000</span>
                         <span className="text-[9px] text-ink-muted" style={{ fontFamily: "var(--font-neoris)" }}>{" received this month"}</span>
                       </div>
                     </div>

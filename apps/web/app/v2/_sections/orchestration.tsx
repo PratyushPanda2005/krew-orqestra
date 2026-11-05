@@ -1,9 +1,12 @@
+import { Live } from "../_client/live"
+
 import { ScrollTilt } from "../_client/scroll-tilt"
 
 /** Platform statement, the department wheel with the chat panel, three features and the CTA strip. */
 export function Orchestration() {
   return (
     <div className="relative w-full overflow-hidden bg-surface pt-[20px] min-[1100px]:pt-[20px]">
+      <Live steps={8} ms={2600} hold={2600} />
       <div aria-hidden="true" className="top-0 min-[1100px]:top-[20px] pointer-events-none absolute right-0 z-0 w-[clamp(260px,42vw,760px)] h-1/2 max-[999px]:w-[clamp(220px,55vw,560px)]" style={{ clipPath: "polygon(100% 0, 0 100%, 100% 100%)", background: "linear-gradient(250deg, #f0f0f0c2 0%, #f0f0f047 36%, rgba(255, 255, 255, 0) 74%)" }} />
       <div className="relative z-10 mx-auto max-w-[1100px] px-6 flex flex-col items-center">
         <div className="w-full text-center">
@@ -104,7 +107,7 @@ export function Orchestration() {
                       <g>
                         <foreignObject x="195" y="9" width="130" height="94" style={{ overflow: "visible" }}>
                           <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", background: "transparent" }}>
-                            <div style={{ display: "flex", width: "70px", padding: "11.944px 10.287px", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "8.287px", borderRadius: "6.629px", background: "#FBFBF8", boxShadow: "0 0 0 0.829px #FFF inset, 0 0 0 0.829px rgba(0, 0, 0, 0.08), 0 4px 12px 0 rgba(0, 0, 0, 0.06)", boxSizing: "border-box", color: "rgba(35, 19, 60, 0.60)", textAlign: "center", fontFamily: "var(--font-neoris), sans-serif", fontSize: "11px", fontWeight: "400", lineHeight: "120%", whiteSpace: "nowrap" }}>
+                            <div data-at="0" data-fx="node" style={{ display: "flex", width: "70px", padding: "11.944px 10.287px", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "8.287px", borderRadius: "6.629px", background: "#FBFBF8", boxShadow: "0 0 0 0.829px #FFF inset, 0 0 0 0.829px rgba(0, 0, 0, 0.08), 0 4px 12px 0 rgba(0, 0, 0, 0.06)", boxSizing: "border-box", color: "rgba(35, 19, 60, 0.60)", textAlign: "center", fontFamily: "var(--font-neoris), sans-serif", fontSize: "11px", fontWeight: "400", lineHeight: "120%", whiteSpace: "nowrap" }}>
                               Enquiry
                             </div>
                           </div>
@@ -115,7 +118,7 @@ export function Orchestration() {
                       <g>
                         <foreignObject x="339.2497833620557" y="68.7502166379443" width="130" height="94" style={{ overflow: "visible" }}>
                           <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", background: "transparent" }}>
-                            <div style={{ display: "flex", width: "70px", padding: "11.944px 10.287px", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "8.287px", borderRadius: "6.629px", background: "#FBFBF8", boxShadow: "0 0 0 0.829px #FFF inset, 0 0 0 0.829px rgba(0, 0, 0, 0.08), 0 4px 12px 0 rgba(0, 0, 0, 0.06)", boxSizing: "border-box", color: "rgba(35, 19, 60, 0.60)", textAlign: "center", fontFamily: "var(--font-neoris), sans-serif", fontSize: "11px", fontWeight: "400", lineHeight: "120%", whiteSpace: "nowrap" }}>
+                            <div data-at="1" data-fx="node" style={{ display: "flex", width: "70px", padding: "11.944px 10.287px", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "8.287px", borderRadius: "6.629px", background: "#FBFBF8", boxShadow: "0 0 0 0.829px #FFF inset, 0 0 0 0.829px rgba(0, 0, 0, 0.08), 0 4px 12px 0 rgba(0, 0, 0, 0.06)", boxSizing: "border-box", color: "rgba(35, 19, 60, 0.60)", textAlign: "center", fontFamily: "var(--font-neoris), sans-serif", fontSize: "11px", fontWeight: "400", lineHeight: "120%", whiteSpace: "nowrap" }}>
                               Quote
                             </div>
                           </div>
@@ -126,7 +129,7 @@ export function Orchestration() {
                       <g>
                         <foreignObject x="399" y="213" width="130" height="94" style={{ overflow: "visible" }}>
                           <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", background: "transparent" }}>
-                            <div style={{ display: "flex", width: "70px", padding: "11.944px 10.287px", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "8.287px", borderRadius: "6.629px", background: "#FBFBF8", boxShadow: "0 0 0 0.829px #FFF inset, 0 0 0 0.829px rgba(0, 0, 0, 0.08), 0 4px 12px 0 rgba(0, 0, 0, 0.06)", boxSizing: "border-box", color: "rgba(35, 19, 60, 0.60)", textAlign: "center", fontFamily: "var(--font-neoris), sans-serif", fontSize: "11px", fontWeight: "400", lineHeight: "120%", whiteSpace: "nowrap" }}>
+                            <div data-at="2" data-fx="node" style={{ display: "flex", width: "70px", padding: "11.944px 10.287px", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "8.287px", borderRadius: "6.629px", background: "#FBFBF8", boxShadow: "0 0 0 0.829px #FFF inset, 0 0 0 0.829px rgba(0, 0, 0, 0.08), 0 4px 12px 0 rgba(0, 0, 0, 0.06)", boxSizing: "border-box", color: "rgba(35, 19, 60, 0.60)", textAlign: "center", fontFamily: "var(--font-neoris), sans-serif", fontSize: "11px", fontWeight: "400", lineHeight: "120%", whiteSpace: "nowrap" }}>
                               Advance
                             </div>
                           </div>
@@ -165,7 +168,7 @@ export function Orchestration() {
                       <g>
                         <foreignObject x="339.2497833620557" y="357.2497833620557" width="130" height="94" style={{ overflow: "visible" }}>
                           <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", background: "transparent" }}>
-                            <div style={{ display: "flex", width: "70px", padding: "11.944px 10.287px", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "8.287px", borderRadius: "6.629px", background: "#FBFBF8", boxShadow: "0 0 0 0.829px #FFF inset, 0 0 0 0.829px rgba(0, 0, 0, 0.08), 0 4px 12px 0 rgba(0, 0, 0, 0.06)", boxSizing: "border-box", color: "rgba(35, 19, 60, 0.60)", textAlign: "center", fontFamily: "var(--font-neoris), sans-serif", fontSize: "11px", fontWeight: "400", lineHeight: "120%", whiteSpace: "nowrap" }}>
+                            <div data-at="3" data-fx="node" style={{ display: "flex", width: "70px", padding: "11.944px 10.287px", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "8.287px", borderRadius: "6.629px", background: "#FBFBF8", boxShadow: "0 0 0 0.829px #FFF inset, 0 0 0 0.829px rgba(0, 0, 0, 0.08), 0 4px 12px 0 rgba(0, 0, 0, 0.06)", boxSizing: "border-box", color: "rgba(35, 19, 60, 0.60)", textAlign: "center", fontFamily: "var(--font-neoris), sans-serif", fontSize: "11px", fontWeight: "400", lineHeight: "120%", whiteSpace: "nowrap" }}>
                               Work
                             </div>
                           </div>
@@ -176,7 +179,7 @@ export function Orchestration() {
                       <g>
                         <foreignObject x="195" y="417" width="130" height="94" style={{ overflow: "visible" }}>
                           <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", background: "transparent" }}>
-                            <div style={{ display: "flex", width: "70px", padding: "11.944px 10.287px", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "8.287px", borderRadius: "6.629px", background: "#FBFBF8", boxShadow: "0 0 0 0.829px #FFF inset, 0 0 0 0.829px rgba(0, 0, 0, 0.08), 0 4px 12px 0 rgba(0, 0, 0, 0.06)", boxSizing: "border-box", color: "rgba(35, 19, 60, 0.60)", textAlign: "center", fontFamily: "var(--font-neoris), sans-serif", fontSize: "11px", fontWeight: "400", lineHeight: "120%", whiteSpace: "nowrap" }}>
+                            <div data-at="4" data-fx="node" style={{ display: "flex", width: "70px", padding: "11.944px 10.287px", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "8.287px", borderRadius: "6.629px", background: "#FBFBF8", boxShadow: "0 0 0 0.829px #FFF inset, 0 0 0 0.829px rgba(0, 0, 0, 0.08), 0 4px 12px 0 rgba(0, 0, 0, 0.06)", boxSizing: "border-box", color: "rgba(35, 19, 60, 0.60)", textAlign: "center", fontFamily: "var(--font-neoris), sans-serif", fontSize: "11px", fontWeight: "400", lineHeight: "120%", whiteSpace: "nowrap" }}>
                               Review
                             </div>
                           </div>
@@ -187,7 +190,7 @@ export function Orchestration() {
                       <g>
                         <foreignObject x="50.750216637944305" y="357.2497833620557" width="130" height="94" style={{ overflow: "visible" }}>
                           <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", background: "transparent" }}>
-                            <div style={{ display: "flex", width: "70px", padding: "11.944px 10.287px", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "8.287px", borderRadius: "6.629px", background: "#FBFBF8", boxShadow: "0 0 0 0.829px #FFF inset, 0 0 0 0.829px rgba(0, 0, 0, 0.08), 0 4px 12px 0 rgba(0, 0, 0, 0.06)", boxSizing: "border-box", color: "rgba(35, 19, 60, 0.60)", textAlign: "center", fontFamily: "var(--font-neoris), sans-serif", fontSize: "11px", fontWeight: "400", lineHeight: "120%", whiteSpace: "nowrap" }}>
+                            <div data-at="5" data-fx="node" style={{ display: "flex", width: "70px", padding: "11.944px 10.287px", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "8.287px", borderRadius: "6.629px", background: "#FBFBF8", boxShadow: "0 0 0 0.829px #FFF inset, 0 0 0 0.829px rgba(0, 0, 0, 0.08), 0 4px 12px 0 rgba(0, 0, 0, 0.06)", boxSizing: "border-box", color: "rgba(35, 19, 60, 0.60)", textAlign: "center", fontFamily: "var(--font-neoris), sans-serif", fontSize: "11px", fontWeight: "400", lineHeight: "120%", whiteSpace: "nowrap" }}>
                               Invoice
                             </div>
                           </div>
@@ -198,7 +201,7 @@ export function Orchestration() {
                       <g>
                         <foreignObject x="-9" y="213.00000000000006" width="130" height="94" style={{ overflow: "visible" }}>
                           <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", background: "transparent" }}>
-                            <div style={{ display: "flex", width: "70px", padding: "11.944px 10.287px", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "8.287px", borderRadius: "6.629px", background: "#FBFBF8", boxShadow: "0 0 0 0.829px #FFF inset, 0 0 0 0.829px rgba(0, 0, 0, 0.08), 0 4px 12px 0 rgba(0, 0, 0, 0.06)", boxSizing: "border-box", color: "rgba(35, 19, 60, 0.60)", textAlign: "center", fontFamily: "var(--font-neoris), sans-serif", fontSize: "11px", fontWeight: "400", lineHeight: "120%", whiteSpace: "nowrap" }}>
+                            <div data-at="6" data-fx="node" style={{ display: "flex", width: "70px", padding: "11.944px 10.287px", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "8.287px", borderRadius: "6.629px", background: "#FBFBF8", boxShadow: "0 0 0 0.829px #FFF inset, 0 0 0 0.829px rgba(0, 0, 0, 0.08), 0 4px 12px 0 rgba(0, 0, 0, 0.06)", boxSizing: "border-box", color: "rgba(35, 19, 60, 0.60)", textAlign: "center", fontFamily: "var(--font-neoris), sans-serif", fontSize: "11px", fontWeight: "400", lineHeight: "120%", whiteSpace: "nowrap" }}>
                               Paid
                             </div>
                           </div>
@@ -209,7 +212,7 @@ export function Orchestration() {
                       <g>
                         <foreignObject x="50.75021663794428" y="68.75021663794433" width="130" height="94" style={{ overflow: "visible" }}>
                           <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", background: "transparent" }}>
-                            <div style={{ display: "flex", width: "70px", padding: "11.944px 10.287px", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "8.287px", borderRadius: "6.629px", background: "#FBFBF8", boxShadow: "0 0 0 0.829px #FFF inset, 0 0 0 0.829px rgba(0, 0, 0, 0.08), 0 4px 12px 0 rgba(0, 0, 0, 0.06)", boxSizing: "border-box", color: "rgba(35, 19, 60, 0.60)", textAlign: "center", fontFamily: "var(--font-neoris), sans-serif", fontSize: "11px", fontWeight: "400", lineHeight: "120%", whiteSpace: "nowrap" }}>
+                            <div data-at="7" data-fx="node" style={{ display: "flex", width: "70px", padding: "11.944px 10.287px", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "8.287px", borderRadius: "6.629px", background: "#FBFBF8", boxShadow: "0 0 0 0.829px #FFF inset, 0 0 0 0.829px rgba(0, 0, 0, 0.08), 0 4px 12px 0 rgba(0, 0, 0, 0.06)", boxSizing: "border-box", color: "rgba(35, 19, 60, 0.60)", textAlign: "center", fontFamily: "var(--font-neoris), sans-serif", fontSize: "11px", fontWeight: "400", lineHeight: "120%", whiteSpace: "nowrap" }}>
                               Ledger
                             </div>
                           </div>
@@ -247,86 +250,86 @@ export function Orchestration() {
                   </svg>
                   <svg viewBox="0 0 520 520" className="absolute inset-0 w-full h-full pointer-events-none" fill="none" style={{ willChange: "transform" }}>
                     <rect x="-2" y="-2" width="4" height="4" rx="0.5" fill="#46ABFD" opacity="0">
-                      <animateMotion path="M 311 262 L 425 262" dur="1.8s" begin="0s" repeatCount="1" fill="freeze" calcMode="linear" rotate="auto" />
-                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="0s" repeatCount="1" fill="freeze" />
+                      <animateMotion path="M 311 262 L 425 262" dur="1.8s" begin="0s" repeatCount="indefinite" calcMode="linear" rotate="auto" />
+                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="0s" repeatCount="indefinite" />
                     </rect>
                     <rect x="-2" y="-2" width="4" height="4" rx="0.5" fill="#69B4E5" opacity="0">
-                      <animateMotion path="M 311 258 L 425 258" dur="1.8s" begin="0.5s" repeatCount="1" fill="freeze" calcMode="linear" rotate="auto" />
-                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="0.5s" repeatCount="1" fill="freeze" />
+                      <animateMotion path="M 311 258 L 425 258" dur="1.8s" begin="0.5s" repeatCount="indefinite" calcMode="linear" rotate="auto" />
+                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="0.5s" repeatCount="indefinite" />
                     </rect>
                     <rect x="-2" y="-2" width="4" height="4" rx="0.5" fill="#A6D9E9" opacity="0">
-                      <animateMotion path="M 311 262 L 425 262" dur="1.8s" begin="1s" repeatCount="1" fill="freeze" calcMode="linear" rotate="auto" />
-                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="1s" repeatCount="1" fill="freeze" />
+                      <animateMotion path="M 311 262 L 425 262" dur="1.8s" begin="1s" repeatCount="indefinite" calcMode="linear" rotate="auto" />
+                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="1s" repeatCount="indefinite" />
                     </rect>
                     <rect x="-2" y="-2" width="4" height="4" rx="0.5" fill="#46ABFD" opacity="0">
-                      <animateMotion path="M 311 258 L 425 258" dur="1.8s" begin="1.5s" repeatCount="1" fill="freeze" calcMode="linear" rotate="auto" />
-                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="1.5s" repeatCount="1" fill="freeze" />
+                      <animateMotion path="M 311 258 L 425 258" dur="1.8s" begin="1.5s" repeatCount="indefinite" calcMode="linear" rotate="auto" />
+                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="1.5s" repeatCount="indefinite" />
                     </rect>
                     <rect x="-2" y="-2" width="4" height="4" rx="0.5" fill="#69B4E5" opacity="0">
-                      <animateMotion path="M 311 262 L 425 262" dur="1.8s" begin="2s" repeatCount="1" fill="freeze" calcMode="linear" rotate="auto" />
-                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="2s" repeatCount="1" fill="freeze" />
+                      <animateMotion path="M 311 262 L 425 262" dur="1.8s" begin="2s" repeatCount="indefinite" calcMode="linear" rotate="auto" />
+                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="2s" repeatCount="indefinite" />
                     </rect>
                     <rect x="-2" y="-2" width="4" height="4" rx="0.5" fill="#A6D9E9" opacity="0">
-                      <animateMotion path="M 311 258 L 425 258" dur="1.8s" begin="2.5s" repeatCount="1" fill="freeze" calcMode="linear" rotate="auto" />
-                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="2.5s" repeatCount="1" fill="freeze" />
+                      <animateMotion path="M 311 258 L 425 258" dur="1.8s" begin="2.5s" repeatCount="indefinite" calcMode="linear" rotate="auto" />
+                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="2.5s" repeatCount="indefinite" />
                     </rect>
                     <rect x="-2" y="-2" width="4" height="4" rx="0.5" fill="#46ABFD" opacity="0">
-                      <animateMotion path="M 311 262 L 425 262" dur="1.8s" begin="3s" repeatCount="1" fill="freeze" calcMode="linear" rotate="auto" />
-                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="3s" repeatCount="1" fill="freeze" />
+                      <animateMotion path="M 311 262 L 425 262" dur="1.8s" begin="3s" repeatCount="indefinite" calcMode="linear" rotate="auto" />
+                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="3s" repeatCount="indefinite" />
                     </rect>
                     <rect x="-2" y="-2" width="4" height="4" rx="0.5" fill="#69B4E5" opacity="0">
-                      <animateMotion path="M 311 258 L 425 258" dur="1.8s" begin="3.5s" repeatCount="1" fill="freeze" calcMode="linear" rotate="auto" />
-                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="3.5s" repeatCount="1" fill="freeze" />
+                      <animateMotion path="M 311 258 L 425 258" dur="1.8s" begin="3.5s" repeatCount="indefinite" calcMode="linear" rotate="auto" />
+                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="3.5s" repeatCount="indefinite" />
                     </rect>
                     <rect x="-2" y="-2" width="4" height="4" rx="0.5" fill="#A6D9E9" opacity="0">
-                      <animateMotion path="M 311 262 L 425 262" dur="1.8s" begin="4s" repeatCount="1" fill="freeze" calcMode="linear" rotate="auto" />
-                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="4s" repeatCount="1" fill="freeze" />
+                      <animateMotion path="M 311 262 L 425 262" dur="1.8s" begin="4s" repeatCount="indefinite" calcMode="linear" rotate="auto" />
+                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="4s" repeatCount="indefinite" />
                     </rect>
                     <rect x="-2" y="-2" width="4" height="4" rx="0.5" fill="#46ABFD" opacity="0">
-                      <animateMotion path="M 311 258 L 425 258" dur="1.8s" begin="4.5s" repeatCount="1" fill="freeze" calcMode="linear" rotate="auto" />
-                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="4.5s" repeatCount="1" fill="freeze" />
+                      <animateMotion path="M 311 258 L 425 258" dur="1.8s" begin="4.5s" repeatCount="indefinite" calcMode="linear" rotate="auto" />
+                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="4.5s" repeatCount="indefinite" />
                     </rect>
                     <rect x="-2" y="-2" width="4" height="4" rx="0.5" fill="#69B4E5" opacity="0">
-                      <animateMotion path="M 311 262 L 425 262" dur="1.8s" begin="5s" repeatCount="1" fill="freeze" calcMode="linear" rotate="auto" />
-                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="5s" repeatCount="1" fill="freeze" />
+                      <animateMotion path="M 311 262 L 425 262" dur="1.8s" begin="5s" repeatCount="indefinite" calcMode="linear" rotate="auto" />
+                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="5s" repeatCount="indefinite" />
                     </rect>
                     <rect x="-2" y="-2" width="4" height="4" rx="0.5" fill="#A6D9E9" opacity="0">
-                      <animateMotion path="M 311 258 L 425 258" dur="1.8s" begin="5.5s" repeatCount="1" fill="freeze" calcMode="linear" rotate="auto" />
-                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="5.5s" repeatCount="1" fill="freeze" />
+                      <animateMotion path="M 311 258 L 425 258" dur="1.8s" begin="5.5s" repeatCount="indefinite" calcMode="linear" rotate="auto" />
+                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="5.5s" repeatCount="indefinite" />
                     </rect>
                   </svg>
                   <svg viewBox="0 0 520 520" className="absolute inset-0 w-full h-full pointer-events-none" fill="none" style={{ willChange: "transform" }}>
                     <rect x="-2" y="-2" width="4" height="4" rx="0.5" fill="#46ABFD" opacity="0">
-                      <animateMotion path="M 230.42893218813452 227.6005050633883 L 136.99285732506357 134.1644302003174" dur="1.8s" begin="0s" repeatCount="1" fill="freeze" calcMode="linear" rotate="auto" />
-                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="0s" repeatCount="1" fill="freeze" />
+                      <animateMotion path="M 230.42893218813452 227.6005050633883 L 136.99285732506357 134.1644302003174" dur="1.8s" begin="0s" repeatCount="indefinite" calcMode="linear" rotate="auto" />
+                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="0s" repeatCount="indefinite" />
                     </rect>
                     <rect x="-2" y="-2" width="4" height="4" rx="0.5" fill="#69B4E5" opacity="0">
-                      <animateMotion path="M 227.6005050633883 230.42893218813452 L 134.16443020031736 136.99285732506362" dur="1.8s" begin="0.55s" repeatCount="1" fill="freeze" calcMode="linear" rotate="auto" />
-                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="0.55s" repeatCount="1" fill="freeze" />
+                      <animateMotion path="M 227.6005050633883 230.42893218813452 L 134.16443020031736 136.99285732506362" dur="1.8s" begin="0.55s" repeatCount="indefinite" calcMode="linear" rotate="auto" />
+                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="0.55s" repeatCount="indefinite" />
                     </rect>
                     <rect x="-2" y="-2" width="4" height="4" rx="0.5" fill="#A6D9E9" opacity="0">
-                      <animateMotion path="M 230.42893218813452 227.6005050633883 L 136.99285732506357 134.1644302003174" dur="1.8s" begin="1.1s" repeatCount="1" fill="freeze" calcMode="linear" rotate="auto" />
-                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="1.1s" repeatCount="1" fill="freeze" />
+                      <animateMotion path="M 230.42893218813452 227.6005050633883 L 136.99285732506357 134.1644302003174" dur="1.8s" begin="1.1s" repeatCount="indefinite" calcMode="linear" rotate="auto" />
+                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="1.1s" repeatCount="indefinite" />
                     </rect>
                     <rect x="-2" y="-2" width="4" height="4" rx="0.5" fill="#46ABFD" opacity="0">
-                      <animateMotion path="M 227.6005050633883 230.42893218813452 L 134.16443020031736 136.99285732506362" dur="1.8s" begin="1.6500000000000001s" repeatCount="1" fill="freeze" calcMode="linear" rotate="auto" />
-                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="1.6500000000000001s" repeatCount="1" fill="freeze" />
+                      <animateMotion path="M 227.6005050633883 230.42893218813452 L 134.16443020031736 136.99285732506362" dur="1.8s" begin="1.6500000000000001s" repeatCount="indefinite" calcMode="linear" rotate="auto" />
+                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="1.6500000000000001s" repeatCount="indefinite" />
                     </rect>
                     <rect x="-2" y="-2" width="4" height="4" rx="0.5" fill="#69B4E5" opacity="0">
-                      <animateMotion path="M 230.42893218813452 227.6005050633883 L 136.99285732506357 134.1644302003174" dur="1.8s" begin="2.2s" repeatCount="1" fill="freeze" calcMode="linear" rotate="auto" />
-                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="2.2s" repeatCount="1" fill="freeze" />
+                      <animateMotion path="M 230.42893218813452 227.6005050633883 L 136.99285732506357 134.1644302003174" dur="1.8s" begin="2.2s" repeatCount="indefinite" calcMode="linear" rotate="auto" />
+                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="2.2s" repeatCount="indefinite" />
                     </rect>
                     <rect x="-2" y="-2" width="4" height="4" rx="0.5" fill="#A6D9E9" opacity="0">
-                      <animateMotion path="M 227.6005050633883 230.42893218813452 L 134.16443020031736 136.99285732506362" dur="1.8s" begin="2.75s" repeatCount="1" fill="freeze" calcMode="linear" rotate="auto" />
-                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="2.75s" repeatCount="1" fill="freeze" />
+                      <animateMotion path="M 227.6005050633883 230.42893218813452 L 134.16443020031736 136.99285732506362" dur="1.8s" begin="2.75s" repeatCount="indefinite" calcMode="linear" rotate="auto" />
+                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="2.75s" repeatCount="indefinite" />
                     </rect>
                     <rect x="-2" y="-2" width="4" height="4" rx="0.5" fill="#46ABFD" opacity="0">
-                      <animateMotion path="M 230.42893218813452 227.6005050633883 L 136.99285732506357 134.1644302003174" dur="1.8s" begin="3.3000000000000003s" repeatCount="1" fill="freeze" calcMode="linear" rotate="auto" />
-                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="3.3000000000000003s" repeatCount="1" fill="freeze" />
+                      <animateMotion path="M 230.42893218813452 227.6005050633883 L 136.99285732506357 134.1644302003174" dur="1.8s" begin="3.3000000000000003s" repeatCount="indefinite" calcMode="linear" rotate="auto" />
+                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="3.3000000000000003s" repeatCount="indefinite" />
                     </rect>
                     <rect x="-2" y="-2" width="4" height="4" rx="0.5" fill="#69B4E5" opacity="0">
-                      <animateMotion path="M 227.6005050633883 230.42893218813452 L 134.16443020031736 136.99285732506362" dur="1.8s" begin="3.8500000000000005s" repeatCount="1" fill="freeze" calcMode="linear" rotate="auto" />
-                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="3.8500000000000005s" repeatCount="1" fill="freeze" />
+                      <animateMotion path="M 227.6005050633883 230.42893218813452 L 134.16443020031736 136.99285732506362" dur="1.8s" begin="3.8500000000000005s" repeatCount="indefinite" calcMode="linear" rotate="auto" />
+                      <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.97;1" dur="1.8s" begin="3.8500000000000005s" repeatCount="indefinite" />
                     </rect>
                   </svg>
                   <svg viewBox="0 0 520 520" className="absolute inset-0 w-full h-full pointer-events-none" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -643,7 +646,7 @@ export function Orchestration() {
                   <div className="orch-chat-scroll flex-1 flex flex-col px-[12px] pt-[10px] pb-[8px] overflow-y-auto" style={{ scrollbarWidth: "none" }}>
                     <div style={{ display: "flex", flexDirection: "column", marginTop: "0px", animation: "500ms cubic-bezier(0.23, 1, 0.32, 1) 0s 1 normal none running orch-section-fade-in" }}>
                       <div style={{ display: "flex", justifyContent: "flex-end", animation: "350ms cubic-bezier(0.23, 1, 0.32, 1) 0s 1 normal both running orch-block-reveal" }}>
-                        <div style={{ maxWidth: "82%", padding: "9px 12px", borderRadius: "8px", background: "rgba(35, 19, 60, 0.04)", border: "0.734px solid rgba(0, 0, 0, 0.06)", color: "rgba(35, 19, 60, 0.85)", fontSize: "11px", fontWeight: "500", lineHeight: "1.5", fontFamily: "var(--font-neoris), sans-serif" }}>
+                        <div data-steps="A wedding enquiry just came in on Instagram for 14 Dec.|Arjun and I agreed ₹1,40,000. Send the quote.|Quote accepted. Ask for the advance.|Advance paid. Set up the crew.|The first cut is ready for Arjun.|Approved. Raise the invoice.|Arjun has paid the balance.|How did the Mehta job end up?" style={{ maxWidth: "82%", padding: "9px 12px", borderRadius: "8px", background: "rgba(35, 19, 60, 0.04)", border: "0.734px solid rgba(0, 0, 0, 0.06)", color: "rgba(35, 19, 60, 0.85)", fontSize: "11px", fontWeight: "500", lineHeight: "1.5", fontFamily: "var(--font-neoris), sans-serif" }}>
                           A wedding enquiry just came in on Instagram for 14 Dec.
                         </div>
                       </div>
@@ -656,10 +659,10 @@ export function Orchestration() {
                           <rect x="5" y="7" width="2" height="2" fill="rgba(35,19,60,0.2)" />
                         </svg>
                         <p style={{ margin: "0px", flex: "1 1 0%", color: "rgba(35, 19, 60, 0.7)", fontSize: "11px", fontWeight: "400", lineHeight: "1.6", fontFamily: "var(--font-neoris), sans-serif" }}>
-                          <span>
+                          <span data-steps="I’ve replied with your starting-from rates and portfolio, and asked for the date, budget and type of work. |The quote has gone out as a link. |I’ve sent a payment link for ₹40,000. |Tasks are ready from your wedding template. |I’ve shared the draft by link. |Your GST invoice is ready with a payment link. |The invoice is settled. |₹1,40,000 in, all in your ledger. ">
                             {"I’ve replied with your starting-from rates and portfolio, and asked for the date, budget and type of work. "}
                           </span>
-                          <span style={{ fontWeight: "600", color: "rgba(35, 19, 60, 0.85)" }}>Once they answer, I’ll hand the chat to you. I never agree a price.</span>
+                          <span data-steps="Once they answer, I’ll hand the chat to you. I never agree a price.|Arjun accepts by typing their name and ticking a box.|It goes straight to your own account.|Each person sees only the tasks you give them.|Arjun can comment on the exact moment, then approve.|Reminders stop as soon as Arjun pays.|No more reminders will go out.|It’s ready to export for your accountant." style={{ fontWeight: "600", color: "rgba(35, 19, 60, 0.85)" }}>Once they answer, I’ll hand the chat to you. I never agree a price.</span>
                         </p>
                       </div>
                       <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginTop: "18px" }}>
@@ -669,13 +672,13 @@ export function Orchestration() {
                               <animateTransform attributeName="transform" type="rotate" from="0 5 5" to="360 5 5" dur="0.8s" repeatCount="indefinite" />
                             </circle>
                           </svg>
-                          <span style={{ color: "rgba(35, 19, 60, 0.85)", fontSize: "10px", fontWeight: "500", lineHeight: "14.689px", flexShrink: "0", fontFamily: "var(--font-neoris), sans-serif" }}>
+                          <span data-steps="Enquiry bot|Quote link|Advance|Crew tasks|Draft review|Invoice|Payment|Ledger" style={{ color: "rgba(35, 19, 60, 0.85)", fontSize: "10px", fontWeight: "500", lineHeight: "14.689px", flexShrink: "0", fontFamily: "var(--font-neoris), sans-serif" }}>
                             Enquiry bot
                           </span>
-                          <span style={{ flex: "1 1 0%", color: "rgba(35, 19, 60, 0.5)", fontSize: "9px", fontWeight: "400", lineHeight: "14.689px", fontFamily: "var(--font-neoris), sans-serif", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                          <span data-steps="Waiting for budget and venue|Opened, not accepted yet|Waiting for payment|Shoot day assigned|Waiting for approval|₹1,00,000 due|₹1,00,000 received|Mehta wedding closed" style={{ flex: "1 1 0%", color: "rgba(35, 19, 60, 0.5)", fontSize: "9px", fontWeight: "400", lineHeight: "14.689px", fontFamily: "var(--font-neoris), sans-serif", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                             Waiting for budget and venue
                           </span>
-                          <span style={{ display: "inline-flex", alignItems: "center", padding: "2px 5px", borderRadius: "3px", background: "rgba(69, 220, 151, 0.18)", borderWidth: "medium", borderStyle: "none", borderColor: "currentcolor", borderImage: "none", color: "rgb(29, 112, 217)", fontSize: "8px", fontWeight: "500", lineHeight: "9.5px", fontFamily: "var(--font-neoris), sans-serif", flexShrink: "0" }}>
+                          <span data-steps="Running|Running|Running|Running|Running|Running|Done|Done" style={{ display: "inline-flex", alignItems: "center", padding: "2px 5px", borderRadius: "3px", background: "rgba(69, 220, 151, 0.18)", borderWidth: "medium", borderStyle: "none", borderColor: "currentcolor", borderImage: "none", color: "rgb(29, 112, 217)", fontSize: "8px", fontWeight: "500", lineHeight: "9.5px", fontFamily: "var(--font-neoris), sans-serif", flexShrink: "0" }}>
                             Running
                           </span>
                         </div>
@@ -723,7 +726,7 @@ export function Orchestration() {
               <div className="orch-chat-scroll flex-1 flex flex-col px-[12px] pt-[10px] pb-[8px] overflow-y-auto" style={{ scrollbarWidth: "none" }}>
                 <div style={{ display: "flex", flexDirection: "column", marginTop: "0px", animation: "500ms cubic-bezier(0.23, 1, 0.32, 1) 0s 1 normal none running orch-section-fade-in" }}>
                   <div style={{ display: "flex", justifyContent: "flex-end", animation: "350ms cubic-bezier(0.23, 1, 0.32, 1) 0s 1 normal both running orch-block-reveal" }}>
-                    <div style={{ maxWidth: "82%", padding: "9px 12px", borderRadius: "8px", background: "rgba(35, 19, 60, 0.04)", border: "0.734px solid rgba(0, 0, 0, 0.06)", color: "rgba(35, 19, 60, 0.85)", fontSize: "11px", fontWeight: "500", lineHeight: "1.5", fontFamily: "var(--font-neoris), sans-serif" }}>
+                    <div data-steps="A wedding enquiry just came in on Instagram for 14 Dec.|Arjun and I agreed ₹1,40,000. Send the quote.|Quote accepted. Ask for the advance.|Advance paid. Set up the crew.|The first cut is ready for Arjun.|Approved. Raise the invoice.|Arjun has paid the balance.|How did the Mehta job end up?" style={{ maxWidth: "82%", padding: "9px 12px", borderRadius: "8px", background: "rgba(35, 19, 60, 0.04)", border: "0.734px solid rgba(0, 0, 0, 0.06)", color: "rgba(35, 19, 60, 0.85)", fontSize: "11px", fontWeight: "500", lineHeight: "1.5", fontFamily: "var(--font-neoris), sans-serif" }}>
                       A wedding enquiry just came in on Instagram for 14 Dec.
                     </div>
                   </div>
@@ -736,10 +739,10 @@ export function Orchestration() {
                       <rect x="5" y="7" width="2" height="2" fill="rgba(35,19,60,0.2)" />
                     </svg>
                     <p style={{ margin: "0px", flex: "1 1 0%", color: "rgba(35, 19, 60, 0.7)", fontSize: "11px", fontWeight: "400", lineHeight: "1.6", fontFamily: "var(--font-neoris), sans-serif" }}>
-                      <span>
+                      <span data-steps="I’ve replied with your starting-from rates and portfolio, and asked for the date, budget and type of work. |The quote has gone out as a link. |I’ve sent a payment link for ₹40,000. |Tasks are ready from your wedding template. |I’ve shared the draft by link. |Your GST invoice is ready with a payment link. |The invoice is settled. |₹1,40,000 in, all in your ledger. ">
                         {"I’ve replied with your starting-from rates and portfolio, and asked for the date, budget and type of work. "}
                       </span>
-                      <span style={{ fontWeight: "600", color: "rgba(35, 19, 60, 0.85)" }}>Once they answer, I’ll hand the chat to you. I never agree a price.</span>
+                      <span data-steps="Once they answer, I’ll hand the chat to you. I never agree a price.|Arjun accepts by typing their name and ticking a box.|It goes straight to your own account.|Each person sees only the tasks you give them.|Arjun can comment on the exact moment, then approve.|Reminders stop as soon as Arjun pays.|No more reminders will go out.|It’s ready to export for your accountant." style={{ fontWeight: "600", color: "rgba(35, 19, 60, 0.85)" }}>Once they answer, I’ll hand the chat to you. I never agree a price.</span>
                     </p>
                   </div>
                   <div style={{ display: "flex", flexDirection: "column", gap: "6px", marginTop: "18px" }}>
@@ -749,13 +752,13 @@ export function Orchestration() {
                           <animateTransform attributeName="transform" type="rotate" from="0 5 5" to="360 5 5" dur="0.8s" repeatCount="indefinite" />
                         </circle>
                       </svg>
-                      <span style={{ color: "rgba(35, 19, 60, 0.85)", fontSize: "10px", fontWeight: "500", lineHeight: "14.689px", flexShrink: "0", fontFamily: "var(--font-neoris), sans-serif" }}>
+                      <span data-steps="Enquiry bot|Quote link|Advance|Crew tasks|Draft review|Invoice|Payment|Ledger" style={{ color: "rgba(35, 19, 60, 0.85)", fontSize: "10px", fontWeight: "500", lineHeight: "14.689px", flexShrink: "0", fontFamily: "var(--font-neoris), sans-serif" }}>
                         Enquiry bot
                       </span>
-                      <span style={{ flex: "1 1 0%", color: "rgba(35, 19, 60, 0.5)", fontSize: "9px", fontWeight: "400", lineHeight: "14.689px", fontFamily: "var(--font-neoris), sans-serif", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                      <span data-steps="Waiting for budget and venue|Opened, not accepted yet|Waiting for payment|Shoot day assigned|Waiting for approval|₹1,00,000 due|₹1,00,000 received|Mehta wedding closed" style={{ flex: "1 1 0%", color: "rgba(35, 19, 60, 0.5)", fontSize: "9px", fontWeight: "400", lineHeight: "14.689px", fontFamily: "var(--font-neoris), sans-serif", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                         Waiting for budget and venue
                       </span>
-                      <span style={{ display: "inline-flex", alignItems: "center", padding: "2px 5px", borderRadius: "3px", background: "rgba(69, 220, 151, 0.18)", borderWidth: "medium", borderStyle: "none", borderColor: "currentcolor", borderImage: "none", color: "rgb(29, 112, 217)", fontSize: "8px", fontWeight: "500", lineHeight: "9.5px", fontFamily: "var(--font-neoris), sans-serif", flexShrink: "0" }}>
+                      <span data-steps="Running|Running|Running|Running|Running|Running|Done|Done" style={{ display: "inline-flex", alignItems: "center", padding: "2px 5px", borderRadius: "3px", background: "rgba(69, 220, 151, 0.18)", borderWidth: "medium", borderStyle: "none", borderColor: "currentcolor", borderImage: "none", color: "rgb(29, 112, 217)", fontSize: "8px", fontWeight: "500", lineHeight: "9.5px", fontFamily: "var(--font-neoris), sans-serif", flexShrink: "0" }}>
                         Running
                       </span>
                     </div>

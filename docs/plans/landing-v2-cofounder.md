@@ -34,9 +34,20 @@ are in `apps/web/public/v2/CREDITS.md`. The route is `noindex`.
 - Colours: ink → navy #23133c everywhere (`cofounder.css`); `krew-brand.css` sets navy dark buttons, lime light buttons, green progress and status, violet word frames.
 - Chapter books: the reference's lift-and-drag (`_client/chapter-card.tsx`): rise 72 px on hover, drag up to 250 px, 500 ms cubic-bezier(0.22, 1, 0.36, 1), fine pointer ≥ 768 px only. Measured equal to the reference.
 
+## Screens in motion (5 Nov 2026)
+Every product mock-up plays the job as a loop while it is on screen. `_client/live.tsx` steps through data attributes on the generated markup (`data-at`, `data-steps`, `data-w`, `data-type`) and `live.css` holds the looks. It pauses off screen. Without JS or with reduced motion the markup stays the finished frame.
+
+| Screen | Story |
+|---|---|
+| Workspace | The wheel lights each stage in turn and the chat follows one job, Enquiry to Ledger. The dots loop (they played once at load before) |
+| Job board | Enquiry to Advance paid: cards light up, connector lines run, column counts tick |
+| Email + drafts | The email writes itself, then Drafts counts opens and approvals up to 60% |
+| Money | The chart draws; each payment lands, turns Paid and moves the totals |
+| Client links band | Each tab plays within its 8 s: the quote email writes, review rows arrive, the invoice flow builds |
+| Word search | `_client/word-hunt.tsx` circles one word after another, three at a time |
+
+The wheel's example job stays in line with the must-hold rules: the bot never agrees the price (the creator does), money goes straight to the creator, and reminders stop once the client pays. Payment split on the money screen (₹25,000, ₹40,000, ₹60,000) is example data adding up to the ₹1,25,000 shown.
+
 ## Known gaps
-- The product mocks inside the capabilities (launch board, email stats, analytics) and the chat
-  panel are still frames, not the reference's looping sequences.
 - Lexend Deca is wider than Neoris, so a few headings wrap one line earlier (page ~290 px taller at 1440).
 - The integration icons under the invoice panel are still the reference set (GitHub, Gmail and others).
-- The letter grid shows one frozen frame of its word animation.

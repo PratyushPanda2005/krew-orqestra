@@ -1,8 +1,11 @@
+import { Live } from "../_client/live"
+
 /** The three product panels in the blue tools band, one per tab. */
 
 export function ToolsPanel0() {
   return (
     <div className="relative min-[1000px]:w-[800px] w-full h-full rounded-[20px] bg-[rgba(232,231,230,0.32)] p-3">
+      <Live steps={4} ms={1500} hold={9000} />
       <div className="flex h-full min-h-0 flex-col items-center rounded-xl bg-[rgba(251,251,248,0.95)] backdrop-blur-[45px] [-webkit-backdrop-filter:blur(45px)] shadow-[0_0_0.454px_1.908px_rgba(255,255,255,0.35)_inset,0_2.544px_0_0_#FFF_inset,0_0_2.544px_0_rgba(0,0,0,0.25),0_0_0_5.088px_rgba(232,231,230,0.32)]">
         <div className="flex min-h-0 px-2 w-full flex-1 rounded-[14px] py-2 items-center justify-center bg-[#F3F7F8]">
           <svg width="134" height="6" viewBox="0 0 134 6" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -146,11 +149,11 @@ export function ToolsPanel0() {
                 </div>
                 <div className="h-px w-full bg-[rgba(0,0,0,0.06)]" aria-hidden="true" />
                 <div className="mt-3 flex flex-col gap-2.5 text-[10px] font-[430] leading-[160%] text-[rgba(35,19,60,0.7)] font-[family-name:var(--font-neoris),sans-serif]">
-                  <p className="m-0">Hi Arjun,</p>
-                  <p className="m-0">
+                  <p data-type="0" className="m-0">Hi Arjun,</p>
+                  <p data-type="1" className="m-0">
                     Here’s the quote for your wedding shoot on 14 Dec: two days of photos and a highlight film.
                   </p>
-                  <p className="m-0">
+                  <p data-type="2" className="m-0">
                     Open the link to read it. To accept, type your name and tick the box. No account needed.
                   </p>
                 </div>
@@ -227,7 +230,7 @@ export function ToolsPanel0() {
           </svg>
         </div>
         <div className="my-3 flex justify-center">
-          <div className="inline-flex min-[1000px]:w-[290px] w-full items-center gap-[8px] rounded-[5px] bg-[#F2F6F7] py-[6px] pl-[11px] pr-px shadow-[0_0_0_1px_#FFF_inset,0_0_0_1px_rgba(0,0,0,0.08),0_0_20px_0_rgba(0,0,0,0.03),0_36px_28px_0_rgba(0,0,0,0.02),0_25px_25px_0_rgba(0,0,0,0.02),0_4px_5px_0_rgba(0,0,0,0.06)]">
+          <div data-at="3" data-fx="rise" className="inline-flex min-[1000px]:w-[290px] w-full items-center gap-[8px] rounded-[5px] bg-[#F2F6F7] py-[6px] pl-[11px] pr-px shadow-[0_0_0_1px_#FFF_inset,0_0_0_1px_rgba(0,0,0,0.08),0_0_20px_0_rgba(0,0,0,0.03),0_36px_28px_0_rgba(0,0,0,0.02),0_25px_25px_0_rgba(0,0,0,0.02),0_4px_5px_0_rgba(0,0,0,0.06)]">
             <svg width="17" height="17" viewBox="0 0 17 17" fill="none" aria-hidden="true" className="block shrink-0">
               <rect x="15" y="7.5" width="2" height="2" fill="#6AB830" />
               <rect x="12.5" y="7.5" width="2" height="2" fill="#6AB830" />
@@ -330,11 +333,12 @@ export function ToolsPanel0() {
 export function ToolsPanel1() {
   return (
     <div className="flex rounded-[20px] bg-[rgba(232,231,230,0.32)] p-3 w-[800px]">
+      <Live steps={4} ms={1500} hold={9000} />
       <div className="relative flex min-h-0 flex-1 items-stretch rounded-xl bg-[rgba(251,251,248,0.95)] backdrop-blur-[45px] [-webkit-backdrop-filter:blur(45px)] h-[447px] shadow-[0_0_0.454px_1.908px_rgba(255,255,255,0.35)_inset,0_2.544px_0_0_#FFF_inset,0_0_2.544px_0_rgba(0,0,0,0.25),0_0_0_5.088px_rgba(232,231,230,0.32)]">
         <div aria-hidden="true" className="pointer-events-none absolute" style={{ left: "176.062px", top: "24px", width: "1px", height: "315.594px", background: "repeating-linear-gradient(rgb(191, 191, 191) 0px, rgb(191, 191, 191) 2px, transparent 2px, transparent 4px)", transition: "left 520ms cubic-bezier(0.22, 1, 0.36, 1), top 520ms cubic-bezier(0.22, 1, 0.36, 1), height 520ms cubic-bezier(0.22, 1, 0.36, 1)" }} />
         <div aria-hidden="true" className="pointer-events-none absolute" style={{ top: "24px", left: "43.0625px", width: "267px", opacity: "1", transition: "left 520ms cubic-bezier(0.22, 1, 0.36, 1), opacity 200ms" }}>
           <div style={{ position: "relative", width: "267px", padding: "22px 20px 16px", display: "flex", flexDirection: "column", gap: "10px", borderRadius: "12px", background: "rgb(255, 255, 255)", boxShadow: "rgba(255, 255, 255, 0.35) 0px 0px 0.357px 1.5px inset, rgb(255, 255, 255) 0px 2px 0px 0px inset, rgba(0, 0, 0, 0.25) 0px 0px 2px 0px, rgba(232, 231, 230, 0.32) 0px 0px 0px 4px", overflow: "hidden" }}>
-            <div style={{ width: "100%" }}>
+            <div data-at="0" data-fx="rise" style={{ width: "100%" }}>
               <div className="flex flex-col" style={{ gap: "8px", paddingTop: "0px" }}>
                 <div style={{ display: "inline-flex", alignSelf: "flex-start", alignItems: "center", width: "fit-content", gap: "4.488px", padding: "4.192px 6.288px", borderRadius: "104.799px", background: "rgb(239, 230, 214)" }}>
                   <span aria-hidden="true" style={{ width: "5px", height: "5px", borderRadius: "50%", background: "rgb(227, 160, 106)", boxShadow: "rgb(139, 97, 74) 0px 0.829px 0.829px 0px inset", filter: "drop-shadow(rgb(255, 255, 255) 0px 0.577px 0px)", flexShrink: "0", display: "inline-block" }} />
@@ -361,7 +365,7 @@ export function ToolsPanel1() {
                 <div aria-hidden="true" style={{ height: "1px", width: "100%", background: "repeating-linear-gradient(to right, rgba(35, 19, 60, 0.12) 0px, rgba(35, 19, 60, 0.12) 3px, transparent 3px, transparent 6px)" }} />
               </div>
             </div>
-            <div style={{ width: "100%" }}>
+            <div data-at="1" data-fx="rise" style={{ width: "100%" }}>
               <div className="flex flex-col" style={{ gap: "8px", paddingTop: "4.192px" }}>
                 <div style={{ display: "inline-flex", alignSelf: "flex-start", alignItems: "center", width: "fit-content", gap: "4.488px", padding: "4.192px 6.288px", borderRadius: "104.799px", background: "rgb(213, 231, 247)" }}>
                   <svg aria-hidden="true" width="8" height="8" viewBox="0 0 10 10" style={{ display: "block", flexShrink: "0" }}>
@@ -392,7 +396,7 @@ export function ToolsPanel1() {
                 <div aria-hidden="true" style={{ height: "1px", width: "100%", background: "repeating-linear-gradient(to right, rgba(35, 19, 60, 0.12) 0px, rgba(35, 19, 60, 0.12) 3px, transparent 3px, transparent 6px)" }} />
               </div>
             </div>
-            <div style={{ width: "100%" }}>
+            <div data-at="2" data-fx="rise" style={{ width: "100%" }}>
               <div className="flex flex-col" style={{ gap: "8px", paddingTop: "4.192px" }}>
                 <div style={{ display: "inline-flex", alignSelf: "flex-start", alignItems: "center", width: "fit-content", gap: "4.488px", padding: "4.192px 6.288px", borderRadius: "104.799px", background: "rgb(215, 237, 208)" }}>
                   <span aria-hidden="true" style={{ width: "5px", height: "5px", borderRadius: "50%", background: "rgb(113, 206, 69)", boxShadow: "rgb(52, 112, 45) 0px 0.829px 0.829px 0px inset", filter: "drop-shadow(rgb(255, 255, 255) 0px 0.577px 0px)", flexShrink: "0", display: "inline-block" }} />
@@ -419,7 +423,7 @@ export function ToolsPanel1() {
                 <div aria-hidden="true" style={{ height: "1px", width: "100%", background: "repeating-linear-gradient(to right, rgba(35, 19, 60, 0.12) 0px, rgba(35, 19, 60, 0.12) 3px, transparent 3px, transparent 6px)" }} />
               </div>
             </div>
-            <div style={{ width: "100%" }}>
+            <div data-at="3" data-fx="rise" style={{ width: "100%" }}>
               <div className="flex flex-col" style={{ gap: "8px", paddingTop: "4.192px" }}>
                 <div style={{ display: "inline-flex", alignSelf: "flex-start", alignItems: "center", width: "fit-content", gap: "4.488px", padding: "4.192px 6.288px", borderRadius: "104.799px", background: "rgb(242, 222, 222)" }}>
                   <span aria-hidden="true" style={{ width: "5px", height: "5px", borderRadius: "50%", background: "rgb(230, 106, 106)", boxShadow: "rgb(139, 74, 74) 0px 0.829px 0.829px 0px inset", filter: "drop-shadow(rgb(255, 255, 255) 0px 0.577px 0px)", flexShrink: "0", display: "inline-block" }} />
@@ -634,12 +638,13 @@ export function ToolsPanel1() {
 export function ToolsPanel2() {
   return (
     <div className="w-full min-[1000px]:w-[800px]">
+      <Live steps={6} ms={1200} hold={9000} />
       <div className="flex w-full rounded-[20px] bg-[rgba(232,231,230,0.32)] p-3">
         <div className="flex min-[1000px]:flex-row-reverse h-[347px] min-[1000px]:h-[447px] min-h-0 flex-1 items-center justify-center min-[1000px]:items-stretch rounded-xl bg-[rgba(251,251,248,0.95)] backdrop-blur-[45px] [-webkit-backdrop-filter:blur(45px)] w-full shadow-[0_0_0.454px_1.908px_rgba(255,255,255,0.35)_inset,0_2.544px_0_0_#FFF_inset,0_0_2.544px_0_rgba(0,0,0,0.25),0_0_0_5.088px_rgba(232,231,230,0.32)]">
           <div className="relative flex h-full min-h-0 flex-1 flex-col px-6 py-12 pb-5">
             <div className="relative z-10 flex h-full min-h-0 flex-1 flex-col items-center pointer-events-none" role="group" aria-label="Invoice payment options">
               <div className="pointer-events-none flex flex-col items-center gap-1">
-                <button type="button" aria-label="When approved" className="pointer-events-auto flex flex-col items-center gap-2">
+                <button data-at="0" data-fx="rise" type="button" aria-label="When approved" className="pointer-events-auto flex flex-col items-center gap-2">
                   <div className="group flex cursor-pointer flex-col items-center gap-1 rounded-[8px] bg-[#f5f5f2] p-0 shadow-[0_0_0_1px_rgba(35,19,60,0.1),0_2px_3px_0_rgba(0,0,0,0.06),0_0_0.357px_1.5px_rgba(255,255,255,0.35)_inset,0_2px_0_0_#FFF_inset] transition-[background-color,box-shadow] duration-[140ms] ease-out hover:bg-[#f0f0ed] hover:shadow-[0_0_0_1px_rgba(35,19,60,0.1),0_1px_2px_0_rgba(0,0,0,0.12),0_0_0.357px_1.5px_rgba(255,255,255,0.35)_inset,0_3px_0_0_#FFF_inset] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#45DC97]/60">
                     <span className="inline-flex items-center rounded-md border border-[#383838] bg-gradient-to-b from-[#4f4f4f] to-[rgba(35,19,60,0.85)] px-2 py-1 text-[10px] font-[460] leading-[1.2] tracking-[0.01em] text-white shadow-[0_0_0_1px_rgba(64,64,64,0.12),0_1px_0_0_rgba(255,255,255,0.24)_inset,0_-0.5px_2px_rgba(0,0,0,0.25)_inset,0_2px_4px_rgba(0,0,0,0.12)] font-[family-name:var(--font-neoris),sans-serif]">
                       When approved
@@ -653,7 +658,7 @@ export function ToolsPanel2() {
                 </button>
               </div>
               <div className="h-3 w-px" />
-              <div className="pointer-events-none inline-flex min-w-[90px] items-center gap-2.5 min-[1000px]:rounded-[10px] rounded-[6px] bg-[rgba(255,255,255,0.85)] min-[1000px]:py-2 min-[1000px]:pl-2 min-[1000px]:pr-3.5 p-1 shadow-[0_0_0_1px_#FFF_inset,0_0_0_1px_rgba(0,0,0,0.08),0_0_20px_0_rgba(0,0,0,0.03),0_36px_28px_0_rgba(0,0,0,0.02),0_4px_4px_0_rgba(0,0,0,0.02)]">
+              <div data-at="1" data-fx="rise" className="pointer-events-none inline-flex min-w-[90px] items-center gap-2.5 min-[1000px]:rounded-[10px] rounded-[6px] bg-[rgba(255,255,255,0.85)] min-[1000px]:py-2 min-[1000px]:pl-2 min-[1000px]:pr-3.5 p-1 shadow-[0_0_0_1px_#FFF_inset,0_0_0_1px_rgba(0,0,0,0.08),0_0_20px_0_rgba(0,0,0,0.03),0_36px_28px_0_rgba(0,0,0,0.02),0_4px_4px_0_rgba(0,0,0,0.02)]">
                 <div className="flex min-[1000px]:size-7 size-5 shrink-0 p-1.5 items-center justify-center min-[1000px]:rounded-md rounded-[4px] bg-[rgba(232,231,230,0.55)] shadow-[inset_0_0_0_1px_rgba(0,0,0,0.04)]">
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="shrink-0" aria-hidden="true">
                     <circle cx="13.9995" cy="3" r="1" transform="rotate(90 13.9995 3)" fill="#23133c" fillOpacity="0.6" />
@@ -705,7 +710,7 @@ export function ToolsPanel2() {
                 </g>
               </svg>
               <div className="pointer-events-none mt-1 flex items-start justify-center min-[1000px]:gap-6 gap-2">
-                <div className="pointer-events-none inline-flex min-w-[90px] items-center gap-2.5 min-[1000px]:rounded-[10px] rounded-[6px] bg-[rgba(255,255,255,0.85)] min-[1000px]:py-2 min-[1000px]:pl-2 min-[1000px]:pr-3.5 p-1 shadow-[0_0_0_1px_#FFF_inset,0_0_0_1px_rgba(0,0,0,0.08),0_0_20px_0_rgba(0,0,0,0.03),0_36px_28px_0_rgba(0,0,0,0.02),0_4px_4px_0_rgba(0,0,0,0.02)]">
+                <div data-at="2" data-fx="rise" className="pointer-events-none inline-flex min-w-[90px] items-center gap-2.5 min-[1000px]:rounded-[10px] rounded-[6px] bg-[rgba(255,255,255,0.85)] min-[1000px]:py-2 min-[1000px]:pl-2 min-[1000px]:pr-3.5 p-1 shadow-[0_0_0_1px_#FFF_inset,0_0_0_1px_rgba(0,0,0,0.08),0_0_20px_0_rgba(0,0,0,0.03),0_36px_28px_0_rgba(0,0,0,0.02),0_4px_4px_0_rgba(0,0,0,0.02)]">
                   <div className="flex min-[1000px]:size-7 size-5 shrink-0 p-1.5 items-center justify-center min-[1000px]:rounded-md rounded-[4px] bg-[rgba(232,231,230,0.55)] shadow-[inset_0_0_0_1px_rgba(0,0,0,0.04)]">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="shrink-0" aria-hidden="true">
                       <circle cx="13.9995" cy="3" r="1" transform="rotate(90 13.9995 3)" fill="#23133c" fillOpacity="0.6" />
@@ -729,7 +734,7 @@ export function ToolsPanel2() {
                     </span>
                   </div>
                 </div>
-                <div className="pointer-events-none inline-flex min-w-[90px] items-center gap-2.5 min-[1000px]:rounded-[10px] rounded-[6px] bg-[rgba(255,255,255,0.85)] min-[1000px]:py-2 min-[1000px]:pl-2 min-[1000px]:pr-3.5 p-1 shadow-[0_0_0_1px_#FFF_inset,0_0_0_1px_rgba(0,0,0,0.08),0_0_20px_0_rgba(0,0,0,0.03),0_36px_28px_0_rgba(0,0,0,0.02),0_4px_4px_0_rgba(0,0,0,0.02)]">
+                <div data-at="3" data-fx="rise" className="pointer-events-none inline-flex min-w-[90px] items-center gap-2.5 min-[1000px]:rounded-[10px] rounded-[6px] bg-[rgba(255,255,255,0.85)] min-[1000px]:py-2 min-[1000px]:pl-2 min-[1000px]:pr-3.5 p-1 shadow-[0_0_0_1px_#FFF_inset,0_0_0_1px_rgba(0,0,0,0.08),0_0_20px_0_rgba(0,0,0,0.03),0_36px_28px_0_rgba(0,0,0,0.02),0_4px_4px_0_rgba(0,0,0,0.02)]">
                   <div className="flex min-[1000px]:size-7 size-5 shrink-0 p-1.5 items-center justify-center min-[1000px]:rounded-md rounded-[4px] bg-[rgba(232,231,230,0.55)] shadow-[inset_0_0_0_1px_rgba(0,0,0,0.04)]">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="shrink-0" aria-hidden="true">
                       <path d="M8.88711 3.55537C8.88711 4.04628 8.48915 4.44424 7.99824 4.44424C7.50734 4.44424 7.10938 4.04628 7.10938 3.55537C7.10938 3.06446 7.50734 2.6665 7.99824 2.6665C8.48915 2.6665 8.88711 3.06446 8.88711 3.55537Z" fill="#23133c" fillOpacity="0.6" />
@@ -752,7 +757,7 @@ export function ToolsPanel2() {
                     </span>
                   </div>
                 </div>
-                <div className="pointer-events-none inline-flex min-w-[90px] items-center gap-2.5 min-[1000px]:rounded-[10px] rounded-[6px] bg-[rgba(255,255,255,0.85)] min-[1000px]:py-2 min-[1000px]:pl-2 min-[1000px]:pr-3.5 p-1 shadow-[0_0_0_1px_#FFF_inset,0_0_0_1px_rgba(0,0,0,0.08),0_0_20px_0_rgba(0,0,0,0.03),0_36px_28px_0_rgba(0,0,0,0.02),0_4px_4px_0_rgba(0,0,0,0.02)]">
+                <div data-at="4" data-fx="rise" className="pointer-events-none inline-flex min-w-[90px] items-center gap-2.5 min-[1000px]:rounded-[10px] rounded-[6px] bg-[rgba(255,255,255,0.85)] min-[1000px]:py-2 min-[1000px]:pl-2 min-[1000px]:pr-3.5 p-1 shadow-[0_0_0_1px_#FFF_inset,0_0_0_1px_rgba(0,0,0,0.08),0_0_20px_0_rgba(0,0,0,0.03),0_36px_28px_0_rgba(0,0,0,0.02),0_4px_4px_0_rgba(0,0,0,0.02)]">
                   <div className="flex min-[1000px]:size-7 size-5 shrink-0 p-1.5 items-center justify-center min-[1000px]:rounded-md rounded-[4px] bg-[rgba(232,231,230,0.55)] shadow-[inset_0_0_0_1px_rgba(0,0,0,0.04)]">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="shrink-0" aria-hidden="true">
                       <circle cx="8.00043" cy="7.99995" r="1.77778" fill="#23133c" fillOpacity="0.6" />
@@ -839,7 +844,7 @@ export function ToolsPanel2() {
                 </div>
                 <div className="flex w-full flex-col gap-1.5">
                   <span className="text-[11px] font-[460] text-[rgba(35,19,60,0.6)] font-[family-name:var(--font-neoris),sans-serif]">Note to client</span>
-                  <div className="flex w-full rounded-lg bg-[rgba(255,255,255,0.6)] px-2.5 py-2 text-xs font-[430] shadow-[0_0_0_1px_rgba(0,0,0,0.08)_inset,0_1px_1px_rgba(255,255,255,0.6)_inset] font-[family-name:var(--font-neoris),sans-serif] min-[1000px]:min-h-[120px] min-h-[80px] items-start leading-[1.4] text-[rgba(35,19,60,0.4)]">
+                  <div data-type="5" className="flex w-full rounded-lg bg-[rgba(255,255,255,0.6)] px-2.5 py-2 text-xs font-[430] shadow-[0_0_0_1px_rgba(0,0,0,0.08)_inset,0_1px_1px_rgba(255,255,255,0.6)_inset] font-[family-name:var(--font-neoris),sans-serif] min-[1000px]:min-h-[120px] min-h-[80px] items-start leading-[1.4] text-[rgba(35,19,60,0.4)]">
                     Add a note for your client…
                   </div>
                 </div>

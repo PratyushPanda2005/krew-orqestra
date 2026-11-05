@@ -1,3 +1,5 @@
+import { WordHunt } from "../_client/word-hunt"
+
 /** Build across industries: the letter grid with highlighted words. */
 export function Industries() {
   return (
@@ -11,6 +13,7 @@ export function Industries() {
         </p>
         <div className="mt-[60px] hidden min-[920px]:block">
           <div className="relative select-none" style={{ fontFamily: "var(--font-departure)", fontSize: "26px", fontWeight: "400", lineHeight: "160%", letterSpacing: "7.8px", "--wordsearch-draw-ms": "1020ms", "--wordsearch-letter-ms": "520ms" }}>
+            <WordHunt />
             <div className="absolute pointer-events-none" style={{ left: "134px", top: "1px", width: "606px", height: "48px", opacity: "1" }}>
               <svg width="606" height="48" viewBox="0 0 606 48" fill="none" preserveAspectRatio="none" style={{ overflow: "visible", display: "block" }}>
                 <defs>
@@ -1237,6 +1240,7 @@ export function Industries() {
         </div>
         <div className="mt-[60px] min-[920px]:hidden">
           <div className="relative select-none" style={{ fontFamily: "var(--font-departure)", fontSize: "26px", fontWeight: "400", lineHeight: "160%", letterSpacing: "7.8px", "--wordsearch-draw-ms": "2200ms", "--wordsearch-letter-ms": "520ms" }}>
+            <WordHunt />
             <div className="absolute pointer-events-none" style={{ left: "-1px", top: "67px", opacity: "0" }}>
               <svg width="38" height="242" viewBox="0 0 42 318" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ overflow: "visible", display: "block" }}>
                 <defs>

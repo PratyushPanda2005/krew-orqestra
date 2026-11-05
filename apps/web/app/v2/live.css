@@ -1,0 +1,67 @@
+/*
+ * The looks for <Live /> (_client/live.tsx). Everything sits under .live-on, which only JS with
+ * motion allowed sets; otherwise the mock-ups stay as their finished frame. !important beats the
+ * inline styles in the generated markup.
+ */
+.live-on [data-at] {
+  transition:
+    opacity 450ms ease-out,
+    translate 500ms cubic-bezier(0.22, 1, 0.36, 1),
+    scale 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    stroke-dashoffset 3200ms ease-in-out !important;
+}
+.live-on [data-at]:not([data-on]) {
+  opacity: 0 !important;
+}
+.live-on [data-fx="rise"]:not([data-on]) {
+  translate: 0 12px;
+}
+.live-on [data-fx="pop"]:not([data-on]) {
+  scale: 0.7;
+}
+
+/* Waiting work stays faintly visible. */
+.live-on [data-fx="dim"]:not([data-on]) {
+  opacity: 0.25 !important;
+}
+.live-on [data-fx="dim"][data-now] {
+  box-shadow: 0 0 0 1.2px #45dc97, 0 4px 14px #45dc9740 !important;
+}
+
+/* Connector lines: faint until reached, and the current one runs. */
+.live-on [data-fx="wire"]:not([data-on]) {
+  opacity: 0.2 !important;
+  stroke: #b7b7b7 !important;
+}
+.live-on [data-fx="wire"][data-now] path[stroke-dasharray] {
+  animation: live-march 500ms linear infinite;
+}
+@keyframes live-march {
+  to {
+    stroke-dashoffset: -4;
+  }
+}
+
+/* The wheel's job stages: the current one lifts and lights up. */
+.live-on [data-fx="node"]:not([data-on]) {
+  opacity: 0.55 !important;
+}
+.live-on [data-fx="node"][data-now] {
+  scale: 1.14;
+  box-shadow: 0 0 0 1.2px #45dc97, 0 6px 16px #45dc974d !important;
+  color: #23133c !important;
+}
+
+/* Lines that draw themselves, and rows of cells that fill left to right. */
+.live-on [data-fx="draw"]:not([data-on]) {
+  opacity: 1 !important;
+  stroke-dashoffset: 1 !important;
+  transition: none !important;
+}
+.live-on [data-fx="cells"]:not([data-on]) {
+  opacity: 1 !important;
+}
+.live-on [data-fx="cells"]:not([data-on]) > div {
+  opacity: 0.12 !important;
+  transition: none !important;
+}
